@@ -164,6 +164,7 @@
         }
         .btn-bilet:hover { background: #d35400; }
 
+        /* Modal Tasarımı */
         .modal {
             display: none;
             position: fixed;
@@ -179,13 +180,15 @@
             background: white;
             padding: 30px;
             border-radius: 12px;
-            max-width: 600px;
+            max-width: 650px;
             width: 100%;
             position: relative;
             box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            max-height: 85vh;
+            overflow-y: auto;
         }
         .modal-icerik h2 { color: #2c3e50; margin-bottom: 15px; }
-        .modal-icerik p { color: #555; line-height: 1.6; margin-bottom: 20px; }
+        .modal-icerik p { color: #555; line-height: 1.6; margin-bottom: 15px; }
         .kapat-btn {
             background: #e74c3c;
             color: white;
@@ -194,6 +197,9 @@
             border-radius: 6px;
             font-weight: 600;
             cursor: pointer;
+            display: block;
+            width: 100%;
+            margin-top: 20px;
         }
         .kapat-btn:hover { background: #c0392b; }
 
@@ -224,52 +230,123 @@
         <h1>Türkiye'yi İl İl Keşfet</h1>
         <p>81 ilin tüm detayları, tarihi rotaları ve en uygun bilet fırsatları burada.</p>
         <div class="hero-search">
-            <input type="text" id="sehirArama" placeholder="Hangi ili arıyorsunuz? (Örn: Ankara, İzmir, Bursa...)" onkeyup="sehirFiltrele()">
+            <input type="text" id="sehirArama" placeholder="Hangi ili arıyorsunuz? (Örn: Ankara, İzmir, Adana...)" onkeyup="sehirFiltrele()">
         </div>
     </section>
 
     <div class="container">
-        <h2 class="section-title">Türkiye'nin 81 İli</h2>
+        <h2 class="section-title">Türkiye'nin Şehirleri</h2>
         
         <div class="sehir-grid" id="sehirListesi">
+            
+            <!-- Adana -->
             <div class="sehir-kart" data-isim="01 adana taşköprü sabancı merkez camii">
                 <img src="https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b?q=80&w=600" alt="Adana">
                 <div class="kart-icerik">
                     <h3>01 - Adana</h3>
                     <p>Tarihi Taşköprü'sü, eşsiz mutfağı ve Seyhan Nehri manzarasıyla Akdeniz'in incisi.</p>
                     <div class="kart-butonlar">
-                        <button class="btn-detay" onclick="detayAc('Adana (01)', 'Adana; tarihi Taşköprü, Sabancı Merkez Camii, eşsiz kebap kültürü ve Seyhan Nehri ile Türkiye\'nin en dinamik şehirlerinden biridir. Tarihi İpek Yolu üzerinde yer alması nedeniyle zengin bir kültürel mirasa sahiptir.')">İncele</button>
+                        <button class="btn-detay" onclick="detayAc('Adana (01)', 'Adana; tarihi Taşköprü, Sabancı Merkez Camii, eşsiz kebap kültürü ve Seyhan Nehri ile Türkiye\'nin en dinamik şehirlerinden biridir. Tarihi İpek Yolu üzerinde yer alması nedeniyle zengin bir kültürel mirasa sahiptir. Adana Kebabı, bici bici ve şalgam suyu şehrin en önemli lezzetlerindendir.')">İncele</button>
                         <a href="https://www.skyscanner.com.tr" target="_blank" class="btn-bilet">Uçak Bileti</a>
                     </div>
                 </div>
             </div>
 
+            <!-- Ankara -->
             <div class="sehir-kart" data-isim="06 ankara başkent anıtkabir atatürk kalesi">
                 <img src="https://images.unsplash.com/photo-1628155931221-c4f57c4a4534?q=80&w=600" alt="Ankara">
                 <div class="kart-icerik">
                     <h3>06 - Ankara</h3>
                     <p>Başkentimizin gururu Anıtkabir, tarihi kaleleri ve kültürel müzeleriyle keşif merkezi.</p>
                     <div class="kart-butonlar">
-                        <button class="btn-detay" onclick="detayAc('Ankara (06)', 'Türkiye\'nin başkenti Ankara; Ulu Önder Atatürk\'ün ebedi istirahatgâhı Anıtkabir, tarihi Ankara Kalesi, Anadolu Medeniyetleri Müzesi ve cumhuriyet dönemi mimarisiyle ülkenin kalbinin attığı yerdir.')">İncele</button>
+                        <button class="btn-detay" onclick="detayAc('Ankara (06)', 'Türkiye\'nin başkenti Ankara; Ulu Önder Atatürk\'ün ebedi istirahatgâhı Anıtkabir, tarihi Ankara Kalesi, Anadolu Medeniyetleri Müzesi ve cumhuriyet dönemi mimarisiyle ülkenin kalbinin attığı yerdir. Beypazarı evleri ve Ankara simidi meşhurdur.')">İncele</button>
                         <a href="https://www.skyscanner.com.tr" target="_blank" class="btn-bilet">Uçak Bileti</a>
                     </div>
                 </div>
             </div>
 
+            <!-- Antalya -->
+            <div class="sehir-kart" data-isim="07 antalya akdeniz kaleiçi manavgat">
+                <img src="https://images.unsplash.com/photo-1563298723-dcfebaa392e3?q=80&w=600" alt="Antalya">
+                <div class="kart-icerik">
+                    <h3>07 - Antalya</h3>
+                    <p>Turkuaz suları, tarihi Kaleiçi sokakları ve dünya çapındaki antik kentleriyle göz kamaştırır.</p>
+                    <div class="kart-butonlar">
+                        <button class="btn-detay" onclick="detayAc('Antalya (07)', 'Dünya turizminin başkentlerinden Antalya; eşsiz sahilleri, tarihi Kaleiçi sokakları, Düden ve Kurşunlu şelaleleri, Aspendos ve Perge gibi antik kalıntılarıyla milyonlarca turisti ağırlar. Akdeniz mutfağının en taze lezzetleri burada sunulur.')">İncele</button>
+                        <a href="https://www.skyscanner.com.tr" target="_blank" class="btn-bilet">Uçak Bileti</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bursa -->
+            <div class="sehir-kart" data-isim="16 bursa uludağ yeşil türbe osman gazi">
+                <img src="https://images.unsplash.com/photo-1609137144813-7d9921338f24?q=80&w=600" alt="Bursa">
+                <div class="kart-icerik">
+                    <h3>16 - Bursa</h3>
+                    <p>Osmanlı'nın ilk başkenti, Uludağ'ın eteklerindeki yeşil doğası ve tarihi yapıları.</p>
+                    <div class="kart-butonlar">
+                        <button class="btn-detay" onclick="detayAc('Bursa (16)', 'Osmanlı İmparatorluğu\'nun ilk başkenti olan Bursa; Uludağ\'ın muhteşem doğası, Yeşil Türbe, Ulu Cami, tarihi Cumalıkızık köyü ve dünyaca ünlü İskender kebabı ile kestane şekeriyle bilinir.')">İncele</button>
+                        <a href="https://www.skyscanner.com.tr" target="_blank" class="btn-bilet">Uçak Bileti</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- İstanbul -->
             <div class="sehir-kart" data-isim="34 istanbul boğaz ayasofya kız kulesi sultanahmet">
                 <img src="https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?q=80&w=600" alt="İstanbul">
                 <div class="kart-icerik">
                     <h3>34 - İstanbul</h3>
                     <p>İki kıtayı buluşturan tarihi yarımadası, eşsiz boğazı ve kültürel zenginlikleriyle dünya başkenti.</p>
                     <div class="kart-butonlar">
-                        <button class="btn-detay" onclick="detayAc('İstanbul (34)', 'Asya ile Avrupa\'yı birleştiren İstanbul; Ayasofya, Topkapı Sarayı, Kız Kulesi ve boğaz manzarasıyla dünyanın en büyüleyici metropollerinden biridir.')">İncele</button>
+                        <button class="btn-detay" onclick="detayAc('İstanbul (34)', 'Asya ile Avrupa\'yı birleştiren İstanbul; Ayasofya, Topkapı Sarayı, Kız Kulesi, Galata Kulesi ve eşsiz boğaz manzarasıyla dünyanın en büyüleyici metropollerinden biridir. Tarih boyunca pek çok medeniyete başkentlik yapmıştır.')">İncele</button>
                         <a href="https://www.skyscanner.com.tr" target="_blank" class="btn-bilet">Uçak Bileti</a>
                     </div>
                 </div>
             </div>
+
+            <!-- İzmir -->
+            <div class="sehir-kart" data-isim="35 izmir ege konak saat kulesi alsancak efes">
+                <img src="https://images.unsplash.com/photo-1606744824163-985d376605aa?q=80&w=600" alt="İzmir">
+                <div class="kart-icerik">
+                    <h3>35 - İzmir</h3>
+                    <p>Ege'nin incisi; Saat Kulesi, sıcakkanlı insanları, antik kentleri ve muhteşem sahilleri.</p>
+                    <div class="kart-butonlar">
+                        <button class="btn-detay" onclick="detayAc('İzmir (35)', 'Ege\'nin incisi İzmir; tarihi Saat Kulesi, Kordon boyu, Foça, Alaçatı ve Çeşme sahilleri ile Efes Antik Kenti gibi benzersiz tarihi değerlere ev sahipliği yapar. Boyozu ve kumrusu pek meşhurdur.')">İncele</button>
+                        <a href="https://www.skyscanner.com.tr" target="_blank" class="btn-bilet">Uçak Bileti</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Nevşehir -->
+            <div class="sehir-kart" data-isim="50 nevşehir kapadokya peri bacaları göreme balon">
+                <img src="https://images.unsplash.com/photo-1641128309938-6ef4fbf76ab3?q=80&w=600" alt="Nevşehir">
+                <div class="kart-icerik">
+                    <h3>50 - Nevşehir (Kapadokya)</h3>
+                    <p>Peri bacaları, yer altı şehirleri ve gökyüzünü süsleyen rengarenk sıcak hava balonları.</p>
+                    <div class="kart-butonlar">
+                        <button class="btn-detay" onclick="detayAc('Nevşehir / Kapadokya (50)', 'Kapadokya bölgesi; eşsiz peri bacaları, yer altı şehirleri, kaya oyma kiliseleri ve gün doğumunda gökyüzünü süsleyen sıcak hava balon turlarıyla dünya çapında ünlüdür. Çanak çömlek atölyeleri ve çömlek kebabı çok ilgi görür.')">İncele</button>
+                        <a href="https://www.skyscanner.com.tr" target="_blank" class="btn-bilet">Uçak Bileti</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Trabzon -->
+            <div class="sehir-kart" data-isim="61 trabzon karadeniz sümele manastırı uzungöl yayla">
+                <img src="https://images.unsplash.com/photo-1589182373726-e4f658ab50f0?q=80&w=600" alt="Trabzon">
+                <div class="kart-icerik">
+                    <h3>61 - Trabzon</h3>
+                    <p>Karadeniz'in nefis yaylaları, tarihi Sümele Manastırı ve eşsiz doğal güzellikleri.</p>
+                    <div class="kart-butonlar">
+                        <button class="btn-detay" onclick="detayAc('Trabzon (61)', 'Karadeniz\'in incisi Trabzon; sarp kayalıklar üzerine kurulmuş tarihi Sümele Manastırı, eşsiz doğasıyla Uzungöl\'ü, Ayder yaylaları ve horonuyla büyüler. Mıhlama ve hamsi köftesi yörenin vazgeçilmez tatlarındandır.')">İncele</button>
+                        <a href="https://www.skyscanner.com.tr" target="_blank" class="btn-bilet">Uçak Bileti</a>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 
+    <!-- Detay Modal Penceresi -->
     <div id="detayModal" class="modal">
         <div class="modal-icerik">
             <h2 id="modalBaslik">Şehir Adı</h2>
