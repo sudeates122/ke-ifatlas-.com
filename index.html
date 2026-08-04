@@ -3,88 +3,282 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Keşif Atlası | Türkiye Gezi ve Seyahat Portalı</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
-</head>
-<body class="bg-slate-50 min-h-screen text-slate-800 antialiased flex flex-col">
+    <title>Atlass - Dünyayı Keşfet, Anılar Biriktir</title>
+    <!-- Google Fonts ve FontAwesome İkonları -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
 
-    <!-- Navbar -->
-    <header class="border-b bg-white sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
-            <div class="flex items-center space-x-2">
-                <i data-lucide="compass" class="h-8 w-8 text-red-600"></i>
-                <span class="text-xl font-bold tracking-tight text-slate-900">Keşif Atlası</span>
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+        }
+
+        /* Header / Navbar */
+        header {
+            background: #ffffff;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 5%;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            background: #ff5533;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #222;
+        }
+
+        .logo-text span {
+            color: #ff5533;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .flag-badge {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background: #f1f2f6;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: #e30a17;
+        }
+
+        .btn-primary {
+            background: #ff5533;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .btn-primary:hover {
+            background: #e04422;
+        }
+
+        /* Hero Section (Arama Alanı) */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1920&q=80') no-repeat center center/cover;
+            height: 450px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            padding: 0 20px;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+        }
+
+        .search-bar {
+            background: white;
+            padding: 10px;
+            border-radius: 10px;
+            display: flex;
+            width: 100%;
+            max-width: 700px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        .search-bar input {
+            flex: 1;
+            border: none;
+            padding: 12px 15px;
+            font-size: 1rem;
+            outline: none;
+        }
+
+        .search-bar button {
+            background: #ff5533;
+            color: white;
+            border: none;
+            padding: 0 25px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        /* Popüler Aktiviteler Bölümü */
+        .container {
+            max-width: 1200px;
+            margin: 50px auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 25px;
+            color: #222;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+
+        .card-content {
+            padding: 20px;
+        }
+
+        .card-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #222;
+        }
+
+        .card-price {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #ff5533;
+        }
+
+        /* Footer */
+        footer {
+            background: #1a1a1a;
+            color: white;
+            text-align: center;
+            padding: 30px;
+            margin-top: 50px;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Bölümü (Logo, Türk Bayrağı ve Uçak İkonu ile) -->
+    <header>
+        <a href="#" class="logo-area">
+            <div class="logo-icon">
+                <i class="fa-solid fa-plane"></i> <!-- Uçak İkonu -->
             </div>
-            <nav class="hidden md:flex space-x-6 text-sm font-medium text-slate-600">
-                <a href="#" class="hover:text-red-600">Ana Sayfa</a>
-                <a href="#" class="hover:text-red-600">81 İl</a>
-                <a href="#" class="hover:text-red-600">Blog</a>
-                <a href="#" class="hover:text-red-600">Rezervasyon</a>
-            </nav>
+            <div class="logo-text">Atla<span>ss</span></div>
+        </a>
+        
+        <div class="nav-right">
+            <!-- Türk Bayrağı Rozeti -->
+            <div class="flag-badge">
+                <span>🇹🇷</span> Türkçe (TR)
+            </div>
+            <button class="btn-primary">Giriş Yap</button>
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="bg-gradient-to-r from-red-600 to-red-800 text-white py-20 px-4">
-        <div class="max-w-4xl mx-auto text-center space-y-6">
-            <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight">
-                Türkiye'yi Adım Adım Keşfedin
-            </h1>
-            <p class="text-lg text-red-100 max-w-2xl mx-auto">
-                81 ilin saklı cennetleri, tarihi kalıntıları, yöresel lezzetleri ve en iyi seyahat rotaları burada.
-            </p>
-            <div class="flex justify-center max-w-md mx-auto bg-white rounded-full p-2 shadow-lg">
-                <div class="flex items-center pl-3 text-slate-400 w-full">
-                    <i data-lucide="search" class="h-5 w-5 mr-2"></i>
-                    <input 
-                        type="text" 
-                        placeholder="Nereyi keşfetmek istersiniz? (Örn: Ankara)" 
-                        class="w-full bg-transparent focus:outline-none text-slate-800 text-sm"
-                    />
+    <!-- Hero / Arama Alanı -->
+    <section class="hero">
+        <h1>Dünyayı ve Türkiye'yi Keşfetmeye Başla</h1>
+        <p>Binlerce aktivite, tur ve müze bileti Atlass ile cebinde!</p>
+        <div class="search-bar">
+            <input type="text" placeholder="Nereye gitmek istiyorsunuz? (Örn: Kapadokya, İstanbul, Roma...)">
+            <button><i class="fa-solid fa-search"></i> Ara</button>
+        </div>
+    </section>
+
+    <!-- Popüler Turlar -->
+    <div class="container">
+        <h2 class="section-title">Popüler Destinasyonlar ve Aktiviteler</h2>
+        <div class="grid">
+            <!-- Kart 1 -->
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1541432901042-2d8bd64b3a9b?auto=format&fit=crop&w=600&q=80" alt="İstanbul">
+                <div class="card-content">
+                    <div class="card-title">İstanbul Boğazı Yat Turu ve Akşam Yemeği</div>
+                    <div class="card-price">₺850'den başlayan fiyatlarla</div>
                 </div>
-                <button class="bg-red-600 text-white px-6 py-2 rounded-full font-medium text-sm hover:bg-red-700 transition">
-                    Ara
-                </button>
+            </div>
+            <!-- Kart 2 -->
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?auto=format&fit=crop&w=600&q=80" alt="Kapadokya">
+                <div class="card-content">
+                    <div class="card-title">Kapadokya Gün Doğumu Sıcak Hava Balonu</div>
+                    <div class="card-price">₺3.400'den başlayan fiyatlarla</div>
+                </div>
+            </div>
+            <!-- Kart 3 -->
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1524850011238-eafd23727d58?auto=format&fit=crop&w=600&q=80" alt="Antalya">
+                <div class="card-content">
+                    <div class="card-title">Antalya Kekova Batık Şehir Tekne Turu</div>
+                    <div class="card-price">₺650'den başlayan fiyatlarla</div>
+                </div>
             </div>
         </div>
-    </section>
+    </div>
 
-    <!-- Rezervasyon Kartları -->
-    <section class="max-w-7xl mx-auto px-4 py-12 w-full">
-        <h2 className="text-2xl font-bold text-slate-900 mb-6 text-center">Seyahat Planını Hemen Yap</h2>
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <div class="bg-white p-6 rounded-xl border shadow-sm hover:shadow-md transition text-center cursor-pointer group">
-                <i data-lucide="plane" class="h-8 w-8 mx-auto text-red-600 mb-2 group-hover:scale-110 transition"></i>
-                <h3 class="font-semibold text-slate-800">Uçak Bileti</h3>
-            </div>
-            <div class="bg-white p-6 rounded-xl border shadow-sm hover:shadow-md transition text-center cursor-pointer group">
-                <i data-lucide="bus" class="h-8 w-8 mx-auto text-red-600 mb-2 group-hover:scale-110 transition"></i>
-                <h3 class="font-semibold text-slate-800">Otobüs Bileti</h3>
-            </div>
-            <div class="bg-white p-6 rounded-xl border shadow-sm hover:shadow-md transition text-center cursor-pointer group">
-                <i data-lucide="hotel" class="h-8 w-8 mx-auto text-red-600 mb-2 group-hover:scale-110 transition"></i>
-                <h3 class="font-semibold text-slate-800">Otel Rezervasyonu</h3>
-            </div>
-            <div class="bg-white p-6 rounded-xl border shadow-sm hover:shadow-md transition text-center cursor-pointer group">
-                <i data-lucide="car" class="h-8 w-8 mx-auto text-red-600 mb-2 group-hover:scale-110 transition"></i>
-                <h3 class="font-semibold text-slate-800">Araç Kiralama</h3>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="bg-slate-900 text-slate-400 py-8 mt-auto">
-        <div class="max-w-7xl mx-auto px-4 text-center text-sm">
-            &copy; 2026 Keşif Atlası. Tüm hakları saklıdır. Türkiye'nin Gezi Portalı.
-        </div>
+    <!-- Alt Bilgi (Footer) -->
+    <footer>
+        <p>&copy; 2026 Atlass Seyahat Platformu. Tüm hakları saklıdır.</p>
     </footer>
 
-    <!-- Lucide İkonları Aktifleştirme -->
-    <script>
-        lucide.createIcons();
-    </script>
 </body>
 </html>
