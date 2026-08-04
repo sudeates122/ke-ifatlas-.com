@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Atlass - 81 İlde Seyahat, Tur ve Bilet Platformu</title>
-    <!-- Google Fonts ve FontAwesome İkonları -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>Atlass - Türkiye'nin Şiir Rotaları ve Edebi Tur Rehberliği</title>
+    <!-- Google Fonts & FontAwesome -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
@@ -17,14 +17,14 @@
         }
 
         body {
-            background-color: #f8f9fa;
-            color: #333;
+            background-color: #faf9f6;
+            color: #2c2c2c;
         }
 
         /* Header / Navbar */
         header {
             background: #ffffff;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            box-shadow: 0 2px 15px rgba(0,0,0,0.06);
             position: sticky;
             top: 0;
             z-index: 1000;
@@ -34,6 +34,7 @@
             padding: 15px 5%;
         }
 
+        /* Özel Logo: Türkiye/Şiir/Uçak temalı amblem */
         .logo-area {
             display: flex;
             align-items: center;
@@ -41,34 +42,49 @@
             text-decoration: none;
         }
 
-        /* İstediğiniz Gibi Logo Yanına Türk Bayrağı ve Uçak */
-        .logo-symbol-group {
+        .custom-logo-emblem {
             display: flex;
             align-items: center;
             gap: 8px;
-            background: #fff0f0;
-            padding: 6px 12px;
-            border-radius: 30px;
-            border: 1px solid #ffd1d1;
+            background: linear-gradient(135deg, #e30a17 0%, #b3000c 100%);
+            padding: 8px 14px;
+            border-radius: 12px;
+            color: white;
+            box-shadow: 0 4px 10px rgba(227, 10, 23, 0.3);
         }
 
-        .logo-symbol-group .flag {
+        .custom-logo-emblem .flag {
             font-size: 1.2rem;
         }
 
-        .logo-symbol-group .plane-icon {
-            color: #ff5533;
+        .custom-logo-emblem .feather-plane {
             font-size: 1.1rem;
         }
 
-        .logo-text {
-            font-size: 1.6rem;
-            font-weight: 700;
-            color: #222;
+        .logo-text-box {
+            display: flex;
+            flex-direction: column;
         }
 
-        .logo-text span {
-            color: #ff5533;
+        .logo-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1a1a1a;
+            font-family: 'Playfair Display', serif;
+            letter-spacing: -0.5px;
+            line-height: 1;
+        }
+
+        .logo-title span {
+            color: #e30a17;
+        }
+
+        .logo-subtitle {
+            font-size: 0.7rem;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 3px;
         }
 
         /* Menü Linkleri */
@@ -86,14 +102,41 @@
             font-size: 0.95rem;
             transition: color 0.3s;
             cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
         }
 
         .nav-links a:hover, .nav-links a.active {
-            color: #ff5533;
+            color: #e30a17;
+        }
+
+        /* Sağ Alan: Dil Seçici & Aksiyon */
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .lang-switcher {
+            background: #f1f2f6;
+            border: 1px solid #ddd;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            color: #333;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        .lang-switcher:hover {
+            border-color: #e30a17;
         }
 
         .btn-primary {
-            background: #ff5533;
+            background: #e30a17;
             color: white;
             border: none;
             padding: 10px 20px;
@@ -104,13 +147,13 @@
         }
 
         .btn-primary:hover {
-            background: #e04422;
+            background: #c50812;
         }
 
-        /* Hero Section (Hizmet Sekmeleri & Arama) */
+        /* Hero Section / Edebi Karşılama */
         .hero {
-            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1920&q=80') no-repeat center center/cover;
-            min-height: 500px;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1516483638261-f4dbaf036963?auto=format&fit=crop&w=1920&q=80') no-repeat center center/cover;
+            min-height: 520px;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -121,68 +164,46 @@
         }
 
         .hero h1 {
-            font-size: 2.3rem;
-            margin-bottom: 8px;
+            font-size: 2.8rem;
+            margin-bottom: 12px;
             font-weight: 700;
+            font-family: 'Playfair Display', serif;
         }
 
         .hero p {
-            font-size: 1.05rem;
-            margin-bottom: 25px;
+            font-size: 1.15rem;
+            margin-bottom: 30px;
+            max-width: 750px;
+            font-weight: 300;
+            font-style: italic;
         }
 
-        /* Hizmet Sekmeleri Kutusu */
-        .service-tabs {
-            display: flex;
-            background: rgba(255, 255, 255, 0.2);
-            padding: 5px;
-            border-radius: 10px;
-            margin-bottom: 15px;
-            backdrop-filter: blur(5px);
-        }
-
-        .service-tab {
-            background: transparent;
-            border: none;
-            color: white;
-            padding: 10px 20px;
-            font-weight: 600;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-
-        .service-tab.active {
-            background: #ff5533;
-            color: white;
-        }
-
-        /* Arama Kutusu ve 81 İl Seçimi */
+        /* 81 İl ve Şiir Rotaları Arama Çubuğu */
         .search-container {
             background: white;
-            padding: 12px;
+            padding: 15px;
             border-radius: 12px;
             display: flex;
             flex-wrap: wrap;
-            gap: 10px;
+            gap: 12px;
             width: 100%;
             max-width: 850px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
         }
 
         .search-field {
             flex: 1;
-            min-width: 200px;
+            min-width: 220px;
             display: flex;
             align-items: center;
             background: #f8f9fa;
             border-radius: 8px;
-            padding: 0 12px;
-            border: 1px solid #eee;
+            padding: 0 15px;
+            border: 1px solid #e1e1e1;
         }
 
         .search-field i {
-            color: #777;
+            color: #e30a17;
             margin-right: 10px;
         }
 
@@ -197,7 +218,7 @@
         }
 
         .search-btn {
-            background: #ff5533;
+            background: #e30a17;
             color: white;
             border: none;
             padding: 0 30px;
@@ -209,107 +230,168 @@
         }
 
         .search-btn:hover {
-            background: #e04422;
+            background: #c50812;
         }
 
-        /* Ana İçerik Alanı */
+        /* İçerik Alanları ve Sekmeler */
         .container {
             max-width: 1200px;
-            margin: 50px auto;
+            margin: 60px auto;
             padding: 0 20px;
         }
 
-        .section-title {
-            font-size: 1.8rem;
-            font-weight: 700;
-            margin-bottom: 25px;
-            color: #222;
+        .tab-content {
+            display: none;
         }
 
+        .tab-content.active {
+            display: block;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #1a1a1a;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .section-subtitle {
+            color: #666;
+            margin-bottom: 35px;
+            font-size: 1.05rem;
+        }
+
+        /* Şiir & Tur Kartları Grid */
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
         }
 
         .card {
             background: white;
             border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            transition: transform 0.3s;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
         .card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-6px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.12);
         }
 
-        .card img {
+        .card-img-container {
+            position: relative;
+            height: 200px;
+        }
+
+        .card-img-container img {
             width: 100%;
-            height: 180px;
+            height: 100%;
             object-fit: cover;
         }
 
-        .card-content {
-            padding: 20px;
+        .city-badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: rgba(0,0,0,0.75);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            backdrop-filter: blur(4px);
+        }
+
+        .card-body {
+            padding: 25px;
         }
 
         .card-title {
-            font-size: 1.1rem;
-            font-weight: 600;
-            margin-bottom: 10px;
-            color: #222;
-        }
-
-        .card-price {
-            font-size: 1.1rem;
+            font-size: 1.25rem;
             font-weight: 700;
-            color: #ff5533;
+            margin-bottom: 12px;
+            color: #1a1a1a;
+            font-family: 'Playfair Display', serif;
         }
 
-        /* Blog Modal Penceresi Tasarımı */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.6);
-            z-index: 2000;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .modal-content {
-            background: white;
-            width: 90%;
-            max-width: 700px;
-            padding: 30px;
-            border-radius: 15px;
-            position: relative;
-            max-height: 80vh;
-            overflow-y: auto;
-        }
-
-        .close-modal {
-            position: absolute;
-            top: 15px;
-            right: 20px;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: #777;
-        }
-
-        .blog-post-item {
+        .poem-snippet {
+            font-style: italic;
+            color: #555;
+            font-size: 0.95rem;
             margin-bottom: 20px;
-            border-bottom: 1px solid #eee;
-            padding-bottom: 15px;
+            line-height: 1.6;
+            background: #fbfbfa;
+            padding: 12px;
+            border-left: 3px solid #e30a17;
+            border-radius: 0 8px 8px 0;
         }
 
-        .blog-post-item h3 {
-            color: #ff5533;
-            margin-bottom: 5px;
+        .card-footer-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid #eee;
+            padding-top: 15px;
+            margin-top: 10px;
+        }
+
+        .guide-name {
+            font-size: 0.85rem;
+            color: #666;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .tour-price {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: #e30a17;
+        }
+
+        /* Hizmet Panelleri */
+        .service-panel {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .service-panel h3 {
+            margin-bottom: 20px;
+            color: #1a1a1a;
+            font-size: 1.6rem;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #444;
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 1rem;
+            outline: none;
         }
 
         /* Footer */
@@ -317,9 +399,19 @@
             background: #1a1a1a;
             color: white;
             text-align: center;
-            padding: 30px;
-            margin-top: 50px;
-            font-size: 0.9rem;
+            padding: 40px 20px;
+            margin-top: 80px;
+            font-size: 0.95rem;
+        }
+
+        footer p {
+            margin-bottom: 10px;
+        }
+
+        @media(max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
         }
     </style>
 </head>
@@ -327,107 +419,290 @@
 
     <!-- Header / Navbar -->
     <header>
-        <a href="#" class="logo-area">
-            <!-- İstediğiniz Gibi: Türk Bayrağı ve Uçak Logoda -->
-            <div class="logo-symbol-group">
+        <a href="#" class="logo-area" onclick="switchTab('home')">
+            <div class="custom-logo-emblem">
                 <span class="flag">🇹🇷</span>
-                <i class="fa-solid fa-plane plane-icon"></i>
+                <i class="fa-solid fa-plane feather-plane"></i>
             </div>
-            <div class="logo-text">Atla<span>ss</span></div>
+            <div class="logo-text-box">
+                <div class="logo-title">Atla<span>ss</span></div>
+                <div class="logo-subtitle" id="nav-subtitle-text">Şiir ve Edebi Turlar</div>
+            </div>
         </a>
         
         <ul class="nav-links">
-            <li><a href="#" onclick="changeService('turlar')">Turlar</a></li>
-            <li><a href="#" onclick="changeService('ucak')">Uçak Bileti</a></li>
-            <li><a href="#" onclick="changeService('otobus')">Otobüs Bileti</a></li>
-            <li><a href="#" onclick="changeService('otel')">Otel Rezervasyonu</a></li>
-            <li><a href="#" onclick="changeService('arac')">Araç Kiralama</a></li>
-            <li><a href="#" onclick="openBlogModal()">Blog</a></li>
+            <li><a href="#" onclick="switchTab('home')" class="active" id="nav-home"><i class="fa-solid fa-feather"></i> <span data-tr="Şiir Rotaları" data-en="Poetic Routes">Şiir Rotaları</span></a></li>
+            <li><a href="#" onclick="switchTab('ucak')" id="nav-ucak"><i class="fa-solid fa-plane-departure"></i> <span data-tr="Uçak Bileti" data-en="Flight Tickets">Uçak Bileti</span></a></li>
+            <li><a href="#" onclick="switchTab('otobus')" id="nav-otobus"><i class="fa-solid fa-bus"></i> <span data-tr="Otobüs Bileti" data-en="Bus Tickets">Otobüs Bileti</span></a></li>
+            <li><a href="#" onclick="switchTab('otel')" id="nav-otel"><i class="fa-solid fa-hotel"></i> <span data-tr="Otel Rezervasyonu" data-en="Hotel Booking">Otel Rezervasyonu</span></a></li>
+            <li><a href="#" onclick="switchTab('arac')" id="nav-arac"><i class="fa-solid fa-car"></i> <span data-tr="Araç Kiralama" data-en="Car Rental">Araç Kiralama</span></a></li>
+            <li><a href="#" onclick="switchTab('blog')" id="nav-blog"><i class="fa-solid fa-book-open"></i> <span data-tr="Edebi Blog" data-en="Literary Blog">Edebi Blog</span></a></li>
         </ul>
 
-        <button class="btn-primary">Giriş Yap</button>
+        <div class="nav-right">
+            <select class="lang-switcher" id="langSelect" onchange="changeLanguage()">
+                <option value="tr">🇹🇷 Türkçe</option>
+                <option value="en">🇬🇧 English</option>
+            </select>
+            <button class="btn-primary" onclick="alert(currentLang === 'tr' ? 'Edebi rehberliğe hoş geldiniz!' : 'Welcome to literary guidance!')" id="loginBtn">Giriş Yap</button>
+        </div>
     </header>
 
-    <!-- Hero / Arama Alanı ve 81 İl Seçimi -->
-    <section class="hero">
-        <h1 id="hero-title">Türkiye'nin 81 İlini Atlass ile Keşfet</h1>
-        <p id="hero-desc">Hayalinizdeki seyahat için binlerce seçenek bir arada!</p>
+    <!-- ANA SAYFA -->
+    <div id="home" class="tab-content active">
+        <section class="hero">
+            <h1 id="hero-heading">Türkiye'yi Şiirlerle ve Edebi Rotalarla Keşfet</h1>
+            <p id="hero-sub">"Süleymaniye'de Bayram Sabahı"ndan "İstanbul'u Dinliyorum"a, şairlerin izinde 81 ilde yaşayan şiir turları.</p>
+            
+            <div class="search-container">
+                <div class="search-field">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <select id="ilSecimi">
+                        <option value="">🇹🇷 81 İlden Şiir Rotaları Seçin...</option>
+                        <option value="01">01 - Adana (Dağlarca & Akdeniz Şiirleri)</option>
+                        <option value="06">06 - Ankara (Mehmet Akif & Başkent Şiirleri)</option>
+                        <option value="07">07 - Antalya (Teke Yöresi Türkü ve Şiirleri)</option>
+                        <option value="16">16 - Bursa (Ahmet Hamdi Tanpınar - Bursa'da Zaman)</option>
+                        <option value="34">34 - İstanbul (Orhan Veli, Yahya Kemal, Nazım Hikmet)</option>
+                        <option value="35">35 - İzmir (Attilâ İlhan Şiir Rotaları)</option>
+                        <option value="50">50 - Nevşehir / Kapadokya (Peribacaları Efsaneleri)</option>
+                        <option value="61">61 - Trabzon (Karadeniz Mektupları ve Şiirleri)</option>
+                    </select>
+                </div>
+                <div class="search-field">
+                    <i class="fa-solid fa-feather"></i>
+                    <input type="text" id="searchInput" placeholder="Şair veya şiir adı yazın...">
+                </div>
+                <button class="search-btn" onclick="alert(currentLang === 'tr' ? 'Seçtiğiniz ilden ilham alan edebi turlar listeleniyor!' : 'Listing literary tours!')"><i class="fa-solid fa-search"></i> <span data-tr="Şiir Turu Ara" data-en="Search Tour">Şiir Turu Ara</span></button>
+            </div>
+        </section>
 
-        <!-- Hizmet Sekmeleri -->
-        <div class="service-tabs">
-            <button class="service-tab active" onclick="changeService('turlar')">Aktivite & Tur</button>
-            <button class="service-tab" onclick="changeService('ucak')">Uçak Bileti</button>
-            <button class="service-tab" onclick="changeService('otobus')">Otobüs Bileti</button>
-            <button class="service-tab" onclick="changeService('otel')">Otel</button>
-            <button class="service-tab" onclick="changeService('arac')">Araç Kiralama</button>
+        <div class="container">
+            <h2 class="section-title" id="featured-title">Şairlerin Dilinden Unutulmaz Rotalar</h2>
+            <p class="section-subtitle" id="featured-subtitle">Uzman edebi tur rehberlerimiz eşliğinde, şiirlerin yazıldığı sokaklarda adım adım yolculuk.</p>
+            
+            <div class="grid">
+                <div class="card">
+                    <div class="card-img-container">
+                        <img src="https://images.unsplash.com/photo-1541432901042-2d8bd64b3a9b?auto=format&fit=crop&w=600&q=80" alt="Istanbul">
+                        <span class="city-badge">34 - İstanbul</span>
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title">Yahya Kemal ile "Bursa'da Zaman" ve İstanbul</h3>
+                        <div class="poem-snippet">"Geniş ve ezeli kadansın yayılan ses / İstanbul'u dinliyorum gözlerim kapalı..."</div>
+                        <div class="card-footer-info">
+                            <span class="guide-name"><i class="fa-solid fa-user-pen"></i> Rehber: Dr. Edebi Tur</span>
+                            <span class="tour-price">₺950</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-img-container">
+                        <img src="https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?auto=format&fit=crop&w=600&q=80" alt="Kapadokya">
+                        <span class="city-badge">50 - Nevşehir</span>
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title">Peribacaları ve Anadolu Mitleri Şiir Yürüyüşü</h3>
+                        <div class="poem-snippet">"Bir taş ki gökten düşmüş, üstünde bin destan..."</div>
+                        <div class="card-footer-info">
+                            <span class="guide-name"><i class="fa-solid fa-user-pen"></i> Rehber: Ozan Kaya</span>
+                            <span class="tour-price">₺1.450</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-img-container">
+                        <img src="https://images.unsplash.com/photo-1524850011238-eafd23727d58?auto=format&fit=crop&w=600&q=80" alt="Izmir">
+                        <span class="city-badge">35 - İzmir</span>
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title">Attilâ İlhan'ın Kordon'u ve Sokak Şiirleri</h3>
+                        <div class="poem-snippet">"Kordon boyu akşam rüzgarı, hatırlar mısın eski günleri..."</div>
+                        <div class="card-footer-info">
+                            <span class="guide-name"><i class="fa-solid fa-user-pen"></i> Rehber: Şair Gözüyle</span>
+                            <span class="tour-price">₺800</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-
-        <!-- Dinamik Arama Kutusu -->
-        <div class="search-container">
-            <!-- 81 İlin Tamamını İçeren Seçim Kutusu -->
-            <div class="search-field">
-                <i class="fa-solid fa-location-dot"></i>
-                <select id="il-secimi">
-                    <option value="">81 İlden Birini Seçin...</option>
-                    <option value="Adana">01 - Adana</option>
-                    <option value="Adıyaman">02 - Adıyaman</option>
-                    <option value="Afyonkarahisar">03 - Afyonkarahisar</option>
-                    <option value="Ağrı">04 - Ağrı</option>
-                    <option value="Amasya">05 - Amasya</option>
-                    <option value="Ankara">06 - Ankara</option>
-                    <option value="Antalya">07 - Antalya</option>
-                    <option value="Artvin">08 - Artvin</option>
-                    <option value="Aydın">09 - Aydın</option>
-                    <option value="Balıkesir">10 - Balıkesir</option>
-                    <option value="Bilecik">11 - Bilecik</option>
-                    <option value="Bingöl">12 - Bingöl</option>
-                    <option value="Bitlis">13 - Bitlis</option>
-                    <option value="Bolu">14 - Bolu</option>
-                    <option value="Burdur">15 - Burdur</option>
-                    <option value="Bursa">16 - Bursa</option>
-                    <option value="Çanakkale">17 - Çanakkale</option>
-                    <option value="Çankırı">18 - Çankırı</option>
-                    <option value="Çorum">19 - Çorum</option>
-                    <option value="Denizli">20 - Denizli</option>
-                    <option value="Diyarbakır">21 - Diyarbakır</option>
-                    <option value="Edirne">22 - Edirne</option>
-                    <option value="Elazığ">23 - Elazığ</option>
-                    <option value="Erzincan">24 - Erzincan</option>
-                    <option value="Erzurum">25 - Erzurum</option>
-                    <option value="ESiteniz tam istediğiniz modern formata getirildi ve harika bir seyahat platformuna dönüştürüldü! 
-
-Kod dosyanız güncellendi. Hazırladığım güncel `index.html` dosyasını bilgisayarınıza kaydederek hemen çalıştırabilirsiniz:
-
-Your HTML file is ready
-[file-tag: code-generated-file-dffb79f2-f540-4775-b750-bf3d5dace209]
-
----
-
-### Yapılan Güncellemeler ve Özellikler:
-
-1. **Logo Alanı:** Sol üst köşeye yan yana **Türk Bayrağı (🇹🇷)**, **Uçak İkonu (✈️)** ve **Atlass** yazısı yerleştirildi. Uçak simgesine hafif bir hareketli uçuş animasyonu eklendi.
-2. **81 İl Seçimi:** Anasayfada arama çubuğunun hemen başına Türkiye'nin **81 ilini** seçebileceğiniz açılır menü entegre edildi. Ziyaretçileriniz hangi ile gitmek istiyorsa kolayca seçebilecek.
-3. **Aktif Sekme Sistemleri (Uçak, Otobüs, Otel, Araç, Blog):** 
-   - Üst menüden veya butonlardan **Uçak Bileti**, **Otobüs Bileti**, **Otel Rezervasyonu** veya **Araç Kiralama** seçeneklerine tıkladığınızda sayfa anında o hizmete ait detaylı arama paneline dönüşür.
-   - **Blog** seçeneğine tıklandığında sitenin kendi içinde seyahat yazılarının (Karadeniz yaylaları, Kapadokya ipuçları, Ege koyları vb.) yer aldığı blog sayfası açılır.
-
----
-
-### Blog Sayfasını Nasıl Oluşturabilir ve Sonradan Nasıl Güncelleyebilirsiniz?
-
-Bu sistem tamamen tek bir dosya (`index.html`) olduğu için ek programlara veya veri tabanına (SQL vb.) ihtiyaç duymadan sitenizi kolayca yönetebilirsiniz.
-
-**Yeni Bir Blog Yazısı Eklemek İçin:**
-Kod dosyanızı (Not Defteri, VS Code veya herhangi bir metin düzenleyici ile) açın ve `<div class="blog-grid" id="blogContainer">` yazan yerin hemen altına şu şablonu kopyalayıp yapıştırarak yeni bir yazı ekleyebilirsiniz:
-
-```html
-<!-- Yeni Blog Yazısı Şablonu -->
-<div class="blog-card">
-    <img src="YAZININ_FOTOGRAFI_INTERNET_LINKI" alt="Başlık">
-    <div class="blog-info">
-        <div class="blog-date"><i class="fa-regular fa-calendar"></i> GÜNÜN_TARIHI (Örn: 5 Haziran 2026)</div>
-        <div class="blog-title">Yazınızın Başlığı Buraya</div>
-        <div class="blog-snippet">Yazınızın kısa özeti veya giriş paragrafı buraya yazılacak...</div>
-        <a href="#" class="read-more" onclick="alert('Yazının detayları yükleniyor...')">Devamını Oku &rarr;</a>
     </div>
-</div>
+
+    <!-- UÇAK BİLETİ SEKMESİ -->
+    <div id="ucak" class="tab-content">
+        <div class="container">
+            <div class="service-panel">
+                <h3><i class="fa-solid fa-plane-departure" style="color: #e30a17;"></i> <span data-tr="Şairlerin İzinde Uçak Bileti Rezervasyonu" data-en="Literary Flight Ticket Booking">Şairlerin İzinde Uçak Bileti Rezervasyonu</span></h3>
+                <div class="form-group">
+                    <label data-tr="Kalkış Şehri" data-en="Departure City">Kalkış Şehri</label>
+                    <select><option>İstanbul (IST / SAW)</option><option>Ankara Esenboğa (ESB)</option><option>İzmir Adnan Menderes (ADB)</option></select>
+                </div>
+                <div class="form-group">
+                    <label data-tr="Varış Şehri (Şiir Diyarı)" data-en="Destination City (Poetic Land)">Varış Şehri (Şiir Diyarı)</label>
+                    <select><option>Trabzon (Karadeniz Şiirleri)</option><option>Nevşehir / Kapadokya</option><option>Gaziantep (Edebi Lezzetler)</option></select>
+                </div>
+                <div class="form-group">
+                    <label data-tr="Uçuş Tarihi" data-en="Flight Date">Uçuş Tarihi</label>
+                    <input type="date">
+                </div>
+                <button class="btn-primary" style="width:100%; padding: 14px;" onclick="alert(currentLang === 'tr' ? 'Uçuş seferleri listeleniyor...' : 'Listing flights...')"><span data-tr="Uçuş Bul" data-en="Find Flight">Uçuş Bul</span></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- OTOBÜS BİLETİ SEKMESİ -->
+    <div id="otobus" class="tab-content">
+        <div class="container">
+            <div class="service-panel">
+                <h3><i class="fa-solid fa-bus" style="color: #e30a17;"></i> <span data-tr="Anadolu Yollarında Otobüs Bileti" data-en="Bus Ticket on Anatolian Roads">Anadolu Yollarında Otobüs Bileti</span></h3>
+                <div class="form-group">
+                    <label data-tr="Nereden" data-en="From">Nereden</label>
+                    <select><option>İstanbul Otogarı</option><option>Ankara Aşti</option><option>İzmir Otogarı</option></select>
+                </div>
+                <div class="form-group">
+                    <label data-tr="Nereye" data-en="To">Nereye</label>
+                    <select><option>Bursa (Tanpınar Rotaları)</option><option>Antalya</option><option>Trabzon</option></select>
+                </div>
+                <div class="form-group">
+                    <label data-tr="Yolculuk Tarihi" data-en="Travel Date">Yolculuk Tarihi</label>
+                    <input type="date">
+                </div>
+                <button class="btn-primary" style="width:100%; padding: 14px;" onclick="alert(currentLang === 'tr' ? 'Otobüs seferleri aranıyor...' : 'Searching bus trips...')"><span data-tr="Seferleri Listele" data-en="List Trips">Seferleri Listele</span></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- OTEL REZERVASYONU SEKMESİ -->
+    <div id="otel" class="tab-content">
+        <div class="container">
+            <div class="service-panel">
+                <h3><i class="fa-solid fa-hotel" style="color: #e30a17;"></i> <span data-tr="Edebi Konaklar ve Otel Rezervasyonu" data-en="Literary Mansions & Hotel Booking">Edebi Konaklar ve Otel Rezervasyonu</span></h3>
+                <div class="form-group">
+                    <label data-tr="Konaklamak İstediğiniz İl / Bölge" data-en="Destination City / Region">Konaklamak İstediğiniz İl / Bölge</label>
+                    <select><option>İstanbul Tarihi Yarımada Otelleri</option><option>Kapadokya Taş Konaklar</option><option>Bursa Osmanlı Konakları</option></select>
+                </div>
+                <div class="form-group">
+                    <label data-tr="Tarih Aralığı" data-en="Date Range">Tarih Aralığı</label>
+                    <input type="text" placeholder="12.06.2026 - 15.06.2026">
+                </div>
+                <button class="btn-primary" style="width:100%; padding: 14px;" onclick="alert(currentLang === 'tr' ? 'Oteller karşılaştırılıyor...' : 'Comparing hotels...')"><span data-tr="Otel Ara" data-en="Search Hotel">Otel Ara</span></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ARAÇ KİRALAMA SEKMESİ -->
+    <div id="arac" class="tab-content">
+        <div class="container">
+            <div class="service-panel">
+                <h3><i class="fa-solid fa-car" style="color: #e30a17;"></i> <span data-tr="Yolculuk İçin Araç Kiralama" data-en="Car Rental for Journey">Yolculuk İçin Araç Kiralama</span></h3>
+                <div class="form-group">
+                    <label data-tr="Alış Yeri" data-en="Pickup Location">Alış Yeri</label>
+                    <select><option>İstanbul Havalimanı</option><option>Ankara Esenboğa Havalimanı</option><option>İzmir Adnan Menderes Havalimanı</option></select>
+                </div>
+                <div class="form-group">
+                    <label data-tr="Kiralama Tarihleri" data-en="Rental Dates">Kiralama Tarihleri</label>
+                    <input type="text" placeholder="Tarih seçiniz">
+                </div>
+                <button class="btn-primary" style="width:100%; padding: 14px;" onclick="alert(currentLang === 'tr' ? 'Uygun araçlar listeleniyor...' : 'Listing available cars...')"><span data-tr="Araç Kirala" data-en="Rent Car">Araç Kirala</span></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- EDEBİ BLOG SEKMESİ -->
+    <div id="blog" class="tab-content">
+        <div class="container">
+            <h2 class="section-title"><span data-tr="Atlass Edebi Seyahat Günlüğü" data-en="Atlass Literary Travel Journal">Atlass Edebi Seyahat Günlüğü</span></h2>
+            <p class="section-subtitle"><span data-tr="Şairlerin kaleminden Türkiye'nin gizli kalmış ilham durakları." data-en="Turkey's hidden inspiration stops from the pens of poets.">Şairlerin kaleminden Türkiye'nin gizli kalmış ilham durakları.</span></p>
+            
+            <div class="grid">
+                <div class="card">
+                    <div class="card-img-container">
+                        <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80" alt="Karadeniz">
+                        <span class="city-badge">61 - Trabzon</span>
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title">Sabahattin Ali'nin İzinde Trabzon ve Karadeniz</h3>
+                        <div class="poem-snippet">"Dağlar, başınızda bulutlar var..."</div>
+                        <div class="card-footer-info">
+                            <span class="guide-name"><i class="fa-regular fa-calendar"></i> 4 Haziran 2026</span>
+                            <span class="read-more" style="color: #e30a17; font-weight:600; cursor:pointer;" onclick="alert('Yazının tam detayı açılıyor...')">Devamı &rarr;</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-img-container">
+                        <img src="https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?auto=format&fit=crop&w=600&q=80" alt="Kapadokya">
+                        <span class="city-badge">50 - Nevşehir</span>
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title">Peribacalarında Şiir Rüzgarı</h3>
+                        <div class="poem-snippet">"Zamanın durduğu vadilerde akşam ezanı..."</div>
+                        <div class="card-footer-info">
+                            <span class="guide-name"><i class="fa-regular fa-calendar"></i> 1 Haziran 2026</span>
+                            <span class="read-more" style="color: #e30a17; font-weight:600; cursor:pointer;" onclick="alert('Yazının tam detayı açılıyor...')">Devamı &rarr;</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Atlass Seyahat Platformu. Türkiye'nin Şiir ve Edebi Tur Rehberi.</p>
+        <p style="font-size: 0.85rem; color: #888;" data-tr="Bayrağımız ve şiirlerimizle dünyayı keşfedin." data-en="Discover the world with our flag and poems.">Bayrağımız ve şiirlerimizle dünyayı keşfedin.</p>
+    </footer>
+
+    <!-- JavaScript: Sekme, Türkçe / İngilizce Dil Çeviri Sistemi -->
+    <script>
+        let currentLang = 'tr';
+
+        function switchTab(tabId) {
+            const tabs = document.querySelectorAll('.tab-content');
+            tabs.forEach(tab => tab.classList.remove('active'));
+
+            document.getElementById(tabId).classList.add('active');
+
+            const navLinks = document.querySelectorAll('.nav-links a');
+            navLinks.forEach(link => link.classList.remove('active'));
+            
+            const activeNav = document.getElementById('nav-' + tabId);
+            if(activeNav) activeNav.classList.add('active');
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function changeLanguage() {
+            const selectVal = document.getElementById('langSelect').value;
+            currentLang = selectVal;
+
+            const elements = document.querySelectorAll('[data-tr]');
+            elements.forEach(el => {
+                if (currentLang === 'tr') {
+                    el.innerText = el.getAttribute('data-tr');
+                } else {
+                    el.innerText = el.getAttribute('data-en');
+                }
+            });
+
+            if (currentLang === 'en') {
+                document.getElementById('nav-subtitle-text').innerText = "Poetic & Literary Tours";
+                document.getElementById('hero-heading').innerText = "Discover Turkey Through Poems & Literary Routes";
+                document.getElementById('hero-sub').innerText = "From 'A Morning in Süleymaniye' to 'Listening to Istanbul', poetry tours across all 81 provinces in the footsteps of poets.";
+                document.getElementById('featured-title').innerText = "Unforgettable Routes in Poets' Words";
+                document.getElementById('featured-subtitle').innerText = "Step-by-step journeys in the streets where poems were written, accompanied by expert literary guides.";
+                document.getElementById('loginBtn').innerText = "Sign In";
+            } else {
+                document.getElementById('nav-subtitle-text').innerText = "Şiir ve Edebi Turlar";
+                document.getElementById('hero-heading').innerText = "Türkiye'yi Şiirlerle ve Edebi Rotalarla Keşfet";
+                document.getElementById('hero-sub').innerText = "\"Süleymaniye'de Bayram Sabahı\"ndan \"İstanbul'u Dinliyorum\"a, şairlerin izinde 81 ilde yaşayan şiir turları.";
+                document.getElementById('featured-title').innerText = "Şairlerin Dilinden Unutulmaz Rotalar";
+                document.getElementById('featured-subtitle').innerText = "Uzman edebi tur rehberlerimiz eşliğinde, şiirlerin yazıldığı sokaklarda adım adım yolculuk.";
+                document.getElementById('loginBtn').innerText = "Giriş Yap";
+            }
+        }
+    </script>
+</body>
+</html>
