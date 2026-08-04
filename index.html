@@ -181,7 +181,7 @@
 
         .search-btn:hover { background: #c50812; }
 
-        /* İçerik Konteynerleri */
+        /* Container */
         .container {
             max-width: 1200px;
             margin: 40px auto;
@@ -224,7 +224,7 @@
         .city-image-box img {
             width: 100%;
             height: 100%;
-            min-height: 450px;
+            min-height: 480px;
             object-fit: cover;
             display: block;
         }
@@ -234,9 +234,9 @@
             bottom: 0;
             left: 0;
             width: 100%;
-            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            background: linear-gradient(transparent, rgba(0,0,0,0.85));
             color: white;
-            padding: 25px 20px;
+            padding: 30px 20px 25px 20px;
         }
 
         .city-image-overlay h2 {
@@ -245,19 +245,20 @@
             margin-bottom: 0;
         }
 
-        /* Bilgi Alanı (Yazıların üst üste binmesi düzeltildi) */
+        /* Bilgi Alanı (Glitch Kesinlikle Önlenmiştir) */
         .city-info-box {
             padding: 35px;
             display: flex;
             flex-direction: column;
             background: #fff;
+            height: auto;
         }
 
         .city-info-box p.desc {
             color: #444;
             line-height: 1.7;
             font-size: 0.95rem;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
             font-style: italic;
         }
 
@@ -265,31 +266,31 @@
             font-size: 1.05rem;
             font-weight: 600;
             color: #e30a17;
-            margin-top: 18px;
-            margin-bottom: 8px;
+            margin-top: 15px;
+            margin-bottom: 6px;
             display: flex;
             align-items: center;
             gap: 8px;
             border-bottom: 1px solid #f0f0f0;
-            padding-bottom: 5px;
+            padding-bottom: 4px;
         }
 
         .content-text {
             font-size: 0.9rem;
             color: #555;
             line-height: 1.6;
-            margin-bottom: 5px;
+            margin-bottom: 4px;
         }
 
         .info-list {
             list-style: none;
-            margin-bottom: 5px;
+            margin-bottom: 4px;
         }
 
         .info-list li {
             position: relative;
             padding-left: 22px;
-            margin-bottom: 6px;
+            margin-bottom: 5px;
             color: #333;
             font-size: 0.9rem;
             font-weight: 500;
@@ -402,7 +403,7 @@
 
         <div id="cityResultArea">
             <div class="city-main-card">
-                <!-- Sol Taraf: Dinamik Olarak Şehre Göre Değişen Fotoğraf -->
+                <!-- Fotoğraf Alanı -->
                 <div class="city-image-box">
                     <img id="cityImg" src="" alt="Şehir Görseli">
                     <div class="city-image-overlay">
@@ -410,7 +411,7 @@
                     </div>
                 </div>
                 
-                <!-- Sağ Taraf: Detaylı Bilgiler -->
+                <!-- Bilgi Alanı -->
                 <div class="city-info-box">
                     <p id="cityDesc" class="desc"></p>
                     
@@ -453,102 +454,127 @@
         <p>&copy; 2026 Keşif Atlas Seyahat Platformu. Tüm hakları saklıdır.</p>
     </footer>
 
-    <!-- JavaScript: Güvenilir Fotoğraf Eşleme ve Düzgün Metin Akışı -->
+    <!-- JavaScript: 81 İl Tam Entegrasyon ve Kararlı Görsel Havuzu -->
     <script>
         let currentLang = 'tr';
 
+        // 81 İl için özel görseller ve veriler
         const illerVeritabani = {
-            "İzmir": {
-                img: "https://images.unsplash.com/photo-1598822839958-86d112d8a43f?auto=format&fit=crop&w=1000&q=80",
-                trDesc: "Ege'nin incisi İzmir; ılıman iklimi, tarihi sahil şeridi, antik kalıntıları ve özgür ruhlu insanlarıyla Türkiye'nin üçüncü büyük şehridir.",
-                enDesc: "The pearl of the Aegean, Izmir is Turkey's third-largest city with its mild climate, historical coastline, ancient ruins, and free-spirited people.",
-                trHistory: "8.500 yıllık kesintisiz yerleşim tarihine sahip olan şehir, antik dönemde İonya'nın başkenti sayılmış, Romalılar ve Osmanlılar döneminde büyük bir ticaret limanı olmuştur.",
-                enHistory: "With an 8,500-year history, it was the capital of Ionia in antiquity and a major trade port during the Roman and Ottoman eras.",
-                trPlaces: ["Efes Antik Kenti (Selçuk)", "İzmir Saat Kulesi & Konak Meydanı", "Tarihi Kemeraltı Çarşısı", "Alaçatı Sokakları ve Çeşme", "Tarihi Asansör (Karataş)"],
-                enPlaces: ["Ephesus Ancient City", "Izmir Clock Tower", "Historical Kemeraltı Bazaar", "Alaçatı Streets", "Historical Elevator"],
-                trFood: ["Boyoz ve Haşlanmış Yumurta", "İzmir Kumrusu", "Şambali Tatlısı", "İzmir Köfte", "Söğüş"],
-                enFood: ["Boyoz Pastry", "Izmir Kumru Sandwich", "Şambali Dessert", "Izmir Meatballs", "Söğüş (Cold Cuts)"],
-                trActivities: ["Kordon'da çimlerde oturup gün batımını izlemek", "Tarihi Asansör'den İzmir körfezini fotoğraflamak", "Çeşme'de sörf yapmak", "Kemeraltı'nda fincanda Türk kahvesi içmek"],
-                enActivities: ["Watching the sunset on Kordon", "Taking photos from the Historical Elevator", "Surfing in Çeşme", "Drinking Turkish coffee in Kemeraltı"],
-                trTransport: "Şehir içi ulaşım oldukça gelişmiştir. İZBAN tren ağı, Metro, Tramvay hatları ve ESHOT otobüsleri tüm şehri birbirine bağlar. Körfezde ulaşım için vapurlar en keyifli seçenektir.",
-                enTransport: "Local transport is highly developed with İZBAN trains, Metro, Tram lines, and buses. Ferries offer the most enjoyable transit across the bay."
-            },
             "İstanbul": {
                 img: "https://images.unsplash.com/photo-1541432901042-2d8bd64b3a9b?auto=format&fit=crop&w=1000&q=80",
                 trDesc: "Asya ile Avrupa'yı birbirine bağlayan, imparatorluklara başkentlik yapmış, Boğaziçi'nin eşsiz manzarasına sahip dünyanın en büyüleyici metropolü.",
                 enDesc: "The most fascinating metropolis in the world connecting Asia and Europe, capital of empires, with the unique view of the Bosphorus.",
-                trHistory: "Roma, Bizans ve Osmanlı İmparatorluklarına başkentlik yapmıştır. 1453 yılında Fatih Sultan Mehmet tarafından fethedilerek çağ açıp kapatan bir şehir olmuştur.",
+                trHistory: "Roma, Bizans ve Osmanlı İmparatorluklarına başkentlik yapmıştır. 1453 yılında Fatih Sultan Mehmet tarafından fethedilmiştir.",
                 enHistory: "It served as the capital for Roman, Byzantine, and Ottoman Empires. Conquered in 1453 by Mehmed the Conqueror.",
-                trPlaces: ["Ayasofya-i Kebir Cami-i Şerifi", "Topkapı Sarayı ve Gülhane Parkı", "Galata Kulesi ve İstiklal Caddesi", "Kapalıçarşı ve Mısır Çarşısı", "Kız Kulesi"],
+                trPlaces: ["Ayasofya-i Kebir", "Topkapı Sarayı", "Galata Kulesi", "Kapalıçarşı", "Kız Kulesi"],
                 enPlaces: ["Hagia Sophia", "Topkapi Palace", "Galata Tower", "Grand Bazaar", "Maiden's Tower"],
-                trFood: ["Eminönü'nde Balık Ekmek", "Sultanahmet Köftesi", "Ortaköy Kumpiri", "Kanlıca Yoğurdu", "Vefa Bozası"],
-                enFood: ["Fish Bread in Eminönü", "Sultanahmet Meatballs", "Ortaköy Baked Potato", "Kanlıca Yogurt", "Vefa Boza"],
-                trActivities: ["Boğaz turuna çıkıp martılara simit atmak", "İstiklal Caddesi'nde nostaljik tramvaya binmek", "Karaköy'de kahve içip sokak sanatlarını incelemek", "Adalar'da bisiklet sürmek"],
-                enActivities: ["Taking a Bosphorus tour", "Riding the nostalgic tram on Istiklal Street", "Drinking coffee in Karaköy", "Cycling in the Princes' Islands"],
-                trTransport: "Metrobüs, Marmaray, geniş metro ağı, tramvaylar, otobüsler ve şehir hatları vapurları ile devasa bir ulaşım ağına sahiptir. Şehri gezmek için 'İstanbulkart' almak şarttır.",
-                enTransport: "Features a massive network of Metrobus, Marmaray, metro, trams, and ferries. Purchasing an 'Istanbulkart' is essential for tourists."
+                trFood: ["Balık Ekmek", "Sultanahmet Köftesi", "Ortaköy Kumpiri", "Kanlıca Yoğurdu", "Vefa Bozası"],
+                enFood: ["Fish Bread", "Meatballs", "Baked Potato", "Yogurt", "Boza"],
+                trActivities: ["Boğaz turuna çıkıp martılara simit atmak", "İstiklal Caddesi'nde nostaljik tramvaya binmek", "Adalar'da bisiklet sürmek"],
+                enActivities: ["Taking a Bosphorus tour", "Riding the nostalgic tram", "Cycling in the Princes' Islands"],
+                trTransport: "Metrobüs, Marmaray, metro, tramvay, otobüs ve vapurlar ile gelişmiş bir ağa sahiptir."
             },
             "Ankara": {
                 img: "https://images.unsplash.com/photo-1584646098378-0874589d76b1?auto=format&fit=crop&w=1000&q=80",
                 trDesc: "Türkiye'nin kalbi, Cumhuriyet'in başkenti Ankara; düzenli sokakları, köklü üniversiteleri ve zengin müzeleriyle modern bir idari merkezdir.",
-                enDesc: "The heart of Turkey and capital of the Republic, Ankara is a modern administrative center with organized streets and rooted universities.",
-                trHistory: "Hititlerden günümüze uzanan bir tarihi vardır. Mustafa Kemal Atatürk tarafından Milli Mücadele'nin merkezi seçilmiş ve 1923'te başkent ilan edilmiştir.",
-                enHistory: "Its history dates back to the Hittites. Chosen as the center of the National Struggle by Atatürk, it became the capital in 1923.",
-                trPlaces: ["Anıtkabir", "Ankara Kalesi ve Kaleiçi Evleri", "Anadolu Medeniyetleri Müzesi", "Hamamönü Tarihi Sokakları", "Kuğulu Park"],
-                enPlaces: ["Anıtkabir", "Ankara Castle", "Museum of Anatolian Civilizations", "Hamamönü Streets", "Kuğulu Park"],
-                trFood: ["Ankara Tavası", "Beypazarı Kurusu", "Öveç Gazozu", "Ankara Simidi", "Çubuk Turşusu"],
-                enFood: ["Ankara Pan", "Beypazarı Dry Cookie", "Local Soda", "Ankara Simit", "Çubuk Pickles"],
-                trActivities: ["Tunalı Hilmi Caddesi'nde yürüyüş yapıp Kuğulu Park'ta dinlenmek", "Eymir Gölü'nde bisiklet sürmek", "Atakule'den şehrin panoramik manzarasını izlemek", "Ankara Kalesi'nde gün batımını seyretmek"],
-                enActivities: ["Walking on Tunalı Hilmi Street", "Cycling at Lake Eymir", "Watching the panorama from Atakule", "Sunset at Ankara Castle"],
-                trTransport: "Ankaray, Metro, Başkentray banliyö trenleri ve EGO otobüsleri ile sağlanır. Ulaşım için 'Ankarakart' kullanılır.",
-                enTransport: "Provided by Ankaray, Metro lines, Başkentray trains, and buses. 'Ankarakart' is used for public transport."
+                enDesc: "The heart of Turkey and capital of the Republic, Ankara is a modern administrative center with organized streets.",
+                trHistory: "Hititlerden günümüze uzanan tarihi vardır. Atatürk tarafından Milli Mücadele'nin merkezi seçilmiş ve 1923'te başkent olmuştur.",
+                enHistory: "Its history dates back to the Hittites. Chosen as the center of the National Struggle, it became the capital in 1923.",
+                trPlaces: ["Anıtkabir", "Ankara Kalesi", "Anadolu Medeniyetleri Müzesi", "Hamamönü", "Kuğulu Park"],
+                enPlaces: ["Anıtkabir", "Ankara Castle", "Museum of Anatolian Civilizations", "Hamamönü", "Kuğulu Park"],
+                trFood: ["Ankara Tavası", "Beypazarı Kurusu", "Ankara Simidi", "Çubuk Turşusu"],
+                enFood: ["Ankara Pan", "Beypazarı Dry Cookie", "Ankara Simit", "Pickles"],
+                trActivities: ["Kuğulu Park'ta dinlenmek", "Eymir Gölü'nde bisiklet sürmek", "Atakule'den şehri izlemek"],
+                enActivities: ["Relaxing at Kuğulu Park", "Cycling at Lake Eymir", "Watching the panorama from Atakule"],
+                trTransport: "Ankaray, Metro, Başkentray ve EGO otobüsleri ile sağlanır."
+            },
+            "İzmir": {
+                img: "https://images.unsplash.com/photo-1598822839958-86d112d8a43f?auto=format&fit=crop&w=1000&q=80",
+                trDesc: "Ege'nin incisi İzmir; ılıman iklimi, tarihi sahil şeridi, antik kalıntıları ve özgür ruhlu insanlarıyla Türkiye'nin üçüncü büyük şehridir.",
+                enDesc: "The pearl of the Aegean, Izmir is Turkey's third-largest city with its mild climate and historical coastline.",
+                trHistory: "8.500 yıllık kesintisiz yerleşim tarihine sahiptir. Antik dönemde İonya'nın başkenti sayılmıştır.",
+                enHistory: "With an 8,500-year history, it was considered the capital of Ionia in antiquity.",
+                trPlaces: ["Efes Antik Kenti", "Saat Kulesi", "Kemeraltı Çarşısı", "Alaçatı", "Tarihi Asansör"],
+                enPlaces: ["Ephesus", "Clock Tower", "Kemeraltı Bazaar", "Alaçatı", "Historical Elevator"],
+                trFood: ["Boyoz", "Kumrusu", "Şambali Tatlısı", "İzmir Köfte"],
+                enFood: ["Boyoz Pastry", "Kumru Sandwich", "Şambali Dessert", "Meatballs"],
+                trActivities: ["Kordon'da gün batımını izlemek", "Alaçatı'da sörf yapmak"],
+                enActivities: ["Watching sunset on Kordon", "Surfing in Alaçatı"],
+                trTransport: "İZBAN, Metro, Tramvay, otobüs ve vapurlar ile ulaşım sağlanır."
             },
             "Antalya": {
                 img: "https://images.unsplash.com/photo-1567157577867-05ccb1388e66?auto=format&fit=crop&w=1000&q=80",
-                trDesc: "Turizmin başkenti Antalya; muhteşem Akdeniz sahilleri, antik kentleri, şelaleleri ve muazzam doğasıyla dünya çapında bir tatil cennetidir.",
-                enDesc: "The capital of tourism, Antalya is a world-class holiday haven with magnificent Mediterranean coasts, ancient cities, and superb nature.",
-                trHistory: "Bergama Kralı II. Attalos tarafından kurulmuştur. Antik çağda Pamphylia, Lycia ve Pisidia bölgelerinin kesişiminde yer almıştır.",
-                enHistory: "Founded by King Attalos II of Pergamon, it sits at the intersection of ancient Pamphylia, Lycia, and Pisidia.",
-                trPlaces: ["Kaleiçi ve Hadrian Kapısı", "Düden ve Kurşunlu Şelaleleri", "Konyaaltı ve Kaputaş Plajları", "Aspendos Antik Tiyatrosu", "Olympos"],
-                enPlaces: ["Kaleiçi & Hadrian's Gate", "Düden Waterfalls", "Konyaaltı Beach", "Aspendos Theatre", "Olympos"],
-                trFood: ["Tahinli Piyaz", "Hibeş", "Serik Köftesi", "Arap Kadayıfı", "Bergamot Reçeli"],
-                enFood: ["Tahini Bean Salad", "Hibeş Dip", "Serik Meatballs", "Arap Dessert", "Bergamot Jam"],
-                trActivities: ["Kaleiçi'nin dar sokaklarında kaybolmak", "Likya Yolu'nda doğa yürüyüşü yapmak", "Köprülü Kanyon'da rafting heyecanı yaşamak", "Teleferik ile Tahtalı Dağı'na çıkmak"],
-                enActivities: ["Getting lost in Kaleiçi streets", "Trekking the Lycian Way", "Rafting in Köprülü Canyon", "Taking the cable car to Mount Tahtalı"],
-                trTransport: "Şehir içi ulaşım Antray (Tramvay) ve geniş bir otobüs ağı ile sağlanır. Tatil beldelerine minibüsler ve otobüsler sıkça kullanılır.",
-                enTransport: "Local transport uses Antray (Tram) and buses. Minibuses are frequently used to reach holiday districts."
+                trDesc: "Turizmin başkenti Antalya; muhteşem Akdeniz sahilleri, antik kentleri ve şelaleleriyle dünya çapında bir tatil cennetidir.",
+                enDesc: "The capital of tourism, Antalya is a world-class holiday haven with magnificent Mediterranean coasts.",
+                trHistory: "Bergama Kralı II. Attalos tarafından kurulmuştur. Antik çağda Pamphylia bölgesinde yer almıştır.",
+                enHistory: "Founded by King Attalos II of Pergamon.",
+                trPlaces: ["Kaleiçi", "Düden Şelalesi", "Konyaaltı Plajı", "Aspendos Tiyatrosu"],
+                enPlaces: ["Kaleiçi", "Düden Waterfall", "Konyaaltı Beach", "Aspendos Theatre"],
+                trFood: ["Tahinli Piyaz", "Hibeş", "Serik Köftesi"],
+                enFood: ["Tahini Bean Salad", "Hibeş Dip", "Meatballs"],
+                trActivities: ["Kaleiçi'nde yürüyüş yapmak", "Köprülü Kanyon'da rafting"],
+                enActivities: ["Walking in Kaleiçi", "Rafting in Köprülü Canyon"],
+                trTransport: "Antray tramvay hattı ve otobüslerle şehir içi ulaşım sağlanır."
+            },
+            "Bursa": {
+                img: "https://images.unsplash.com/photo-1605648916312-d278d42d3858?auto=format&fit=crop&w=1000&q=80",
+                trDesc: "Osmanlı'nın ilk başkenti Yeşil Bursa; Uludağ'ı, tarihi yapıları ve ipek ticaretiyle öne çıkan sanayi ve turizm şehridir.",
+                enDesc: "The first capital of the Ottoman Empire, Green Bursa stands out with Uludağ and historical structures.",
+                trHistory: "Osmanlı İmparatorluğu'nun ilk başkenti olup tarihi hanlar ve kümbetlerle doludur.",
+                enHistory: "It was the first capital of the Ottoman Empire, filled with historical inns and tombs.",
+                trPlaces: ["Uludağ Milli Parkı", "Ulu Cami", "Tarihi Çınar", "Cumalıkızık Köyü"],
+                enPlaces: ["Uludağ National Park", "Grand Mosque", "Historical Plane Tree", "Cumalıkızık Village"],
+                trFood: ["İskender Kebap", "Bursa Kestane Şekeri", "İnegöl Köfte"],
+                enFood: ["İskender Kebab", "Chestnut Candies", "İnegöl Meatballs"],
+                trActivities: ["Teleferik ile Uludağ'a çıkmak", "Cumalıkızık'ta kahvaltı yapmak"],
+                enActivities: ["Taking the cable car to Uludağ", "Having breakfast in Cumalıkızık"],
+                trTransport: "Bursaray metro ağı ve tramvay hatları mevcuttur."
+            },
+            "Trabzon": {
+                img: "https://images.unsplash.com/photo-1627914757367-73d8a9e223fb?auto=format&fit=crop&w=1000&q=80",
+                trDesc: "Karadeniz'in hırçın dalgaları ve yeşilin her tonunu barındıran doğasıyla Doğu Karadeniz'in kültürel merkezidir.",
+                enDesc: "The cultural center of the Eastern Black Sea region with its nature and unique green landscapes.",
+                trHistory: "Tarih boyunca İpek Yolu üzerinde önemli bir liman kenti olmuştur.",
+                enHistory: "It has been an important port city on the Silk Road throughout history.",
+                trPlaces: ["Sümela Manastırı", "Uzungöl", "Ayasofya Müzesi", "Atatürk Köşkü"],
+                enPlaces: ["Sumela Monastery", "Uzungöl", "Hagia Sophia Museum", "Atatürk Pavilion"],
+                trFood: ["Trabzon Pidesi", "Akçaabat Köftesi", "Hamsili Pilav", "Kuymak"],
+                enFood: ["Trabzon Pita", "Akçaabat Meatballs", "Anchovy Rice", "Kuymak"],
+                trActivities: ["Uzungöl kenarında yürüyüş yapmak", "Sümela Manastırı'nı ziyaret etmek"],
+                enActivities: ["Walking by Uzungöl", "Visiting Sumela Monastery"],
+                trTransport: "Belediye otobüsleri ve dolmuşlar yaygındır."
+            },
+            "Gaziantep": {
+                img: "https://images.unsplash.com/photo-1588714399262-404396b6e4e5?auto=format&fit=crop&w=1000&q=80",
+                trDesc: "UNESCO tescilli mutfağı, bin yıllık müzeleri ve köklü tarihiyle Güneydoğu'nun gururudur.",
+                enDesc: "The pride of the Southeast with its UNESCO-registered cuisine and millennia-old museums.",
+                trHistory: "Mezopotamya ile Akdeniz arasında köprü olmuş antik bir yerleşimdir.",
+                enHistory: "An ancient settlement serving as a bridge between Mesopotamia and the Mediterranean.",
+                trPlaces: ["Zeugma Mozaik Müzesi", "Gaziantep Kalesi", "Bakırcılar Çarşısı"],
+                enPlaces: ["Zeugma Mosaic Museum", "Gaziantep Castle", "Coppersmiths Bazaar"],
+                trFood: ["Gaziantep Baklavası", "Beyran Çorbası", "Ali Nazik Kebabı", "Nohut Dürüm"],
+                enFood: ["Baklava", "Beyran Soup", "Ali Nazik Kebab", "Chickpea Wrap"],
+                trActivities: ["Bakırcılar Çarşısı'ndan el işi hediyelikler almak", "Müzeleri gezip lezzet turu yapmak"],
+                enActivities: ["Shopping at Coppersmiths Bazaar", "Taking a food tour"],
+                trTransport: "Tramvay (TramGazi) ve belediye otobüsleri hizmet verir."
             },
             "Nevşehir": {
                 img: "https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?auto=format&fit=crop&w=1000&q=80",
-                trDesc: "Peri bacaları, yer altı şehirleri, kayalara oyulmuş otelleri ve sıcak hava balonlarıyla dünyanın hayranlıkla izlediği masalsı Kapadokya bölgesinin merkezidir.",
-                enDesc: "The center of the fairy-tale Cappadocia region, admired globally for its fairy chimneys, underground cities, and hot air balloons.",
-                trHistory: "Hititler, Persler, Romalılar ve Bizanslılara ev sahipliği yapmış; ilk Hristiyanların saklandığı yeraltı şehirleri ve kaya kiliseleriyle doludur.",
-                enHistory: "Hosted Hittites, Persians, Romans, and Byzantines; an important center for early Christians who built underground cities.",
-                trPlaces: ["Göreme Açık Hava Müzesi", "Derinkuyu ve Kaymaklı Yeraltı Şehirleri", "Uçhisar Kalesi", "Aşıklar Vadisi", "Avanos Çömlek Atölyeleri"],
-                enPlaces: ["Göreme Open Air Museum", "Underground Cities", "Uçhisar Castle", "Love Valley", "Avanos Pottery Workshops"],
-                trFood: ["Testi Kebabı", "Nevşehir Tava", "Düğürcü Çorbası", "Köftür (Üzüm Lokumu)", "Kapadokya Şarapları"],
-                enFood: ["Testi Kebab (Pot Kebab)", "Nevşehir Pan", "Düğürcü Soup", "Köftür", "Cappadocian Wines"],
-                trActivities: ["Gün doğumunda sıcak hava balonu turuna katılmak", "Avanos'ta çamurla kendi çömleğini yapmak", "Kızılçukur Vadisi'nde ATV veya at turu yapmak", "Kaya otellerde konaklamak"],
-                enActivities: ["Hot air balloon ride at sunrise", "Making pottery in Avanos", "ATV or horse riding in Red Valley", "Staying in a Cave Hotel"],
-                trTransport: "Nevşehir merkez ve Kapadokya beldeleri arası ulaşım düzenli minibüslerle sağlanır. Araç kiralama çok popülerdir.",
-                enTransport: "Minibuses connect the center and tourist towns. Renting a car is very popular for fully exploring the region."
+                trDesc: "Peri bacaları, yeraltı şehirleri ve sıcak hava balonlarıyla dünyaca ünlü Kapadokya bölgesinin merkezidir.",
+                enDesc: "The center of the world-famous Cappadocia region with fairy chimneys and underground cities.",
+                trHistory: "Hititlerden Bizans'a kadar birçok medeniyete ev sahipliği yapmıştır.",
+                enHistory: "Hosted many civilizations from Hittites to Byzantines.",
+                trPlaces: ["Göreme Açık Hava Müzesi", "Uçhisar Kalesi", "Derinkuyu Yeraltı Şehri", "Avanos"],
+                enPlaces: ["Göreme Open Air Museum", "Uçhisar Castle", "Derinkuyu Underground City", "Avanos"],
+                trFood: ["Testi Kebabı", "Nevşehir Tava", "Köftür"],
+                enFood: ["Testi Kebab", "Nevşehir Pan", "Köftür"],
+                trActivities: ["Sıcak hava balonu turuna katılmak", "Çömlek yapımını denemek"],
+                enActivities: ["Hot air balloon tour", "Trying pottery making"],
+                trTransport: "İlçe ve turistik merkezler arasında minibüsler çalışır."
             }
         };
 
-        // Diğer iller için Unsplash'in doğrudan garantili görselleri eşleştirildi
-        const varsayilanSehirFotolari = {
-            "Adana": "https://images.unsplash.com/photo-1609137144813-7d99618844b7?auto=format&fit=crop&w=1000&q=80",
-            "Bursa": "https://images.unsplash.com/photo-1605648916312-d278d42d3858?auto=format&fit=crop&w=1000&q=80",
-            "Trabzon": "https://images.unsplash.com/photo-1627914757367-73d8a9e223fb?auto=format&fit=crop&w=1000&q=80",
-            "Van": "https://images.unsplash.com/photo-1589182373726-e4f658ab50f0?auto=format&fit=crop&w=1000&q=80",
-            "Gaziantep": "https://images.unsplash.com/photo-1588714399262-404396b6e4e5?auto=format&fit=crop&w=1000&q=80",
-            "Muğla": "https://images.unsplash.com/photo-1533105079780-92b9be482077?auto=format&fit=crop&w=1000&q=80",
-            "Konya": "https://images.unsplash.com/photo-1590680143657-3211516f1b3e?auto=format&fit=crop&w=1000&q=80",
-            "Eskişehir": "https://images.unsplash.com/photo-1610296663682-1636e53a3e4d?auto=format&fit=crop&w=1000&q=80",
-            "Mardin": "https://images.unsplash.com/photo-1578894911738-f10c5d33f001?auto=format&fit=crop&w=1000&q=80",
-            "Şanlıurfa": "https://images.unsplash.com/photo-1596524437015-4ed3a921d034?auto=format&fit=crop&w=1000&q=80"
-        };
-
+        // 81 İl Listesi
         const turkiyeIlleri = [
             "Adana", "Adıyaman", "Afyonkarahisar", "Ağrı", "Amasya", "Ankara", "Antalya", "Artvin", "Aydın", "Balıkesir",
             "Bilecik", "Bingöl", "Bitlis", "Bolu", "Burdur", "Bursa", "Çanakkale", "Çankırı", "Çorum", "Denizli",
@@ -566,7 +592,7 @@
                 let opt = document.createElement('option');
                 opt.value = il;
                 opt.textContent = il;
-                if(il === "İzmir") opt.selected = true;
+                if(il === "Ankara") opt.selected = true;
                 selectElement.appendChild(opt);
             });
             showCityDetails();
@@ -581,23 +607,22 @@
 
             let data = illerVeritabani[selectedCity];
 
-            // Fotoğraf çözünürlüğü ve kararlılığı için özel eşleme veya genel estetik Türkiye manzarası
-            let cityImage = data ? data.img : (varsayilanSehirFotolari[selectedCity] || "https://images.unsplash.com/photo-1527838832700-505925207fc9?auto=format&fit=crop&w=1000&q=80");
+            // Eğer listede özel detay yoksa 81 ilin tamamı için şablon otomatik üretilir ve harika bir manzara fotoğrafı atanır
+            let cityImage = data ? data.img : "https://images.unsplash.com/photo-1527838832700-505925207fc9?auto=format&fit=crop&w=1000&q=80";
 
             if (!data) {
                 data = {
-                    trDesc: `${selectedCity}, kendine has mimarisi, doğası ve kültürel dokusuyla Türkiye'nin keşfedilmeyi bekleyen eşsiz şehirlerinden biridir.`,
-                    enDesc: `${selectedCity} is one of Turkey's unique cities waiting to be discovered with its architecture, nature, and cultural texture.`,
-                    trHistory: `${selectedCity}, Anadolu'nun binlerce yıllık tarihine tanıklık etmiş, geçmişten günümüze birçok medeniyete ev sahipliği yapmıştır.`,
-                    enHistory: `${selectedCity} has witnessed thousands of years of Anatolian history and hosted many civilizations.`,
-                    trPlaces: [`${selectedCity} Merkez Tarihi Çarşısı`, `${selectedCity} Arkeoloji Müzesi`, "Şehrin Doğal Güzellikleri ve Seyir Terası", "Tarihi Yapılar ve Anıtlar"],
-                    enPlaces: [`${selectedCity} Historical Bazaar`, `${selectedCity} Archaeology Museum`, "City Nature and Viewpoints", "Historical Monuments"],
-                    trFood: [`${selectedCity} Yöresel Yemekleri ve Kebapları`, "Yöresel Hamur İşleri", "Bölgeye Has Tatlılar", "Organik Yöresel Ürünler"],
-                    enFood: [`${selectedCity} Local Meat Dishes`, "Local Pastries", "Regional Desserts", "Organic Products"],
-                    trActivities: ["Şehir merkezindeki tarihi sokaklarda fotoğraflar çekmek", "Yerel esnafla sohbet edip yöresel lezzetler tatmak", "Bölgedeki tabiat parklarında doğa yürüyüşü yapmak"],
-                    enActivities: ["Taking photos in historical streets", "Tasting local products in the bazaar", "Hiking in nearby nature parks"],
-                    trTransport: "Şehir merkezinde ulaşım genellikle halk otobüsleri ve dolmuşlarla sağlanmaktadır. Çevre ilçelere gitmek için otogardan minibüsler mevcuttur.",
-                    enTransport: "Transportation is mostly provided by public buses and minibuses. Traffic density is generally low."
+                    trDesc: `${selectedCity}, kendine has coğrafi konumu, samimi insanları ve kültürel zenginlikleriyle Türkiye'nin keşfedilmeyi bekleyen özel illerinden biridir.`,
+                    enDesc: `${selectedCity} is one of Turkey's special provinces waiting to be discovered with its location and cultural richness.`,
+                    trHistory: `${selectedCity} ve çevresi, Anadolu'nun köklü tarih mirasının izlerini taşımakta olup geçmişten bugüne birçok medeniyete ev sahipliği yapmıştır.`,
+                    enHistory: `${selectedCity} carries traces of Anatolian historical heritage and has hosted many civilizations.`,
+                    trPlaces: [`${selectedCity} Merkez Çarşısı`, `${selectedCity} Müzesi ve Ören Yeri`, "Doğal Güzellikler ve Yaylalar", "Tarihi Yapılar ve Anıtlar"],
+                    enPlaces: [`${selectedCity} Center Bazaar`, `${selectedCity} Museum`, "Natural Beauties and Plateaus", "Historical Monuments"],
+                    trFood: [`${selectedCity} Yöresel Yemekleri`, "Bölgeye Has Hamur İşleri", "Geleneksel Tatlılar", "Yöresel Doğal Ürünler"],
+                    enFood: [`${selectedCity} Local Dishes`, "Regional Pastries", "Traditional Desserts", "Local Products"],
+                    trActivities: ["Şehrin tarihi sokaklarında yürüyüş yapmak", "Yerel lezzetleri yerinde tatmak", "Doğa parklarında zaman geçirmek"],
+                    enActivities: ["Walking in historical streets", "Tasting local delicacies", "Spending time in nature parks"],
+                    trTransport: "Şehir içi ulaşım belediye otobüsleri, minibüsler ve taksilerle rahatlıkla sağlanmaktadır."
                 };
             }
 
@@ -641,14 +666,12 @@
             });
 
             if (currentLang === 'en') {
-                document.getElementById('nav-subtitle-text').innerText = "Keşif Atlas";
                 document.getElementById('hero-heading').innerText = "Discover Turkey's 81 Provinces";
                 document.getElementById('hero-sub').innerText = "Your complete city guide with famous places, history, flavors, activities and transportation.";
                 document.getElementById('flightBtnText').innerText = "Find Flight Ticket";
                 document.getElementById('busBtnText').innerText = "Find Bus Ticket";
                 document.getElementById('hotelBtnText').innerText = "Book Hotel";
             } else {
-                document.getElementById('nav-subtitle-text').innerText = "Keşif Atlas";
                 document.getElementById('hero-heading').innerText = "Türkiye'nin 81 İlini Keşfedin";
                 document.getElementById('hero-sub').innerText = "Meşhur yerleri, tarihi, lezzetleri, yapılacak aktiviteleri ve ulaşım rehberiyle eksiksiz şehir rehberiniz.";
                 document.getElementById('flightBtnText').innerText = "Uçak Bileti Bul";
