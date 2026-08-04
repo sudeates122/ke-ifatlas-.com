@@ -1,388 +1,198 @@
-<!DOCTYPE html>
-<html lang="tr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Keşif Atlası | 81 İl Seyahat Rehberi</title>
-    <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f4f6f9;
-            color: #333;
-        }
-        header {
-            background: #ffffff;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 15px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: #2c3e50;
-            text-decoration: none;
-        }
-        .logo span { color: #3498db; }
-        .nav-links {
-            display: flex;
-            gap: 20px;
-            list-style: none;
-        }
-        .nav-links a {
-            text-decoration: none;
-            color: #555;
-            font-weight: 600;
-            transition: color 0.2s;
-        }
-        .nav-links a:hover { color: #3498db; }
+{
+  "name": "kesif-atlasi",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@prisma/client": "^5.0.0",
+    "lucide-react": "^1.0.0",
+    "next": "15.0.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "postcss": "^8.0.0",
+    "prisma": "^5.0.0",
+    "tailwindcss": "^3.4.0",
+    "typescript": "^5.0.0"
+  }
+}
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
 
-        .hero {
-            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?q=80&w=1600') no-repeat center center/cover;
-            height: 350px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            color: white;
-            padding: 0 20px;
-        }
-        .hero h1 { font-size: 2.8rem; margin-bottom: 10px; }
-        .hero p { font-size: 1.2rem; margin-bottom: 20px; font-weight: 300; }
-        
-        .hero-search {
-            display: flex;
-            background: white;
-            padding: 5px;
-            border-radius: 30px;
-            width: 100%;
-            max-width: 500px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-        }
-        .hero-search input {
-            flex: 1;
-            border: none;
-            padding: 12px 20px;
-            font-size: 1rem;
-            outline: none;
-            border-radius: 30px;
-        }
+generator client {
+  provider = "prisma-client-js"
+}
 
-        .container {
-            max-width: 1200px;
-            margin: 40px auto;
-            padding: 0 20px;
-        }
-        .section-title {
-            font-size: 1.8rem;
-            color: #2c3e50;
-            margin-bottom: 25px;
-            border-left: 5px solid #3498db;
-            padding-left: 10px;
-        }
-        .sehir-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-        .sehir-kart {
-            background: #ffffff;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            display: flex;
-            flex-direction: column;
-        }
-        .sehir-kart:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.12);
-        }
-        .sehir-kart img {
-            width: 100%;
-            height: 220px;
-            object-fit: cover;
-        }
-        .kart-icerik {
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            flex-grow: 1;
-        }
-        .kart-icerik h3 {
-            font-size: 1.4rem;
-            color: #2c3e50;
-            margin-bottom: 8px;
-        }
-        .kart-icerik p {
-            color: #666;
-            font-size: 0.95rem;
-            line-height: 1.5;
-            margin-bottom: 20px;
-            flex-grow: 1;
-        }
-        .kart-butonlar {
-            display: flex;
-            gap: 10px;
-        }
-        .btn-detay {
-            flex: 1;
-            background: #3498db;
-            color: white;
-            padding: 10px;
-            text-align: center;
-            border-radius: 6px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.9rem;
-            border: none;
-            cursor: pointer;
-            transition: background 0.2s;
-        }
-        .btn-detay:hover { background: #2980b9; }
-        .btn-bilet {
-            flex: 1;
-            background: #e67e22;
-            color: white;
-            padding: 10px;
-            text-align: center;
-            border-radius: 6px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.9rem;
-            transition: background 0.2s;
-        }
-        .btn-bilet:hover { background: #d35400; }
+model Sehir {
+  id          Int      @id @default(autoincrement())
+  plakaKodu   Int      @unique
+  isim        String
+  slug        String   @unique
+  tarihce     String?  @db.Text
+  nufus       Int?
+  rakim       Int?
+  bolge       String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  fotograflar Fotograf[]
+  mekanlar    Mekan[]
+  ilceler     Ilce[]
+}
 
-        /* Modal Tasarımı */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 2000;
-            left: 0; top: 0;
-            width: 100%; height: 100%;
-            background-color: rgba(0,0,0,0.6);
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-        }
-        .modal-icerik {
-            background: white;
-            padding: 30px;
-            border-radius: 12px;
-            max-width: 650px;
-            width: 100%;
-            position: relative;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            max-height: 85vh;
-            overflow-y: auto;
-        }
-        .modal-icerik h2 { color: #2c3e50; margin-bottom: 15px; }
-        .modal-icerik p { color: #555; line-height: 1.6; margin-bottom: 15px; }
-        .kapat-btn {
-            background: #e74c3c;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 6px;
-            font-weight: 600;
-            cursor: pointer;
-            display: block;
-            width: 100%;
-            margin-top: 20px;
-        }
-        .kapat-btn:hover { background: #c0392b; }
+model Ilce {
+  id      Int    @id @default(autoincrement())
+  isim    String
+  sehirId Int
+  sehir   Sehir  @relation(fields: [sehirId], references: [id], onDelete: Cascade)
+}
 
-        footer {
-            background: #2c3e50;
-            color: white;
-            text-align: center;
-            padding: 30px 20px;
-            margin-top: 60px;
-            font-size: 0.9rem;
-        }
-    </style>
-</head>
-<body>
+model Mekan {
+  id          Int      @id @default(autoincrement())
+  isim        String
+  kategori    String   // Tarihi Yer, Müze, Doğa, Yemek vb.
+  aciklama    String?  @db.Text
+  sehirId     Int
+  sehir   Sehir  @relation(fields: [sehirId], references: [id], onDelete: Cascade)
+}
 
-    <header>
-        <div class="nav-container">
-            <a href="#" class="logo">Keşif<span>Atlası</span></a>
-            <ul class="nav-links">
-                <li><a href="#">Ana Sayfa</a></li>
-                <li><a href="#">81 İl Listesi</a></li>
-                <li><a href="#">Uçak Bileti</a></li>
-            </ul>
+model Fotograf {
+  id      Int    @id @default(autoincrement())
+  url     String
+  baslik  String?
+  sehirId Int
+  sehir   Sehir  @relation(fields: [sehirId], references: [id], onDelete: Cascade)
+}
+import { PrismaClient } from '@prisma/client'
+
+const globalForPrisma = globalThis as unknown as {
+  prisma: PrismaClient | undefined
+}
+
+export const prisma = globalForPrisma.prisma ?? new PrismaClient()
+
+if (process.env.NODE_ENV !== 'production') globalForPrisma.prisma = prisma
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 15, 23, 42;
+  --background-rgb: 255, 255, 255;
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: rgb(var(--background-rgb));
+  font-family: Arial, Helvetica, sans-serif;
+}
+import './globals.css'
+import type { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Keşif Atlası | Türkiye Gezi ve Seyahat Portalı',
+  description: '81 ili, tarihi mekanları, yöresel yemekleri ve seyahat rehberleri ile kapsamlı Türkiye keşif platformu.',
+}
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode
+}) {
+  return (
+    <html lang="tr">
+      <body className="bg-slate-50 min-h-screen text-slate-800 antialiased">
+        {children}
+      </body>
+    </html>
+  )
+}
+import Link from 'next/link';
+import { Compass, Search, Plane, Bus, Hotel, Car } from 'lucide-react';
+
+export default function Home() {
+  return (
+    <div className="flex flex-col min-h-screen">
+      {/* Navbar */}
+      <header className="border-b bg-white sticky top-0 z-50">
+        <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
+          <div className="flex items-center space-x-2">
+            <Compass className="h-8 w-8 text-red-600" />
+            <span className="text-xl font-bold tracking-tight text-slate-900">Keşif Atlası</span>
+          </div>
+          <nav className="hidden md:flex space-x-6 text-sm font-medium text-slate-600">
+            <Link href="/" className="hover:text-red-600">Ana Sayfa</Link>
+            <Link href="/iller" className="hover:text-red-600">81 İl</Link>
+            <Link href="/blog" className="hover:text-red-600">Blog</Link>
+            <Link href="/rezervasyon" className="hover:text-red-600">Rezervasyon</Link>
+          </nav>
         </div>
-    </header>
+      </header>
 
-    <section class="hero">
-        <h1>Türkiye'yi İl İl Keşfet</h1>
-        <p>81 ilin tüm detayları, tarihi rotaları ve en uygun bilet fırsatları burada.</p>
-        <div class="hero-search">
-            <input type="text" id="sehirArama" placeholder="Hangi ili arıyorsunuz? (Örn: Ankara, İzmir, Adana...)" onkeyup="sehirFiltrele()">
+      {/* Hero Section */}
+      <section className="bg-gradient-to-r from-red-600 to-red-800 text-white py-20 px-4">
+        <div className="max-w-4xl mx-auto text-center space-y-6">
+          <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight">
+            Türkiye'yi Adım Adım Keşfedin
+          </h1>
+          <p className="text-lg text-red-100 max-w-2xl mx-auto">
+            81 ilin saklı cennetleri, tarihi kalıntıları, yöresel lezzetleri ve en iyi seyahat rotaları burada.
+          </p>
+          <div className="flex justify-center max-w-md mx-auto bg-white rounded-full p-2 shadow-lg">
+            <div className="flex items-center pl-3 text-slate-400 w-full">
+              <Search className="h-5 w-5 mr-2" />
+              <input 
+                type="text" 
+                placeholder="Nereyi keşfetmek istersiniz? (Örn: Ankara, Kapadokya)" 
+                className="w-full bg-transparent focus:outline-none text-slate-800 text-sm"
+              />
+            </div>
+            <button className="bg-red-600 text-white px-6 py-2 rounded-full font-medium text-sm hover:bg-red-700 transition">
+              Ara
+            </button>
+          </div>
         </div>
-    </section>
+      </section>
 
-    <div class="container">
-        <h2 class="section-title">Türkiye'nin Şehirleri</h2>
-        
-        <div class="sehir-grid" id="sehirListesi">
-            
-            <!-- Adana -->
-            <div class="sehir-kart" data-isim="01 adana taşköprü sabancı merkez camii">
-                <img src="https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b?q=80&w=600" alt="Adana">
-                <div class="kart-icerik">
-                    <h3>01 - Adana</h3>
-                    <p>Tarihi Taşköprü'sü, eşsiz mutfağı ve Seyhan Nehri manzarasıyla Akdeniz'in incisi.</p>
-                    <div class="kart-butonlar">
-                        <button class="btn-detay" onclick="detayAc('Adana (01)', 'Adana; tarihi Taşköprü, Sabancı Merkez Camii, eşsiz kebap kültürü ve Seyhan Nehri ile Türkiye\'nin en dinamik şehirlerinden biridir. Tarihi İpek Yolu üzerinde yer alması nedeniyle zengin bir kültürel mirasa sahiptir. Adana Kebabı, bici bici ve şalgam suyu şehrin en önemli lezzetlerindendir.')">İncele</button>
-                        <a href="https://www.skyscanner.com.tr" target="_blank" class="btn-bilet">Uçak Bileti</a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Ankara -->
-            <div class="sehir-kart" data-isim="06 ankara başkent anıtkabir atatürk kalesi">
-                <img src="https://images.unsplash.com/photo-1628155931221-c4f57c4a4534?q=80&w=600" alt="Ankara">
-                <div class="kart-icerik">
-                    <h3>06 - Ankara</h3>
-                    <p>Başkentimizin gururu Anıtkabir, tarihi kaleleri ve kültürel müzeleriyle keşif merkezi.</p>
-                    <div class="kart-butonlar">
-                        <button class="btn-detay" onclick="detayAc('Ankara (06)', 'Türkiye\'nin başkenti Ankara; Ulu Önder Atatürk\'ün ebedi istirahatgâhı Anıtkabir, tarihi Ankara Kalesi, Anadolu Medeniyetleri Müzesi ve cumhuriyet dönemi mimarisiyle ülkenin kalbinin attığı yerdir. Beypazarı evleri ve Ankara simidi meşhurdur.')">İncele</button>
-                        <a href="https://www.skyscanner.com.tr" target="_blank" class="btn-bilet">Uçak Bileti</a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Antalya -->
-            <div class="sehir-kart" data-isim="07 antalya akdeniz kaleiçi manavgat">
-                <img src="https://images.unsplash.com/photo-1563298723-dcfebaa392e3?q=80&w=600" alt="Antalya">
-                <div class="kart-icerik">
-                    <h3>07 - Antalya</h3>
-                    <p>Turkuaz suları, tarihi Kaleiçi sokakları ve dünya çapındaki antik kentleriyle göz kamaştırır.</p>
-                    <div class="kart-butonlar">
-                        <button class="btn-detay" onclick="detayAc('Antalya (07)', 'Dünya turizminin başkentlerinden Antalya; eşsiz sahilleri, tarihi Kaleiçi sokakları, Düden ve Kurşunlu şelaleleri, Aspendos ve Perge gibi antik kalıntılarıyla milyonlarca turisti ağırlar. Akdeniz mutfağının en taze lezzetleri burada sunulur.')">İncele</button>
-                        <a href="https://www.skyscanner.com.tr" target="_blank" class="btn-bilet">Uçak Bileti</a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Bursa -->
-            <div class="sehir-kart" data-isim="16 bursa uludağ yeşil türbe osman gazi">
-                <img src="https://images.unsplash.com/photo-1609137144813-7d9921338f24?q=80&w=600" alt="Bursa">
-                <div class="kart-icerik">
-                    <h3>16 - Bursa</h3>
-                    <p>Osmanlı'nın ilk başkenti, Uludağ'ın eteklerindeki yeşil doğası ve tarihi yapıları.</p>
-                    <div class="kart-butonlar">
-                        <button class="btn-detay" onclick="detayAc('Bursa (16)', 'Osmanlı İmparatorluğu\'nun ilk başkenti olan Bursa; Uludağ\'ın muhteşem doğası, Yeşil Türbe, Ulu Cami, tarihi Cumalıkızık köyü ve dünyaca ünlü İskender kebabı ile kestane şekeriyle bilinir.')">İncele</button>
-                        <a href="https://www.skyscanner.com.tr" target="_blank" class="btn-bilet">Uçak Bileti</a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- İstanbul -->
-            <div class="sehir-kart" data-isim="34 istanbul boğaz ayasofya kız kulesi sultanahmet">
-                <img src="https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?q=80&w=600" alt="İstanbul">
-                <div class="kart-icerik">
-                    <h3>34 - İstanbul</h3>
-                    <p>İki kıtayı buluşturan tarihi yarımadası, eşsiz boğazı ve kültürel zenginlikleriyle dünya başkenti.</p>
-                    <div class="kart-butonlar">
-                        <button class="btn-detay" onclick="detayAc('İstanbul (34)', 'Asya ile Avrupa\'yı birleştiren İstanbul; Ayasofya, Topkapı Sarayı, Kız Kulesi, Galata Kulesi ve eşsiz boğaz manzarasıyla dünyanın en büyüleyici metropollerinden biridir. Tarih boyunca pek çok medeniyete başkentlik yapmıştır.')">İncele</button>
-                        <a href="https://www.skyscanner.com.tr" target="_blank" class="btn-bilet">Uçak Bileti</a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- İzmir -->
-            <div class="sehir-kart" data-isim="35 izmir ege konak saat kulesi alsancak efes">
-                <img src="https://images.unsplash.com/photo-1606744824163-985d376605aa?q=80&w=600" alt="İzmir">
-                <div class="kart-icerik">
-                    <h3>35 - İzmir</h3>
-                    <p>Ege'nin incisi; Saat Kulesi, sıcakkanlı insanları, antik kentleri ve muhteşem sahilleri.</p>
-                    <div class="kart-butonlar">
-                        <button class="btn-detay" onclick="detayAc('İzmir (35)', 'Ege\'nin incisi İzmir; tarihi Saat Kulesi, Kordon boyu, Foça, Alaçatı ve Çeşme sahilleri ile Efes Antik Kenti gibi benzersiz tarihi değerlere ev sahipliği yapar. Boyozu ve kumrusu pek meşhurdur.')">İncele</button>
-                        <a href="https://www.skyscanner.com.tr" target="_blank" class="btn-bilet">Uçak Bileti</a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Nevşehir -->
-            <div class="sehir-kart" data-isim="50 nevşehir kapadokya peri bacaları göreme balon">
-                <img src="https://images.unsplash.com/photo-1641128309938-6ef4fbf76ab3?q=80&w=600" alt="Nevşehir">
-                <div class="kart-icerik">
-                    <h3>50 - Nevşehir (Kapadokya)</h3>
-                    <p>Peri bacaları, yer altı şehirleri ve gökyüzünü süsleyen rengarenk sıcak hava balonları.</p>
-                    <div class="kart-butonlar">
-                        <button class="btn-detay" onclick="detayAc('Nevşehir / Kapadokya (50)', 'Kapadokya bölgesi; eşsiz peri bacaları, yer altı şehirleri, kaya oyma kiliseleri ve gün doğumunda gökyüzünü süsleyen sıcak hava balon turlarıyla dünya çapında ünlüdür. Çanak çömlek atölyeleri ve çömlek kebabı çok ilgi görür.')">İncele</button>
-                        <a href="https://www.skyscanner.com.tr" target="_blank" class="btn-bilet">Uçak Bileti</a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Trabzon -->
-            <div class="sehir-kart" data-isim="61 trabzon karadeniz sümele manastırı uzungöl yayla">
-                <img src="https://images.unsplash.com/photo-1589182373726-e4f658ab50f0?q=80&w=600" alt="Trabzon">
-                <div class="kart-icerik">
-                    <h3>61 - Trabzon</h3>
-                    <p>Karadeniz'in nefis yaylaları, tarihi Sümele Manastırı ve eşsiz doğal güzellikleri.</p>
-                    <div class="kart-butonlar">
-                        <button class="btn-detay" onclick="detayAc('Trabzon (61)', 'Karadeniz\'in incisi Trabzon; sarp kayalıklar üzerine kurulmuş tarihi Sümele Manastırı, eşsiz doğasıyla Uzungöl\'ü, Ayder yaylaları ve horonuyla büyüler. Mıhlama ve hamsi köftesi yörenin vazgeçilmez tatlarındandır.')">İncele</button>
-                        <a href="https://www.skyscanner.com.tr" target="_blank" class="btn-bilet">Uçak Bileti</a>
-                    </div>
-                </div>
-            </div>
-
+      {/* Rezervasyon Kartları */}
+      <section className="max-w-7xl mx-auto px-4 py-12 w-full">
+        <h2 className="text-2xl font-bold text-slate-900 mb-6 text-center">Seyahat Planını Hemen Yap</h2>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div className="bg-white p-6 rounded-xl border shadow-sm hover:shadow-md transition text-center cursor-pointer group">
+            <Plane className="h-8 w-8 mx-auto text-red-600 mb-2 group-hover:scale-110 transition" />
+            <h3 className="font-semibold text-slate-800">Uçak Bileti</h3>
+          </div>
+          <div className="bg-white p-6 rounded-xl border shadow-sm hover:shadow-md transition text-center cursor-pointer group">
+            <Bus className="h-8 w-8 mx-auto text-red-600 mb-2 group-hover:scale-110 transition" />
+            <h3 className="font-semibold text-slate-800">Otobüs Bileti</h3>
+          </div>
+          <div className="bg-white p-6 rounded-xl border shadow-sm hover:shadow-md transition text-center cursor-pointer group">
+            <Hotel className="h-8 w-8 mx-auto text-red-600 mb-2 group-hover:scale-110 transition" />
+            <h3 className="font-semibold text-slate-800">Otel Rezervasyonu</h3>
+          </div>
+          <div className="bg-white p-6 rounded-xl border shadow-sm hover:shadow-md transition text-center cursor-pointer group">
+            <Car className="h-8 w-8 mx-auto text-red-600 mb-2 group-hover:scale-110 transition" />
+            <h3 className="font-semibold text-slate-800">Araç Kiralama</h3>
+          </div>
         </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="bg-slate-900 text-slate-400 py-8 mt-auto">
+        <div className="max-w-7xl mx-auto px-4 text-center text-sm">
+          &copy; 2026 Keşif Atlası. Tüm hakları saklıdır. Türkiye'nin Gezi Portalı.
+        </div>
+      </footer>
     </div>
-
-    <!-- Detay Modal Penceresi -->
-    <div id="detayModal" class="modal">
-        <div class="modal-icerik">
-            <h2 id="modalBaslik">Şehir Adı</h2>
-            <p id="modalMetin">Şehir açıklaması buraya gelecek.</p>
-            <button class="kapat-btn" onclick="detayKapat()">Kapat</button>
-        </div>
-    </div>
-
-    <footer>
-        <p>&copy; 2026 Keşif Atlası - Tüm Hakları Saklıdır.</p>
-    </footer>
-
-    <script>
-        function sehirFiltrele() {
-            let aramaInput = document.getElementById('sehirArama').value.toLowerCase();
-            let kartlar = document.getElementsByClassName('sehir-kart');
-
-            for (let i = 0; i < kartlar.length; i++) {
-                let sehirAdi = kartlar[i].getAttribute('data-isim');
-                if (sehirAdi.includes(aramaInput)) {
-                    kartlar[i].style.display = "flex";
-                } else {
-                    kartlar[i].style.display = "none";
-                }
-            }
-        }
-
-        function detayAc(baslik, aciklama) {
-            document.getElementById('modalBaslik').innerText = baslik;
-            document.getElementById('modalMetin').innerText = aciklama;
-            document.getElementById('detayModal').style.display = "flex";
-        }
-
-        function detayKapat() {
-            document.getElementById('detayModal').style.display = "none";
-        }
-    </script>
-</body>
-</html>
+  );
+}
