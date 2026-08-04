@@ -207,6 +207,7 @@
             display: grid;
             grid-template-columns: 1fr 1.2fr;
             gap: 0;
+            align-items: stretch;
         }
 
         @media(max-width: 900px) {
@@ -217,14 +218,13 @@
         .city-image-box {
             position: relative;
             background: #eee;
-            min-height: 400px;
+            min-height: 100%;
         }
 
         .city-image-box img {
             width: 100%;
             height: 100%;
-            min-height: 400px;
-            max-height: 600px;
+            min-height: 450px;
             object-fit: cover;
             display: block;
         }
@@ -236,27 +236,22 @@
             width: 100%;
             background: linear-gradient(transparent, rgba(0,0,0,0.8));
             color: white;
-            padding: 20px;
+            padding: 25px 20px;
         }
 
         .city-image-overlay h2 {
             font-family: 'Playfair Display', serif;
             font-size: 2.5rem;
-            margin-bottom: 5px;
+            margin-bottom: 0;
         }
 
-        /* Bilgi Alanı */
+        /* Bilgi Alanı (Yazıların üst üste binmesi düzeltildi) */
         .city-info-box {
             padding: 35px;
             display: flex;
             flex-direction: column;
-            max-height: 600px;
-            overflow-y: auto;
             background: #fff;
         }
-
-        .city-info-box::-webkit-scrollbar { width: 6px; }
-        .city-info-box::-webkit-scrollbar-thumb { background: #ccc; border-radius: 4px; }
 
         .city-info-box p.desc {
             color: #444;
@@ -270,7 +265,7 @@
             font-size: 1.05rem;
             font-weight: 600;
             color: #e30a17;
-            margin-top: 15px;
+            margin-top: 18px;
             margin-bottom: 8px;
             display: flex;
             align-items: center;
@@ -283,12 +278,12 @@
             font-size: 0.9rem;
             color: #555;
             line-height: 1.6;
-            margin-bottom: 10px;
+            margin-bottom: 5px;
         }
 
         .info-list {
             list-style: none;
-            margin-bottom: 15px;
+            margin-bottom: 5px;
         }
 
         .info-list li {
@@ -458,7 +453,7 @@
         <p>&copy; 2026 Keşif Atlas Seyahat Platformu. Tüm hakları saklıdır.</p>
     </footer>
 
-    <!-- JavaScript: Tamamen Otomatik Akıllı Şehir Görselleştirme -->
+    <!-- JavaScript: Güvenilir Fotoğraf Eşleme ve Düzgün Metin Akışı -->
     <script>
         let currentLang = 'tr';
 
@@ -540,6 +535,20 @@
             }
         };
 
+        // Diğer iller için Unsplash'in doğrudan garantili görselleri eşleştirildi
+        const varsayilanSehirFotolari = {
+            "Adana": "https://images.unsplash.com/photo-1609137144813-7d99618844b7?auto=format&fit=crop&w=1000&q=80",
+            "Bursa": "https://images.unsplash.com/photo-1605648916312-d278d42d3858?auto=format&fit=crop&w=1000&q=80",
+            "Trabzon": "https://images.unsplash.com/photo-1627914757367-73d8a9e223fb?auto=format&fit=crop&w=1000&q=80",
+            "Van": "https://images.unsplash.com/photo-1589182373726-e4f658ab50f0?auto=format&fit=crop&w=1000&q=80",
+            "Gaziantep": "https://images.unsplash.com/photo-1588714399262-404396b6e4e5?auto=format&fit=crop&w=1000&q=80",
+            "Muğla": "https://images.unsplash.com/photo-1533105079780-92b9be482077?auto=format&fit=crop&w=1000&q=80",
+            "Konya": "https://images.unsplash.com/photo-1590680143657-3211516f1b3e?auto=format&fit=crop&w=1000&q=80",
+            "Eskişehir": "https://images.unsplash.com/photo-1610296663682-1636e53a3e4d?auto=format&fit=crop&w=1000&q=80",
+            "Mardin": "https://images.unsplash.com/photo-1578894911738-f10c5d33f001?auto=format&fit=crop&w=1000&q=80",
+            "Şanlıurfa": "https://images.unsplash.com/photo-1596524437015-4ed3a921d034?auto=format&fit=crop&w=1000&q=80"
+        };
+
         const turkiyeIlleri = [
             "Adana", "Adıyaman", "Afyonkarahisar", "Ağrı", "Amasya", "Ankara", "Antalya", "Artvin", "Aydın", "Balıkesir",
             "Bilecik", "Bingöl", "Bitlis", "Bolu", "Burdur", "Bursa", "Çanakkale", "Çankırı", "Çorum", "Denizli",
@@ -572,8 +581,8 @@
 
             let data = illerVeritabani[selectedCity];
 
-            // Eğer il özel veritabanında yoksa, Unsplash Source API kullanarak o şehrin adına uygun rastgele profesyonel manzara/şehir fotoğrafı çeker
-            let cityImage = data ? data.img : `https://source.unsplash.com/featured/1000x600/?${encodeURIComponent(selectedCity)},city,turkey`;
+            // Fotoğraf çözünürlüğü ve kararlılığı için özel eşleme veya genel estetik Türkiye manzarası
+            let cityImage = data ? data.img : (varsayilanSehirFotolari[selectedCity] || "https://images.unsplash.com/photo-1527838832700-505925207fc9?auto=format&fit=crop&w=1000&q=80");
 
             if (!data) {
                 data = {
