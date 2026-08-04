@@ -1,112 +1,159 @@
-<section class="kesif-container">
-    <h2>Türkiye'yi Keşfet</h2>
-    <p class="alt-baslik">Her şehirde ayrı bir hikaye, keşfedilmeyi bekleyen eşsiz rotalar.</p>
-    
-    <div class="sehir-grid">
-        <!-- Ankara Kartı -->
-        <div class="sehir-kart">
-            <img src="https://images.unsplash.com/photo-1589182373726-e4f658ab50f0?q=80&w=600" alt="Ankara">
-            <div class="kart-icerik">
-                <h3>Ankara</h3>
-                <p>Başkentimizin tarihi sokakları, müzeleri ve modern yüzüyle keşif başlıyor.</p>
-                <a href="#" class="kesfet-btn">Keşfet</a>
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Türkiye'yi Keşfet</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+        .kesif-container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 0 15px;
+            text-align: center;
+        }
+        .kesif-container h2 {
+            font-size: 2.3rem;
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+        .alt-baslik {
+            color: #7f8c8d;
+            font-size: 1.05rem;
+            margin-bottom: 35px;
+        }
+        .sehir-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+        .sehir-kart {
+            background: #ffffff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .sehir-kart:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+        }
+        .sehir-kart img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        .kart-icerik {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+        .kart-icerik h3 {
+            margin: 0 0 10px 0;
+            font-size: 1.3rem;
+            color: #2c3e50;
+        }
+        .kart-icerik p {
+            color: #666;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+        .kesfet-btn {
+            display: inline-block;
+            background: #3498db;
+            color: #fff;
+            padding: 10px 15px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            text-align: center;
+            transition: background 0.2s ease;
+        }
+        .kesfet-btn:hover {
+            background: #2980b9;
+        }
+    </style>
+</head>
+<body>
+
+    <section class="kesif-container">
+        <h2>Türkiye'yi Keşfet</h2>
+        <p class="alt-baslik">Her şehirde ayrı bir hikaye, keşfedilmeyi bekleyen eşsiz rotalar.</p>
+        
+        <div class="sehir-grid">
+            <!-- Ankara Kartı -->
+            <div class="sehir-kart">
+                <img src="https://images.unsplash.com/photo-1589182373726-e4f658ab50f0?q=80&w=600" alt="Ankara">
+                <div class="kart-icerik">
+                    <h3>Ankara</h3>
+                    <p>Başkentimizin tarihi sokakları, müzeleri ve modern yüzüyle keşif başlıyor.</p>
+                    <a href="#" class="kesfet-btn">Keşfet</a>
+                </div>
+            </div>
+
+            <!-- İstanbul Kartı -->
+            <div class="sehir-kart">
+                <img src="https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?q=80&w=600" alt="İstanbul">
+                <div class="kart-icerik">
+                    <h3>İstanbul</h3>
+                    <p>İki kıtayı buluşturan tarih, eşsiz boğaz manzarası ve kültürel zenginlik.</p>
+                    <a href="#" class="kesfet-btn">Keşfet</a>
+                </div>
+            </div>
+
+            <!-- İzmir Kartı -->
+            <div class="sehir-kart">
+                <img src="https://images.unsplash.com/photo-1606744824163-985d376605aa?q=80&w=600" alt="İzmir">
+                <div class="kart-icerik">
+                    <h3>İzmir</h3>
+                    <p>Ege'nin incisi; sıcak insanları, antik kentleri ve muhteşem sahilleri.</p>
+                    <a href="#" class="kesfet-btn">Keşfet</a>
+                </div>
+            </div>
+
+            <!-- Kapadokya Kartı -->
+            <div class="sehir-kart">
+                <img src="https://images.unsplash.com/photo-1641128309938-6ef4fbf76ab3?q=80&w=600" alt="Kapadokya">
+                <div class="kart-icerik">
+                    <h3>Kapadokya</h3>
+                    <p>Peri bacaları, yer altı şehirleri ve gökyüzünü süsleyen rengarenk balonlar.</p>
+                    <a href="#" class="kesfet-btn">Keşfet</a>
+                </div>
+            </div>
+
+            <!-- Antalya Kartı -->
+            <div class="sehir-kart">
+                <img src="https://images.unsplash.com/photo-1563298723-dcfebaa392e3?q=80&w=600" alt="Antalya">
+                <div class="kart-icerik">
+                    <h3>Antalya</h3>
+                    <p>Akdeniz'in turkuaz suları, antik kalıntıları ve eşsiz doğa harikaları.</p>
+                    <a href="#" class="kesfet-btn">Keşfet</a>
+                </div>
+            </div>
+
+            <!-- Trabzon Kartı -->
+            <div class="sehir-kart">
+                <img src="https://images.unsplash.com/photo-1609137144813-7d9921338f24?q=80&w=600" alt="Trabzon">
+                <div class="kart-icerik">
+                    <h3>Trabzon</h3>
+                    <p>Karadeniz'in yeşil yaylaları, tarihi manastırları ve eşsiz doğası.</p>
+                    <a href="#" class="kesfet-btn">Keşfet</a>
+                </div>
             </div>
         </div>
+    </section>
 
-        <!-- İstanbul Kartı -->
-        <div class="sehir-kart">
-            <img src="https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?q=80&w=600" alt="İstanbul">
-            <div class="kart-icerik">
-                <h3>İstanbul</h3>
-                <p>İki kıtayı buluşturan tarih, eşsiz boğaz manzarası ve kültürel zenginlik.</p>
-                <a href="#" class="kesfet-btn">Keşfet</a>
-            </div>
-        </div>
-
-        <!-- İzmir Kartı -->
-        <div class="sehir-kart">
-            <img src="https://images.unsplash.com/photo-1606744824163-985d376605aa?q=80&w=600" alt="İzmir">
-            <div class="kart-icerik">
-                <h3>İzmir</h3>
-                <p>Ege'nin incisi; sıcak insanları, antik kentleri ve muhteşem sahilleri.</p>
-                <a href="#" class="kesfet-btn">Keşfet</a>
-            </div>
-        </div>
-    </div>
-</section.kesif-container {
-    max-width: 1200px;
-    margin: 40px auto;
-    padding: 0 20px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    text-align: center;
-}
-
-.kesif-container h2 {
-    font-size: 2.5rem;
-    color: #2c3e50;
-    margin-bottom: 10px;
-}
-
-.alt-baslik {
-    color: #7f8c8d;
-    font-size: 1.1rem;
-    margin-bottom: 40px;
-}
-
-.sehir-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
-}
-
-.sehir-kart {
-    background: #ffffff;
-    border-radius: 16px;
-    overflow: hidden;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.08);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    text-align: left;
-}
-
-.sehir-kart:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 15px 30px rgba(0,0,0,0.15);
-}
-
-.sehir-kart img {
-    width: 100%;
-    height: 220px;
-    object-fit: cover;
-}
-
-.kart-icerik {
-    padding: 20px;
-}
-
-.kart-icerik h3 {
-    margin: 0 0 10px 0;
-    font-size: 1.5rem;
-    color: #34495e;
-}
-
-.kart-icerik p {
-    color: #666;
-    font-size: 0.95rem;
-    line-height: 1.5;
-    margin-bottom: 20px;
-}
-
-.kesfet-btn {
-    display: inline-block;
-    background: #3498db;
-    color: #fff;
-    padding: 10px 20px;
-    border-radius: 8px;
-    text-decoration: none;
-    font-weight: 600;
-    transition: background 0.2s ease;
-}
-
-.kesfet-btn:hover {
-    background: #2980b9;
-}
+</body>
+</html>
