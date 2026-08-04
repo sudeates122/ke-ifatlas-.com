@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Atlass - Türkiye'nin Şiir Rotaları ve Edebi Tur Rehberliği</title>
+    <title>Atlass - 81 İl Şehir Rehberi ve Seyahat Platformu</title>
     <!-- Google Fonts & FontAwesome -->
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -34,12 +34,12 @@
             padding: 15px 5%;
         }
 
-        /* Özel Logo: Türkiye/Şiir/Uçak temalı amblem */
         .logo-area {
             display: flex;
             align-items: center;
             gap: 12px;
             text-decoration: none;
+            cursor: pointer;
         }
 
         .custom-logo-emblem {
@@ -53,13 +53,8 @@
             box-shadow: 0 4px 10px rgba(227, 10, 23, 0.3);
         }
 
-        .custom-logo-emblem .flag {
-            font-size: 1.2rem;
-        }
-
-        .custom-logo-emblem .feather-plane {
-            font-size: 1.1rem;
-        }
+        .custom-logo-emblem .flag { font-size: 1.2rem; }
+        .custom-logo-emblem .feather-plane { font-size: 1.1rem; }
 
         .logo-text-box {
             display: flex;
@@ -75,10 +70,7 @@
             line-height: 1;
         }
 
-        .logo-title span {
-            color: #e30a17;
-        }
-
+        .logo-title span { color: #e30a17; }
         .logo-subtitle {
             font-size: 0.7rem;
             color: #666;
@@ -107,11 +99,9 @@
             gap: 6px;
         }
 
-        .nav-links a:hover, .nav-links a.active {
-            color: #e30a17;
-        }
+        .nav-links a:hover, .nav-links a.active { color: #e30a17; }
 
-        /* Sağ Alan: Dil Seçici & Aksiyon */
+        /* Sağ Alan: Dil Seçici */
         .nav-right {
             display: flex;
             align-items: center;
@@ -131,26 +121,9 @@
             transition: 0.3s;
         }
 
-        .lang-switcher:hover {
-            border-color: #e30a17;
-        }
+        .lang-switcher:hover { border-color: #e30a17; }
 
-        .btn-primary {
-            background: #e30a17;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 8px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background 0.3s;
-        }
-
-        .btn-primary:hover {
-            background: #c50812;
-        }
-
-        /* Hero Section / Edebi Karşılama - İstanbul Silüeti Güncellendi */
+        /* Hero Section / Arama Alanı */
         .hero {
             background: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)), url('https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?auto=format&fit=crop&w=1920&q=80') no-repeat center center/cover;
             min-height: 520px;
@@ -175,10 +148,8 @@
             margin-bottom: 30px;
             max-width: 750px;
             font-weight: 300;
-            font-style: italic;
         }
 
-        /* 81 İl ve Şiir Rotaları Arama Çubuğu */
         .search-container {
             background: white;
             padding: 15px;
@@ -187,13 +158,13 @@
             flex-wrap: wrap;
             gap: 12px;
             width: 100%;
-            max-width: 850px;
+            max-width: 750px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.3);
         }
 
         .search-field {
             flex: 1;
-            min-width: 220px;
+            min-width: 280px;
             display: flex;
             align-items: center;
             background: #f8f9fa;
@@ -207,7 +178,7 @@
             margin-right: 10px;
         }
 
-        .search-field select, .search-field input {
+        .search-field select {
             width: 100%;
             border: none;
             background: transparent;
@@ -229,24 +200,17 @@
             transition: background 0.3s;
         }
 
-        .search-btn:hover {
-            background: #c50812;
-        }
+        .search-btn:hover { background: #c50812; }
 
-        /* İçerik Alanları ve Sekmeler */
+        /* İçerik Konteynerleri */
         .container {
             max-width: 1200px;
-            margin: 60px auto;
+            margin: 50px auto;
             padding: 0 20px;
         }
 
-        .tab-content {
-            display: none;
-        }
-
-        .tab-content.active {
-            display: block;
-        }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
 
         .section-title {
             font-size: 2rem;
@@ -262,188 +226,89 @@
             font-size: 1.05rem;
         }
 
-        /* Şiir & Tur Kartları Grid */
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 30px;
-        }
-
-        .card {
+        /* Şehir Detay Paneli (Arama Sonucu Gösterim Alanı) */
+        #cityResultArea {
+            display: none;
             background: white;
-            border-radius: 12px;
+            border-radius: 15px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.08);
             overflow: hidden;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
-            transition: transform 0.3s, box-shadow 0.3s;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            cursor: pointer;
+            margin-top: 30px;
+            animation: fadeIn 0.4s ease;
         }
 
-        .card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        .card-img-container {
-            position: relative;
-            height: 200px;
+        .city-header-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
         }
 
-        .card-img-container img {
+        @media(max-width: 768px) {
+            .city-header-grid { grid-template-columns: 1fr; }
+        }
+
+        .city-image-box img {
             width: 100%;
             height: 100%;
+            min-height: 300px;
+            max-height: 400px;
             object-fit: cover;
         }
 
-        .city-badge {
-            position: absolute;
-            top: 15px;
-            left: 15px;
-            background: rgba(0,0,0,0.75);
-            color: white;
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 500;
-            backdrop-filter: blur(4px);
-        }
-
-        .card-body {
-            padding: 25px;
-        }
-
-        .card-title {
-            font-size: 1.25rem;
-            font-weight: 700;
-            margin-bottom: 12px;
-            color: #1a1a1a;
-            font-family: 'Playfair Display', serif;
-        }
-
-        .poem-snippet {
-            font-style: italic;
-            color: #555;
-            font-size: 0.95rem;
-            margin-bottom: 20px;
-            line-height: 1.6;
-            background: #fbfbfa;
-            padding: 12px;
-            border-left: 3px solid #e30a17;
-            border-radius: 0 8px 8px 0;
-        }
-
-        .card-footer-info {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-top: 1px solid #eee;
-            padding-top: 15px;
-            margin-top: 10px;
-        }
-
-        .guide-name {
-            font-size: 0.85rem;
-            color: #666;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-
-        .tour-price {
-            font-size: 1.15rem;
-            font-weight: 700;
-            color: #e30a17;
-        }
-
-        /* İSTANBUL DETAY MODALI (Pop-up) */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 2000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.6);
-            backdrop-filter: blur(5px);
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-        }
-
-        .modal-content {
-            background: white;
-            width: 100%;
-            max-width: 800px;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
-            animation: modalFade 0.3s ease;
-            max-height: 90vh;
+        .city-info-box {
+            padding: 40px;
             display: flex;
             flex-direction: column;
+            justify-content: center;
         }
 
-        @keyframes modalFade {
-            from {opacity: 0; transform: translateY(-20px);}
-            to {opacity: 1; transform: translateY(0);}
-        }
-
-        .modal-header {
-            background: #e30a17;
-            color: white;
-            padding: 20px 25px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .modal-header h2 {
+        .city-info-box h2 {
             font-family: 'Playfair Display', serif;
-            font-size: 1.6rem;
-        }
-
-        .close-modal {
-            background: none;
-            border: none;
-            color: white;
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
-
-        .modal-body {
-            padding: 30px;
-            overflow-y: auto;
-            text-align: left;
-        }
-
-        .modal-body h4 {
-            color: #e30a17;
-            margin-top: 15px;
-            margin-bottom: 8px;
-            font-size: 1.1rem;
-        }
-
-        .modal-body p, .modal-body ul {
-            color: #444;
-            font-size: 0.95rem;
-            line-height: 1.7;
+            font-size: 2.2rem;
+            color: #1a1a1a;
             margin-bottom: 15px;
         }
 
-        .modal-body ul {
-            padding-left: 20px;
+        .city-info-box p {
+            color: #555;
+            line-height: 1.8;
+            font-size: 1rem;
+            margin-bottom: 20px;
         }
 
-        /* Hizmet Panelleri */
+        .places-list {
+            list-style: none;
+        }
+
+        .places-list li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 500;
+        }
+
+        .places-list li::before {
+            content: "•";
+            color: #e30a17;
+            font-size: 1.5rem;
+            position: absolute;
+            left: 0;
+            top: -2px;
+        }
+
+        /* Hizmet Panelleri (Oteller, Uçak, Otobüs) */
         .service-panel {
             background: white;
             padding: 40px;
             border-radius: 15px;
             box-shadow: 0 4px 20px rgba(0,0,0,0.05);
-            max-width: 800px;
+            max-width: 700px;
             margin: 0 auto;
         }
 
@@ -475,6 +340,24 @@
             outline: none;
         }
 
+        .btn-action {
+            display: block;
+            width: 100%;
+            background: #e30a17;
+            color: white;
+            border: none;
+            padding: 14px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            transition: background 0.3s;
+        }
+
+        .btn-action:hover { background: #c50812; }
+
         /* Footer */
         footer {
             background: #1a1a1a;
@@ -485,14 +368,10 @@
             font-size: 0.95rem;
         }
 
-        footer p {
-            margin-bottom: 10px;
-        }
+        footer p { margin-bottom: 10px; }
 
         @media(max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
+            .nav-links { display: none; }
         }
     </style>
 </head>
@@ -500,24 +379,22 @@
 
     <!-- Header / Navbar -->
     <header>
-        <a href="#" class="logo-area" onclick="switchTab('home')">
+        <a class="logo-area" onclick="switchTab('home')">
             <div class="custom-logo-emblem">
                 <span class="flag">🇹🇷</span>
                 <i class="fa-solid fa-plane feather-plane"></i>
             </div>
             <div class="logo-text-box">
                 <div class="logo-title">Atla<span>ss</span></div>
-                <div class="logo-subtitle" id="nav-subtitle-text">Şiir ve Edebi Turlar</div>
+                <div class="logo-subtitle" id="nav-subtitle-text">81 İl Şehir Rehberi</div>
             </div>
         </a>
         
         <ul class="nav-links">
-            <li><a href="#" onclick="switchTab('home')" class="active" id="nav-home"><i class="fa-solid fa-feather"></i> <span data-tr="Şiir Rotaları" data-en="Poetic Routes">Şiir Rotaları</span></a></li>
-            <li><a href="#" onclick="switchTab('ucak')" id="nav-ucak"><i class="fa-solid fa-plane-departure"></i> <span data-tr="Uçak Bileti" data-en="Flight Tickets">Uçak Bileti</span></a></li>
-            <li><a href="#" onclick="switchTab('otobus')" id="nav-otobus"><i class="fa-solid fa-bus"></i> <span data-tr="Otobüs Bileti" data-en="Bus Tickets">Otobüs Bileti</span></a></li>
-            <li><a href="#" onclick="switchTab('otel')" id="nav-otel"><i class="fa-solid fa-hotel"></i> <span data-tr="Otel Rezervasyonu" data-en="Hotel Booking">Otel Rezervasyonu</span></a></li>
-            <li><a href="#" onclick="switchTab('arac')" id="nav-arac"><i class="fa-solid fa-car"></i> <span data-tr="Araç Kiralama" data-en="Car Rental">Araç Kiralama</span></a></li>
-            <li><a href="#" onclick="switchTab('blog')" id="nav-blog"><i class="fa-solid fa-book-open"></i> <span data-tr="Edebi Blog" data-en="Literary Blog">Edebi Blog</span></a></li>
+            <li><a onclick="switchTab('home')" class="active" id="nav-home"><i class="fa-solid fa-city"></i> <span data-tr="Şehir Rehberi" data-en="City Guide">Şehir Rehberi</span></a></li>
+            <li><a onclick="switchTab('ucak')" id="nav-ucak"><i class="fa-solid fa-plane-departure"></i> <span data-tr="Uçak Bileti" data-en="Flight Tickets">Uçak Bileti</span></a></li>
+            <li><a onclick="switchTab('otobus')" id="nav-otobus"><i class="fa-solid fa-bus"></i> <span data-tr="Otobüs Bileti" data-en="Bus Tickets">Otobüs Bileti</span></a></li>
+            <li><a onclick="switchTab('otel')" id="nav-otel"><i class="fa-solid fa-hotel"></i> <span data-tr="Otel Rezervasyonu" data-en="Hotel Booking">Otel Rezervasyonu</span></a></li>
         </ul>
 
         <div class="nav-right">
@@ -525,205 +402,186 @@
                 <option value="tr">🇹🇷 Türkçe</option>
                 <option value="en">🇬🇧 English</option>
             </select>
-            <button class="btn-primary" onclick="alert(currentLang === 'tr' ? 'Hoş geldiniz Keşif Atlası!' : 'Welcome Explorer Atlas!')" id="loginBtn">Giriş Yap</button>
         </div>
     </header>
 
-    <!-- ANA SAYFA -->
+    <!-- ANA SAYFA: 81 İL REHBERİ -->
     <div id="home" class="tab-content active">
         <section class="hero">
-            <h1 id="hero-heading">Türkiye'yi Şiirlerle ve Edebi Rotalarla Keşfet</h1>
-            <p id="hero-sub">"Süleymaniye'de Bayram Sabahı"ndan "İstanbul'u Dinliyorum"a, şairlerin izinde 81 ilde yaşayan şiir turları.</p>
+            <h1 id="hero-heading">Türkiye'nin 81 İlini Keşfedin</h1>
+            <p id="hero-sub">Hangi şehirde ne var, nereler gezilmeli? Şehrinizi seçin ve tüm detayları keşfedin.</p>
             
             <div class="search-container">
                 <div class="search-field">
                     <i class="fa-solid fa-location-dot"></i>
-                    <select id="ilSecimi" onchange="checkCitySelection()">
-                        <option value="">🇹🇷 81 İlden Şiir Rotaları Seçin...</option>
-                        <option value="34">34 - İstanbul (Orhan Veli, Yahya Kemal, Nazım Hikmet)</option>
-                        <option value="06">06 - Ankara (Mehmet Akif & Başkent Şiirleri)</option>
-                        <option value="16">16 - Bursa (Ahmet Hamdi Tanpınar - Bursa'da Zaman)</option>
-                        <option value="35">35 - İzmir (Attilâ İlhan Şiir Rotaları)</option>
-                        <option value="50">50 - Nevşehir / Kapadokya (Peribacaları Efsaneleri)</option>
-                        <option value="61">61 - Trabzon (Karadeniz Mektupları ve Şiirleri)</option>
+                    <select id="ilSecimi">
+                        <option value="">🇹🇷 81 İlden Bir Şehir Seçin...</option>
                     </select>
                 </div>
-                <div class="search-field">
-                    <i class="fa-solid fa-feather"></i>
-                    <input type="text" id="searchInput" placeholder="Şair veya şiir adı yazın...">
-                </div>
-                <button class="search-btn" onclick="searchTour()"><i class="fa-solid fa-search"></i> <span data-tr="Şiir Turu Ara" data-en="Search Tour">Şiir Turu Ara</span></button>
+                <button class="search-btn" onclick="showCityDetails()"><i class="fa-solid fa-search"></i> <span data-tr="Şehri İncele" data-en="Explore City">Şehri İncele</span></button>
             </div>
         </section>
 
         <div class="container">
-            <h2 class="section-title" id="featured-title">Şairlerin Dilinden Unutulmaz Rotalar</h2>
-            <p class="section-subtitle" id="featured-subtitle">Uzman edebi tur rehberlerimiz eşliğinde, şiirlerin yazıldığı sokaklarda adım adım yolculuk.</p>
-            
-            <div class="grid">
-                <!-- İstanbul Kartı (Tıklayınca detay açılır) -->
-                <div class="card" onclick="openIstanbulModal()">
-                    <div class="card-img-container">
-                        <!-- Güncellenmiş doğru İstanbul / Boğaz görseli -->
-                        <img src="https://images.unsplash.com/photo-1541432901042-2d8bd64b3a9b?auto=format&fit=crop&w=600&q=80" alt="Istanbul Bogazi">
-                        <span class="city-badge">34 - İstanbul</span>
+            <!-- Seçilen Şehrin Detay Kartı (Dinamik Gösterim) -->
+            <div id="cityResultArea">
+                <div class="city-header-grid">
+                    <div class="city-image-box">
+                        <img id="cityImg" src="" alt="Şehir Görseli">
                     </div>
-                    <div class="card-body">
-                        <h3 class="card-title">Yahya Kemal ve Orhan Veli ile İstanbul Turları</h3>
-                        <div class="poem-snippet">"İstanbul'u dinliyorum, gözlerim kapalı / Önce hafiften bir rüzgar esiyor..."</div>
-                        <div class="card-footer-info">
-                            <span class="guide-name"><i class="fa-solid fa-user-pen"></i> Rehber: Keşif Atlası & Dr. Edebi Tur</span>
-                            <span class="tour-price">₺950</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card" onclick="alert('Kapadokya edebi tur detayları yükleniyor...')">
-                    <div class="card-img-container">
-                        <img src="https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?auto=format&fit=crop&w=600&q=80" alt="Kapadokya">
-                        <span class="city-badge">50 - Nevşehir</span>
-                    </div>
-                    <div class="card-body">
-                        <h3 class="card-title">Peribacaları ve Anadolu Mitleri Şiir Yürüyüşü</h3>
-                        <div class="poem-snippet">"Bir taş ki gökten düşmüş, üstünde bin destan..."</div>
-                        <div class="card-footer-info">
-                            <span class="guide-name"><i class="fa-solid fa-user-pen"></i> Rehber: Ozan Kaya</span>
-                            <span class="tour-price">₺1.450</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card" onclick="alert('İzmir edebi tur detayları yükleniyor...')">
-                    <div class="card-img-container">
-                        <img src="https://images.unsplash.com/photo-1524850011238-eafd23727d58?auto=format&fit=crop&w=600&q=80" alt="Izmir">
-                        <span class="city-badge">35 - İzmir</span>
-                    </div>
-                    <div class="card-body">
-                        <h3 class="card-title">Attilâ İlhan'ın Kordon'u ve Sokak Şiirleri</h3>
-                        <div class="poem-snippet">"Kordon boyu akşam rüzgarı, hatırlar mısın eski günleri..."</div>
-                        <div class="card-footer-info">
-                            <span class="guide-name"><i class="fa-solid fa-user-pen"></i> Rehber: Şair Gözüyle</span>
-                            <span class="tour-price">₺800</span>
-                        </div>
+                    <div class="city-info-box">
+                        <h2 id="cityNameTitle">Şehir Adı</h2>
+                        <p id="cityDesc">Şehir hakkında genel tanıtım metni buraya gelecek.</p>
+                        <h4 style="color:#e30a17; margin-bottom:10px;" id="mustSeeText">Gezilmesi Gereken Yerler:</h4>
+                        <ul class="places-list" id="cityPlacesList">
+                            <!-- Gezilecek yerler dinamik dolacak -->
+                        </ul>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- İSTANBUL ÖZEL BİLGİ MODALI (Açılır Pencere) -->
-    <div id="istanbulModal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2>🇹🇷 İstanbul: Şairlerin, Sultanların ve Boğazın Başkenti</h2>
-                <button class="close-modal" onclick="closeIstanbulModal()">&times;</button>
-            </div>
-            <div class="modal-body">
-                <h4>Şehir Hakkında Edebi Bakış</h4>
-                <p>İstanbul; Yahya Kemal'in tarih bilinci, Orhan Veli'nin sokaklardaki yalınlığı, Nazım Hikmet'in mavi gözlü memleket destanı ve Ahmet Hamdi Tanpınar'ın rüya iklimiyle harmanlanmış yaşayan bir şiirdir. Bu şehirde her köşe başı bir mısraya ev sahipliği yapar.</p>
-                
-                <h4>Gezilmeli ve Görülmeli Yerler (Şiir Rotaları)</h4>
-                <ul>
-                    <li><strong>Süleymaniye Camii ve Çevresi:</strong> Yahya Kemal Beyatlı'nın "Süleymaniye'de Bayram Sabahı" şiirini iliklerinize kadar hissedeceğiniz, Haliç manzaralı edebi durak.</li>
-                    <li><strong>Galata Kulesi ve Karaköy:</strong> Bedri Rahmi Eyüboğlu ve Ümit Yaşar Oğuzcan'ın dizelerinde boy gösteren, Boğaz'ın ve tarihin kucaklaştığı sokaklar.</li>
-                    <li><strong>Adalar (Büyükada / Heybeliada):</strong> Sait Faik Abasıyanık'ın hikayelerine ve şiirlerine ilham olan balıkçı barınakları, çam kokulu yollar.</li>
-                    <li><strong>Bâb-ı Âlî ve Cağaloğlu:</strong> Türk basınının ve edebiyat dünyasının kalbinin attığı tarihî yokuşlar.</li>
-                </ul>
-
-                <h4>Şehirde Ne Var?</h4>
-                <p>Antik surlar, saraylar, gizli kütüphaneler, tarihi çay bahçeleri ve Boğaziçi'nin eşsiz vapurları... Tur rehberiniz olarak bu turda sizi Orhan Veli'nin perçemli sokağından geçirip Pierre Loti'de bir kahve eşliğinde şiir okumaya davet ediyoruz.</p>
-            </div>
-        </div>
-    </div>
-
-    <!-- UÇAK BİLETİ SEKMESİ -->
+    <!-- UÇAK BİLETİ SEKMESİ (Gerçek Dış Yönlendirme) -->
     <div id="ucak" class="tab-content">
         <div class="container">
             <div class="service-panel">
-                <h3><i class="fa-solid fa-plane-departure" style="color: #e30a17;"></i> <span data-tr="Şairlerin İzinde Uçak Bileti Rezervasyonu" data-en="Literary Flight Ticket Booking">Şairlerin İzinde Uçak Bileti Rezervasyonu</span></h3>
+                <h3><i class="fa-solid fa-plane-departure" style="color: #e30a17;"></i> <span data-tr="Uçak Bileti Arama ve Rezervasyonu" data-en="Flight Ticket Search & Booking">Uçak Bileti Arama ve Rezervasyonu</span></h3>
+                <p style="color: #666; margin-bottom: 20px;" data-tr="En uygun uçak biletlerini karşılaştırmak için dış partner sistemimize bağlanın:" data-en="Connect to our external partner system to compare the best flights:">En uygun uçak biletlerini karşılaştırmak için dış partner sistemimize bağlanın:</p>
                 <div class="form-group">
-                    <label>Kalkış Şehri</label>
-                    <select><option>İstanbul (IST / SAW)</option><option>Ankara Esenboğa (ESB)</option><option>İzmir Adnan Menderes (ADB)</option></select>
+                    <label data-tr="Kalkış Havaalanı / Şehri" data-en="Departure Airport / City">Kalkış Havaalanı / Şehri</label>
+                    <input type="text" id="ucakKalkis" value="İstanbul (IST/SAW)">
                 </div>
                 <div class="form-group">
-                    <label>Varış Şehri (Şiir Diyarı)</label>
-                    <select><option>İstanbul (Boğaz ve Tarih Turları)</option><option>Trabzon (Karadeniz Şiirleri)</option><option>Nevşehir / Kapadokya</option></select>
+                    <label data-tr="Varış Havaalanı / Şehri" data-en="Arrival Airport / City">Varış Havaalanı / Şehri</label>
+                    <input type="text" id="ucakVaris" value="Ankara (ESB)">
                 </div>
-                <div class="form-group">
-                    <label>Uçuş Tarihi</label>
-                    <input type="date">
-                </div>
-                <button class="btn-primary" style="width:100%; padding: 14px;" onclick="alert('Uçuş seferleri listeleniyor...')">Uçuş Bul</button>
+                <!-- Skyscanner veya Enuygun gibi gerçek platformlara dış link yönlendirmesi -->
+                <a href="https://www.enuygun.com/ucak-bileti/" target="_blank" class="btn-action" id="ucakBtnText">Uçak Bileti Sitelerine Git ve Bilet Al &rarr;</a>
             </div>
         </div>
     </div>
 
-    <!-- OTOBÜS BİLETİ SEKMESİ -->
+    <!-- OTOBÜS BİLETİ SEKMESİ (Gerçek Dış Yönlendirme) -->
     <div id="otobus" class="tab-content">
         <div class="container">
             <div class="service-panel">
-                <h3><i class="fa-solid fa-bus" style="color: #e30a17;"></i> <span data-tr="Anadolu Yollarında Otobüs Bileti" data-en="Bus Ticket on Anatolian Roads">Anadolu Yollarında Otobüs Bileti</span></h3>
-                <div class="form-group"><label>Nereden</label><select><option>İstanbul Otogarı</option><option>Ankara Aşti</option></select></div>
-                <div class="form-group"><label>Nereye</label><select><option>İstanbul (Esenler / Alibeyköy)</option><option>Bursa</option></select></div>
-                <button class="btn-primary" style="width:100%; padding: 14px;" onclick="alert('Seferler aranıyor...')">Seferleri Listele</button>
+                <h3><i class="fa-solid fa-bus" style="color: #e30a17;"></i> <span data-tr="Otobüs Bileti Rezervasyonu" data-en="Bus Ticket Booking">Otobüs Bileti Rezervasyonu</span></h3>
+                <p style="color: #666; margin-bottom: 20px;" data-tr="Türkiye'nin tüm otobüs seferlerini listelemek için otobüs arama motoruna bağlanın:" data-en="Connect to the bus search engine to list all bus services in Turkey:">Türkiye'nin tüm otobüs seferlerini listelemek için otobüs arama motoruna bağlanın:</p>
+                <div class="form-group">
+                    <label data-tr="Nereden" data-en="From">Nereden</label>
+                    <input type="text" value="İstanbul">
+                </div>
+                <div class="form-group">
+                    <label data-tr="Nereye" data-en="To">Nereye</label>
+                    <input type="text" value="İzmir">
+                </div>
+                <a href="https://www.obilet.com/otobus-bileti" target="_blank" class="btn-action" id="otobusBtnText">Otobüs Bileti Sitelerine Git ve Bilet Al &rarr;</a>
             </div>
         </div>
     </div>
 
-    <!-- OTEL REZERVASYONU SEKMESİ -->
+    <!-- OTEL REZERVASYONU SEKMESİ (Gerçek Dış Yönlendirme - Kullanıcı Otel Sitesine Girer) -->
     <div id="otel" class="tab-content">
         <div class="container">
             <div class="service-panel">
-                <h3><i class="fa-solid fa-hotel" style="color: #e30a17;"></i> <span data-tr="Edebi Konaklar ve Otel Rezervasyonu" data-en="Literary Mansions & Hotel Booking">Edebi Konaklar ve Otel Rezervasyonu</span></h3>
-                <div class="form-group"><label>Bölge Seçin</label><select><option>İstanbul Tarihi Yarımada / Pera Otelleri</option><option>Kapadokya Taş Konaklar</option></select></div>
-                <button class="btn-primary" style="width:100%; padding: 14px;" onclick="alert('Oteller listeleniyor...')">Otel Ara</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- ARAÇ KİRALAMA SEKMESİ -->
-    <div id="arac" class="tab-content">
-        <div class="container">
-            <div class="service-panel">
-                <h3><i class="fa-solid fa-car" style="color: #e30a17;"></i> <span data-tr="Yolculuk İçin Araç Kiralama" data-en="Car Rental for Journey">Yolculuk İçin Araç Kiralama</span></h3>
-                <div class="form-group"><label>Alış Yeri</label><select><option>İstanbul Havalimanı (IST)</option><option>Sabiha Gökçen Havalimanı (SAW)</option></select></div>
-                <button class="btn-primary" style="width:100%; padding: 14px;" onclick="alert('Araçlar listeleniyor...')">Araç Kirala</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- EDEBİ BLOG SEKMESİ -->
-    <div id="blog" class="tab-content">
-        <div class="container">
-            <h2 class="section-title">Atlass Edebi Seyahat Günlüğü</h2>
-            <p class="section-subtitle">Şairlerin kaleminden Türkiye'nin gizli kalmış ilham durakları.</p>
-            <div class="grid">
-                <div class="card">
-                    <div class="card-img-container">
-                        <img src="https://images.unsplash.com/photo-1541432901042-2d8bd64b3a9b?auto=format&fit=crop&w=600&q=80" alt="Istanbul">
-                        <span class="city-badge">34 - İstanbul</span>
-                    </div>
-                    <div class="card-body">
-                        <h3 class="card-title">Orhan Veli'nin Adımlarıyla İstanbul Sokakları</h3>
-                        <div class="poem-snippet">"İstanbul'u dinliyorum gözlerim kapalı..."</div>
-                        <div class="card-footer-info">
-                            <span class="guide-name"><i class="fa-regular fa-calendar"></i> 4 Haziran 2026</span>
-                            <span class="read-more" style="color: #e30a17; font-weight:600;" onclick="openIstanbulModal()">Detayları Gör &rarr;</span>
-                        </div>
-                    </div>
+                <h3><i class="fa-solid fa-hotel" style="color: #e30a17;"></i> <span data-tr="Otel Rezervasyonu Yapın" data-en="Make Hotel Reservations">Otel Rezervasyonu Yapın</span></h3>
+                <p style="color: #666; margin-bottom: 20px;" data-tr="Seçtiğiniz şehirdeki en iyi otelleri incelemek ve rezervasyon yapmak için dünyanın ve Türkiye'nin lider otel sitesine bağlanın:" data-en="Connect to the world's and Turkey's leading hotel site to review and book the best hotels in your chosen city:">Seçtiğiniz şehirdeki en iyi otelleri incelemek ve rezervasyon yapmak için dünyanın ve Türkiye'nin lider otel sitesine bağlanın:</p>
+                <div class="form-group">
+                    <label data-tr="Gitmek İstediğiniz Şehir / Bölge" data-en="City / Region You Want to Visit">Gitmek İstediğiniz Şehir / Bölge</label>
+                    <input type="text" id="otelSehirInput" value="İstanbul">
                 </div>
+                <!-- Kullanıcı buraya tıklayınca doğrudan Booking.com otel arama sayfasına gider -->
+                <a href="https://www.booking.com" target="_blank" class="btn-action" id="otelBtnText">Otel Sitesine Git ve Odaları İncele &rarr;</a>
             </div>
         </div>
     </div>
 
     <footer>
-        <p>&copy; 2026 Atlass Seyahat Platformu. Türkiye'nin Şiir ve Edebi Tur Rehberi.</p>
-        <p style="font-size: 0.85rem; color: #888;">Bayrağımız ve şiirlerimizle dünyayı keşfedin.</p>
+        <p>&copy; 2026 Atlass Seyahat Platformu. Tüm hakları saklıdır.</p>
+        <p style="font-size: 0.85rem; color: #888;" id="footer-sub">Türkiye'nin 81 ili için kapsamlı seyahat rehberi.</p>
     </footer>
 
-    <!-- JavaScript: Sekmeler, Modaller ve Dil Destekleri -->
+    <!-- JavaScript: 81 İl Veritabanı ve Fonksiyonlar -->
     <script>
         let currentLang = 'tr';
+
+        // 81 İlin Tam Listesi, Görselleri ve Gezilecek Yerleri Veritabanı
+        const illerVeritabani = {
+            "İstanbul": {
+                img: "https://images.unsplash.com/photo-1541432901042-2d8bd64b3a9b?auto=format&fit=crop&w=800&q=80",
+                trDesc: "Asya ile Avrupa'yı birleştiren, imparatorluklara başkentlik yapmış, Boğaziçi ve tarihi yarımadasıyla dünyanın kalbi olan büyüleyici metropol.",
+                enDesc: "The fascinating metropolis connecting Asia and Europe, capital of empires, and the heart of the world with the Bosphorus and historical peninsula.",
+                trPlaces: ["Ayasofya Camii", "Topkapı Sarayı", "Galata Kulesi", "Sultanahmet Meydanı", "Kapalıçarşı", "Kız Kulesi"],
+                enPlaces: ["Hagia Sophia", "Topkapi Palace", "Galata Tower", "Sultanahmet Square", "Grand Bazaar", "Maiden's Tower"]
+            },
+            "Ankara": {
+                img: "https://images.unsplash.com/photo-1584646098378-0874589d76b1?auto=format&fit=crop&w=800&q=80",
+                trDesc: "Türkiye'nin kalbinde yer alan, Cumhuriyet'in başkenti, müzeleri ve tarihi kaleleriyle öne çıkan modern idari merkez.",
+                enDesc: "Located in the heart of Turkey, the capital of the Republic, a modern administrative center prominent with museums and historical castles.",
+                trPlaces: ["Anıtkabir", "Ankara Kalesi", "Anadolu Medeniyetleri Müzesi", "Kocatepe Camii", "Atatürk Kültür Merkezi"],
+                enPlaces: ["Anıtkabir", "Ankara Castle", "Museum of Anatolian Civilizations", "Kocatepe Mosque", "Atatürk Cultural Center"]
+            },
+            "İzmir": {
+                img: "https://images.unsplash.com/photo-1524850011238-eafd23727d58?auto=format&fit=crop&w=800&q=80",
+                trDesc: "Ege'nin incisi, ılıman iklimi, tarihi sahil şeridi, antik kalıntıları ve huzurlu atmosferiyle Türkiye'nin üçüncü büyük şehri.",
+                enDesc: "The pearl of the Aegean, Turkey's third largest city with its mild climate, historical coastline, ancient ruins, and peaceful atmosphere.",
+                trPlaces: ["Kordon Boyu", "İzmir Saat Kulesi", "Efes Antik Kenti", "Kemeraltı Çarşısı", "Alaçatı ve Çeşme"],
+                enPlaces: ["Kordon Coastline", "Izmir Clock Tower", "Ephesus Ancient City", "Kemeraltı Bazaar", "Alaçatı and Çeşme"]
+            },
+            "Bursa": {
+                img: "https://images.unsplash.com/photo-1609137144813-7e9453d74ebc?auto=format&fit=crop&w=800&q=80",
+                trDesc: "Osmanlı'nın ilk başkenti, Yeşil Bursa olarak anılan, Uludağ eteklerindeki tarihi ve doğal zenginliklerin merkezi.",
+                enDesc: "The first capital of the Ottoman Empire, known as Green Bursa, center of historical and natural beauties at the foot of Uludağ.",
+                trPlaces: ["Uludağ Kayak Merkezi", "Ulucami", "Yeşil Türbe", "Koza Han", "Cumalıkızık Köyü"],
+                enPlaces: ["Uludağ Ski Resort", "Grand Mosque", "Green Tomb", "Koza Han", "Cumalıkızık Village"]
+            },
+            "Antalya": {
+                img: "https://images.unsplash.com/photo-1567157577867-05ccb1388e66?auto=format&fit=crop&w=800&q=80",
+                trDesc: "Turizmin başkenti, muhteşem Akdeniz sahilleri, antik kentleri ve muazzam doğasıyla dünya çapında bir tatil cenneti.",
+                enDesc: "The capital of tourism, a world-class holiday heaven with magnificent Mediterranean coasts, ancient cities, and superb nature.",
+                trPlaces: ["Kaleiçi", "Düden Şelalesi", "Konyaaltı ve Lara Plajları", "Aspendos Antik Tiyatrosu", "Olympos"],
+                enPlaces: ["Kaleiçi", "Düden Waterfall", "Konyaaltı and Lara Beaches", "Aspendos Ancient Theatre", "Olympos"]
+            },
+            "Trabzon": {
+                img: "https://images.unsplash.com/photo-1609137144813-7e9453d74ebc?auto=format&fit=crop&w=800&q=80", // Karadeniz doğa konsepti
+                trDesc: "Karadeniz'in yeşil ve mavinin buluştuğu hırçın dalgalı, yaylaları ve tarihi manastırlarıyla ünlü eşsiz şehri.",
+                enDesc: "The unique city of the Black Sea where green and blue meet, famous for its highlands and historical monasteries.",
+                trPlaces: ["Sümela Manastırı", "Uzungöl", "Ayder Yaylası (Rize yakın)", "Atatürk Köşkü", "Boztepe"],
+                enPlaces: ["Sumela Monastery", "Uzungöl", "Ayder Plateau", "Atatürk Pavilion", "Boztepe"]
+            },
+            "Nevşehir": {
+                img: "https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?auto=format&fit=crop&w=800&q=80",
+                trDesc: "Peribacaları, yer altı şehirleri ve sıcak hava balonlarıyla dünyanın hayranlıkla izlediği Kapadokya bölgesinin merkezi.",
+                enDesc: "The center of the Cappadocia region, admired by the world for its fairy chimneys, underground cities, and hot air balloons.",
+                trPlaces: ["Göreme Açık Hava Müzesi", "Uçhisar Kalesi", "Avanos Çömlek Atölyeleri", "Ihlara Vadisi", "Derinkuyu Yeraltı Şehri"],
+                enPlaces: ["Göreme Open Air Museum", "Uçhisar Castle", "Avanos Pottery Workshops", "Ihlara Valley", "Derinkuyu Underground City"]
+            }
+        };
+
+        // 81 İlin Listesini Otomatik Select Kutusuna Doldurma
+        const turkiyeIlleri = [
+            "Adana", "Adıyaman", "Afyonkarahisar", "Ağrı", "Amasya", "Ankara", "Antalya", "Artvin", "Aydın", "Balıkesir",
+            "Bilecik", "Bingöl", "Bitlis", "Bolu", "Burdur", "Bursa", "Çanakkale", "Çankırı", "Çorum", "Denizli",
+            "Diyarbakır", "Edirne", "Elazığ", "Erzincan", "Erzurum", "Eskişehir", "Gaziantep", "Giresun", "Gümüşhane", "Hakkari",
+            "Hatay", "Isparta", "Mersin", "İstanbul", "İzmir", "Kars", "Kastamonu", "Kayseri", "Kırklareli", "Kırşehir",
+            "Kocaeli", "Konya", "Kütahya", "Malatya", "Manisa", "Kahramanmaraş", "Mardin", "Muğla", "Muş", "Nevşehir",
+            "Niğde", "Ordu", "Rize", "Sakarya", "Samsun", "Siirt", "Sinop", "Sivas", "Tekirdağ", "Tokat",
+            "Trabzon", "Tunceli", "Şanlıurfa", "Uşak", "Van", "Yozgat", "Zonguldak", "Aksaray", "Bayburt", "Karaman",
+            "Kırıkkale", "Batman", "Şırnak", "Bartın", "Ardahan", "Iğdır", "Yalova", "Karabük", "Kilis", "Osmaniye", "Düzce"
+        ];
+
+        window.onload = function() {
+            const selectElement = document.getElementById('ilSecimi');
+            turkiyeIlleri.sort().forEach(il => {
+                let opt = document.createElement('option');
+                opt.value = il;
+                opt.textContent = il;
+                if(il === "İstanbul") opt.selected = true; // Varsayılan İstanbul seçilsin
+                selectElement.appendChild(opt);
+            });
+            showCityDetails(); // Sayfa açılınca varsayılan olarak seçili şehri göster
+        };
 
         function switchTab(tabId) {
             const tabs = document.querySelectorAll('.tab-content');
@@ -739,42 +597,48 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // İl seçildiğinde İstanbul ise direkt modalı açma seçeneği
-        function checkCitySelection() {
-            const val = document.getElementById('ilSecimi').value;
-            if (val === '34') {
-                openIstanbulModal();
+        // Seçilen Şehre Göre Bilgileri Ekrana Getirme
+        function showCityDetails() {
+            const selectedCity = document.getElementById('ilSecimi').value;
+            const resultArea = document.getElementById('cityResultArea');
+            
+            if(!selectedCity) {
+                alert(currentLang === 'tr' ? 'Lütfen bir şehir seçiniz!' : 'Please select a city!');
+                return;
             }
-        }
 
-        function searchTour() {
-            const val = document.getElementById('ilSecimi').value;
-            if (val === '34' || val === '') {
-                openIstanbulModal();
-            } else {
-                alert(currentLang === 'tr' ? 'Seçtiğiniz ilin şiir rotaları ve detayları yükleniyor!' : 'Loading poetic routes for selected city!');
+            resultArea.style.display = 'block';
+
+            let data = illerVeritabani[selectedCity];
+
+            // Eğer listede özel detaylı metin yoksa, tüm 81 il için dinamik şablon üretelim ki eksik kalmasın!
+            if (!data) {
+                data = {
+                    img: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80", // Genel Türkiye manzarası
+                    trDesc: `${selectedCity}, tarihi dokusu, kültürel zenginlikleri ve kendine has coğrafi güzellikleriyle Türkiye'nin keşfedilmeyi bekleyen özel illerinden biridir.`,
+                    enDesc: `${selectedCity} is one of Turkey's special provinces waiting to be discovered with its historical texture, cultural richness, and unique geographical beauties.`,
+                    trPlaces: [`${selectedCity} Merkez Tarihi Çarşıları`, `${selectedCity} Müzesi`, "Doğa Parkları ve Mesire Alanları", "Yerel Lezzet Durakları"],
+                    enPlaces: [`${selectedCity} Central Historical Bazaars`, `${selectedCity} Museum`, "Nature Parks and Recreation Areas", "Local Flavor Stops"]
+                };
             }
-        }
 
-        function openIstanbulModal() {
-            document.getElementById('istanbulModal').style.display = 'flex';
-        }
-
-        function closeIstanbulModal() {
-            document.getElementById('istanbulModal').style.display = 'none';
-        }
-
-        // Modal dışına tıklayınca kapanma
-        window.onclick = function(event) {
-            let modal = document.getElementById('istanbulModal');
-            if (event.target == modal) {
-                modal.style.display = 'none';
-            }
+            document.getElementById('cityNameTitle').innerText = selectedCity;
+            document.getElementById('cityImg').src = data.img;
+            document.getElementById('cityDesc').innerText = (currentLang === 'tr') ? data.trDesc : data.enDesc;
+            
+            const placesList = document.getElementById('cityPlacesList');
+            placesList.innerHTML = '';
+            
+            let placesArray = (currentLang === 'tr') ? data.trPlaces : data.enPlaces;
+            placesArray.forEach(place => {
+                let li = document.createElement('li');
+                li.textContent = place;
+                placesList.appendChild(li);
+            });
         }
 
         function changeLanguage() {
-            const selectVal = document.getElementById('langSelect').value;
-            currentLang = selectVal;
+            currentLang = document.getElementById('langSelect').value;
 
             const elements = document.querySelectorAll('[data-tr]');
             elements.forEach(el => {
@@ -786,20 +650,27 @@
             });
 
             if (currentLang === 'en') {
-                document.getElementById('nav-subtitle-text').innerText = "Poetic & Literary Tours";
-                document.getElementById('hero-heading').innerText = "Discover Turkey Through Poems & Literary Routes";
-                document.getElementById('hero-sub').innerText = "From 'A Morning in Süleymaniye' to 'Listening to Istanbul', poetry tours across all 81 provinces in the footsteps of poets.";
-                document.getElementById('featured-title').innerText = "Unforgettable Routes in Poets' Words";
-                document.getElementById('featured-subtitle').innerText = "Step-by-step journeys in the streets where poems were written, accompanied by expert literary guides.";
-                document.getElementById('loginBtn').innerText = "Sign In";
+                document.getElementById('nav-subtitle-text').innerText = "81 Provinces Guide";
+                document.getElementById('hero-heading').innerText = "Discover Turkey's 81 Provinces";
+                document.getElementById('hero-sub').innerText = "What is in which city, where to visit? Select your city and discover all details.";
+                document.getElementById('mustSeeText').innerText = "Must-See Places:";
+                document.getElementById('ucakBtnText').innerHTML = "Go to Flight Sites & Book Ticket &rarr;";
+                document.getElementById('otobusBtnText').innerHTML = "Go to Bus Sites & Book Ticket &rarr;";
+                document.getElementById('otelBtnText').innerHTML = "Go to Hotel Site & View Rooms &rarr;";
+                document.getElementById('footer-sub').innerText = "Comprehensive travel guide for Turkey's 81 provinces.";
             } else {
-                document.getElementById('nav-subtitle-text').innerText = "Şiir ve Edebi Turlar";
-                document.getElementById('hero-heading').innerText = "Türkiye'yi Şiirlerle ve Edebi Rotalarla Keşfet";
-                document.getElementById('hero-sub').innerText = "\"Süleymaniye'de Bayram Sabahı\"ndan \"İstanbul'u Dinliyorum\"a, şairlerin izinde 81 ilde yaşayan şiir turları.";
-                document.getElementById('featured-title').innerText = "Şairlerin Dilinden Unutulmaz Rotalar";
-                document.getElementById('featured-subtitle').innerText = "Uzman edebi tur rehberlerimiz eşliğinde, şiirlerin yazıldığı sokaklarda adım adım yolculuk.";
-                document.getElementById('loginBtn').innerText = "Giriş Yap";
+                document.getElementById('nav-subtitle-text').innerText = "81 İl Şehir Rehberi";
+                document.getElementById('hero-heading').innerText = "Türkiye'nin 81 İlini Keşfedin";
+                document.getElementById('hero-sub').innerText = "Hangi şehirde ne var, nereler gezilmeli? Şehrinizi seçin ve tüm detayları keşfedin.";
+                document.getElementById('mustSeeText').innerText = "Gezilmesi Gereken Yerler:";
+                document.getElementById('ucakBtnText').innerHTML = "Uçak Bileti Sitelerine Git ve Bilet Al &rarr;";
+                document.getElementById('otobusBtnText').innerHTML = "Otobüs Bileti Sitelerine Git ve Bilet Al &rarr;";
+                document.getElementById('otelBtnText').innerHTML = "Otel Sitesine Git ve Odaları İncele &rarr;";
+                document.getElementById('footer-sub').innerText = "Türkiye'nin 81 ili için kapsamlı seyahat rehberi.";
             }
+
+            // Dil değiştiğinde açık olan şehir kartını da güncelle
+            showCityDetails();
         }
     </script>
 </body>
