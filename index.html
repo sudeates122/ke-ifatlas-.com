@@ -245,7 +245,7 @@
             margin-bottom: 0;
         }
 
-        /* Bilgi Alanı (Glitch Kesinlikle Önlenmiştir) */
+        /* Bilgi Alanı */
         .city-info-box {
             padding: 35px;
             display: flex;
@@ -454,25 +454,38 @@
         <p>&copy; 2026 Keşif Atlas Seyahat Platformu. Tüm hakları saklıdır.</p>
     </footer>
 
-    <!-- JavaScript: 81 İl Tam Entegrasyon ve Kararlı Görsel Havuzu -->
+    <!-- JavaScript: Zengin Yemek Detayları ve 81 İl Görsel/Veri Havuzu -->
     <script>
         let currentLang = 'tr';
 
-        // 81 İl için özel görseller ve veriler
         const illerVeritabani = {
-            "İstanbul": {
-                img: "https://images.unsplash.com/photo-1541432901042-2d8bd64b3a9b?auto=format&fit=crop&w=1000&q=80",
-                trDesc: "Asya ile Avrupa'yı birbirine bağlayan, imparatorluklara başkentlik yapmış, Boğaziçi'nin eşsiz manzarasına sahip dünyanın en büyüleyici metropolü.",
-                enDesc: "The most fascinating metropolis in the world connecting Asia and Europe, capital of empires, with the unique view of the Bosphorus.",
-                trHistory: "Roma, Bizans ve Osmanlı İmparatorluklarına başkentlik yapmıştır. 1453 yılında Fatih Sultan Mehmet tarafından fethedilmiştir.",
-                enHistory: "It served as the capital for Roman, Byzantine, and Ottoman Empires. Conquered in 1453 by Mehmed the Conqueror.",
-                trPlaces: ["Ayasofya-i Kebir", "Topkapı Sarayı", "Galata Kulesi", "Kapalıçarşı", "Kız Kulesi"],
-                enPlaces: ["Hagia Sophia", "Topkapi Palace", "Galata Tower", "Grand Bazaar", "Maiden's Tower"],
-                trFood: ["Balık Ekmek", "Sultanahmet Köftesi", "Ortaköy Kumpiri", "Kanlıca Yoğurdu", "Vefa Bozası"],
-                enFood: ["Fish Bread", "Meatballs", "Baked Potato", "Yogurt", "Boza"],
-                trActivities: ["Boğaz turuna çıkıp martılara simit atmak", "İstiklal Caddesi'nde nostaljik tramvaya binmek", "Adalar'da bisiklet sürmek"],
-                enActivities: ["Taking a Bosphorus tour", "Riding the nostalgic tram", "Cycling in the Princes' Islands"],
-                trTransport: "Metrobüs, Marmaray, metro, tramvay, otobüs ve vapurlar ile gelişmiş bir ağa sahiptir."
+            "Samsun": {
+                img: "https://images.unsplash.com/photo-1563245372-f21724e3856d?auto=format&fit=crop&w=1000&q=80",
+                trDesc: "Millî Mücadele'nin başlattığı ateşin şehri Samsun; Karadeniz'in en uzun sahillerine, verimli ovalara ve zengin bir tarih kültürüne sahiptir.",
+                enDesc: "The city where the National Struggle began, Samsun features the longest coasts of the Black Sea and fertile plains.",
+                trHistory: "19 Mayıs 1919'da Mustafa Kemal Atatürk'ün Bandırma Vapuru ile ayak basıp Kurtuluş Savaşı'nı başlattığı tarihi şehirdir.",
+                enHistory: "The historical city where Atatürk landed on May 19, 1919, initiating the War of Independence.",
+                trPlaces: ["Bandırma Gemi Müzesi ve Millî Mücadele Parkı", "Amisos Tepesi", "Atatürk Heykeli (Onur Anıtı)", "Tekkeköy Mağaraları"],
+                enPlaces: ["Bandırma Ship Museum", "Amisos Hill", "Honor Monument", "Tekkeköy Caves"],
+                trFood: ["Bafra ve Çarşamba Pidesi (Çıtır çıtır kıymalı kapalı pide)", "Keşkek", "Mısır Çorbası", "Kaz Tiridi"],
+                enFood: ["Bafra & Çarşamba Pita (Crispy minced meat pastry)", "Keşkek", "Corn Soup", "Goose Tirid"],
+                trActivities: ["Bandırma Gemisi'ni ziyaret etmek", "Teleferik ile Amisos Tepesi'ne çıkıp Karadeniz manzarasını izlemek", "Sahilde bisiklet turu yapmak"],
+                enActivities: ["Visiting the Bandırma Ship", "Taking the cable car to Amisos Hill", "Cycling along the coast"],
+                trTransport: "Samulaş Hafif Raylı Sistem (Tramvay), belediye otobüsleri ve dolmuş hatlarıyla ulaşım sağlanır."
+            },
+            "Adana": {
+                img: "https://images.unsplash.com/photo-1609137144813-7d99618844b7?auto=format&fit=crop&w=1000&q=80",
+                trDesc: "Seyhan Nehri'nin suladığı bereketli Çukurova'nın merkezinde yer alan Adana; eşsiz mutfağı, tarihi köprüleri ve sıcak insanlarıyla Akdeniz'in incisidir.",
+                enDesc: "Located in the heart of Çukurova, Adana is the pearl of the Mediterranean with its unique cuisine and historical bridges.",
+                trHistory: "Binlerce yıllık medeniyetlere ev sahipliği yapmış, Hititlerden Roma'ya kadar pek çok iz taşıyan antik bir yerleşim yeridir.",
+                enHistory: "An ancient settlement that has hosted civilizations from Hittites to Romans.",
+                trPlaces: ["Taşköprü", "Sabancı Merkez Camii", "Varda Köprüsü (Koca Köprü)", "Adana Arkeoloji Müzesi"],
+                enPlaces: ["Stone Bridge", "Sabancı Central Mosque", "Varda Bridge", "Archaeology Museum"],
+                trFood: ["Adana Kebap (Zırh kıymasından zengin baharatlı kebap)", "Şırdan Dolması", "Bici Bici Tatlısı", "Karakuş Tatlısı", "Sıkma ve Ayran"],
+                enFood: ["Adana Kebab", "Şırdan", "Bici Bici Dessert", "Karakuş Dessert", "Pastry Wrap"],
+                trActivities: ["Seyhan Nehri kenarında yürüyüş yapmak", "Tarihi Kazancılar Çarşısı'nda 'Rakı Masası / Kebap' kültürünü deneyimlemek"],
+                enActivities: ["Walking by the Seyhan River", "Experiencing the local kebab culture in Kazancılar Bazaar"],
+                trTransport: "Metro hattı, belediye otobüsleri ve dolmuşlar ile şehir içi ulaşım çok rahattır."
             },
             "Ankara": {
                 img: "https://images.unsplash.com/photo-1584646098378-0874589d76b1?auto=format&fit=crop&w=1000&q=80",
@@ -482,11 +495,25 @@
                 enHistory: "Its history dates back to the Hittites. Chosen as the center of the National Struggle, it became the capital in 1923.",
                 trPlaces: ["Anıtkabir", "Ankara Kalesi", "Anadolu Medeniyetleri Müzesi", "Hamamönü", "Kuğulu Park"],
                 enPlaces: ["Anıtkabir", "Ankara Castle", "Museum of Anatolian Civilizations", "Hamamönü", "Kuğulu Park"],
-                trFood: ["Ankara Tavası", "Beypazarı Kurusu", "Ankara Simidi", "Çubuk Turşusu"],
+                trFood: ["Ankara Tavası (Kuşbaşı et ve arpa şehriye pilavı uyumu)", "Beypazarı Kurusu", "Ankara Simidi", "Çubuk Turşusu"],
                 enFood: ["Ankara Pan", "Beypazarı Dry Cookie", "Ankara Simit", "Pickles"],
                 trActivities: ["Kuğulu Park'ta dinlenmek", "Eymir Gölü'nde bisiklet sürmek", "Atakule'den şehri izlemek"],
                 enActivities: ["Relaxing at Kuğulu Park", "Cycling at Lake Eymir", "Watching the panorama from Atakule"],
                 trTransport: "Ankaray, Metro, Başkentray ve EGO otobüsleri ile sağlanır."
+            },
+            "İstanbul": {
+                img: "https://images.unsplash.com/photo-1541432901042-2d8bd64b3a9b?auto=format&fit=crop&w=1000&q=80",
+                trDesc: "Asya ile Avrupa'yı birbirine bağlayan, imparatorluklara başkentlik yapmış, Boğaziçi'nin eşsiz manzarasına sahip dünyanın en büyüleyici metropolü.",
+                enDesc: "The most fascinating metropolis in the world connecting Asia and Europe, capital of empires, with the unique view of the Bosphorus.",
+                trHistory: "Roma, Bizans ve Osmanlı İmparatorluklarına başkentlik yapmıştır. 1453 yılında Fatih Sultan Mehmet tarafından fethedilmiştir.",
+                enHistory: "It served as the capital for Roman, Byzantine, and Ottoman Empires. Conquered in 1453 by Mehmed the Conqueror.",
+                trPlaces: ["Ayasofya-i Kebir", "Topkapı Sarayı", "Galata Kulesi", "Kapalıçarşı", "Kız Kulesi"],
+                enPlaces: ["Hagia Sophia", "Topkapi Palace", "Galata Tower", "Grand Bazaar", "Maiden's Tower"],
+                trFood: ["Eminönü Balık Ekmek", "Sultanahmet Köftesi", "Kanlıca Yoğurdu", "Vefa Bozası", "İstanbul Simidi"],
+                enFood: ["Fish Bread", "Meatballs", "Yogurt", "Boza", "Istanbul Simit"],
+                trActivities: ["Boğaz turuna çıkıp martılara simit atmak", "İstiklal Caddesi'nde nostaljik tramvaya binmek", "Adalar'da bisiklet sürmek"],
+                enActivities: ["Taking a Bosphorus tour", "Riding the nostalgic tram", "Cycling in the Princes' Islands"],
+                trTransport: "Metrobüs, Marmaray, metro, tramvay, otobüs ve vapurlar ile gelişmiş bir ağa sahiptir."
             },
             "İzmir": {
                 img: "https://images.unsplash.com/photo-1598822839958-86d112d8a43f?auto=format&fit=crop&w=1000&q=80",
@@ -496,25 +523,11 @@
                 enHistory: "With an 8,500-year history, it was considered the capital of Ionia in antiquity.",
                 trPlaces: ["Efes Antik Kenti", "Saat Kulesi", "Kemeraltı Çarşısı", "Alaçatı", "Tarihi Asansör"],
                 enPlaces: ["Ephesus", "Clock Tower", "Kemeraltı Bazaar", "Alaçatı", "Historical Elevator"],
-                trFood: ["Boyoz", "Kumrusu", "Şambali Tatlısı", "İzmir Köfte"],
-                enFood: ["Boyoz Pastry", "Kumru Sandwich", "Şambali Dessert", "Meatballs"],
+                trFood: ["İzmir Boyozu (Tahinli/sade kat kat hamur lezzeti)", "İzmir Kumrusu", "Şambali Tatlısı", "İzmir Köfte", "Söğüş"],
+                enFood: ["Boyoz Pastry", "Kumru Sandwich", "Şambali Dessert", "Meatballs", "Cold Cuts"],
                 trActivities: ["Kordon'da gün batımını izlemek", "Alaçatı'da sörf yapmak"],
                 enActivities: ["Watching sunset on Kordon", "Surfing in Alaçatı"],
                 trTransport: "İZBAN, Metro, Tramvay, otobüs ve vapurlar ile ulaşım sağlanır."
-            },
-            "Antalya": {
-                img: "https://images.unsplash.com/photo-1567157577867-05ccb1388e66?auto=format&fit=crop&w=1000&q=80",
-                trDesc: "Turizmin başkenti Antalya; muhteşem Akdeniz sahilleri, antik kentleri ve şelaleleriyle dünya çapında bir tatil cennetidir.",
-                enDesc: "The capital of tourism, Antalya is a world-class holiday haven with magnificent Mediterranean coasts.",
-                trHistory: "Bergama Kralı II. Attalos tarafından kurulmuştur. Antik çağda Pamphylia bölgesinde yer almıştır.",
-                enHistory: "Founded by King Attalos II of Pergamon.",
-                trPlaces: ["Kaleiçi", "Düden Şelalesi", "Konyaaltı Plajı", "Aspendos Tiyatrosu"],
-                enPlaces: ["Kaleiçi", "Düden Waterfall", "Konyaaltı Beach", "Aspendos Theatre"],
-                trFood: ["Tahinli Piyaz", "Hibeş", "Serik Köftesi"],
-                enFood: ["Tahini Bean Salad", "Hibeş Dip", "Meatballs"],
-                trActivities: ["Kaleiçi'nde yürüyüş yapmak", "Köprülü Kanyon'da rafting"],
-                enActivities: ["Walking in Kaleiçi", "Rafting in Köprülü Canyon"],
-                trTransport: "Antray tramvay hattı ve otobüslerle şehir içi ulaşım sağlanır."
             },
             "Bursa": {
                 img: "https://images.unsplash.com/photo-1605648916312-d278d42d3858?auto=format&fit=crop&w=1000&q=80",
@@ -524,8 +537,8 @@
                 enHistory: "It was the first capital of the Ottoman Empire, filled with historical inns and tombs.",
                 trPlaces: ["Uludağ Milli Parkı", "Ulu Cami", "Tarihi Çınar", "Cumalıkızık Köyü"],
                 enPlaces: ["Uludağ National Park", "Grand Mosque", "Historical Plane Tree", "Cumalıkızık Village"],
-                trFood: ["İskender Kebap", "Bursa Kestane Şekeri", "İnegöl Köfte"],
-                enFood: ["İskender Kebab", "Chestnut Candies", "İnegöl Meatballs"],
+                trFood: ["İskender Kebap (Tereyağlı, domates soslu ve yoğurtlu)", "İnegöl Köfte", "Bursa Kestane Şekeri", "Cantık"],
+                enFood: ["İskender Kebab", "İnegöl Meatballs", "Chestnut Candies", "Cantık Pastry"],
                 trActivities: ["Teleferik ile Uludağ'a çıkmak", "Cumalıkızık'ta kahvaltı yapmak"],
                 enActivities: ["Taking the cable car to Uludağ", "Having breakfast in Cumalıkızık"],
                 trTransport: "Bursaray metro ağı ve tramvay hatları mevcuttur."
@@ -538,8 +551,8 @@
                 enHistory: "It has been an important port city on the Silk Road throughout history.",
                 trPlaces: ["Sümela Manastırı", "Uzungöl", "Ayasofya Müzesi", "Atatürk Köşkü"],
                 enPlaces: ["Sumela Monastery", "Uzungöl", "Hagia Sophia Museum", "Atatürk Pavilion"],
-                trFood: ["Trabzon Pidesi", "Akçaabat Köftesi", "Hamsili Pilav", "Kuymak"],
-                enFood: ["Trabzon Pita", "Akçaabat Meatballs", "Anchovy Rice", "Kuymak"],
+                trFood: ["Trabzon Pidesi (Tereyağlı ve yumurtalı kapalı pide)", "Akçaabat Köftesi", "Kuymak / Mıhlama", "Hamsili Pilav"],
+                enFood: ["Trabzon Pita", "Akçaabat Meatballs", "Kuymak", "Anchovy Rice"],
                 trActivities: ["Uzungöl kenarında yürüyüş yapmak", "Sümela Manastırı'nı ziyaret etmek"],
                 enActivities: ["Walking by Uzungöl", "Visiting Sumela Monastery"],
                 trTransport: "Belediye otobüsleri ve dolmuşlar yaygındır."
@@ -552,11 +565,53 @@
                 enHistory: "An ancient settlement serving as a bridge between Mesopotamia and the Mediterranean.",
                 trPlaces: ["Zeugma Mozaik Müzesi", "Gaziantep Kalesi", "Bakırcılar Çarşısı"],
                 enPlaces: ["Zeugma Mosaic Museum", "Gaziantep Castle", "Coppersmiths Bazaar"],
-                trFood: ["Gaziantep Baklavası", "Beyran Çorbası", "Ali Nazik Kebabı", "Nohut Dürüm"],
+                trFood: ["Gaziantep Baklavası (Bol fıstıklı ve şerbetli)", "Beyran Çorbası", "Ali Nazik Kebabı", "Nohut Dürüm"],
                 enFood: ["Baklava", "Beyran Soup", "Ali Nazik Kebab", "Chickpea Wrap"],
                 trActivities: ["Bakırcılar Çarşısı'ndan el işi hediyelikler almak", "Müzeleri gezip lezzet turu yapmak"],
                 enActivities: ["Shopping at Coppersmiths Bazaar", "Taking a food tour"],
                 trTransport: "Tramvay (TramGazi) ve belediye otobüsleri hizmet verir."
+            },
+            "Antalya": {
+                img: "https://images.unsplash.com/photo-1567157577867-05ccb1388e66?auto=format&fit=crop&w=1000&q=80",
+                trDesc: "Turizmin başkenti Antalya; muhteşem Akdeniz sahilleri, antik kentleri ve şelaleleriyle dünya çapında bir tatil cennetidir.",
+                enDesc: "The capital of tourism, Antalya is a world-class holiday haven with magnificent Mediterranean coasts.",
+                trHistory: "Bergama Kralı II. Attalos tarafından kurulmuştur. Antik çağda Pamphylia bölgesinde yer almıştır.",
+                enHistory: "Founded by King Attalos II of Pergamon.",
+                trPlaces: ["Kaleiçi", "Düden Şelalesi", "Konyaaltı Plajı", "Aspendos Tiyatrosu"],
+                enPlaces: ["Kaleiçi", "Düden Waterfall", "Konyaaltı Beach", "Aspendos Theatre"],
+                trFood: ["Tahinli Piyaz (Yumurta ve tarator soslu)", "Hibeş", "Serik Köftesi", "Bergamot Reçeli"],
+                enFood: ["Tahini Bean Salad", "Hibeş Dip", "Meatballs", "Bergamot Jam"],
+                trActivities: ["Kaleiçi'nde yürüyüş yapmak", "Köprülü Kanyon'da rafting"],
+                enActivities: ["Walking in Kaleiçi", "Rafting in Köprülü Canyon"],
+                trTransport: "Antray tramvay hattı ve otobüslerle şehir içi ulaşım sağlanır."
+            },
+            "Erzurum": {
+                img: "https://images.unsplash.com/photo-1589182373726-e4f658ab50f0?auto=format&fit=crop&w=1000&q=80",
+                trDesc: "Doğu Anadolu'nun kış sporları merkezi ve tarihi surlar şehri Erzurum; dadaş kültürüyle öne çıkar.",
+                enDesc: "Winter sports center and historical fortress city of Eastern Anatolia.",
+                trHistory: "Selçuklu ve Osmanlı dönemlerinde önemli bir sınır kalesi ve ticaret merkezi olmuştur.",
+                enHistory: "It served as an important border fortress and trade center during Seljuk and Ottoman eras.",
+                trPlaces: ["Palandöken Kayak Merkezi", "Çifte Minareli Medrese", "Tortum Şelalesi", "Erzurum Kalesi"],
+                enPlaces: ["Palandöken Ski Center", "Twin Minaret Madrasah", "Tortum Waterfall", "Erzurum Castle"],
+                trFood: ["Cağ Kebabı (Odun ateşinde yatık yaprak döner)", "Erzurum Kadayıf Dolması", "Aşotu Çorbası", "Civil Peyniri"],
+                enFood: ["Cağ Kebab", "Kadayıf Dolması Dessert", "Herb Soup", "Civil Cheese"],
+                trActivities: ["Palandöken'de kayak yapmak", "Çifte Minareli Medrese'yi gezmek"],
+                enActivities: ["Skiing in Palandöken", "Visiting the Twin Minaret Madrasah"],
+                trTransport: "Belediye otobüsleri ve özel halk otobüsleri ile ulaşım sağlanır."
+            },
+            "Hatay": {
+                img: "https://images.unsplash.com/photo-1533105079780-92b9be482077?auto=format&fit=crop&w=1000&q=80",
+                trDesc: "Medeniyetler buluşma noktası Hatay; hoşgörüsü, mozaikleri ve benzersiz mutfağıyla bilinir.",
+                enDesc: "The meeting point of civilizations, Hatay is known for its tolerance, mosaics, and unique cuisine.",
+                trHistory: "Antik çağda Antioch (Antiocheia) adıyla bilinen devasa bir imparatorluk merkeziydi.",
+                enHistory: "A massive imperial center known as Antioch in antiquity.",
+                trPlaces: ["Hatay Arkeoloji Müzesi", "Habib-i Neccar Camii", "St. Pierre Kilisesi", "Tuz Hanı"],
+                enPlaces: ["Hatay Archaeology Museum", "Habib-i Neccar Mosque", "St. Pierre Church", "Tuz Inn"],
+                trFood: ["Antakya Künefesi (Özel peynirli ve tel kadayıflı şerbetli tatlı)", "Hatay Tepsi Kebabı", "Kâğıt Kebabı", "Humus", "Künefe"],
+                enFood: ["Antakya Künefe", "Tray Kebab", "Paper Kebab", "Hummus"],
+                trActivities: ["Uzun Çarşı'da baharat ve künefe peyniri alışverişi yapmak", "Mozaik müzesini gezmek"],
+                enActivities: ["Shopping in Uzun Çarşı", "Visiting the Mosaic Museum"],
+                trTransport: "Belediye otobüsleri ve ilçe minibüsleri aktiftir."
             },
             "Nevşehir": {
                 img: "https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?auto=format&fit=crop&w=1000&q=80",
@@ -566,8 +621,8 @@
                 enHistory: "Hosted many civilizations from Hittites to Byzantines.",
                 trPlaces: ["Göreme Açık Hava Müzesi", "Uçhisar Kalesi", "Derinkuyu Yeraltı Şehri", "Avanos"],
                 enPlaces: ["Göreme Open Air Museum", "Uçhisar Castle", "Derinkuyu Underground City", "Avanos"],
-                trFood: ["Testi Kebabı", "Nevşehir Tava", "Köftür"],
-                enFood: ["Testi Kebab", "Nevşehir Pan", "Köftür"],
+                trFood: ["Testi Kebabı (Toprak güveçte sebzeli et)", "Nevşehir Tava", "Düğürcü Çorbası", "Köftür"],
+                enFood: ["Testi Kebab", "Nevşehir Pan", "Düğürcü Soup", "Köftür"],
                 trActivities: ["Sıcak hava balonu turuna katılmak", "Çömlek yapımını denemek"],
                 enActivities: ["Hot air balloon tour", "Trying pottery making"],
                 trTransport: "İlçe ve turistik merkezler arasında minibüsler çalışır."
@@ -592,7 +647,7 @@
                 let opt = document.createElement('option');
                 opt.value = il;
                 opt.textContent = il;
-                if(il === "Ankara") opt.selected = true;
+                if(il === "Samsun") opt.selected = true;
                 selectElement.appendChild(opt);
             });
             showCityDetails();
@@ -607,7 +662,7 @@
 
             let data = illerVeritabani[selectedCity];
 
-            // Eğer listede özel detay yoksa 81 ilin tamamı için şablon otomatik üretilir ve harika bir manzara fotoğrafı atanır
+            // Eğer listede özel detay yoksa harika bir Türkiye doğa manzarası atanır
             let cityImage = data ? data.img : "https://images.unsplash.com/photo-1527838832700-505925207fc9?auto=format&fit=crop&w=1000&q=80";
 
             if (!data) {
@@ -618,9 +673,9 @@
                     enHistory: `${selectedCity} carries traces of Anatolian historical heritage and has hosted many civilizations.`,
                     trPlaces: [`${selectedCity} Merkez Çarşısı`, `${selectedCity} Müzesi ve Ören Yeri`, "Doğal Güzellikler ve Yaylalar", "Tarihi Yapılar ve Anıtlar"],
                     enPlaces: [`${selectedCity} Center Bazaar`, `${selectedCity} Museum`, "Natural Beauties and Plateaus", "Historical Monuments"],
-                    trFood: [`${selectedCity} Yöresel Yemekleri`, "Bölgeye Has Hamur İşleri", "Geleneksel Tatlılar", "Yöresel Doğal Ürünler"],
-                    enFood: [`${selectedCity} Local Dishes`, "Regional Pastries", "Traditional Desserts", "Local Products"],
-                    trActivities: ["Şehrin tarihi sokaklarında yürüyüş yapmak", "Yerel lezzetleri yerinde tatmak", "Doğa parklarında zaman geçirmek"],
+                    trFood: [`${selectedCity} Yöresel Ev Yemekleri`, "Bölgeye Has Geleneksel Hamur İşleri", "Yöresel Tatlılar", "Organik Doğal Ürünler"],
+                    enFood: [`${selectedCity} Local Homemade Dishes`, "Regional Pastries", "Traditional Desserts", "Organic Products"],
+                    trActivities: ["Şehrin tarihi sokaklarında yürüyüş yapmak", "Yerel esnaftan yöresel lezzetleri tatmak", "Doğa parklarında zaman geçirmek"],
                     enActivities: ["Walking in historical streets", "Tasting local delicacies", "Spending time in nature parks"],
                     trTransport: "Şehir içi ulaşım belediye otobüsleri, minibüsler ve taksilerle rahatlıkla sağlanmaktadır."
                 };
