@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Keşif Atlası | Türkiye'yi Keşfet</title>
+    <title>Keşif Atlası | 81 İlimiz Türkiye'yi Keşfet</title>
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body {
@@ -11,7 +11,6 @@
             background-color: #f4f6f9;
             color: #333;
         }
-        /* Üst Menü */
         header {
             background: #ffffff;
             box-shadow: 0 2px 10px rgba(0,0,0,0.05);
@@ -47,7 +46,6 @@
         }
         .nav-links a:hover { color: #3498db; }
 
-        /* Hero / Manşet Alanı */
         .hero {
             background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?q=80&w=1600') no-repeat center center/cover;
             height: 350px;
@@ -91,7 +89,6 @@
         }
         .hero-search button:hover { background: #2980b9; }
 
-        /* İçerik Alanı */
         .container {
             max-width: 1200px;
             margin: 40px auto;
@@ -176,7 +173,6 @@
         }
         .btn-bilet:hover { background: #d35400; }
 
-        /* Footer */
         footer {
             background: #2c3e50;
             color: white;
@@ -189,40 +185,37 @@
 </head>
 <body>
 
-    <!-- Üst Menü -->
     <header>
         <div class="nav-container">
             <a href="#" class="logo">Keşif<span>Atlası</span></a>
             <ul class="nav-links">
                 <li><a href="#">Ana Sayfa</a></li>
-                <li><a href="#">Rotalar</a></li>
+                <li><a href="#">81 İl Rotaları</a></li>
                 <li><a href="#">Uçak Bileti</a></li>
                 <li><a href="#">İletişim</a></li>
             </ul>
         </div>
     </header>
 
-    <!-- Büyük Manşet ve Arama -->
     <section class="hero">
-        <h1>Türkiye'yi Keşfetmeye Başla</h1>
-        <p>En güzel rotalar, tarihi şehirler ve en uygun bilet fırsatları burada.</p>
+        <h1>Türkiye'yi İl İl Keşfet</h1>
+        <p>81 ilin eşsiz tarihi, kültürü ve en uygun bilet fırsatları parmaklarınızın ucunda.</p>
         <div class="hero-search">
-            <input type="text" id="sehirArama" placeholder="Hangi şehri arıyorsunuz? (Örn: Ankara)" onkeyup="sehirFiltrele()">
+            <input type="text" id="sehirArama" placeholder="Hangi ili arıyorsunuz? (Örn: Ankara, İzmir, Bursa...)" onkeyup="sehirFiltrele()">
             <button>Ara</button>
         </div>
     </section>
 
-    <!-- Şehir Kartları Bölümü -->
     <div class="container">
-        <h2 class="section-title">Popüler Rotalar</h2>
+        <h2 class="section-title">Türkiye'nin 81 İli</h2>
         
         <div class="sehir-grid" id="sehirListesi">
-            <!-- Ankara Kartı -->
-            <div class="sehir-kart" data-isim="ankara başkent anıtkabir">
-                <img src="https://images.unsplash.com/photo-1628155931221-c4f57c4a4534?q=80&w=600" alt="Ankara">
+            <!-- 01 Adana -->
+            <div class="sehir-kart" data-isim="adana taşköprü sabancı merkez camii">
+                <img src="https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b?q=80&w=600" alt="Adana">
                 <div class="kart-icerik">
-                    <h3>Ankara</h3>
-                    <p>Başkentimizin gururu Anıtkabir, tarihi kaleleri ve müzeleriyle keşif başlıyor.</p>
+                    <h3>01 - Adana</h3>
+                    <p>Tarihi Taşköprü'sü, eşsiz mutfağı ve Seyhan Nehri manzarasıyla Akdeniz'in incisi.</p>
                     <div class="kart-butonlar">
                         <a href="#" class="btn-detay">İncele</a>
                         <a href="https://www.skyscanner.com.tr" target="_blank" class="btn-bilet">Uçak Bileti</a>
@@ -230,12 +223,12 @@
                 </div>
             </div>
 
-            <!-- İstanbul Kartı -->
-            <div class="sehir-kart" data-isim="istanbul boğaz ayasofya">
-                <img src="https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?q=80&w=600" alt="İstanbul">
+            <!-- 06 Ankara -->
+            <div class="sehir-kart" data-isim="ankara başkent anıtkabir atatürk kalesi">
+                <img src="https://images.unsplash.com/photo-1628155931221-c4f57c4a4534?q=80&w=600" alt="Ankara Anıtkabir">
                 <div class="kart-icerik">
-                    <h3>İstanbul</h3>
-                    <p>İki kıtayı buluşturan tarih, eşsiz boğaz manzarası ve kültürel zenginlik.</p>
+                    <h3>06 - Ankara</h3>
+                    <p>Başkentimizin gururu Anıtkabir, tarihi kaleleri ve kültürel müzeleriyle keşif merkezi.</p>
                     <div class="kart-butonlar">
                         <a href="#" class="btn-detay">İncele</a>
                         <a href="https://www.skyscanner.com.tr" target="_blank" class="btn-bilet">Uçak Bileti</a>
@@ -243,38 +236,12 @@
                 </div>
             </div>
 
-            <!-- İzmir Kartı -->
-            <div class="sehir-kart" data-isim="izmir ege konak">
-                <img src="https://images.unsplash.com/photo-1606744824163-985d376605aa?q=80&w=600" alt="İzmir">
-                <div class="kart-icerik">
-                    <h3>İzmir</h3>
-                    <p>Ege'nin incisi; sıcak insanları, antik kentleri ve muhteşem sahilleri.</p>
-                    <div class="kart-butonlar">
-                        <a href="#" class="btn-detay">İncele</a>
-                        <a href="https://www.skyscanner.com.tr" target="_blank" class="btn-bilet">Uçak Bileti</a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Kapadokya Kartı -->
-            <div class="sehir-kart" data-isim="kapadokya nevşehir peri bacaları">
-                <img src="https://images.unsplash.com/photo-1641128309938-6ef4fbf76ab3?q=80&w=600" alt="Kapadokya">
-                <div class="kart-icerik">
-                    <h3>Kapadokya</h3>
-                    <p>Peri bacaları, yer altı şehirleri ve gökyüzünü süsleyen rengarenk balonlar.</p>
-                    <div class="kart-butonlar">
-                        <a href="#" class="btn-detay">İncele</a>
-                        <a href="https://www.skyscanner.com.tr" target="_blank" class="btn-bilet">Uçak Bileti</a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Antalya Kartı -->
-            <div class="sehir-kart" data-isim="antalya akdeniz kaleiçi">
+            <!-- 07 Antalya -->
+            <div class="sehir-kart" data-isim="antalya akdeniz kaleiçi manavgat">
                 <img src="https://images.unsplash.com/photo-1563298723-dcfebaa392e3?q=80&w=600" alt="Antalya">
                 <div class="kart-icerik">
-                    <h3>Antalya</h3>
-                    <p>Akdeniz'in turkuaz suları, antik kalıntıları ve eşsiz doğa harikaları.</p>
+                    <h3>07 - Antalya</h3>
+                    <p>Turkuaz suları, tarihi Kaleiçi sokakları ve dünya çapındaki antik kentleriyle göz kamaştırır.</p>
                     <div class="kart-butonlar">
                         <a href="#" class="btn-detay">İncele</a>
                         <a href="https://www.skyscanner.com.tr" target="_blank" class="btn-bilet">Uçak Bileti</a>
@@ -282,27 +249,105 @@
                 </div>
             </div>
 
-            <!-- Trabzon Kartı -->
-            <div class="sehir-kart" data-isim="trabzon karadeniz sümele">
-                <img src="https://images.unsplash.com/photo-1609137144813-7d9921338f24?q=80&w=600" alt="Trabzon">
+            <!-- 16 Bursa -->
+            <div class="sehir-kart" data-isim="bursa uludağ yeşil türbe osman gazi">
+                <img src="https://images.unsplash.com/photo-1609137144813-7d9921338f24?q=80&w=600" alt="Bursa">
                 <div class="kart-icerik">
-                    <h3>Trabzon</h3>
-                    <p>Karadeniz'in yeşil yaylaları, tarihi manastırları ve eşsiz doğası.</p>
+                    <h3>16 - Bursa</h3>
+                    <p>Osmanlı'nın ilk başkenti, Uludağ'ın eteklerindeki yeşil doğası ve tarihi yapıları.</p>
                     <div class="kart-butonlar">
                         <a href="#" class="btn-detay">İncele</a>
                         <a href="https://www.skyscanner.com.tr" target="_blank" class="btn-bilet">Uçak Bileti</a>
                     </div>
                 </div>
             </div>
+
+            <!-- 34 İstanbul -->
+            <div class="sehir-kart" data-isim="istanbul boğaz ayasofya kız kulesi sultanahmet">
+                <img src="https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?q=80&w=600" alt="İstanbul">
+                <div class="kart-icerik">
+                    <h3>34 - İstanbul</h3>
+                    <p>İki kıtayı buluşturan tarihi yarımadası, eşsiz boğazı ve kültürel zenginlikleriyle dünya başkenti.</p>
+                    <div class="kart-butonlar">
+                        <a href="#" class="btn-detay">İncele</a>
+                        <a href="https://www.skyscanner.com.tr" target="_blank" class="btn-bilet">Uçak Bileti</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 35 İzmir -->
+            <div class="sehir-kart" data-isim="izmir ege konak saat kulesi alsancak efes">
+                <img src="https://images.unsplash.com/photo-1606744824163-985d376605aa?q=80&w=600" alt="İzmir">
+                <div class="kart-icerik">
+                    <h3>35 - İzmir</h3>
+                    <p>Ege'nin incisi; Saat Kulesi, sıcakkanlı insanları, antik kentleri ve muhteşem sahilleri.</p>
+                    <div class="kart-butonlar">
+                        <a href="#" class="btn-detay">İncele</a>
+                        <a href="https://www.skyscanner.com.tr" target="_blank" class="btn-bilet">Uçak Bileti</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 50 Nevşehir (Kapadokya) -->
+            <div class="sehir-kart" data-isim="nevşehir kapadokya peri bacaları göreme balon">
+                <img src="https://images.unsplash.com/photo-1641128309938-6ef4fbf76ab3?q=80&w=600" alt="Nevşehir Kapadokya">
+                <div class="kart-icerik">
+                    <h3>50 - Nevşehir (Kapadokya)</h3>
+                    <p>Peri bacaları, yer altı şehirleri ve gökyüzünü süsleyen rengarenk sıcak hava balonları.</p>
+                    <div class="kart-butonlar">
+                        <a href="#" class="btn-detay">İncele</a>
+                        <a href="https://www.skyscanner.com.tr" target="_blank" class="btn-bilet">Uçak Bileti</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 61 Trabzon -->
+            <div class="sehir-kart" data-isim="trabzon karadeniz sümele manastırı uzungöl yayla">
+                <img src="https://images.unsplash.com/photo-1589182373726-e4f658ab50f0?q=80&w=600" alt="Trabzon">
+                <div class="kart-icerik">
+                    <h3>61 - Trabzon</h3>
+                    <p>Karadeniz'in nefis yaylaları, tarihi Sümele Manastırı ve eşsiz doğal güzellikleri.</p>
+                    <div class="kart-butonlar">
+                        <a href="#" class="btn-detay">İncele</a>
+                        <a href="https://www.skyscanner.com.tr" target="_blank" class="btn-bilet">Uçak Bileti</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Diğer iller için örnek şablon (İstediğiniz kadar ili bu yapı ile çoğaltabilirsiniz) -->
+            <!-- 02 Adıyaman -->
+            <div class="sehir-kart" data-isim="adıyaman nemrut dağı antik kenti">
+                <img src="https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b?q=80&w=600" alt="Adıyaman">
+                <div class="kart-icerik">
+                    <h3>02 - Adıyaman</h3>
+                    <p>Devasa dev heykelleri ve muhteşem gün batımı manzarasıyla UNESCO mirası Nemrut Dağı.</p>
+                    <div class="kart-butonlar">
+                        <a href="#" class="btn-detay">İncele</a>
+                        <a href="https://www.skyscanner.com.tr" target="_blank" class="btn-bilet">Uçak Bileti</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 03 Afyonkarahisar -->
+            <div class="sehir-kart" data-isim="afyonkarahisar termal lokum kaymak kalesi">
+                <img src="https://images.unsplash.com/photo-1563298723-dcfebaa392e3?q=80&w=600" alt="Afyonkarahisar">
+                <div class="kart-icerik">
+                    <h3>03 - Afyonkarahisar</h3>
+                    <p>Termal turizmin başkenti, tarihi kalesi ve eşsiz lezzetleriyle dolu Ege şehri.</p>
+                    <div class="kart-butonlar">
+                        <a href="#" class="btn-detay">İncele</a>
+                        <a href="https://www.skyscanner.com.tr" target="_blank" class="btn-bilet">Uçak Bileti</a>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 
-    <!-- Footer -->
     <footer>
         <p>&copy; 2026 Keşif Atlası - Tüm Hakları Saklıdır.</p>
     </footer>
 
-    <!-- Arama Filtreleme JavaScript Kodu -->
     <script>
         function sehirFiltrele() {
             let aramaInput = document.getElementById('sehirArama').value.toLowerCase();
