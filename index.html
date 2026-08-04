@@ -372,7 +372,7 @@
     <div class="container">
         <section class="hero">
             <h1 id="hero-heading">Türkiye'nin 81 İlini Derinlemesine İnceleyin</h1>
-            <p id="hero-sub">Görsellerden arındırılmış, her şehrin özgün tarihini, kültürel dokusunu ve yöresel mirasını anlatan saf bilgi platformu.</p>
+            <p id="hero-sub">Görsellerden arındırılmış, her şehrin gerçek sokak kültürünü, yerel yaşamını ve gizli kalmış karakterini anlatan saf bilgi platformu.</p>
             
             <div class="search-container">
                 <div class="search-field">
@@ -390,7 +390,7 @@
                 <div class="city-content-body">
                     <div class="city-header-title">
                         <h2 id="cityNameTitle">Şehir Adı</h2>
-                        <div class="city-badge"><i class="fa-solid fa-book-open"></i> Saf Ansiklopedik Veri</div>
+                        <div class="city-badge"><i class="fa-solid fa-book-open"></i> Yerel Yaşam & Sokak Hafızası</div>
                     </div>
                     
                     <div class="city-info-box">
@@ -439,75 +439,82 @@
         let currentLang = 'tr';
 
         const illerVeritabani = {
-            "Adana": {
-                trDesc: "Seyhan Nehri'nin bereketlendirdiği Çukurova'nın başkenti Adana; tarihi taş köprüleri, benzersiz dünya mutfağı ve sıcak Akdeniz kültürüyle öne çıkar.",
-                enDesc: "Capital of Çukurova, Adana stands out with its historical stone bridges and unique world cuisine.",
-                trHistory: "Hititlerden Roma'ya, Ramazanoğullarından Osmanlı'ya kadar pek çok medeniyetin izini taşıyan, binlerce yıllık köklü bir ticaret ve tarım merkezidir.",
-                enHistory: "An ancient trade and agriculture center carrying traces of civilizations from Hittites to Ottomans.",
-                trPlaces: ["Taşköprü (Roma Dönemi)", "Sabancı Merkez Camii", "Varda Köprüsü", "Tarihi Kazancılar Çarşısı"],
-                enPlaces: ["Stone Bridge", "Sabancı Central Mosque", "Varda Bridge", "Kazancılar Bazaar"],
-                trFood: [
-                    "<strong>Adana Kebap:</strong> Zırhla çekilmiş koyun eti, kuyruk yağı ve pul biberin şişte odun ateşinde pişirilmesiyle yapılan efsanevi lezzet.",
-                    "<strong>Şırdan ve Mumbar:</strong> Sakatat kültürünün en özel ve geleneksel yöresel dolma çeşitleridir.",
-                    "<strong>Bici Bici Tatlısı:</strong> Nişasta muhallebisi, rendelenmiş buz ve gül suyuyla yapılan ferahlatıcı yaz tatlısıdır."
-                ],
-                enFood: ["Adana Kebab", "Şırdan", "Bici Bici Dessert"],
-                trActivities: ["Seyhan Nehri kıyısında yürüyüş yapmak", "Kazancılar Çarşısı'nda kebap kültürünü yerinde deneyimlemek"],
-                enActivities: ["Walking by Seyhan River", "Experiencing local kebab culture"],
-                trTransport: "Metro, belediye otobüsleri ve dolmuş hatlarıyla şehir içi ulaşım son derece yaygındır."
-            },
             "Ankara": {
-                trDesc: "Türkiye'nin kalbi ve Cumhuriyet'in başkenti Ankara; antik Hitit izlerinden modern idari yapıya uzanan, derin bir kültürel hafızaya sahip metropoldür.",
-                enDesc: "The heart of Turkey and capital of the Republic, Ankara is a metropolis with a deep cultural memory.",
-                trHistory: "Friglerin merkezi Gordion'dan Roma ve Selçukluya kadar pek çok medeniyete ev sahipliği yapmış, 1923'te başkent ilan edilmiştir.",
-                enHistory: "It hosted civilizations from Phrygians to Seljuks, and was declared capital in 1923.",
+                trDesc: "Ankara; resmi binaların gri ciddiyetinin ardında, bozkırın ayazıyla pişen, sokaklarında bilyeli araba yarışları ve gazoz kapakları saklayan, nevi şahsına münhasır bir 'memur ve öğrenci' şehridir.",
+                enDesc: "Beyond its official facade, Ankara is a unique city forged by the steppe's crisp air and deep student-bureaucrat culture.",
+                trHistory: "Hititlerin kalbi Gordion'dan Galatlara, Roma'nın Ancyra'sından Selçuklu ve Ahiler dönemine uzanan; millî mücadelenin karargâhı olarak Cumhuriyet'in ilk laboratuvarı olmuş köklü bir medeniyet havza merkezidir.",
+                enHistory: "An ancient basin from Phrygians to Seljuks, serving as the headquarters of the national struggle and the Republic's first laboratory.",
                 trPlaces: [
-                    "<strong>Anıtkabir:</strong> Mustafa Kemal Atatürk'ün anıt mezarını içeren anıtsal kompleks.",
-                    "<strong>Ankara Kalesi:</strong> Kenti kuş bakışı gören tarihi kale.",
-                    "<strong>Anadolu Medeniyetleri Müzesi:</strong> Dünyaca ünlü eşsiz arkeolojik eserlerin sergilendiği müze."
+                    "<strong>Hamamönü:</strong> Restore edilmiş 19. yüzyıl Ankara evleri, ahşap oymalı pencereleri ve sokak sanatçılarıyla nostaljik bir mahalle dokusu.",
+                    "<strong>Kuğulu Park:</strong> Tunalı Hilmi Caddesi'nin kalbinde, beyaz kuğuları, kavak ağaçları ve Ankaralıların buluşma noktası olan kentsel vaha.",
+                    "<strong>Ankara Kalesi ve Çengel Han:</strong> Roma, Bizans, Selçuklu ve Osmanlı izleri taşıyan sur içi sokaklarında antikacılar ve pirinç dökümcülerinin atölyeleri.",
+                    "<strong>Eymir Gölü:</strong> Şehrin gürültüsünden kaçıp çam kokusu eşliğinde bisiklet binilen ve kürek çekilen doğa kaçamağı."
                 ],
-                enPlaces: ["Anıtkabir", "Ankara Castle", "Museum of Anatolian Civilizations"],
+                enPlaces: ["Hamamönü", "Kuğulu Park", "Ankara Castle", "Eymir Lake"],
                 trFood: [
-                    "<strong>ASPAVA:</strong> İncecik lavaşı, soslu dürümü, ikramlık patatesi, salatası ve dondurmalı irmik helvasıyla gece hayatının simgesidir.",
-                    "<strong>Ankara Simidi:</strong> Pekmezli ve bol susamlı, taş fırınlarda odun ateşinde pişirilen çıtır simit.",
-                    "<strong>Ankara Tavası:</strong> Kuşbaşı et ve arpa şehriye pilavı ile güveçte fırınlanan geleneksel lezzet."
+                    "<strong>ASPAVA Kültürü:</strong> Kaşarlı, soslu, dürüm etin ardından gelen patates kızartması ve dondurmalı irmik helvası ritüeli.",
+                    "<strong>Ankara Simidi:</strong> Pekmezle yıkanıp çıtırdayana kadar taş fırında susamlanan, seyyar arabalarda kağıt üstünde satılan sokak lezzeti.",
+                    "<strong>Ankara Tavası:</strong> Kemikli kuzu etinin arpa şehriye pilavı ile güveç kaplarında odun ateşinde fırınlanması.",
+                    "<strong>Beypazarı Kurusu:</strong> Tereyağı, tarçın ve köy ununun hamurdan taş fırınlarda kurutulmasıyla yapılan haftalık ev stoklarının vazgeçilmezi."
                 ],
-                enFood: ["ASPAVA Culture", "Ankara Simit", "Ankara Pan"],
-                trActivities: ["Kuğulu Park'ı ziyaret etmek", "Gece Aspava'da soslu dürüm yemek", "Atakule'den başkenti izlemek"],
-                enActivities: ["Visiting Kuğulu Park", "Experiencing Aspava", "Watching city from Atakule"],
-                trTransport: "Ankaray, Metro, Başkentray ve EGO otobüsleri ile entegre ulaşım ağı mevcuttur."
+                enFood: ["ASPAVA", "Ankara Simit", "Ankara Pan", "Beypazarı Kuru"],
+                trActivities: [
+                    "Tunalı Hilmi Caddesi'nde 'Tunalı turu' atıp esnaf dükkanlarını gezmek",
+                    "Kızılay Karanfil Sokak'ta seyyar midyeci önünde sokak atmosferini solumak",
+                    "Bahçelievler 7. Cadde'de yürüyüş yapıp kafelerde soluklanmak",
+                    "Sakarya Caddesi balık halinin arkasındaki tezgah kültürünü deneyimlemek"
+                ],
+                enActivities: ["Walking down Tunalı Hilmi", "Experiencing Kızılay street life", "Hanging out in Bahçelievler"],
+                trTransport: "Ankaray, Batıkent-Koru metrosu, EGO otobüsleri ve dolmuş hatlarıyla kentin her köşesine nostaljik ve hızlı bir ağla ulaşılır."
             },
             "İstanbul": {
-                trDesc: "Asya ile Avrupa'yı birleştiren, üç büyük imparatorluğa başkentlik yapmış dünyanın en büyüleyici metropolü.",
-                enDesc: "The most fascinating metropolis connecting Asia and Europe, capital of three major empires.",
-                trHistory: "M.Ö. 7. yüzyılda kurulan şehir, 1453 yılında Fatih Sultan Mehmet tarafından fethedilerek Osmanlı'nın merkezi olmuştur.",
-                enHistory: "Founded in 7th century BC, conquered in 1453 by Mehmed the Conqueror.",
-                trPlaces: ["Ayasofya-i Kebir", "Topkapı Sarayı", "Galata Kulesi", "Kapalıçarşı"],
-                enPlaces: ["Hagia Sophia", "Topkapi Palace", "Galata Tower", "Grand Bazaar"],
-                trFood: [
-                    "<strong>Eminönü Balık Ekmek:</strong> Boğaz manzarasında teknelerde sunulan sokak lezzeti.",
-                    "<strong>Sultanahmet Köftesi:</strong> Kömür ateşinde pişirilen klasik köfte."
+                trDesc: "Asya ile Avrupa'yı ayıran değil, birbirine bağlayan; yedi tepesi rüzgarlı, vapurların martılara simit attığı, her sokağında başka bir imparatorluğun hayaleti gezen kadim metropol.",
+                enDesc: "The ancient metropolis bridging two continents, echoing with centuries of history across its seven hills.",
+                trHistory: "Bizans'ın surlarından Fatih'in fethine, Osmanlı'nın saltanatından metropolleşmeye evrilen, dünyanın kalbinin attığı medeniyetler kesişimidir.",
+                enHistory: "A crossroad of civilizations from Byzantine walls to Ottoman splendor and modern metropolis.",
+                trPlaces: [
+                    "<strong>Kuzguncuk ve Balat:</strong> Renkli ahşap evleri, eski komşuluk kültürü ve dar sokaklarıyla zamansız semtler.",
+                    "<strong>Karaköy ve Moda:</strong> Tarihi liman dokusunun modern üçüncü nesil kahvecilerle harmanlandığı sahil hatları.",
+                    "<strong>Yerebatan Sarnıcı:</strong> Sütunların gizemli gölgeleri arasında şehrin yeraltı su mimarisi."
                 ],
-                enFood: ["Fish Bread", "Sultanahmet Meatballs"],
-                trActivities: ["Boğaz turu yapmak", "Tarihi Yarımada'yı keşfetmek"],
-                enActivities: ["Taking a Bosphorus tour", "Exploring Historical Peninsula"],
-                trTransport: "Metrobüs, Marmaray, metro, tramvay ve vapurlarla kesintisiz ulaşım."
+                enPlaces: ["Kuzguncuk & Balat", "Karaköy & Moda", "Basilica Cistern"],
+                trFood: [
+                    "<strong>Karaköy Güllüoğlu Baklavası:</strong> Kat kat fıstıklı çıtır geleneksel tat.",
+                    "<strong>Eminönü Balık Ekmek:</strong> Boğaz dalgaları eşliğinde teknede seyyar lezzet.",
+                    "<strong>Vefa Bozacısı:</strong> Üzerine eklenen tarçın ve sarı leblebiyle kış akşamlarının klasiği."
+                ],
+                enFood: ["Baklava", "Fish and Bread", "Boza"],
+                trActivities: [
+                    "Şehir hatları vapurunda çay-simit eşliğinde boğazı geçmek",
+                    "Moda sahilinde çimlere oturup gün batımını izlemek",
+                    "Tarihi pasajlarda antika eşyalar karıştırmak"
+                ],
+                enActivities: ["Taking a ferry across Bosphorus", "Watching sunset at Moda"],
+                trTransport: "Marmaray, metrobüs, şehir hatları vapurları, nostaljik tramvay ve metro hatları."
             },
             "İzmir": {
-                trDesc: "Ege'nin incisi İzmir; 8.500 yıllık kesintisiz tarihi, kordonboyu ve özgür ruhlu atmosferiyle öne çıkar.",
-                enDesc: "The pearl of the Aegean, Izmir stands out with its 8,500-year history and vibrant atmosphere.",
-                trHistory: "Antik dönemde İonya medeniyetinin kalbi olan İzmir, ticaretin ve kültürün merkezi olmuştur.",
-                enHistory: "The heart of Ionian civilization in antiquity, center of trade and culture.",
-                trPlaces: ["Efes Antik Kenti", "İzmir Saat Kulesi", "Kemeraltı Çarşısı", "Tarihi Asansör"],
-                enPlaces: ["Ephesus Ancient City", "Clock Tower", "Kemeraltı Bazaar", "Historical Elevator"],
-                trFood: [
-                    "<strong>İzmir Boyozu:</strong> Kat kat açılan hamur ve tahinle yapılan kahvaltı klasiği.",
-                    "<strong>İzmir Kumrusu:</strong> Nohut mayalı özel ekmekle hazırlanan sandviç."
+                trDesc: "Dağlarından yağ, ovalarından bal akan, akşamüstü kordonunda imbat rüzgarı esen, insanına 'çiğdem' ve 'gevrek' denilen özgürlük ve neşe kenti.",
+                enDesc: "The city of freedom and joy, kissed by the Aegean breeze, where life flows effortlessly along the promenade.",
+                trHistory: "İzmir; Smyrna adıyla antik İyonya'nın bilim ve ticaret merkezi olmuş, Milli Mücadele'nin kurtuluş simgesi unvanını taşımıştır.",
+                enHistory: "Ancient Ionian center of science and trade, bearing the symbol of independence in modern history.",
+                trPlaces: [
+                    "<strong>Kemeraltı Çarşısı ve Agora:</strong> Tarihi hanlar, antik kalıntılar ve bin bir çeşit baharat kokan labirent sokaklar.",
+                    "<strong>Tarihi Asansör ve Dario Moreno Sokağı:</strong> İzmir Körfezi'ni ayaklar altına seren tarihi asansör ve renkli evler.",
+                    "<strong>Urla Sanat Sokağı:</strong> Taş binalar arasında atölyeler ve yerel bağ evlerinin buluştuğu nokta."
                 ],
-                enFood: ["Boyoz Pastry", "Kumru Sandwich"],
-                trActivities: ["Kordon'da gün batımını izlemek", "Kemeraltı sokaklarını gezmek"],
-                enActivities: ["Watching sunset at Kordon", "Exploring Kemeraltı streets"],
-                trTransport: "İZBAN, metro, tramvay, otobüs ve vapur hatlarıyla ulaşım sağlanır."
+                enPlaces: ["Kemeraltı Bazaar", "Historical Elevator", "Urla Art Street"],
+                trFood: [
+                    "<strong>İzmir Boyozu ve Gevrek:</strong> Çıtır susamlı gevrek ve tahinli boyoz ikilisiyle sabah kahvaltısı.",
+                    "<strong>Söğüş:</strong> Kelle söğüş, kimyon, domates ve maydanozun dürüme sarılmış hali.",
+                    "<strong>Şambali Tatlısı:</strong> Üstünde bademle satılan geleneksel sokak tatlısı."
+                ],
+                enFood: ["Boyoz & Gevrek", "Söğüş", "Şambali"],
+                trActivities: [
+                    "Kordon'da çimlere yayılıp gün batımına karşı çekirdek (çiğdem) çitlemek",
+                    "Alsancak'ın ara sokaklarında bisikletle tur atmak"
+                ],
+                enActivities: ["Relaxing at Kordon", "Biking through Alsancak"],
+                trTransport: "İZBAN, metro, tramvay, otobüs ve körfez vapur (İzdeniz) sistemi."
             }
         };
 
@@ -545,24 +552,27 @@
 
             if (!data) {
                 data = {
-                    trDesc: `${selectedCity}, Anadolu'nun zengin coğrafi ve kültürel mirasını barındıran, tarihi dokusu ve samimi insanlarıyla öne çıkan güzide bir ilimizdir.`,
-                    enDesc: `${selectedCity} is a distinguished province of Turkey bearing rich Anatolian heritage.`,
-                    trHistory: `${selectedCity} ve çevresi, tarih boyunca pek çok medeniyete ev sahipliği yapmış, stratejik ve kültürel köprü görevi üstlenmiştir. Bölge, yerel geleneklerini ve tarihi dokusunu günümüze kadar başarıyla taşımıştır.`,
-                    enHistory: `${selectedCity} and its surroundings have hosted many civilizations throughout history.`,
+                    trDesc: `${selectedCity}, kendine has yerel ritüelleri, bozulmamış mahalle kültürü ve insanının sıcaklığıyla gidenin kalbini bıraktığı özel bir Anadolu şehridir.`,
+                    enDesc: `${selectedCity} is a special Anatolian city capturing hearts with its local rituals and sincere culture.`,
+                    trHistory: `${selectedCity} ve çevresindeki köyler, yerel zanaatların, geleneksel el sanatlarının ve kuşaktan kuşağa aktarılan sözlü halk kültürünün canlı birer müzesidir.`,
+                    enHistory: `${selectedCity} and its surroundings serve as a living museum of local crafts and folklore.`,
                     trPlaces: [
-                        `<strong>${selectedCity} Kent Merkezi ve Tarihi Çarşılar:</strong> Geleneksel esnaf kültürünün yaşatıldığı tarihi merkez.`,
-                        `<strong>${selectedCity} Müzesi:</strong> Yörenin arkeolojik ve etnografik geçmişini yansıtan eserlerin sergilendiği alan.`,
-                        "<strong>Doğal Güzellikler ve Yaylalar:</strong> Bölgenin eşsiz coğrafi yapısını gözler önüne seren doğal cazibe merkezleri."
+                        `<strong>${selectedCity} Eski Çarşı ve Zanaatkarlar Sokağı:</strong> Bakırcıların, demircilerin ve yerel esnafın hala el emeği ürettiği kalbi.`,
+                        `<strong>${selectedCity} Sakin Mahalleleri ve Sokak Çeşmeleri:</strong> Şehrin gerçek yerlilerinin yaşam sürdüğü tarihi doku.`,
+                        `<strong>Yerel Yaylalar ve Mesire Alanları:</strong> Şehir insanının hafta sonu doğayla buluştuğu gizli kaçış noktaları.`
                     ],
-                    enPlaces: [`${selectedCity} Center`, `${selectedCity} Museum`, "Natural Beauties"],
+                    enPlaces: [`${selectedCity} Old Bazaar`, `Historical Neighborhoods`, `Local Plateaus`],
                     trFood: [
-                        `<strong>${selectedCity} Ev Usulü Yöresel Yemekler:</strong> Yöreye has tencere yemekleri, etli ve bulgurlu geleneksel lezzetler.`,
-                        `<strong>Geleneksel Hamur İşleri ve Tatlılar:</strong> Yerel tarım ve unlu mamul kültürünün en özel örnekleri.`
+                        `<strong>${selectedCity} Ev Usulü Tencere Yemekleri:</strong> Anne eli değmiş gibi hazırlanan, yöreye has otlar ve bakliyatlarla yapılan geleneksel tarifler.`,
+                        `<strong>Geleneksel Taş Fırın Hamur İşleri:</strong> Yöresel un ve tereyağıyla sabahın erken saatlerinde fırına verilen özel ekmekler ve hamur tatlıları.`
                     ],
-                    enFood: [`${selectedCity} Local Homemade Dishes`, "Regional Pastries"],
-                    trActivities: ["Şehrin tarihi sokaklarında yürüyüş yapmak", "Yerel esnaftan yöresel ürünleri ve lezzetleri tatmak"],
-                    enActivities: ["Walking in historical streets", "Tasting local delicacies"],
-                    trTransport: "Şehir içi ulaşım belediye otobüsleri, minibüsler ve taksilerle rahatlıkla sağlanmaktadır."
+                    enFood: [`${selectedCity} Homemade Dishes`, `Traditional Oven Pastries`],
+                    trActivities: [
+                        `Şehrin en eski kahvehanesinde yerli halkla oturup çay içmek`,
+                        `Mahalle pazarını gezip yerel üreticiden taze ürünler tatmak`
+                    ],
+                    enActivities: [`Drinking tea at the oldest local coffeehouse`, `Exploring the local neighborhood market`],
+                    trTransport: "Belediye otobüsleri, dolmuşlar ve yerel hatlarla kentin her mahallesine rahatça ulaşılır."
                 };
             }
 
@@ -610,13 +620,13 @@
 
             if (currentLang === 'en') {
                 document.getElementById('hero-heading').innerText = "In-Depth Exploration of Turkey's 81 Provinces";
-                document.getElementById('hero-sub').innerText = "Pure information platform free from visuals, detailing the unique history, cultural fabric, and regional heritage of each city.";
+                document.getElementById('hero-sub').innerText = "Pure information platform detailing the true street culture, local lifestyle, and hidden character of each city.";
                 document.getElementById('flightBtnText').innerText = "Find Flight Ticket";
                 document.getElementById('busBtnText').innerText = "Find Bus Ticket";
                 document.getElementById('hotelBtnText').innerText = "Book Hotel";
             } else {
                 document.getElementById('hero-heading').innerText = "Türkiye'nin 81 İlini Derinlemesine İnceleyin";
-                document.getElementById('hero-sub').innerText = "Görsellerden arındırılmış, her şehrin özgün tarihini, kültürel dokusunu ve yöresel mirasını anlatan saf bilgi platformu.";
+                document.getElementById('hero-sub').innerText = "Görsellerden arındırılmış, her şehrin gerçek sokak kültürünü, yerel yaşamını ve gizli kalmış karakterini anlatan saf bilgi platformu.";
                 document.getElementById('flightBtnText').innerText = "Uçak Bileti Bul";
                 document.getElementById('busBtnText').innerText = "Otobüs Bileti Bul";
                 document.getElementById('hotelBtnText').innerText = "Otel Rezervasyonu Yap";
