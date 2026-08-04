@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Atlass - 81 İl Şehir Rehberi ve Seyahat Platformu</title>
+    <title>Keşif Atlas - Türkiye'nin 81 İl Şehir Rehberi</title>
     <!-- Google Fonts & FontAwesome -->
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -54,7 +54,7 @@
         }
 
         .custom-logo-emblem .flag { font-size: 1.2rem; }
-        .custom-logo-emblem .feather-plane { font-size: 1.1rem; }
+        .custom-logo-emblem .compass { font-size: 1.1rem; }
 
         .logo-text-box {
             display: flex;
@@ -62,12 +62,12 @@
         }
 
         .logo-title {
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             font-weight: 700;
             color: #1a1a1a;
             font-family: 'Playfair Display', serif;
             letter-spacing: -0.5px;
-            line-height: 1;
+            line-height: 1.1;
         }
 
         .logo-title span { color: #e30a17; }
@@ -78,28 +78,6 @@
             letter-spacing: 1px;
             margin-top: 3px;
         }
-
-        /* Menü Linkleri */
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 25px;
-            align-items: center;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: #444;
-            font-weight: 500;
-            font-size: 0.95rem;
-            transition: color 0.3s;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .nav-links a:hover, .nav-links a.active { color: #e30a17; }
 
         /* Sağ Alan: Dil Seçici */
         .nav-right {
@@ -126,7 +104,7 @@
         /* Hero Section / Arama Alanı */
         .hero {
             background: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)), url('https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?auto=format&fit=crop&w=1920&q=80') no-repeat center center/cover;
-            min-height: 520px;
+            min-height: 480px;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -205,35 +183,14 @@
         /* İçerik Konteynerleri */
         .container {
             max-width: 1200px;
-            margin: 50px auto;
+            margin: 40px auto;
             padding: 0 20px;
         }
 
-        .tab-content { display: none; }
-        .tab-content.active { display: block; }
-
-        .section-title {
-            font-size: 2rem;
-            font-weight: 700;
-            margin-bottom: 10px;
-            color: #1a1a1a;
-            font-family: 'Playfair Display', serif;
-        }
-
-        .section-subtitle {
-            color: #666;
-            margin-bottom: 35px;
-            font-size: 1.05rem;
-        }
-
-        /* Şehir Detay Paneli (Arama Sonucu Gösterim Alanı) */
+        /* Şehir Detay ve Eylem Paneli */
         #cityResultArea {
             display: none;
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 5px 25px rgba(0,0,0,0.08);
-            overflow: hidden;
-            margin-top: 30px;
+            margin-top: 20px;
             animation: fadeIn 0.4s ease;
         }
 
@@ -242,21 +199,25 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        .city-header-grid {
+        .city-main-card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.08);
+            overflow: hidden;
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 0;
         }
 
         @media(max-width: 768px) {
-            .city-header-grid { grid-template-columns: 1fr; }
+            .city-main-card { grid-template-columns: 1fr; }
         }
 
         .city-image-box img {
             width: 100%;
             height: 100%;
-            min-height: 300px;
-            max-height: 400px;
+            min-height: 320px;
+            max-height: 450px;
             object-fit: cover;
         }
 
@@ -302,61 +263,59 @@
             top: -2px;
         }
 
-        /* Hizmet Panelleri (Oteller, Uçak, Otobüs) */
-        .service-panel {
-            background: white;
-            padding: 40px;
+        /* Şehrin Altındaki Seyahat Aksiyonları (Uçak, Otobüs, Otel) */
+        .city-actions-bar {
+            background: #ffffff;
+            margin-top: 20px;
+            padding: 25px 30px;
             border-radius: 15px;
             box-shadow: 0 4px 20px rgba(0,0,0,0.05);
-            max-width: 700px;
-            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
         }
 
-        .service-panel h3 {
-            margin-bottom: 20px;
-            color: #1a1a1a;
-            font-size: 1.6rem;
+        .city-actions-bar h4 {
             font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            color: #1a1a1a;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
         }
 
-        .form-group {
-            margin-bottom: 20px;
-            text-align: left;
+        .action-buttons-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
         }
 
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 500;
-            color: #444;
+        @media(max-width: 768px) {
+            .action-buttons-grid { grid-template-columns: 1fr; }
         }
 
-        .form-group input, .form-group select {
-            width: 100%;
-            padding: 12px 15px;
-            border: 1px solid #ccc;
-            border-radius: 8px;
-            font-size: 1rem;
-            outline: none;
-        }
-
-        .btn-action {
-            display: block;
-            width: 100%;
-            background: #e30a17;
-            color: white;
-            border: none;
-            padding: 14px;
-            border-radius: 8px;
-            font-weight: 600;
-            font-size: 1rem;
-            cursor: pointer;
-            text-align: center;
+        .action-card-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 14px 20px;
+            border-radius: 10px;
             text-decoration: none;
-            transition: background 0.3s;
+            color: white;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: transform 0.2s, opacity 0.2s;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         }
 
-        .btn-action:hover { background: #c50812; }
+        .action-card-btn:hover {
+            transform: translateY(-2px);
+            opacity: 0.9;
+        }
+
+        .btn-flight { background: linear-gradient(135deg, #0066cc 0%, #004080 100%); }
+        .btn-bus { background: linear-gradient(135deg, #ff8c00 0%, #cc7000 100%); }
+        .btn-hotel { background: linear-gradient(135deg, #008066 0%, #004d40 100%); }
 
         /* Footer */
         footer {
@@ -369,33 +328,22 @@
         }
 
         footer p { margin-bottom: 10px; }
-
-        @media(max-width: 768px) {
-            .nav-links { display: none; }
-        }
     </style>
 </head>
 <body>
 
-    <!-- Header / Navbar -->
+    <!-- Header / Navbar (Sadece Logo ve Dil Seçici) -->
     <header>
-        <a class="logo-area" onclick="switchTab('home')">
+        <a class="logo-area" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
             <div class="custom-logo-emblem">
                 <span class="flag">🇹🇷</span>
-                <i class="fa-solid fa-plane feather-plane"></i>
+                <i class="fa-solid fa-compass compass"></i>
             </div>
             <div class="logo-text-box">
-                <div class="logo-title">Atla<span>ss</span></div>
+                <div class="logo-title">Keşif <span>Atlas</span></div>
                 <div class="logo-subtitle" id="nav-subtitle-text">81 İl Şehir Rehberi</div>
             </div>
         </a>
-        
-        <ul class="nav-links">
-            <li><a onclick="switchTab('home')" class="active" id="nav-home"><i class="fa-solid fa-city"></i> <span data-tr="Şehir Rehberi" data-en="City Guide">Şehir Rehberi</span></a></li>
-            <li><a onclick="switchTab('ucak')" id="nav-ucak"><i class="fa-solid fa-plane-departure"></i> <span data-tr="Uçak Bileti" data-en="Flight Tickets">Uçak Bileti</span></a></li>
-            <li><a onclick="switchTab('otobus')" id="nav-otobus"><i class="fa-solid fa-bus"></i> <span data-tr="Otobüs Bileti" data-en="Bus Tickets">Otobüs Bileti</span></a></li>
-            <li><a onclick="switchTab('otel')" id="nav-otel"><i class="fa-solid fa-hotel"></i> <span data-tr="Otel Rezervasyonu" data-en="Hotel Booking">Otel Rezervasyonu</span></a></li>
-        </ul>
 
         <div class="nav-right">
             <select class="lang-switcher" id="langSelect" onchange="changeLanguage()">
@@ -405,11 +353,11 @@
         </div>
     </header>
 
-    <!-- ANA SAYFA: 81 İL REHBERİ -->
-    <div id="home" class="tab-content active">
+    <!-- ANA İÇERİK: 81 İL REHBERİ VE DİNAMİK ALT İŞLEMLERİ -->
+    <div class="container">
         <section class="hero">
-            <h1 id="hero-heading">Türkiye'nin 81 İlini Keşfedin</h1>
-            <p id="hero-sub">Hangi şehirde ne var, nereler gezilmeli? Şehrinizi seçin ve tüm detayları keşfedin.</p>
+            <h1 id="hero-heading">Türkiye'nin 81 İlini Tanıyın</h1>
+            <p id="hero-sub">Hangi şehirde ne var, nereler gezilmeli? Şehrinizi seçin ve tüm yönleriyle keşfedin.</p>
             
             <div class="search-container">
                 <div class="search-field">
@@ -422,91 +370,48 @@
             </div>
         </section>
 
-        <div class="container">
-            <!-- Seçilen Şehrin Detay Kartı (Dinamik Gösterim) -->
-            <div id="cityResultArea">
-                <div class="city-header-grid">
-                    <div class="city-image-box">
-                        <img id="cityImg" src="" alt="Şehir Görseli">
-                    </div>
-                    <div class="city-info-box">
-                        <h2 id="cityNameTitle">Şehir Adı</h2>
-                        <p id="cityDesc">Şehir hakkında genel tanıtım metni buraya gelecek.</p>
-                        <h4 style="color:#e30a17; margin-bottom:10px;" id="mustSeeText">Gezilmesi Gereken Yerler:</h4>
-                        <ul class="places-list" id="cityPlacesList">
-                            <!-- Gezilecek yerler dinamik dolacak -->
-                        </ul>
-                    </div>
+        <!-- Seçilen Şehrin Detayları ve Alt Bilet/Otel Alanı -->
+        <div id="cityResultArea">
+            <!-- Şehir Kartı -->
+            <div class="city-main-card">
+                <div class="city-image-box">
+                    <img id="cityImg" src="" alt="Şehir Görseli">
+                </div>
+                <div class="city-info-box">
+                    <h2 id="cityNameTitle">Şehir Adı</h2>
+                    <p id="cityDesc">Şehir hakkında genel tanıtım metni buraya gelecek.</p>
+                    <h4 style="color:#e30a17; margin-bottom:10px;" id="mustSeeText">Gezilmesi Gereken Yerler:</h4>
+                    <ul class="places-list" id="cityPlacesList"></ul>
                 </div>
             </div>
-        </div>
-    </div>
 
-    <!-- UÇAK BİLETİ SEKMESİ (Gerçek Dış Yönlendirme) -->
-    <div id="ucak" class="tab-content">
-        <div class="container">
-            <div class="service-panel">
-                <h3><i class="fa-solid fa-plane-departure" style="color: #e30a17;"></i> <span data-tr="Uçak Bileti Arama ve Rezervasyonu" data-en="Flight Ticket Search & Booking">Uçak Bileti Arama ve Rezervasyonu</span></h3>
-                <p style="color: #666; margin-bottom: 20px;" data-tr="En uygun uçak biletlerini karşılaştırmak için dış partner sistemimize bağlanın:" data-en="Connect to our external partner system to compare the best flights:">En uygun uçak biletlerini karşılaştırmak için dış partner sistemimize bağlanın:</p>
-                <div class="form-group">
-                    <label data-tr="Kalkış Havaalanı / Şehri" data-en="Departure Airport / City">Kalkış Havaalanı / Şehri</label>
-                    <input type="text" id="ucakKalkis" value="İstanbul (IST/SAW)">
+            <!-- Şehre Özel Alt Seyahat Seçenekleri (Uçak, Otobüs, Otel) -->
+            <div class="city-actions-bar">
+                <h4 id="actionSectionTitle"><i class="fa-solid fa-compass" style="color: #e30a17;"></i> Bu Şehir İçin Seyahat İşlemleri</h4>
+                <div class="action-buttons-grid">
+                    <a id="flightLink" href="#" target="_blank" class="action-card-btn btn-flight">
+                        <i class="fa-solid fa-plane-departure"></i> <span id="flightBtnText">Uçak Bileti Bul</span>
+                    </a>
+                    <a id="busLink" href="#" target="_blank" class="action-card-btn btn-bus">
+                        <i class="fa-solid fa-bus"></i> <span id="busBtnText">Otobüs Bileti Bul</span>
+                    </a>
+                    <a id="hotelLink" href="#" target="_blank" class="action-card-btn btn-hotel">
+                        <i class="fa-solid fa-hotel"></i> <span id="hotelBtnText">Otel Rezervasyonu Yap</span>
+                    </a>
                 </div>
-                <div class="form-group">
-                    <label data-tr="Varış Havaalanı / Şehri" data-en="Arrival Airport / City">Varış Havaalanı / Şehri</label>
-                    <input type="text" id="ucakVaris" value="Ankara (ESB)">
-                </div>
-                <!-- Skyscanner veya Enuygun gibi gerçek platformlara dış link yönlendirmesi -->
-                <a href="https://www.enuygun.com/ucak-bileti/" target="_blank" class="btn-action" id="ucakBtnText">Uçak Bileti Sitelerine Git ve Bilet Al &rarr;</a>
-            </div>
-        </div>
-    </div>
-
-    <!-- OTOBÜS BİLETİ SEKMESİ (Gerçek Dış Yönlendirme) -->
-    <div id="otobus" class="tab-content">
-        <div class="container">
-            <div class="service-panel">
-                <h3><i class="fa-solid fa-bus" style="color: #e30a17;"></i> <span data-tr="Otobüs Bileti Rezervasyonu" data-en="Bus Ticket Booking">Otobüs Bileti Rezervasyonu</span></h3>
-                <p style="color: #666; margin-bottom: 20px;" data-tr="Türkiye'nin tüm otobüs seferlerini listelemek için otobüs arama motoruna bağlanın:" data-en="Connect to the bus search engine to list all bus services in Turkey:">Türkiye'nin tüm otobüs seferlerini listelemek için otobüs arama motoruna bağlanın:</p>
-                <div class="form-group">
-                    <label data-tr="Nereden" data-en="From">Nereden</label>
-                    <input type="text" value="İstanbul">
-                </div>
-                <div class="form-group">
-                    <label data-tr="Nereye" data-en="To">Nereye</label>
-                    <input type="text" value="İzmir">
-                </div>
-                <a href="https://www.obilet.com/otobus-bileti" target="_blank" class="btn-action" id="otobusBtnText">Otobüs Bileti Sitelerine Git ve Bilet Al &rarr;</a>
-            </div>
-        </div>
-    </div>
-
-    <!-- OTEL REZERVASYONU SEKMESİ (Gerçek Dış Yönlendirme - Kullanıcı Otel Sitesine Girer) -->
-    <div id="otel" class="tab-content">
-        <div class="container">
-            <div class="service-panel">
-                <h3><i class="fa-solid fa-hotel" style="color: #e30a17;"></i> <span data-tr="Otel Rezervasyonu Yapın" data-en="Make Hotel Reservations">Otel Rezervasyonu Yapın</span></h3>
-                <p style="color: #666; margin-bottom: 20px;" data-tr="Seçtiğiniz şehirdeki en iyi otelleri incelemek ve rezervasyon yapmak için dünyanın ve Türkiye'nin lider otel sitesine bağlanın:" data-en="Connect to the world's and Turkey's leading hotel site to review and book the best hotels in your chosen city:">Seçtiğiniz şehirdeki en iyi otelleri incelemek ve rezervasyon yapmak için dünyanın ve Türkiye'nin lider otel sitesine bağlanın:</p>
-                <div class="form-group">
-                    <label data-tr="Gitmek İstediğiniz Şehir / Bölge" data-en="City / Region You Want to Visit">Gitmek İstediğiniz Şehir / Bölge</label>
-                    <input type="text" id="otelSehirInput" value="İstanbul">
-                </div>
-                <!-- Kullanıcı buraya tıklayınca doğrudan Booking.com otel arama sayfasına gider -->
-                <a href="https://www.booking.com" target="_blank" class="btn-action" id="otelBtnText">Otel Sitesine Git ve Odaları İncele &rarr;</a>
             </div>
         </div>
     </div>
 
     <footer>
-        <p>&copy; 2026 Atlass Seyahat Platformu. Tüm hakları saklıdır.</p>
+        <p>&copy; 2026 Keşif Atlas Seyahat Platformu. Tüm hakları saklıdır.</p>
         <p style="font-size: 0.85rem; color: #888;" id="footer-sub">Türkiye'nin 81 ili için kapsamlı seyahat rehberi.</p>
     </footer>
 
-    <!-- JavaScript: 81 İl Veritabanı ve Fonksiyonlar -->
+    <!-- JavaScript: 81 İl Veritabanı ve Dinamik Alt İşlemler -->
     <script>
         let currentLang = 'tr';
 
-        // 81 İlin Tam Listesi, Görselleri ve Gezilecek Yerleri Veritabanı
         const illerVeritabani = {
             "İstanbul": {
                 img: "https://images.unsplash.com/photo-1541432901042-2d8bd64b3a9b?auto=format&fit=crop&w=800&q=80",
@@ -544,10 +449,10 @@
                 enPlaces: ["Kaleiçi", "Düden Waterfall", "Konyaaltı and Lara Beaches", "Aspendos Ancient Theatre", "Olympos"]
             },
             "Trabzon": {
-                img: "https://images.unsplash.com/photo-1609137144813-7e9453d74ebc?auto=format&fit=crop&w=800&q=80", // Karadeniz doğa konsepti
+                img: "https://images.unsplash.com/photo-1609137144813-7e9453d74ebc?auto=format&fit=crop&w=800&q=80",
                 trDesc: "Karadeniz'in yeşil ve mavinin buluştuğu hırçın dalgalı, yaylaları ve tarihi manastırlarıyla ünlü eşsiz şehri.",
                 enDesc: "The unique city of the Black Sea where green and blue meet, famous for its highlands and historical monasteries.",
-                trPlaces: ["Sümela Manastırı", "Uzungöl", "Ayder Yaylası (Rize yakın)", "Atatürk Köşkü", "Boztepe"],
+                trPlaces: ["Sümela Manastırı", "Uzungöl", "Ayder Yaylası", "Atatürk Köşkü", "Boztepe"],
                 enPlaces: ["Sumela Monastery", "Uzungöl", "Ayder Plateau", "Atatürk Pavilion", "Boztepe"]
             },
             "Nevşehir": {
@@ -559,7 +464,6 @@
             }
         };
 
-        // 81 İlin Listesini Otomatik Select Kutusuna Doldurma
         const turkiyeIlleri = [
             "Adana", "Adıyaman", "Afyonkarahisar", "Ağrı", "Amasya", "Ankara", "Antalya", "Artvin", "Aydın", "Balıkesir",
             "Bilecik", "Bingöl", "Bitlis", "Bolu", "Burdur", "Bursa", "Çanakkale", "Çankırı", "Çorum", "Denizli",
@@ -577,27 +481,12 @@
                 let opt = document.createElement('option');
                 opt.value = il;
                 opt.textContent = il;
-                if(il === "İstanbul") opt.selected = true; // Varsayılan İstanbul seçilsin
+                if(il === "İstanbul") opt.selected = true;
                 selectElement.appendChild(opt);
             });
-            showCityDetails(); // Sayfa açılınca varsayılan olarak seçili şehri göster
+            showCityDetails();
         };
 
-        function switchTab(tabId) {
-            const tabs = document.querySelectorAll('.tab-content');
-            tabs.forEach(tab => tab.classList.remove('active'));
-            document.getElementById(tabId).classList.add('active');
-
-            const navLinks = document.querySelectorAll('.nav-links a');
-            navLinks.forEach(link => link.classList.remove('active'));
-            
-            const activeNav = document.getElementById('nav-' + tabId);
-            if(activeNav) activeNav.classList.add('active');
-
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        // Seçilen Şehre Göre Bilgileri Ekrana Getirme
         function showCityDetails() {
             const selectedCity = document.getElementById('ilSecimi').value;
             const resultArea = document.getElementById('cityResultArea');
@@ -611,12 +500,11 @@
 
             let data = illerVeritabani[selectedCity];
 
-            // Eğer listede özel detaylı metin yoksa, tüm 81 il için dinamik şablon üretelim ki eksik kalmasın!
             if (!data) {
                 data = {
-                    img: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80", // Genel Türkiye manzarası
-                    trDesc: `${selectedCity}, tarihi dokusu, kültürel zenginlikleri ve kendine has coğrafi güzellikleriyle Türkiye'nin keşfedilmeyi bekleyen özel illerinden biridir.`,
-                    enDesc: `${selectedCity} is one of Turkey's special provinces waiting to be discovered with its historical texture, cultural richness, and unique geographical beauties.`,
+                    img: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80",
+                    trDesc: `${selectedCity}, tarihi dokusu, kültürel zenginlikleri ve coğrafi güzellikleriyle Türkiye'nin keşfedilmeyi bekleyen özel illerinden biridir.`,
+                    enDesc: `${selectedCity} is one of Turkey's special provinces waiting to be discovered with its historical texture, cultural richness, and geographical beauties.`,
                     trPlaces: [`${selectedCity} Merkez Tarihi Çarşıları`, `${selectedCity} Müzesi`, "Doğa Parkları ve Mesire Alanları", "Yerel Lezzet Durakları"],
                     enPlaces: [`${selectedCity} Central Historical Bazaars`, `${selectedCity} Museum`, "Nature Parks and Recreation Areas", "Local Flavor Stops"]
                 };
@@ -635,6 +523,13 @@
                 li.textContent = place;
                 placesList.appendChild(li);
             });
+
+            // Alt kısımdaki dış bağlantıları seçilen şehre göre dinamik yönlendir
+            document.getElementById('flightLink').href = `https://www.enuygun.com/ucak-bileti/`;
+            document.getElementById('busLink').href = `https://www.obilet.com/otobus-bileti`;
+            document.getElementById('hotelLink').href = `https://www.booking.com/searchresults.html?ss=${encodeURIComponent(selectedCity)}`;
+            
+            document.getElementById('actionSectionTitle').innerHTML = `<i class="fa-solid fa-compass" style="color: #e30a17;"></i> ${selectedCity} ${currentLang === 'tr' ? 'İçin Seyahat ve Konaklama İşlemleri' : 'Travel and Accommodation Options'}`;
         }
 
         function changeLanguage() {
@@ -651,25 +546,24 @@
 
             if (currentLang === 'en') {
                 document.getElementById('nav-subtitle-text').innerText = "81 Provinces Guide";
-                document.getElementById('hero-heading').innerText = "Discover Turkey's 81 Provinces";
-                document.getElementById('hero-sub').innerText = "What is in which city, where to visit? Select your city and discover all details.";
+                document.getElementById('hero-heading').innerText = "Get to Know Turkey's 81 Provinces";
+                document.getElementById('hero-sub').innerText = "What is in which city, where to visit? Select your city and explore it in all aspects.";
                 document.getElementById('mustSeeText').innerText = "Must-See Places:";
-                document.getElementById('ucakBtnText').innerHTML = "Go to Flight Sites & Book Ticket &rarr;";
-                document.getElementById('otobusBtnText').innerHTML = "Go to Bus Sites & Book Ticket &rarr;";
-                document.getElementById('otelBtnText').innerHTML = "Go to Hotel Site & View Rooms &rarr;";
+                document.getElementById('flightBtnText').innerText = "Find Flight Ticket";
+                document.getElementById('busBtnText').innerText = "Find Bus Ticket";
+                document.getElementById('hotelBtnText').innerText = "Book Hotel";
                 document.getElementById('footer-sub').innerText = "Comprehensive travel guide for Turkey's 81 provinces.";
             } else {
                 document.getElementById('nav-subtitle-text').innerText = "81 İl Şehir Rehberi";
-                document.getElementById('hero-heading').innerText = "Türkiye'nin 81 İlini Keşfedin";
-                document.getElementById('hero-sub').innerText = "Hangi şehirde ne var, nereler gezilmeli? Şehrinizi seçin ve tüm detayları keşfedin.";
+                document.getElementById('hero-heading').innerText = "Türkiye'nin 81 İlini Tanıyın";
+                document.getElementById('hero-sub').innerText = "Hangi şehirde ne var, nereler gezilmeli? Şehrinizi seçin ve tüm yönleriyle keşfedin.";
                 document.getElementById('mustSeeText').innerText = "Gezilmesi Gereken Yerler:";
-                document.getElementById('ucakBtnText').innerHTML = "Uçak Bileti Sitelerine Git ve Bilet Al &rarr;";
-                document.getElementById('otobusBtnText').innerHTML = "Otobüs Bileti Sitelerine Git ve Bilet Al &rarr;";
-                document.getElementById('otelBtnText').innerHTML = "Otel Sitesine Git ve Odaları İncele &rarr;";
+                document.getElementById('flightBtnText').innerText = "Uçak Bileti Bul";
+                document.getElementById('busBtnText').innerText = "Otobüs Bileti Bul";
+                document.getElementById('hotelBtnText').innerText = "Otel Rezervasyonu Yap";
                 document.getElementById('footer-sub').innerText = "Türkiye'nin 81 ili için kapsamlı seyahat rehberi.";
             }
 
-            // Dil değiştiğinde açık olan şehir kartını da güncelle
             showCityDetails();
         }
     </script>
