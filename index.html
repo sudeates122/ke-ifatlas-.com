@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Keşif Atlas - Türkiye'nin 81 İl Şehir Rehberi</title>
+    <title>Keşif Atlas - Türkiye'nin 81 İl Şehir Ansiklopedisi</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
@@ -101,8 +101,8 @@
         .lang-switcher:hover { border-color: #e30a17; }
 
         .hero {
-            background: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)), url('https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?auto=format&fit=crop&w=1920&q=80') no-repeat center center/cover;
-            min-height: 420px;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2c2c2c 100%);
+            min-height: 350px;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -113,17 +113,18 @@
         }
 
         .hero h1 {
-            font-size: 2.8rem;
+            font-size: 2.6rem;
             margin-bottom: 12px;
             font-weight: 700;
             font-family: 'Playfair Display', serif;
         }
 
         .hero p {
-            font-size: 1.15rem;
+            font-size: 1.1rem;
             margin-bottom: 30px;
             max-width: 750px;
             font-weight: 300;
+            color: #ccc;
         }
 
         .search-container {
@@ -200,13 +201,7 @@
             border-radius: 15px;
             box-shadow: 0 5px 25px rgba(0,0,0,0.06);
             overflow: hidden;
-        }
-
-        .city-banner-img {
-            width: 100%;
-            height: 320px;
-            object-fit: cover;
-            display: block;
+            border-top: 5px solid #e30a17;
         }
 
         .city-content-body {
@@ -321,7 +316,6 @@
         @media(max-width: 768px) {
             .action-buttons-grid { grid-template-columns: 1fr; }
             .city-content-body { padding: 20px; }
-            .city-banner-img { height: 220px; }
         }
 
         .action-card-btn {
@@ -364,7 +358,7 @@
             </div>
             <div class="logo-text-box">
                 <div class="logo-title">Keşif <span>Atlas</span></div>
-                <div class="logo-subtitle" id="nav-subtitle-text">81 İl Detaylı Rehber</div>
+                <div class="logo-subtitle" id="nav-subtitle-text">81 İl Detaylı Ansiklopedi</div>
             </div>
         </a>
         <div class="nav-right">
@@ -377,8 +371,8 @@
 
     <div class="container">
         <section class="hero">
-            <h1 id="hero-heading">Türkiye'nin 81 İlini Derinlemesine Keşfedin</h1>
-            <p id="hero-sub">Her şehrin kendi özgün tarihi, efsanevi lezzetleri ve kültürel dokusuyla eksiksiz ansiklopedik rehberi.</p>
+            <h1 id="hero-heading">Türkiye'nin 81 İlini Derinlemesine İnceleyin</h1>
+            <p id="hero-sub">Görsellerden arındırılmış, her şehrin özgün tarihini, kültürel dokusunu ve yöresel mirasını anlatan saf bilgi platformu.</p>
             
             <div class="search-container">
                 <div class="search-field">
@@ -393,12 +387,10 @@
 
         <div id="cityResultArea">
             <div class="city-main-card">
-                <img id="cityBannerImg" class="city-banner-img" src="" alt="Şehir Görseli">
-                
                 <div class="city-content-body">
                     <div class="city-header-title">
                         <h2 id="cityNameTitle">Şehir Adı</h2>
-                        <div class="city-badge"><i class="fa-solid fa-shield-halved"></i> Tam Kapsamlı Ansiklopedik Veri</div>
+                        <div class="city-badge"><i class="fa-solid fa-book-open"></i> Saf Ansiklopedik Veri</div>
                     </div>
                     
                     <div class="city-info-box">
@@ -416,7 +408,7 @@
                         <div class="section-title-small"><i class="fa-solid fa-person-walking-luggage"></i> <span data-tr="Ne Yapılır? (Önerilen Aktiviteler)" data-en="What to Do?">Ne Yapılır? (Önerilen Aktiviteler)</span></div>
                         <ul class="info-list" id="cityActivityList"></ul>
 
-                        <div class="section-title-small"><i class="fa-solid fa-train-subway"></i> <span data-tr="Şehir İçi Ulaşım Rehberi" data-en="Transportation Guide">Şehir İçi Ulaşım Rehberi</span></div>
+                        <div class="section-title-small"><i class="fa-solid fa-train-subway"></i> <span data-tr="Şehir İçi Ulaşım Rehberi" data-en="Transportation Guide">Transportation Guide</span></div>
                         <p id="cityTransport" class="content-text"></p>
                     </div>
                 </div>
@@ -440,7 +432,7 @@
     </div>
 
     <footer>
-        <p>&copy; 2026 Keşif Atlas Seyahat Platformu. Tüm hakları saklıdır.</p>
+        <p>&copy; 2026 Keşif Atlas Ansiklopedik Seyahat Platformu. Tüm hakları saklıdır.</p>
     </footer>
 
     <script>
@@ -448,7 +440,6 @@
 
         const illerVeritabani = {
             "Adana": {
-                img: "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=1200&q=80",
                 trDesc: "Seyhan Nehri'nin bereketlendirdiği Çukurova'nın başkenti Adana; tarihi taş köprüleri, benzersiz dünya mutfağı ve sıcak Akdeniz kültürüyle öne çıkar.",
                 enDesc: "Capital of Çukurova, Adana stands out with its historical stone bridges and unique world cuisine.",
                 trHistory: "Hititlerden Roma'ya, Ramazanoğullarından Osmanlı'ya kadar pek çok medeniyetin izini taşıyan, binlerce yıllık köklü bir ticaret ve tarım merkezidir.",
@@ -466,7 +457,6 @@
                 trTransport: "Metro, belediye otobüsleri ve dolmuş hatlarıyla şehir içi ulaşım son derece yaygındır."
             },
             "Ankara": {
-                img: "https://images.unsplash.com/photo-1590486803833-1c5dc8ddd4c8?auto=format&fit=crop&w=1200&q=80",
                 trDesc: "Türkiye'nin kalbi ve Cumhuriyet'in başkenti Ankara; antik Hitit izlerinden modern idari yapıya uzanan, derin bir kültürel hafızaya sahip metropoldür.",
                 enDesc: "The heart of Turkey and capital of the Republic, Ankara is a metropolis with a deep cultural memory.",
                 trHistory: "Friglerin merkezi Gordion'dan Roma ve Selçukluya kadar pek çok medeniyete ev sahipliği yapmış, 1923'te başkent ilan edilmiştir.",
@@ -488,7 +478,6 @@
                 trTransport: "Ankaray, Metro, Başkentray ve EGO otobüsleri ile entegre ulaşım ağı mevcuttur."
             },
             "İstanbul": {
-                img: "https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?auto=format&fit=crop&w=1200&q=80",
                 trDesc: "Asya ile Avrupa'yı birleştiren, üç büyük imparatorluğa başkentlik yapmış dünyanın en büyüleyici metropolü.",
                 enDesc: "The most fascinating metropolis connecting Asia and Europe, capital of three major empires.",
                 trHistory: "M.Ö. 7. yüzyılda kurulan şehir, 1453 yılında Fatih Sultan Mehmet tarafından fethedilerek Osmanlı'nın merkezi olmuştur.",
@@ -505,7 +494,6 @@
                 trTransport: "Metrobüs, Marmaray, metro, tramvay ve vapurlarla kesintisiz ulaşım."
             },
             "İzmir": {
-                img: "https://images.unsplash.com/photo-1598822839958-86d112d8a43f?auto=format&fit=crop&w=1200&q=80",
                 trDesc: "Ege'nin incisi İzmir; 8.500 yıllık kesintisiz tarihi, kordonboyu ve özgür ruhlu atmosferiyle öne çıkar.",
                 enDesc: "The pearl of the Aegean, Izmir stands out with its 8,500-year history and vibrant atmosphere.",
                 trHistory: "Antik dönemde İonya medeniyetinin kalbi olan İzmir, ticaretin ve kültürün merkezi olmuştur.",
@@ -523,7 +511,6 @@
             }
         };
 
-        // 81 İlin Tam Listesi ve Otomatik Tanımlama Döngüsü
         const turkiyeIlleri = [
             "Adana", "Adıyaman", "Afyonkarahisar", "Ağrı", "Amasya", "Ankara", "Antalya", "Artvin", "Aydın", "Balıkesir",
             "Bilecik", "Bingöl", "Bitlis", "Bolu", "Burdur", "Bursa", "Çanakkale", "Çankırı", "Çorum", "Denizli",
@@ -555,7 +542,6 @@
             resultArea.style.display = 'block';
 
             let data = illerVeritabani[selectedCity];
-            let bannerImg = data ? data.img : "https://images.unsplash.com/photo-1527838832700-505925207fc9?auto=format&fit=crop&w=1200&q=80";
 
             if (!data) {
                 data = {
@@ -581,7 +567,6 @@
             }
 
             document.getElementById('cityNameTitle').innerText = selectedCity;
-            document.getElementById('cityBannerImg').src = bannerImg;
             document.getElementById('cityDesc').innerText = currentLang === 'tr' ? data.trDesc : data.enDesc;
             document.getElementById('cityHistory').innerText = currentLang === 'tr' ? data.trHistory : data.enHistory;
             document.getElementById('cityTransport').innerText = currentLang === 'tr' ? data.trTransport : data.enTransport;
@@ -624,14 +609,14 @@
             });
 
             if (currentLang === 'en') {
-                document.getElementById('hero-heading').innerText = "Discover Turkey's 81 Provinces in Depth";
-                document.getElementById('hero-sub').innerText = "Complete encyclopedic guide with unique history, legendary flavors and cultural fabric of each city.";
+                document.getElementById('hero-heading').innerText = "In-Depth Exploration of Turkey's 81 Provinces";
+                document.getElementById('hero-sub').innerText = "Pure information platform free from visuals, detailing the unique history, cultural fabric, and regional heritage of each city.";
                 document.getElementById('flightBtnText').innerText = "Find Flight Ticket";
                 document.getElementById('busBtnText').innerText = "Find Bus Ticket";
                 document.getElementById('hotelBtnText').innerText = "Book Hotel";
             } else {
-                document.getElementById('hero-heading').innerText = "Türkiye'nin 81 İlini Derinlemesine Keşfedin";
-                document.getElementById('hero-sub').innerText = "Her şehrin kendi özgün tarihi, efsanevi lezzetleri ve kültürel dokusuyla eksiksiz ansiklopedik rehberi.";
+                document.getElementById('hero-heading').innerText = "Türkiye'nin 81 İlini Derinlemesine İnceleyin";
+                document.getElementById('hero-sub').innerText = "Görsellerden arındırılmış, her şehrin özgün tarihini, kültürel dokusunu ve yöresel mirasını anlatan saf bilgi platformu.";
                 document.getElementById('flightBtnText').innerText = "Uçak Bileti Bul";
                 document.getElementById('busBtnText').innerText = "Otobüs Bileti Bul";
                 document.getElementById('hotelBtnText').innerText = "Otel Rezervasyonu Yap";
