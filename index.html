@@ -407,9 +407,9 @@
 
         <div id="cityResultArea">
             <div class="city-main-card">
-                <!-- Sol Taraf: İkonik Şehir Fotoğrafı -->
+                <!-- Sol Taraf: Dinamik Olarak Şehre Göre Değişen Fotoğraf -->
                 <div class="city-image-box">
-                    <img id="cityImg" src="" alt="Şehir Görseli" onerror="this.src='https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1000&q=80'">
+                    <img id="cityImg" src="" alt="Şehir Görseli">
                     <div class="city-image-overlay">
                         <h2 id="cityNameTitle">Şehir Adı</h2>
                     </div>
@@ -458,13 +458,12 @@
         <p>&copy; 2026 Keşif Atlas Seyahat Platformu. Tüm hakları saklıdır.</p>
     </footer>
 
-    <!-- JavaScript: Sağlamlaştırılmış Görsel Veritabanı -->
+    <!-- JavaScript: Tamamen Otomatik Akıllı Şehir Görselleştirme -->
     <script>
         let currentLang = 'tr';
 
         const illerVeritabani = {
             "İzmir": {
-                // Doğrudan İzmir Saat Kulesi/Konak temalı görsel
                 img: "https://images.unsplash.com/photo-1598822839958-86d112d8a43f?auto=format&fit=crop&w=1000&q=80",
                 trDesc: "Ege'nin incisi İzmir; ılıman iklimi, tarihi sahil şeridi, antik kalıntıları ve özgür ruhlu insanlarıyla Türkiye'nin üçüncü büyük şehridir.",
                 enDesc: "The pearl of the Aegean, Izmir is Turkey's third-largest city with its mild climate, historical coastline, ancient ruins, and free-spirited people.",
@@ -480,7 +479,6 @@
                 enTransport: "Local transport is highly developed with İZBAN trains, Metro, Tram lines, and buses. Ferries offer the most enjoyable transit across the bay."
             },
             "İstanbul": {
-                // Doğrudan İstanbul Boğazı/Kız Kulesi temalı görsel
                 img: "https://images.unsplash.com/photo-1541432901042-2d8bd64b3a9b?auto=format&fit=crop&w=1000&q=80",
                 trDesc: "Asya ile Avrupa'yı birbirine bağlayan, imparatorluklara başkentlik yapmış, Boğaziçi'nin eşsiz manzarasına sahip dünyanın en büyüleyici metropolü.",
                 enDesc: "The most fascinating metropolis in the world connecting Asia and Europe, capital of empires, with the unique view of the Bosphorus.",
@@ -496,7 +494,6 @@
                 enTransport: "Features a massive network of Metrobus, Marmaray, metro, trams, and ferries. Purchasing an 'Istanbulkart' is essential for tourists."
             },
             "Ankara": {
-                // Ankara Anıtkabir / Şehir temalı görsel
                 img: "https://images.unsplash.com/photo-1584646098378-0874589d76b1?auto=format&fit=crop&w=1000&q=80",
                 trDesc: "Türkiye'nin kalbi, Cumhuriyet'in başkenti Ankara; düzenli sokakları, köklü üniversiteleri ve zengin müzeleriyle modern bir idari merkezdir.",
                 enDesc: "The heart of Turkey and capital of the Republic, Ankara is a modern administrative center with organized streets and rooted universities.",
@@ -512,7 +509,6 @@
                 enTransport: "Provided by Ankaray, Metro lines, Başkentray trains, and buses. 'Ankarakart' is used for public transport."
             },
             "Antalya": {
-                // Antalya Kaleiçi / Marina temalı görsel
                 img: "https://images.unsplash.com/photo-1567157577867-05ccb1388e66?auto=format&fit=crop&w=1000&q=80",
                 trDesc: "Turizmin başkenti Antalya; muhteşem Akdeniz sahilleri, antik kentleri, şelaleleri ve muazzam doğasıyla dünya çapında bir tatil cennetidir.",
                 enDesc: "The capital of tourism, Antalya is a world-class holiday haven with magnificent Mediterranean coasts, ancient cities, and superb nature.",
@@ -528,7 +524,6 @@
                 enTransport: "Local transport uses Antray (Tram) and buses. Minibuses are frequently used to reach holiday districts."
             },
             "Nevşehir": {
-                // Kapadokya Balonlar görseli
                 img: "https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?auto=format&fit=crop&w=1000&q=80",
                 trDesc: "Peri bacaları, yer altı şehirleri, kayalara oyulmuş otelleri ve sıcak hava balonlarıyla dünyanın hayranlıkla izlediği masalsı Kapadokya bölgesinin merkezidir.",
                 enDesc: "The center of the fairy-tale Cappadocia region, admired globally for its fairy chimneys, underground cities, and hot air balloons.",
@@ -577,10 +572,11 @@
 
             let data = illerVeritabani[selectedCity];
 
+            // Eğer il özel veritabanında yoksa, Unsplash Source API kullanarak o şehrin adına uygun rastgele profesyonel manzara/şehir fotoğrafı çeker
+            let cityImage = data ? data.img : `https://source.unsplash.com/featured/1000x600/?${encodeURIComponent(selectedCity)},city,turkey`;
+
             if (!data) {
-                // Diğer iller için dinamik olarak Unsplash'in resmi kaynak optimizasyonunu kullanıyoruz
                 data = {
-                    img: `https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1000&q=80`,
                     trDesc: `${selectedCity}, kendine has mimarisi, doğası ve kültürel dokusuyla Türkiye'nin keşfedilmeyi bekleyen eşsiz şehirlerinden biridir.`,
                     enDesc: `${selectedCity} is one of Turkey's unique cities waiting to be discovered with its architecture, nature, and cultural texture.`,
                     trHistory: `${selectedCity}, Anadolu'nun binlerce yıllık tarihine tanıklık etmiş, geçmişten günümüze birçok medeniyete ev sahipliği yapmıştır.`,
@@ -597,7 +593,7 @@
             }
 
             document.getElementById('cityNameTitle').innerText = selectedCity;
-            document.getElementById('cityImg').src = data.img;
+            document.getElementById('cityImg').src = cityImage;
             document.getElementById('cityDesc').innerText = currentLang === 'tr' ? data.trDesc : data.enDesc;
             document.getElementById('cityHistory').innerText = currentLang === 'tr' ? data.trHistory : data.enHistory;
             document.getElementById('cityTransport').innerText = currentLang === 'tr' ? data.trTransport : data.enTransport;
@@ -618,7 +614,7 @@
             listEl.innerHTML = '';
             itemsArray.forEach(item => {
                 let li = document.createElement('li');
-                li.innerHTML = `<i class="fa-solid ${iconClass}"> ${item}</i>`;
+                li.innerHTML = `<i class="fa-solid ${iconClass}"></i> ${item}`;
                 listEl.appendChild(li);
             });
         }
