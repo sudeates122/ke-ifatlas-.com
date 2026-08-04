@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Global & Türkiye Seyahat Rehberi</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f4f8;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #0066cc;
+            margin-bottom: 5px;
+        }
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 25px;
+        }
+        .filter-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        .tab-btn {
+            padding: 10px 20px;
+            border: none;
+            background: #e2e8f0;
+            color: #4a5568;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+        .tab-btn.active {
+            background: #0066cc;
+            color: white;
+        }
+        .search-box {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+        select, button {
+            flex: 1;
+            padding: 14px;
+            font-size: 16px;
+            border: 1px solid #cbd5e1;
+            border-radius: 10px;
+            outline: none;
+        }
+        select {
+            background-color: #fff;
+        }
+        button.explore-btn {
+            background-color: #0066cc;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+        button.explore-btn:hover {
+            background-color: #004999;
+        }
+        .result-card {
+            background: #f8fafc;
+            border-left: 6px solid #0066cc;
+            padding: 25px;
+            border-radius: 12px;
+            display: none;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+        .result-card h2 {
+            margin-top: 0;
+            color: #1e293b;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 10px;
+        }
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .info-item {
+            background: #fff;
+            padding: 15px;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+        }
+        .info-item.full-width {
+            grid-column: span 2;
+        }
+        .info-item strong {
+            color: #0066cc;
+            display: block;
+            margin-bottom: 8px;
+            font-size: 15px;
+        }
+        @media (max-width: 600px) {
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+            .info-item.full-width {
+                grid-column: span 1;
+            }
+            .search-box {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>🧭 Keşif Atlası & Seyahat Rehberi</h1>
+    <p class="subtitle">Türkiye'nin 81 ili ve dünyanın en popüler rotaları parmaklarınızın ucunda!</p>
+    
+    <!-- Kategori Seçim Butonları -->
+    <div class="filter-tabs">
+        <button class="tab-btn active" onclick="switchCategory('turkey', this)">🇹🇷 Türkiye (81 İl)</button>
+        <button class="tab-btn" onclick="switchCategory('world', this)">🌍 Popüler Ülkeler</button>
+    </div>
+
+    <!-- Arama ve Seçim Alanı -->
+    <div class="search-box">
+        <select id="destinationSelect">
+            <option value="">Önce kategori seçiniz...</option>
+        </select>
+        <button class="explore-btn" onclick="searchDestination()">Keşfet</button>
+    </div>
+
+    <!-- Sonuç Kartı -->
+    <div id="resultCard" class="result-card">
+        <h2 id="destName"></h2>
+        <div class="info-grid">
+            <div class="info-item">
+                <strong>💰 Para Birimi / Bütçe</strong>
+                <span id="destCurrency"></span>
+            </div>
+            <div class="info-item">
+                <strong>✈️ Nasıl Gidilir? / Ulaşım</strong>
+                <span id="destTransport"></span>
+            </div>
+            <div class="info-item">
+                <strong>🍽️ Ne Yenir / İçilir?</strong>
+                <span id="destFood"></span>
+            </div>
+            <div class="info-item">
+                <strong>📍 Mutlaka Yapılmalı / Gezilecek Yerler</strong>
+                <span id="destActivities"></span>
+            </div>
+            <div class="info-item full-width">
+                <strong>📅 Örnek 2 Günlük Tur Programı</strong>
+                <span id="destTourPlan"></span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Kapsamlı Veritabanı (81 İl ve Popüler Ülkeler Örnekleri)
+    const database = {
+        turkey: {
+            istanbul: {
+                name: "istanbul, Türkiye",
+                currency: "Türk Lirası (TRY)",
+                transport: "İstanbul Havalimanı veya Sabiha Gökçen'e direkt uçuşlar. Şehir içi metro, metrobüs ve vapur.",
+                food: "Sultanahmet köftesi, Tarihi Eminönü balık ekmek, Kanlıca yoğurdu, Vefa boza.",
+                activities: "Ayasofya, Topkapı Sarayı, Boğaz turu, Kapalıçarşı alışverişi.",
+                tourPlan: "1. Gün: Tarihi Yarımada (Ayasofya, Sultanahmet, Kapalıçarşı).<br>2. Gün: Boğaz Turu, Karaköy, Galata Kulesi ve Taksim."
+            },
+            ankara: {
+                name: "Ankara, Türkiye",
+                currency: "Türk Lirası (TRY)",
+                transport: "Esenboğa Havalimanı veya Yüksek Hızlı Tren (YHT) ile merkezi ulaşım.",
+                food: "Ankara Tava, Beypazarı kurusu, Ankara simidi.",
+                activities: "Anıtkabir ziyareti, Ankara Kalesi, Hamamönü tarihi evleri, Etnografya Müzesi.",
+                tourPlan: "1. Gün: Anıtkabir ve Ankara Kalesi, müze gezileri.<br>2. Gün: Hamamönü sokakları yürüyüşü ve Atakule manzarası."
+            },
+            izmir: {
+                name: "İzmir, Türkiye",
+                currency: "Türk Lirası (TRY)",
+                transport: "Adnan Menderes Havalimanı, otobüs veya İZBAN raylı sistemi.",
+                food: "Boyoz, kumru, söğüş, zeytinyağlı enginar.",
+                activities: "Kordon'da yürüyüş, Saat Kulesi, Kemeraltı Çarşısı, Efes Antik Kenti.",
+                tourPlan: "1. Gün: Konak Meydanı, Saat Kulesi ve Kemeraltı.<br>2. Gün: Alsancak Kordon ve Çeşme/Alaçatı günübirlik gezi."
+            },
+            antalya: {
+                name: "Antalya, Türkiye",
+                currency: "Türk Lirası (TRY)",
+                transport: "Antalya Havalimanı ve şehir içi tramvay hatları.",
+                food: "Piyaz, tandır kebabı, serpme börek, turunç reçeli.",
+                activities: "Kaleiçi sokakları, Düden Şelasesi, Konyaaltı ve Lara plajları, Antik kentler.",
+                tourPlan: "1. Gün: Kaleiçi, Yat Limanı ve Düden Şelalesi.<br>2. Gün: Aspendos Antik Kenti ve plaj keyfi."
+            }
+            // Not: Sistem altyapısı tüm 81 ili buraya aynı formatta eklemek için hazırdır.
+        },
+        world: {
+            amsterdam: {
+                name: "Amsterdam, Hollanda",
+                currency: "Euro (EUR)",
+                transport: "Schiphol Havalimanı'na direkt uçuş. Şehir içinde bisiklet ve tramvay.",
+                food: "Stroopwafel, Vlaams Frietje (Özel patates kızartması), Peynir çeşitleri.",
+                activities: "Kanal turu, Van Gogh Müzesi, Rijksmuseum, Vondelpark.",
+                tourPlan: "1. Gün: Kanal turu ve Müzeler Meydanı (Van Gogh Müzesi).<br>2. Gün: Dam Meydanı ve Jordaan bölgesi yürüyüşü."
+            },
+            paris: {
+                name: "Paris, Fransa",
+                currency: "Euro (EUR)",
+                transport: "Charles de Gaulle Havalimanı, metro ağı ile her yere kolay ulaşım.",
+                food: "Kruvasan, Macaron, Soğan çorbası, Fransız baget sandviçleri.",
+                activities: "Eyfel Kulesi, Louvre Müzesi, Şanzelize Caddesi, Montmartre.",
+                tourPlan: "1. Gün: Eyfel Kulesi ve Seine Nehri tekne turu.<br>2. Gün: Louvre Müzesi ve Montmartre sanatçılar tepesi."
+            },
+            roma: {
+                name: "Roma, İtalya",
+                currency: "Euro (EUR)",
+                transport: "Fiumicino Havalimanı, metro ve yürüyüş.",
+                food: "Carbonara, Pizza Romana, Gelato (İtalyan dondurması), Tiramisu.",
+                activities: "Kolezyum, Trezi (Aşk) Çeşmesi, Vatikan ve San Pietro Bazilikası.",
+                tourPlan: "1. Gün: Kolezyum, Roma Forumu ve Aşk Çeşmesi.<br>2. Gün: Vatikan Müzeleri ve Aziz Petrus Meydanı."
+            }
+        }
+    };
+
+    // İllerin ve Ülkelerin Listesini Yükleme Fonksiyonu
+    const turkeyCities = [
+        {id: "adana", name: "Adana"}, {id: "adiyaman", name: "Adıyaman"}, {id: "afyon", name: "Afyonkarahisar"}, {id: "agri", name: "Ağrı"},
+        {id: "amasya", name: "Amasya"}, {id: "ankara", name: "Ankara"}, {id: "antalya", name: "Antalya"}, {id: "artvin", name: "Artvin"},
+        {id: "aydin", name: "Aydın"}, {id: "balikesir", name: "Balıkesir"}, {id: "bilecik", name: "Bilecik"}, {id: "bingol", name: "Bingöl"},
+        {id: "bitlis", name: "Bitlis"}, {id: "bolu", name: "Bolu"}, {id: "burdur", name: "Burdur"}, {id: "bursa", name: "Bursa"},
+        {id: "canakkale", name: "Çanakkale"}, {id: "cankiri", name: "Çankırı"}, {id: "corum", name: "Çorum"}, {id: "denizli", name: "Denizli"},
+        {id: "diyarbakir", name: "Diyarbakır"}, {id: "edirne", name: "Edirne"}, {id: "elazig", name: "Elazığ"}, {id: "erzincan", name: "Erzincan"},
+        {id: "erzurum", name: "Erzurum"}, {id: "eskisehir", name: "Eskişehir"}, {id: "gaziantep", name: "Gaziantep"}, {id: "giresun", name: "Giresun"},
+        {id: "gumushane", name: "Gümüşhane"}, {id: "hakkari", name: "Hakkâri"}, {id: "hatay", name: "Hatay"}, {id: "isparta", name: "Isparta"},
+        {id: "mersin", name: "Mersin"}, {id: "istanbul", name: "İstanbul"}, {id: "izmir", name: "İzmir"}, {id: "kars", name: "Kars"},
+        {id: "kastamonu", name: "Kastamonu"}, {id: "kayseri", name: "Kayseri"}, {id: "kirklareli", name: "Kırklareli"}, {id: "kirsehir", name: "Kırşehir"},
+        {id: "kocaeli", name: "Kocaeli"}, {id: "konya", name: "Konya"}, {id: "kutahya", name: "Kütahya"}, {id: "malatya", name: "Malatya"},
+        {id: "manisa", name: "Manisa"}, {id: "kahramanmaras", name: "Kahramanmaraş"}, {id: "mardin", name: "Mardin"}, {id: "mugla", name: "Muğla"},
+        {id: "mus", name: "Muş"}, {id: "nevsehir", name: "Nevşehir"}, {id: "nigde", name: "Niğde"}, {id: "ordu", name: "Ordu"},
+        {id: "rize", name: "Rize"}, {id: "sakarya", name: "Sakarya"}, {id: "samsun", name: "Samsun"}, {id: "siirt", name: "Siirt"},
+        {id: "sinop", name: "Sinop"}, {id: "sivas", name: "Sivas"}, {id: "tekirdag", name: "Tekirdağ"}, {id: "tokat", name: "Tokat"},
+        {id: "trabzon", name: "Trabzon"}, {id: "tunceli", name: "Tunceli"}, {id: "sanliurfa", name: "Şanlıurfa"}, {id: "usak", name: "Uşak"},
+        {id: "van", name: "Van"}, {id: "yozgat", name: "Yozgat"}, {id: "zonguldak", name: "Zonguldak"}, {id: "aksaray", name: "Aksaray"},
+        {id: "bayburt", name: "Bayburt"}, {id: "karaman", name: "Karaman"}, {id: "kirikkale", name: "Kırıkkale"}, {id: "batman", name: "Batman"},
+        {id: "sirnak", name: "Şırnak"}, {id: "bartin", name: "Bartın"}, {id: "ardahan", name: "Ardahan"}, {id: "igdir", name: "Iğdır"},
+        {id: "yalova", name: "Yalova"}, {id: "karabuk", name: "Karabük"}, {id: "kilis", name: "Kilis"}, {id: "osmaniye", name: "Osmaniye"}, {id: "duzce", name: "Düzce"}
+    ];
+
+    const worldCountries = [
+        {id: "amsterdam", name: "Hollanda - Amsterdam"},
+        {id: "paris", name: "Fransa - Paris"},
+        {id: "roma", name: "İtalya - Roma"}
+    ];
+
+    let currentCategory = 'turkey';
+
+    function switchCategory(category, btn) {
+        currentCategory = category;
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        const select = document.getElementById('destinationSelect');
+        select.innerHTML = '<option value="">Seçim yapınız...</option>';
+
+        let list = (category === 'turkey') ? turkeyCities : worldCountries;
+        list.forEach(item => {
+            let opt = document.createElement('option');
+            opt.value = item.id;
+            opt.textContent = item.name;
+            select.appendChild(opt);
+        });
+        document.getElementById('resultCard').style.display = 'none';
+    }
+
+    function searchDestination() {
+        const val = document.getElementById('destinationSelect').value;
+        const resultCard = document.getElementById('resultCard');
+
+        if (!val) {
+            alert("Lütfen bir şehir veya ülke seçin!");
+            resultCard.style.display = 'none';
+            return;
+        }
+
+        const data = database[currentCategory][val];
+
+        if (!data) {
+            // Henüz detayı girilmemiş iller için şablon gösterge
+            document.getElementById('destName').innerText = val.toUpperCase() + " (Rehber Hazırlanıyor)";
+            document.getElementById('destCurrency').innerText = "Türk Lirası (TRY)";
+            document.getElementById('destTransport').innerText = "Karayolu, Havayolu veya Demiryolu ile ulaşım imkanı mevcuttur.";
+            document.getElementById('destFood').innerText = "Yöresel lezzetler yakında eklenecektir.";
+            document.getElementById('destActivities').innerText = "Tarihi ve turistik noktalar keşif listesine ekleniyor.";
+            document.getElementById('destTourPlan').innerText = "Bu şehir için özel 2 günlük gezi rotası yakında güncellenecektir.";
+        } else {
+            document.getElementById('destName').innerText = data.name;
+            document.getElementById('destCurrency').innerText = data.currency;
+            document.getElementById('destTransport').innerText = data.transport;
+            document.getElementById('destFood').innerText = data.food;
+            document.getElementById('destActivities').innerText = data.activities;
+            document.getElementById('destTourPlan').innerText = data.tourPlan;
+        }
+
+        resultCard.style.display = 'block';
+    }
+
+    // Sayfa açıldığında Türkiye illerini yükle
+    window.onload = function() {
+        switchCategory('turkey', document.querySelector('.tab-btn'));
+    };
+</script>
+
+</body>
+</html>
