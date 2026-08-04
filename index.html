@@ -1,79 +1,90 @@
-import Link from 'next/link';
-import { Compass, Search, Plane, Bus, Hotel, Car } from 'lucide-react';
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Keşif Atlası | Türkiye Gezi ve Seyahat Portalı</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="bg-slate-50 min-h-screen text-slate-800 antialiased flex flex-col">
 
-export default function Home() {
-  return (
-    <div className="flex flex-col min-h-screen bg-slate-50">
-      {/* Navbar */}
-      <header className="border-b bg-white sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
-          <div className="flex items-center space-x-2">
-            <Compass className="h-8 w-8 text-red-600" />
-            <span className="text-xl font-bold tracking-tight text-slate-900">Keşif Atlası</span>
-          </div>
-          <nav className="hidden md:flex space-x-6 text-sm font-medium text-slate-600">
-            <Link href="/" className="hover:text-red-600">Ana Sayfa</Link>
-            <Link href="/iller" className="hover:text-red-600">81 İl</Link>
-            <Link href="/blog" className="hover:text-red-600">Blog</Link>
-            <Link href="/rezervasyon" className="hover:text-red-600">Rezervasyon</Link>
-          </nav>
-        </div>
-      </header>
-
-      {/* Hero Section */}
-      <section className="bg-gradient-to-r from-red-600 to-red-800 text-white py-20 px-4">
-        <div className="max-w-4xl mx-auto text-center space-y-6">
-          <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight">
-            Türkiye'yi Adım Adım Keşfedin
-          </h1>
-          <p className="text-lg text-red-100 max-w-2xl mx-auto">
-            81 ilin saklı cennetleri, tarihi kalıntıları, yöresel lezzetleri ve en iyi seyahat rotaları burada.
-          </p>
-          <div className="flex justify-center max-w-md mx-auto bg-white rounded-full p-2 shadow-lg">
-            <div className="flex items-center pl-3 text-slate-400 w-full">
-              <Search className="h-5 w-5 mr-2" />
-              <input 
-                type="text" 
-                placeholder="Nereyi keşfetmek istersiniz? (Örn: Ankara)" 
-                className="w-full bg-transparent focus:outline-none text-slate-800 text-sm"
-              />
+    <!-- Navbar -->
+    <header class="border-b bg-white sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
+            <div class="flex items-center space-x-2">
+                <i data-lucide="compass" class="h-8 w-8 text-red-600"></i>
+                <span class="text-xl font-bold tracking-tight text-slate-900">Keşif Atlası</span>
             </div>
-            <button className="bg-red-600 text-white px-6 py-2 rounded-full font-medium text-sm hover:bg-red-700 transition">
-              Ara
-            </button>
-          </div>
+            <nav class="hidden md:flex space-x-6 text-sm font-medium text-slate-600">
+                <a href="#" class="hover:text-red-600">Ana Sayfa</a>
+                <a href="#" class="hover:text-red-600">81 İl</a>
+                <a href="#" class="hover:text-red-600">Blog</a>
+                <a href="#" class="hover:text-red-600">Rezervasyon</a>
+            </nav>
         </div>
-      </section>
+    </header>
 
-      {/* Rezervasyon Kartları */}
-      <section className="max-w-7xl mx-auto px-4 py-12 w-full">
+    <!-- Hero Section -->
+    <section class="bg-gradient-to-r from-red-600 to-red-800 text-white py-20 px-4">
+        <div class="max-w-4xl mx-auto text-center space-y-6">
+            <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight">
+                Türkiye'yi Adım Adım Keşfedin
+            </h1>
+            <p class="text-lg text-red-100 max-w-2xl mx-auto">
+                81 ilin saklı cennetleri, tarihi kalıntıları, yöresel lezzetleri ve en iyi seyahat rotaları burada.
+            </p>
+            <div class="flex justify-center max-w-md mx-auto bg-white rounded-full p-2 shadow-lg">
+                <div class="flex items-center pl-3 text-slate-400 w-full">
+                    <i data-lucide="search" class="h-5 w-5 mr-2"></i>
+                    <input 
+                        type="text" 
+                        placeholder="Nereyi keşfetmek istersiniz? (Örn: Ankara)" 
+                        class="w-full bg-transparent focus:outline-none text-slate-800 text-sm"
+                    />
+                </div>
+                <button class="bg-red-600 text-white px-6 py-2 rounded-full font-medium text-sm hover:bg-red-700 transition">
+                    Ara
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Rezervasyon Kartları -->
+    <section class="max-w-7xl mx-auto px-4 py-12 w-full">
         <h2 className="text-2xl font-bold text-slate-900 mb-6 text-center">Seyahat Planını Hemen Yap</h2>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          <div className="bg-white p-6 rounded-xl border shadow-sm hover:shadow-md transition text-center cursor-pointer group">
-            <Plane className="h-8 w-8 mx-auto text-red-600 mb-2 group-hover:scale-110 transition" />
-            <h3 className="font-semibold text-slate-800">Uçak Bileti</h3>
-          </div>
-          <div className="bg-white p-6 rounded-xl border shadow-sm hover:shadow-md transition text-center cursor-pointer group">
-            <Bus className="h-8 w-8 mx-auto text-red-600 mb-2 group-hover:scale-110 transition" />
-            <h3 className="font-semibold text-slate-800">Otobüs Bileti</h3>
-          </div>
-          <div className="bg-white p-6 rounded-xl border shadow-sm hover:shadow-md transition text-center cursor-pointer group">
-            <Hotel className="h-8 w-8 mx-auto text-red-600 mb-2 group-hover:scale-110 transition" />
-            <h3 className="font-semibold text-slate-800">Otel Rezervasyonu</h3>
-          </div>
-          <div className="bg-white p-6 rounded-xl border shadow-sm hover:shadow-md transition text-center cursor-pointer group">
-            <Car className="h-8 w-8 mx-auto text-red-600 mb-2 group-hover:scale-110 transition" />
-            <h3 className="font-semibold text-slate-800">Araç Kiralama</h3>
-          </div>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div class="bg-white p-6 rounded-xl border shadow-sm hover:shadow-md transition text-center cursor-pointer group">
+                <i data-lucide="plane" class="h-8 w-8 mx-auto text-red-600 mb-2 group-hover:scale-110 transition"></i>
+                <h3 class="font-semibold text-slate-800">Uçak Bileti</h3>
+            </div>
+            <div class="bg-white p-6 rounded-xl border shadow-sm hover:shadow-md transition text-center cursor-pointer group">
+                <i data-lucide="bus" class="h-8 w-8 mx-auto text-red-600 mb-2 group-hover:scale-110 transition"></i>
+                <h3 class="font-semibold text-slate-800">Otobüs Bileti</h3>
+            </div>
+            <div class="bg-white p-6 rounded-xl border shadow-sm hover:shadow-md transition text-center cursor-pointer group">
+                <i data-lucide="hotel" class="h-8 w-8 mx-auto text-red-600 mb-2 group-hover:scale-110 transition"></i>
+                <h3 class="font-semibold text-slate-800">Otel Rezervasyonu</h3>
+            </div>
+            <div class="bg-white p-6 rounded-xl border shadow-sm hover:shadow-md transition text-center cursor-pointer group">
+                <i data-lucide="car" class="h-8 w-8 mx-auto text-red-600 mb-2 group-hover:scale-110 transition"></i>
+                <h3 class="font-semibold text-slate-800">Araç Kiralama</h3>
+            </div>
         </div>
-      </section>
+    </section>
 
-      {/* Footer */}
-      <footer className="bg-slate-900 text-slate-400 py-8 mt-auto">
-        <div className="max-w-7xl mx-auto px-4 text-center text-sm">
-          &copy; 2026 Keşif Atlası. Tüm hakları saklıdır. Türkiye'nin Gezi Portalı.
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-400 py-8 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 text-center text-sm">
+            &copy; 2026 Keşif Atlası. Tüm hakları saklıdır. Türkiye'nin Gezi Portalı.
         </div>
-      </footer>
-    </div>
-  );
-}
+    </footer>
+
+    <!-- Lucide İkonları Aktifleştirme -->
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
