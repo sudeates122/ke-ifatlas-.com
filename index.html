@@ -150,9 +150,9 @@
             background: #c50812;
         }
 
-        /* Hero Section / Edebi Karşılama */
+        /* Hero Section / Edebi Karşılama - İstanbul Silüeti Güncellendi */
         .hero {
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1516483638261-f4dbaf036963?auto=format&fit=crop&w=1920&q=80') no-repeat center center/cover;
+            background: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)), url('https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?auto=format&fit=crop&w=1920&q=80') no-repeat center center/cover;
             min-height: 520px;
             display: flex;
             flex-direction: column;
@@ -278,6 +278,7 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            cursor: pointer;
         }
 
         .card:hover {
@@ -354,6 +355,86 @@
             font-size: 1.15rem;
             font-weight: 700;
             color: #e30a17;
+        }
+
+        /* İSTANBUL DETAY MODALI (Pop-up) */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.6);
+            backdrop-filter: blur(5px);
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .modal-content {
+            background: white;
+            width: 100%;
+            max-width: 800px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+            animation: modalFade 0.3s ease;
+            max-height: 90vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        @keyframes modalFade {
+            from {opacity: 0; transform: translateY(-20px);}
+            to {opacity: 1; transform: translateY(0);}
+        }
+
+        .modal-header {
+            background: #e30a17;
+            color: white;
+            padding: 20px 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+        }
+
+        .close-modal {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .modal-body {
+            padding: 30px;
+            overflow-y: auto;
+            text-align: left;
+        }
+
+        .modal-body h4 {
+            color: #e30a17;
+            margin-top: 15px;
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+        }
+
+        .modal-body p, .modal-body ul {
+            color: #444;
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin-bottom: 15px;
+        }
+
+        .modal-body ul {
+            padding-left: 20px;
         }
 
         /* Hizmet Panelleri */
@@ -444,7 +525,7 @@
                 <option value="tr">🇹🇷 Türkçe</option>
                 <option value="en">🇬🇧 English</option>
             </select>
-            <button class="btn-primary" onclick="alert(currentLang === 'tr' ? 'Edebi rehberliğe hoş geldiniz!' : 'Welcome to literary guidance!')" id="loginBtn">Giriş Yap</button>
+            <button class="btn-primary" onclick="alert(currentLang === 'tr' ? 'Hoş geldiniz Keşif Atlası!' : 'Welcome Explorer Atlas!')" id="loginBtn">Giriş Yap</button>
         </div>
     </header>
 
@@ -457,13 +538,11 @@
             <div class="search-container">
                 <div class="search-field">
                     <i class="fa-solid fa-location-dot"></i>
-                    <select id="ilSecimi">
+                    <select id="ilSecimi" onchange="checkCitySelection()">
                         <option value="">🇹🇷 81 İlden Şiir Rotaları Seçin...</option>
-                        <option value="01">01 - Adana (Dağlarca & Akdeniz Şiirleri)</option>
-                        <option value="06">06 - Ankara (Mehmet Akif & Başkent Şiirleri)</option>
-                        <option value="07">07 - Antalya (Teke Yöresi Türkü ve Şiirleri)</option>
-                        <option value="16">16 - Bursa (Ahmet Hamdi Tanpınar - Bursa'da Zaman)</option>
                         <option value="34">34 - İstanbul (Orhan Veli, Yahya Kemal, Nazım Hikmet)</option>
+                        <option value="06">06 - Ankara (Mehmet Akif & Başkent Şiirleri)</option>
+                        <option value="16">16 - Bursa (Ahmet Hamdi Tanpınar - Bursa'da Zaman)</option>
                         <option value="35">35 - İzmir (Attilâ İlhan Şiir Rotaları)</option>
                         <option value="50">50 - Nevşehir / Kapadokya (Peribacaları Efsaneleri)</option>
                         <option value="61">61 - Trabzon (Karadeniz Mektupları ve Şiirleri)</option>
@@ -473,7 +552,7 @@
                     <i class="fa-solid fa-feather"></i>
                     <input type="text" id="searchInput" placeholder="Şair veya şiir adı yazın...">
                 </div>
-                <button class="search-btn" onclick="alert(currentLang === 'tr' ? 'Seçtiğiniz ilden ilham alan edebi turlar listeleniyor!' : 'Listing literary tours!')"><i class="fa-solid fa-search"></i> <span data-tr="Şiir Turu Ara" data-en="Search Tour">Şiir Turu Ara</span></button>
+                <button class="search-btn" onclick="searchTour()"><i class="fa-solid fa-search"></i> <span data-tr="Şiir Turu Ara" data-en="Search Tour">Şiir Turu Ara</span></button>
             </div>
         </section>
 
@@ -482,22 +561,24 @@
             <p class="section-subtitle" id="featured-subtitle">Uzman edebi tur rehberlerimiz eşliğinde, şiirlerin yazıldığı sokaklarda adım adım yolculuk.</p>
             
             <div class="grid">
-                <div class="card">
+                <!-- İstanbul Kartı (Tıklayınca detay açılır) -->
+                <div class="card" onclick="openIstanbulModal()">
                     <div class="card-img-container">
-                        <img src="https://images.unsplash.com/photo-1541432901042-2d8bd64b3a9b?auto=format&fit=crop&w=600&q=80" alt="Istanbul">
+                        <!-- Güncellenmiş doğru İstanbul / Boğaz görseli -->
+                        <img src="https://images.unsplash.com/photo-1541432901042-2d8bd64b3a9b?auto=format&fit=crop&w=600&q=80" alt="Istanbul Bogazi">
                         <span class="city-badge">34 - İstanbul</span>
                     </div>
                     <div class="card-body">
-                        <h3 class="card-title">Yahya Kemal ile "Bursa'da Zaman" ve İstanbul</h3>
-                        <div class="poem-snippet">"Geniş ve ezeli kadansın yayılan ses / İstanbul'u dinliyorum gözlerim kapalı..."</div>
+                        <h3 class="card-title">Yahya Kemal ve Orhan Veli ile İstanbul Turları</h3>
+                        <div class="poem-snippet">"İstanbul'u dinliyorum, gözlerim kapalı / Önce hafiften bir rüzgar esiyor..."</div>
                         <div class="card-footer-info">
-                            <span class="guide-name"><i class="fa-solid fa-user-pen"></i> Rehber: Dr. Edebi Tur</span>
+                            <span class="guide-name"><i class="fa-solid fa-user-pen"></i> Rehber: Keşif Atlası & Dr. Edebi Tur</span>
                             <span class="tour-price">₺950</span>
                         </div>
                     </div>
                 </div>
 
-                <div class="card">
+                <div class="card" onclick="alert('Kapadokya edebi tur detayları yükleniyor...')">
                     <div class="card-img-container">
                         <img src="https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?auto=format&fit=crop&w=600&q=80" alt="Kapadokya">
                         <span class="city-badge">50 - Nevşehir</span>
@@ -512,7 +593,7 @@
                     </div>
                 </div>
 
-                <div class="card">
+                <div class="card" onclick="alert('İzmir edebi tur detayları yükleniyor...')">
                     <div class="card-img-container">
                         <img src="https://images.unsplash.com/photo-1524850011238-eafd23727d58?auto=format&fit=crop&w=600&q=80" alt="Izmir">
                         <span class="city-badge">35 - İzmir</span>
@@ -530,24 +611,49 @@
         </div>
     </div>
 
+    <!-- İSTANBUL ÖZEL BİLGİ MODALI (Açılır Pencere) -->
+    <div id="istanbulModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>🇹🇷 İstanbul: Şairlerin, Sultanların ve Boğazın Başkenti</h2>
+                <button class="close-modal" onclick="closeIstanbulModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <h4>Şehir Hakkında Edebi Bakış</h4>
+                <p>İstanbul; Yahya Kemal'in tarih bilinci, Orhan Veli'nin sokaklardaki yalınlığı, Nazım Hikmet'in mavi gözlü memleket destanı ve Ahmet Hamdi Tanpınar'ın rüya iklimiyle harmanlanmış yaşayan bir şiirdir. Bu şehirde her köşe başı bir mısraya ev sahipliği yapar.</p>
+                
+                <h4>Gezilmeli ve Görülmeli Yerler (Şiir Rotaları)</h4>
+                <ul>
+                    <li><strong>Süleymaniye Camii ve Çevresi:</strong> Yahya Kemal Beyatlı'nın "Süleymaniye'de Bayram Sabahı" şiirini iliklerinize kadar hissedeceğiniz, Haliç manzaralı edebi durak.</li>
+                    <li><strong>Galata Kulesi ve Karaköy:</strong> Bedri Rahmi Eyüboğlu ve Ümit Yaşar Oğuzcan'ın dizelerinde boy gösteren, Boğaz'ın ve tarihin kucaklaştığı sokaklar.</li>
+                    <li><strong>Adalar (Büyükada / Heybeliada):</strong> Sait Faik Abasıyanık'ın hikayelerine ve şiirlerine ilham olan balıkçı barınakları, çam kokulu yollar.</li>
+                    <li><strong>Bâb-ı Âlî ve Cağaloğlu:</strong> Türk basınının ve edebiyat dünyasının kalbinin attığı tarihî yokuşlar.</li>
+                </ul>
+
+                <h4>Şehirde Ne Var?</h4>
+                <p>Antik surlar, saraylar, gizli kütüphaneler, tarihi çay bahçeleri ve Boğaziçi'nin eşsiz vapurları... Tur rehberiniz olarak bu turda sizi Orhan Veli'nin perçemli sokağından geçirip Pierre Loti'de bir kahve eşliğinde şiir okumaya davet ediyoruz.</p>
+            </div>
+        </div>
+    </div>
+
     <!-- UÇAK BİLETİ SEKMESİ -->
     <div id="ucak" class="tab-content">
         <div class="container">
             <div class="service-panel">
                 <h3><i class="fa-solid fa-plane-departure" style="color: #e30a17;"></i> <span data-tr="Şairlerin İzinde Uçak Bileti Rezervasyonu" data-en="Literary Flight Ticket Booking">Şairlerin İzinde Uçak Bileti Rezervasyonu</span></h3>
                 <div class="form-group">
-                    <label data-tr="Kalkış Şehri" data-en="Departure City">Kalkış Şehri</label>
+                    <label>Kalkış Şehri</label>
                     <select><option>İstanbul (IST / SAW)</option><option>Ankara Esenboğa (ESB)</option><option>İzmir Adnan Menderes (ADB)</option></select>
                 </div>
                 <div class="form-group">
-                    <label data-tr="Varış Şehri (Şiir Diyarı)" data-en="Destination City (Poetic Land)">Varış Şehri (Şiir Diyarı)</label>
-                    <select><option>Trabzon (Karadeniz Şiirleri)</option><option>Nevşehir / Kapadokya</option><option>Gaziantep (Edebi Lezzetler)</option></select>
+                    <label>Varış Şehri (Şiir Diyarı)</label>
+                    <select><option>İstanbul (Boğaz ve Tarih Turları)</option><option>Trabzon (Karadeniz Şiirleri)</option><option>Nevşehir / Kapadokya</option></select>
                 </div>
                 <div class="form-group">
-                    <label data-tr="Uçuş Tarihi" data-en="Flight Date">Uçuş Tarihi</label>
+                    <label>Uçuş Tarihi</label>
                     <input type="date">
                 </div>
-                <button class="btn-primary" style="width:100%; padding: 14px;" onclick="alert(currentLang === 'tr' ? 'Uçuş seferleri listeleniyor...' : 'Listing flights...')"><span data-tr="Uçuş Bul" data-en="Find Flight">Uçuş Bul</span></button>
+                <button class="btn-primary" style="width:100%; padding: 14px;" onclick="alert('Uçuş seferleri listeleniyor...')">Uçuş Bul</button>
             </div>
         </div>
     </div>
@@ -557,19 +663,9 @@
         <div class="container">
             <div class="service-panel">
                 <h3><i class="fa-solid fa-bus" style="color: #e30a17;"></i> <span data-tr="Anadolu Yollarında Otobüs Bileti" data-en="Bus Ticket on Anatolian Roads">Anadolu Yollarında Otobüs Bileti</span></h3>
-                <div class="form-group">
-                    <label data-tr="Nereden" data-en="From">Nereden</label>
-                    <select><option>İstanbul Otogarı</option><option>Ankara Aşti</option><option>İzmir Otogarı</option></select>
-                </div>
-                <div class="form-group">
-                    <label data-tr="Nereye" data-en="To">Nereye</label>
-                    <select><option>Bursa (Tanpınar Rotaları)</option><option>Antalya</option><option>Trabzon</option></select>
-                </div>
-                <div class="form-group">
-                    <label data-tr="Yolculuk Tarihi" data-en="Travel Date">Yolculuk Tarihi</label>
-                    <input type="date">
-                </div>
-                <button class="btn-primary" style="width:100%; padding: 14px;" onclick="alert(currentLang === 'tr' ? 'Otobüs seferleri aranıyor...' : 'Searching bus trips...')"><span data-tr="Seferleri Listele" data-en="List Trips">Seferleri Listele</span></button>
+                <div class="form-group"><label>Nereden</label><select><option>İstanbul Otogarı</option><option>Ankara Aşti</option></select></div>
+                <div class="form-group"><label>Nereye</label><select><option>İstanbul (Esenler / Alibeyköy)</option><option>Bursa</option></select></div>
+                <button class="btn-primary" style="width:100%; padding: 14px;" onclick="alert('Seferler aranıyor...')">Seferleri Listele</button>
             </div>
         </div>
     </div>
@@ -579,15 +675,8 @@
         <div class="container">
             <div class="service-panel">
                 <h3><i class="fa-solid fa-hotel" style="color: #e30a17;"></i> <span data-tr="Edebi Konaklar ve Otel Rezervasyonu" data-en="Literary Mansions & Hotel Booking">Edebi Konaklar ve Otel Rezervasyonu</span></h3>
-                <div class="form-group">
-                    <label data-tr="Konaklamak İstediğiniz İl / Bölge" data-en="Destination City / Region">Konaklamak İstediğiniz İl / Bölge</label>
-                    <select><option>İstanbul Tarihi Yarımada Otelleri</option><option>Kapadokya Taş Konaklar</option><option>Bursa Osmanlı Konakları</option></select>
-                </div>
-                <div class="form-group">
-                    <label data-tr="Tarih Aralığı" data-en="Date Range">Tarih Aralığı</label>
-                    <input type="text" placeholder="12.06.2026 - 15.06.2026">
-                </div>
-                <button class="btn-primary" style="width:100%; padding: 14px;" onclick="alert(currentLang === 'tr' ? 'Oteller karşılaştırılıyor...' : 'Comparing hotels...')"><span data-tr="Otel Ara" data-en="Search Hotel">Otel Ara</span></button>
+                <div class="form-group"><label>Bölge Seçin</label><select><option>İstanbul Tarihi Yarımada / Pera Otelleri</option><option>Kapadokya Taş Konaklar</option></select></div>
+                <button class="btn-primary" style="width:100%; padding: 14px;" onclick="alert('Oteller listeleniyor...')">Otel Ara</button>
             </div>
         </div>
     </div>
@@ -597,15 +686,8 @@
         <div class="container">
             <div class="service-panel">
                 <h3><i class="fa-solid fa-car" style="color: #e30a17;"></i> <span data-tr="Yolculuk İçin Araç Kiralama" data-en="Car Rental for Journey">Yolculuk İçin Araç Kiralama</span></h3>
-                <div class="form-group">
-                    <label data-tr="Alış Yeri" data-en="Pickup Location">Alış Yeri</label>
-                    <select><option>İstanbul Havalimanı</option><option>Ankara Esenboğa Havalimanı</option><option>İzmir Adnan Menderes Havalimanı</option></select>
-                </div>
-                <div class="form-group">
-                    <label data-tr="Kiralama Tarihleri" data-en="Rental Dates">Kiralama Tarihleri</label>
-                    <input type="text" placeholder="Tarih seçiniz">
-                </div>
-                <button class="btn-primary" style="width:100%; padding: 14px;" onclick="alert(currentLang === 'tr' ? 'Uygun araçlar listeleniyor...' : 'Listing available cars...')"><span data-tr="Araç Kirala" data-en="Rent Car">Araç Kirala</span></button>
+                <div class="form-group"><label>Alış Yeri</label><select><option>İstanbul Havalimanı (IST)</option><option>Sabiha Gökçen Havalimanı (SAW)</option></select></div>
+                <button class="btn-primary" style="width:100%; padding: 14px;" onclick="alert('Araçlar listeleniyor...')">Araç Kirala</button>
             </div>
         </div>
     </div>
@@ -613,36 +695,20 @@
     <!-- EDEBİ BLOG SEKMESİ -->
     <div id="blog" class="tab-content">
         <div class="container">
-            <h2 class="section-title"><span data-tr="Atlass Edebi Seyahat Günlüğü" data-en="Atlass Literary Travel Journal">Atlass Edebi Seyahat Günlüğü</span></h2>
-            <p class="section-subtitle"><span data-tr="Şairlerin kaleminden Türkiye'nin gizli kalmış ilham durakları." data-en="Turkey's hidden inspiration stops from the pens of poets.">Şairlerin kaleminden Türkiye'nin gizli kalmış ilham durakları.</span></p>
-            
+            <h2 class="section-title">Atlass Edebi Seyahat Günlüğü</h2>
+            <p class="section-subtitle">Şairlerin kaleminden Türkiye'nin gizli kalmış ilham durakları.</p>
             <div class="grid">
                 <div class="card">
                     <div class="card-img-container">
-                        <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80" alt="Karadeniz">
-                        <span class="city-badge">61 - Trabzon</span>
+                        <img src="https://images.unsplash.com/photo-1541432901042-2d8bd64b3a9b?auto=format&fit=crop&w=600&q=80" alt="Istanbul">
+                        <span class="city-badge">34 - İstanbul</span>
                     </div>
                     <div class="card-body">
-                        <h3 class="card-title">Sabahattin Ali'nin İzinde Trabzon ve Karadeniz</h3>
-                        <div class="poem-snippet">"Dağlar, başınızda bulutlar var..."</div>
+                        <h3 class="card-title">Orhan Veli'nin Adımlarıyla İstanbul Sokakları</h3>
+                        <div class="poem-snippet">"İstanbul'u dinliyorum gözlerim kapalı..."</div>
                         <div class="card-footer-info">
                             <span class="guide-name"><i class="fa-regular fa-calendar"></i> 4 Haziran 2026</span>
-                            <span class="read-more" style="color: #e30a17; font-weight:600; cursor:pointer;" onclick="alert('Yazının tam detayı açılıyor...')">Devamı &rarr;</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <div class="card-img-container">
-                        <img src="https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?auto=format&fit=crop&w=600&q=80" alt="Kapadokya">
-                        <span class="city-badge">50 - Nevşehir</span>
-                    </div>
-                    <div class="card-body">
-                        <h3 class="card-title">Peribacalarında Şiir Rüzgarı</h3>
-                        <div class="poem-snippet">"Zamanın durduğu vadilerde akşam ezanı..."</div>
-                        <div class="card-footer-info">
-                            <span class="guide-name"><i class="fa-regular fa-calendar"></i> 1 Haziran 2026</span>
-                            <span class="read-more" style="color: #e30a17; font-weight:600; cursor:pointer;" onclick="alert('Yazının tam detayı açılıyor...')">Devamı &rarr;</span>
+                            <span class="read-more" style="color: #e30a17; font-weight:600;" onclick="openIstanbulModal()">Detayları Gör &rarr;</span>
                         </div>
                     </div>
                 </div>
@@ -652,17 +718,16 @@
 
     <footer>
         <p>&copy; 2026 Atlass Seyahat Platformu. Türkiye'nin Şiir ve Edebi Tur Rehberi.</p>
-        <p style="font-size: 0.85rem; color: #888;" data-tr="Bayrağımız ve şiirlerimizle dünyayı keşfedin." data-en="Discover the world with our flag and poems.">Bayrağımız ve şiirlerimizle dünyayı keşfedin.</p>
+        <p style="font-size: 0.85rem; color: #888;">Bayrağımız ve şiirlerimizle dünyayı keşfedin.</p>
     </footer>
 
-    <!-- JavaScript: Sekme, Türkçe / İngilizce Dil Çeviri Sistemi -->
+    <!-- JavaScript: Sekmeler, Modaller ve Dil Destekleri -->
     <script>
         let currentLang = 'tr';
 
         function switchTab(tabId) {
             const tabs = document.querySelectorAll('.tab-content');
             tabs.forEach(tab => tab.classList.remove('active'));
-
             document.getElementById(tabId).classList.add('active');
 
             const navLinks = document.querySelectorAll('.nav-links a');
@@ -672,6 +737,39 @@
             if(activeNav) activeNav.classList.add('active');
 
             window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // İl seçildiğinde İstanbul ise direkt modalı açma seçeneği
+        function checkCitySelection() {
+            const val = document.getElementById('ilSecimi').value;
+            if (val === '34') {
+                openIstanbulModal();
+            }
+        }
+
+        function searchTour() {
+            const val = document.getElementById('ilSecimi').value;
+            if (val === '34' || val === '') {
+                openIstanbulModal();
+            } else {
+                alert(currentLang === 'tr' ? 'Seçtiğiniz ilin şiir rotaları ve detayları yükleniyor!' : 'Loading poetic routes for selected city!');
+            }
+        }
+
+        function openIstanbulModal() {
+            document.getElementById('istanbulModal').style.display = 'flex';
+        }
+
+        function closeIstanbulModal() {
+            document.getElementById('istanbulModal').style.display = 'none';
+        }
+
+        // Modal dışına tıklayınca kapanma
+        window.onclick = function(event) {
+            let modal = document.getElementById('istanbulModal');
+            if (event.target == modal) {
+                modal.style.display = 'none';
+            }
         }
 
         function changeLanguage() {
