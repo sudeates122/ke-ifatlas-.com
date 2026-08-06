@@ -345,7 +345,7 @@
         .btn-bus { background: linear-gradient(135deg, #ff8c00 0%, #cc7000 100%); }
         .btn-hotel { background: linear-gradient(135deg, #008066 0%, #004d40 100%); }
 
-        /* GOOGLE İÇİN ZENGİN İÇERİK MAKALELERİ (AdSense Politika Engelini Kaldıran Alan) */
+        /* BLOG MAKALELERİ ALANI (Tıklanabilir ve Tam İçerikli Özgün Kartlar) */
         .seo-articles-section {
             margin-top: 60px;
             background: white;
@@ -380,12 +380,15 @@
             border: 1px solid #eee;
             padding: 25px;
             border-radius: 12px;
-            transition: transform 0.3s;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
         }
 
         .article-box:hover {
             transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+            box-shadow: 0 8px 25px rgba(227, 10, 23, 0.12);
+            border-color: #e30a17;
         }
 
         .article-box h4 {
@@ -393,12 +396,74 @@
             color: #1a1a1a;
             margin-bottom: 12px;
             font-family: 'Playfair Display', serif;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .article-box h4 i {
+            color: #e30a17;
+            font-size: 1rem;
+            transition: transform 0.3s;
+        }
+
+        .article-box:hover h4 i {
+            transform: translateX(5px);
         }
 
         .article-box p {
             font-size: 0.95rem;
             color: #555;
             line-height: 1.7;
+        }
+
+        /* OKUNAN BLOG MAKALENİN DETAY GÖSTERİM ALANI */
+        #blogDetailArea {
+            display: none;
+            margin-top: 40px;
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.06);
+            border-top: 5px solid #1a1a1a;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .blog-close-btn {
+            background: #1a1a1a;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            float: right;
+            font-size: 0.85rem;
+            transition: background 0.3s;
+        }
+
+        .blog-close-btn:hover { background: #e30a17; }
+
+        #blogTitle {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            color: #1a1a1a;
+            margin-bottom: 20px;
+        }
+
+        #blogContentBody p {
+            font-size: 1.05rem;
+            color: #444;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        #blogContentBody h5 {
+            font-size: 1.25rem;
+            color: #e30a17;
+            margin-top: 25px;
+            margin-bottom: 10px;
+            font-family: 'Playfair Display', serif;
         }
 
         footer {
@@ -494,25 +559,32 @@
             </div>
         </div>
 
-        <!-- GOOGLE ADSENSE İÇİN SABİT ZENGİN İÇERİK BLOKLARI (Sayfanın boş görünmesini önler) -->
-        <div class="seo-articles-section">
-            <h3>Anadolu'nun Kültür ve Seyahat Hafızası</h3>
-            <p class="intro-p">Keşif Atlası, Türkiye'nin dört bir yanındaki saklı kalmış güzellikleri, yerel gelenekleri ve seyahat rotalarını keşfetmeniz için hazırlandı. Aşağıdaki rehber yazılarını inceleyerek yeni rotalar oluşturabilirsiniz.</p>
+        <!-- GOOGLE ADSENSE İÇİN ÖZGÜN BLOG KARTLARI (Tıklanabilir Tam Metinler) -->
+        <div class="seo-articles-section" id="blogCardsSection">
+            <h3>Anadolu'nun Kültür ve Seyahat Hafızası (Blog Rehberleri)</h3>
+            <p class="intro-p">Keşif Atlası editörleri tarafından hazırlanan aşağıdaki detaylı rehber yazılarına tıklayarak seyahat tüyolarını, gizli rotaları ve özel Ankara/Anadolu analizlerini okuyabilirsiniz.</p>
             
             <div class="article-grid">
-                <div class="article-box">
-                    <h4>🎒 Hafta Sonu Kaçamak Rotaları</h4>
-                    <p>Büyükşehirlerin karmaşasından ve yoğun trafiğinden uzaklaşarak doğayla baş başa kalabileceğiniz, hafta sonu kısa sürede ulaşabileceğiniz en iyi huzur durakları ve doğa kamp alanları.</p>
+                <div class="article-box" onclick="openBlog('haftasonu')">
+                    <h4><span>🎒 Hafta Sonu Kaçamak Rotaları</span> <i class="fa-solid fa-arrow-right"></i></h4>
+                    <p>Büyükşehirlerin karmaşasından ve yoğun trafiğinden uzaklaşarak doğayla baş başa kalabileceğiniz, hafta sonu kısa sürede ulaşabileceğiniz en iyi huzur durakları ve doğa kamp alanları rehberi.</p>
                 </div>
-                <div class="article-box">
-                    <h4>🍲 Anadolu Gastronomi Turizmi</h4>
+                <div class="article-box" onclick="openBlog('gastronomi')">
+                    <h4><span>🍲 Anadolu Gastronomi Turizmi</span> <i class="fa-solid fa-arrow-right"></i></h4>
                     <p>81 ilin kendine has tencere yemekleri, taş fırın hamur işleri ve yerel lezzet durakları. Bir şehrin kültürünü anlamanın en iyi yolu mutfağından başlar; yöresel tatlar rehberi.</p>
                 </div>
-                <div class="article-box">
-                    <h4>🗺️ Seyahat Planlaması İpuçları</h4>
-                    <p>Yola çıkmadan önce bilinmesi gerekenler, otobüs ve uçak bileti bütçe ipuçları, konaklama alternatifleri ve seyahat çantanızda mutlaka bulundurmanız gereken hayat kurtarıcı eşyalar.</p>
+                <div class="article-box" onclick="openBlog('ankaraozel')">
+                    <h4><span>🏛️ Ankara'nın Saklı Yüzü ve Kültür Tarihi</span> <i class="fa-solid fa-arrow-right"></i></h4>
+                    <p>Memur ve öğrenci şehri algısının ötesinde; bozkırın ayazıyla pişen, sokaklarında tarihi anlar barındıran Ankara'nın Hamamönü'nden Kalearkası'na uzanan bilinmeyen yönleri.</p>
                 </div>
             </div>
+        </div>
+
+        <!-- BLOG YAZISI OKUMA ALANI -->
+        <div id="blogDetailArea">
+            <button class="blog-close-btn" onclick="closeBlog()"><i class="fa-solid fa-xmark"></i> Kapat / Geri Dön</button>
+            <h2 id="blogTitle">Blog Başlığı</h2>
+            <div id="blogContentBody" style="margin-top: 25px;"></div>
         </div>
 
     </div>
@@ -690,6 +762,59 @@
                 }
                 listEl.appendChild(li);
             });
+        }
+
+        /* BLOG İÇERİK YÖNETİMİ */
+        const blogYazilari = {
+            "haftasonu": {
+                title: "🎒 Büyükşehir Karmaşasından Uzak: En İyi Hafta Sonu Kaçamak Rotaları",
+                content: `
+                    <p>Hafta içi yoğun iş veya okul temposundan sonra zihni dinlendirmenin en etkili yolu, doğayla baş başa kalabileceğimiz kısa seyahatler planlamaktır. Büyükşehirlerin kalabalık caddelerinden ve gürültüsünden kaçmak isteyenler için Türkiye, eşsiz alternatifler sunar.</p>
+                    <h5>Doğayla İç İçe Huzur Durakları</h5>
+                    <p>Özellikle şehre yakın ormanlık alanlar, göl kenarları ve yaylalar, hafta sonu kampçıları ve doğa yürüyüşü (trekking) tutkunları için biçilmiş kaftandır. Şehir hayatının stresinden arınmak, sabah kuş sesleriyle uyanmak ve saf havayı solumak ruhsal sağlığımız için oldukça değerlidir.</p>
+                    <h5>Seyahat Çantası İçin Küçük İpuçları</h5>
+                    <p>Yola çıkarken hava durumunu önceden kontrol etmek, yanınıza rahat yürüyüş ayakkabıları almak ve mevsimine göre kat kat giysiler tercih etmek seyahatinizin konforunu iki katına çıkaracaktır.</p>
+                `
+            },
+            "gastronomi": {
+                title: "🍲 Anadolu Gastronomi Turizmi: 81 İlin Lezzet Hafızası",
+                content: `
+                    <p>Bir şehri anlamak, sadece onun kalelerini veya müzelerini gezmekle değil; mutfağına konuk olmakla mümkündür. Anadolu toprakları, binlerce yıllık medeniyetlerin harmanlandığı devasa bir lezzet havzasıdır.</p>
+                    <h5>Topraktan Sofraya Geleneksel Tarifler</h5>
+                    <p>Her ilin kendine has tencere yemekleri, taş fırınlarda pişen ekmekleri ve yerel baharatları o coğrafyanın karakterini yansıtır. Örneğin Güneydoğu'nun baharatlı et yemekleri ne kadar iddialıysa, Ege'nin zeytinyağlıları ve ot yemekleri de o kadar ferahlatıcıdır.</p>
+                    <h5>Gastronomi Gezisi Yaparken</h5>
+                    <p>Zincir restoranlar yerine yerel esnaf lokantalarını ve tarihi çarşılardaki küçük dükkanları tercih etmek, o şehrin gerçek mutfak kültürünü birinci elden deneyimlemenizi sağlar.</p>
+                `
+            },
+            "ankaraozel": {
+                title: "🏛️ Ankara'nın Saklı Yüzü: Bozkırın Kalbinde Tarih ve Sokak Kültürü",
+                content: `
+                    <p>Ankara denince akıllara çoğunlukla gri binalar ve resmi kurumlar gelir. Oysa bu şehir, yüzeydeki bu imajın çok ötesinde, derinlerinde çok zengin bir sokak kültürü ve tarihi doku barındırır.</p>
+                    <h5>Hamamönü ve Kale Surları Arasında Bir Yolculuk</h5>
+                    <p>Hamamönü'nün restore edilmiş ahşap evli sokaklarında yürürken 19. yüzyılın atmosferini soluyabilir; Ankara Kalesi'nin surlarına çıktığınızda ise tüm kenti ayaklarınızın altında bulabilirsiniz. Kale çevresindeki antikacılar ve bakırcılar atölyeleri geçmişe nostaljik bir köprü kurar.</p>
+                    <h5>Ankara'nın Yerel Yaşam Ritüelleri</h5>
+                    <p>Tunalı Hilmi Caddesi'ndeki hareketli sokak yaşamı, Kuğulu Park'ın sakinliği ve bozkırın ayazında içilen sıcak simit çay ikilisi, bu şehrin ruhunu oluşturan en temel unsurlardır.</p>
+                `
+            }
+        };
+
+        function openBlog(blogKey) {
+            const blog = blogYazilari[blogKey];
+            if(!blog) return;
+
+            document.getElementById('blogTitle').innerText = blog.title;
+            document.getElementById('blogContentBody').innerHTML = blog.content;
+
+            document.getElementById('blogCardsSection').style.display = 'none';
+            document.getElementById('blogDetailArea').style.display = 'block';
+            
+            window.scrollTo({top: document.getElementById('blogDetailArea').offsetTop - 100, behavior: 'smooth'});
+        }
+
+        function closeBlog() {
+            document.getElementById('blogDetailArea').style.display = 'none';
+            document.getElementById('blogCardsSection').style.display = 'block';
+            window.scrollTo({top: document.getElementById('blogCardsSection').offsetTop - 100, behavior: 'smooth'});
         }
 
         function changeLanguage() {
