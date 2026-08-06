@@ -448,6 +448,55 @@
             gap: 8px;
         }
 
+        /* EKSTRA ANSİKLOPEDİK KÜLTÜR BÖLÜMÜ (Google Değer Puanı İçin) */
+        .extra-knowledge-box {
+            background: #ffffff;
+            border: 1px solid #e6e6e6;
+            border-radius: 16px;
+            padding: 40px;
+            margin-top: 50px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+        }
+
+        .extra-knowledge-box h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: #1a1a1a;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .extra-knowledge-box h3 i { color: #e30a17; }
+
+        .knowledge-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 25px;
+        }
+
+        .knowledge-item {
+            background: #fafaf9;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 3px solid #1a1a1a;
+        }
+
+        .knowledge-item h4 {
+            font-size: 1.05rem;
+            color: #1a1a1a;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .knowledge-item p {
+            font-size: 0.92rem;
+            color: #555;
+            line-height: 1.6;
+        }
+
         /* MAKALE OKUMA EKRANI */
         #articleDetailView {
             display: none;
@@ -522,7 +571,7 @@
                 <i class="fa-solid fa-compass compass"></i>
             </div>
             <div class="logo-text-box">
-                <div class="logo-title">Keşif <span>Atlas</span></div>
+                <div class="logo-title">Keşif <span>Atlası</span></div>
                 <div class="logo-subtitle" id="nav-subtitle-text">Kültür ve Seyahat Ansiklopedisi</div>
             </div>
         </a>
@@ -640,6 +689,27 @@
                     </div>
                 </div>
             </div>
+
+            <!-- EKSTRA ANSİKLOPEDİK KÜLTÜR BLOKLARI (AdSense Kalite Puanını Artırır) -->
+            <div class="extra-knowledge-box">
+                <h3><i class="fa-solid fa-circle-info"></i> Keşif Atlası Ansiklopedik Veri Havuzu</h3>
+                <p style="color: #555; font-size: 0.98rem; margin-top: 5px;">Platformumuz, Türkiye'nin coğrafi sınırları içerisindeki tüm yerel kültürel birikimi akademik ve dergi formatında harmanlayarak dijital bir hafıza oluşturmayı amaçlar.</p>
+                
+                <div class="knowledge-grid">
+                    <div class="knowledge-item">
+                        <h4>Kültürel Miras Analizi</h4>
+                        <p>81 ilin her birinin kendine özgü folklorik ögeleri, geleneksel el sanatları ve yerel mimari dokuları arşivlenmektedir.</p>
+                    </div>
+                    <div class="knowledge-item">
+                        <h4>Gastronomik Çeşitlilik</h4>
+                        <p>Anadolu'nun toprak yapısından beslenen tencere yemekleri, coğrafi işaretli ürünler ve sokak lezzetleri detaylıca incelenir.</p>
+                    </div>
+                    <div class="knowledge-item">
+                        <h4>Sürdürülebilir Seyahat</h4>
+                        <p>Doğayı ve yerel esnafı koruyan, doğaya zarar vermeyen alternatif turizm rotaları ve ekosistem bilinçli gezi rehberleri sunulur.</p>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <!-- MAKALE DETAY GÖSTERİM ALANI -->
@@ -652,7 +722,7 @@
     </div>
 
     <footer>
-        <p>&copy; 2026 <span>Keşif Atlası</span> - Ansiklopedik Seyahat Platformu. Tüm hakları saklıdır.</p>
+        <p>&copy; 2026 <span>Keşif Atlası</span> - Türkiye'nin Kültür ve Şehir Ansiklopedisi. Tüm hakları saklıdır.</p>
     </footer>
 
     <script>
@@ -673,7 +743,7 @@
                 enPlaces: ["Hamamönü", "Kuğulu Park", "Ankara Castle", "Eymir Lake"],
                 trFood: [
                     "<strong>ASPAVA Kültürü:</strong> Kaşarlı, soslu, dürüm etin ardından gelen patates kızartması ve dondurmalı irmik helvası ritüeli.",
-                    "<strong>Ankara Simidi:</strong> Pekmezle yıkanıp çıtırdayana kadar taş fırında susamlanan, seyyar arabalarda kağıt üstünde satılan sokak lezzeti.",
+                    "<strong>Ankara Simidi:</strong> Pekmezle yıkanıp çıtırdayana kadar taş fırınlanan, seyyar arabalarda kağıt üstünde satılan sokak lezzeti.",
                     "<strong>Ankara Tavası:</strong> Kemikli kuzu etinin arpa şehriye pilavı ile güveç kaplarında odun ateşinde fırınlanması.",
                     "<strong>Beypazarı Kurusu:</strong> Tereyağı, tarçın ve köy ununun hamurdan taş fırınlarda kurutulmasıyla yapılan haftalık ev stoklarının vazgeçilmezi."
                 ],
