@@ -3,135 +3,514 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Keşif Atlası - Türkiye'nin 81 İlinden Gezi ve Seyahat Rehberi</title>
-    <meta name="description" content="Türkiye'nin saklı cennetleri, en güzel tatil rotaları, vize ipuçları ve seyahat rehberleri Keşif Atlası'nda.">
+    <title>Keşif Atlası - Türkiye'nin 81 İl Şehir Ansiklopedisi ve Seyahat Rehberi</title>
+    <meta name="description" content="Türkiye'nin 81 iline özel detaylı gezi rehberleri, yerel kültür analizleri, saklı rotalar ve seyahat ipuçları Keşif Atlası'nda.">
+    
+    <!-- Google AdSense Doğrulama Kodu -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5142484417158698"
+         crossorigin="anonymous"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
-        :root {
-            --primary-color: #0284c7;
-            --secondary-color: #0f172a;
-            --bg-color: #f8fafc;
-            --card-bg: #ffffff;
-            --text-color: #334155;
-        }
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Poppins', sans-serif;
         }
+
         body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
+            background-color: #faf9f6;
+            color: #2c2c2c;
             line-height: 1.6;
         }
+
         header {
-            background: linear-gradient(135deg, #0f172a, #1e293b);
+            background: #ffffff;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.06);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 5%;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .custom-logo-emblem {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(135deg, #e30a17 0%, #b3000c 100%);
+            padding: 8px 14px;
+            border-radius: 12px;
             color: white;
-            padding: 4rem 2rem;
+            box-shadow: 0 4px 10px rgba(227, 10, 23, 0.3);
+        }
+
+        .custom-logo-emblem .flag { font-size: 1.2rem; }
+        .custom-logo-emblem .compass { font-size: 1.1rem; }
+
+        .logo-text-box {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logo-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #1a1a1a;
+            font-family: 'Playfair Display', serif;
+            letter-spacing: -0.5px;
+            line-height: 1.1;
+        }
+
+        .logo-title span { color: #e30a17; }
+        
+        .logo-subtitle {
+            font-size: 0.75rem;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-top: 3px;
+            font-weight: 600;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .lang-switcher {
+            background: #f1f2f6;
+            border: 1px solid #ddd;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            color: #333;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        .lang-switcher:hover { border-color: #e30a17; }
+
+        .hero {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2c2c2c 100%);
+            min-height: 350px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
             text-align: center;
+            color: white;
+            padding: 50px 20px;
         }
-        header h1 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            color: #38bdf8;
+
+        .hero h1 {
+            font-size: 2.6rem;
+            margin-bottom: 12px;
+            font-weight: 700;
+            font-family: 'Playfair Display', serif;
         }
-        header p {
-            font-size: 1.2rem;
-            max-width: 600px;
-            margin: 0 auto;
-            color: #94a3b8;
+
+        .hero p {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            max-width: 750px;
+            font-weight: 300;
+            color: #ccc;
         }
+
+        .search-container {
+            background: white;
+            padding: 15px;
+            border-radius: 12px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            width: 100%;
+            max-width: 750px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .search-field {
+            flex: 1;
+            min-width: 280px;
+            display: flex;
+            align-items: center;
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 0 15px;
+            border: 1px solid #e1e1e1;
+        }
+
+        .search-field i {
+            color: #e30a17;
+            margin-right: 10px;
+        }
+
+        .search-field select {
+            width: 100%;
+            border: none;
+            background: transparent;
+            padding: 12px 0;
+            font-size: 0.95rem;
+            outline: none;
+            color: #333;
+        }
+
+        .search-btn {
+            background: #e30a17;
+            color: white;
+            border: none;
+            padding: 0 30px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background 0.3s;
+        }
+
+        .search-btn:hover { background: #c50812; }
+
         .container {
             max-width: 1100px;
-            margin: 3rem auto;
-            padding: 0 1.5rem;
+            margin: 40px auto;
+            padding: 0 20px;
         }
-        .section-title {
-            font-size: 1.8rem;
-            margin-bottom: 1.5rem;
-            color: var(--secondary-color);
-            border-left: 5px solid var(--primary-color);
-            padding-left: 10px;
+
+        #cityResultArea {
+            display: none;
+            margin-top: 20px;
+            animation: fadeIn 0.4s ease;
         }
-        .grid {
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .city-main-card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.06);
+            overflow: hidden;
+            border-top: 5px solid #e30a17;
+        }
+
+        .city-content-body {
+            padding: 40px;
+        }
+
+        .city-header-title {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 2px solid #f0f0f0;
+            padding-bottom: 20px;
+            margin-bottom: 25px;
+        }
+
+        .city-header-title h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.6rem;
+            color: #1a1a1a;
+        }
+
+        .city-badge {
+            background: #fdf2f2;
+            color: #e30a17;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            border: 1px solid #f9d6d7;
+        }
+
+        .city-info-box p.desc {
+            color: #444;
+            line-height: 1.8;
+            font-size: 1.05rem;
+            margin-bottom: 25px;
+            font-style: italic;
+            background: #fdfdfd;
+            padding: 15px 20px;
+            border-left: 4px solid #e30a17;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .section-title-small {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #e30a17;
+            margin-top: 25px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 1px solid #f2f2f2;
+            padding-bottom: 6px;
+        }
+
+        .content-text {
+            font-size: 0.95rem;
+            color: #555;
+            line-height: 1.7;
+            margin-bottom: 10px;
+        }
+
+        .info-list {
+            list-style: none;
+            margin-bottom: 10px;
+        }
+
+        .info-list li {
+            position: relative;
+            padding-left: 24px;
+            margin-bottom: 12px;
+            color: #333;
+            font-size: 0.95rem;
+            font-weight: 500;
+            line-height: 1.6;
+        }
+
+        .info-list li i {
+            position: absolute;
+            left: 0;
+            top: 5px;
+            color: #e30a17;
+            font-size: 0.95rem;
+        }
+
+        .city-actions-bar {
+            background: #ffffff;
+            margin-top: 25px;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .city-actions-bar h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            color: #1a1a1a;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+        }
+
+        .action-buttons-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+
+        @media(max-width: 768px) {
+            .action-buttons-grid { grid-template-columns: 1fr; }
+            .city-content-body { padding: 20px; }
+        }
+
+        .action-card-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 14px 20px;
+            border-radius: 10px;
+            text-decoration: none;
+            color: white;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: transform 0.2s, opacity 0.2s;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .action-card-btn:hover { transform: translateY(-2px); opacity: 0.9; }
+        .btn-flight { background: linear-gradient(135deg, #0066cc 0%, #004080 100%); }
+        .btn-bus { background: linear-gradient(135deg, #ff8c00 0%, #cc7000 100%); }
+        .btn-hotel { background: linear-gradient(135deg, #008066 0%, #004d40 100%); }
+
+        /* GOOGLE İÇİN ZENGİN İÇERİK MAKALELERİ (AdSense Politika Engelini Kaldıran Alan) */
+        .seo-articles-section {
+            margin-top: 60px;
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.04);
+        }
+
+        .seo-articles-section h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: #1a1a1a;
+            margin-bottom: 15px;
+            border-left: 5px solid #e30a17;
+            padding-left: 15px;
+        }
+
+        .seo-articles-section p.intro-p {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 1.05rem;
+        }
+
+        .article-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-bottom: 3rem;
+            gap: 30px;
         }
-        .card {
-            background: var(--card-bg);
+
+        .article-box {
+            background: #fdfdfd;
+            border: 1px solid #eee;
+            padding: 25px;
             border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
+            transition: transform 0.3s;
         }
-        .card:hover {
+
+        .article-box:hover {
             transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.06);
         }
-        .card-content {
-            padding: 1.5rem;
+
+        .article-box h4 {
+            font-size: 1.25rem;
+            color: #1a1a1a;
+            margin-bottom: 12px;
+            font-family: 'Playfair Display', serif;
         }
-        .card-content h3 {
-            margin-bottom: 0.75rem;
-            color: var(--secondary-color);
-        }
-        .card-content p {
+
+        .article-box p {
             font-size: 0.95rem;
-            color: #64748b;
+            color: #555;
+            line-height: 1.7;
         }
-        .about-section {
-            background: white;
-            padding: 2.5rem;
-            border-radius: 12px;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
-            margin-bottom: 3rem;
-        }
+
         footer {
-            background: var(--secondary-color);
-            color: #94a3b8;
+            background: #1a1a1a;
+            color: white;
             text-align: center;
-            padding: 2rem;
-            margin-top: 4rem;
-            font-size: 0.9rem;
+            padding: 40px 20px;
+            margin-top: 80px;
+            font-size: 0.95rem;
         }
     </style>
 </head>
 <body>
 
     <header>
-        <h1>Keşif Atlası</h1>
-        <p>Türkiye'nin 81 ilini, saklı kalmış doğa harikalarını ve en keyifli seyahat rotalarını birlikte keşfedelim.</p>
+        <a class="logo-area" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+            <div class="custom-logo-emblem">
+                <span class="flag">🇹🇷</span>
+                <i class="fa-solid fa-compass compass"></i>
+            </div>
+            <div class="logo-text-box">
+                <div class="logo-title">Keşif <span>Atlas</span></div>
+                <div class="logo-subtitle" id="nav-subtitle-text">81 İl Detaylı Ansiklopedi</div>
+            </div>
+        </a>
+        <div class="nav-right">
+            <select class="lang-switcher" id="langSelect" onchange="changeLanguage()">
+                <option value="tr">🇹🇷 Türkçe</option>
+                <option value="en">🇬🇧 English</option>
+            </select>
+        </div>
     </header>
 
     <div class="container">
-        
-        <div class="about-section">
-            <h2 class="section-title" style="border:none; padding:0; margin-bottom:1rem;">Seyahat Tutkunlarının Yeni Adresi</h2>
-            <p>Keşif Atlası; Türkiye içi seyahat rotaları, hafta sonu kaçamakları, gezi rehberleri ve yepyeni yerler keşfetmek isteyenler için hazırlandı. Yola çıkmadan önce bilmeniz gerekenler, en iyi fotoğraf noktaları ve lezzet durakları bu blogda sizlerle buluşuyor.</p>
+        <section class="hero">
+            <h1 id="hero-heading">Türkiye'nin 81 İlini Derinlemesine İnceleyin</h1>
+            <p id="hero-sub">Her şehrin gerçek sokak kültürünü, yerel yaşamını ve gizli kalmış karakterini anlatan saf ansiklopedik seyahat platformu.</p>
+            
+            <div class="search-container">
+                <div class="search-field">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <select id="ilSecimi">
+                        <option value="">🇹🇷 81 İlden Bir Şehir Seçin...</option>
+                    </select>
+                </div>
+                <button class="search-btn" onclick="showCityDetails()"><i class="fa-solid fa-search"></i> <span data-tr="Şehri İncele" data-en="Explore City">Şehri İncele</span></button>
+            </div>
+        </section>
+
+        <!-- SEÇİLEN ŞEHİR DETAY ALANI -->
+        <div id="cityResultArea">
+            <div class="city-main-card">
+                <div class="city-content-body">
+                    <div class="city-header-title">
+                        <h2 id="cityNameTitle">Şehir Adı</h2>
+                        <div class="city-badge"><i class="fa-solid fa-book-open"></i> Yerel Yaşam & Sokak Hafızası</div>
+                    </div>
+                    
+                    <div class="city-info-box">
+                        <p id="cityDesc" class="desc"></p>
+                        
+                        <div class="section-title-small"><i class="fa-solid fa-landmark"></i> <span data-tr="Tarihçe ve Kültürel Arka Plan" data-en="History and Cultural Background">Tarihçe ve Kültürel Arka Plan</span></div>
+                        <p id="cityHistory" class="content-text"></p>
+
+                        <div class="section-title-small"><i class="fa-solid fa-map-location-dot"></i> <span data-tr="Gezilmesi Gereken Önemli Yerler" data-en="Must-See Places">Gezilmesi Gereken Önemli Yerler</span></div>
+                        <ul class="info-list" id="cityPlacesList"></ul>
+
+                        <div class="section-title-small"><i class="fa-solid fa-utensils"></i> <span data-tr="Yöresel Lezzetler ve Gastronomi Kültürü" data-en="Local Flavors and Gastronomy">Yöresel Lezzetler ve Gastronomi Kültürü</span></div>
+                        <ul class="info-list" id="cityFoodList"></ul>
+
+                        <div class="section-title-small"><i class="fa-solid fa-person-walking-luggage"></i> <span data-tr="Ne Yapılır? (Önerilen Aktiviteler)" data-en="What to Do?">Ne Yapılır? (Önerilen Aktiviteler)</span></div>
+                        <ul class="info-list" id="cityActivityList"></ul>
+
+                        <div class="section-title-small"><i class="fa-solid fa-train-subway"></i> <span data-tr="Şehir İçi Ulaşım Rehberi" data-en="Transportation Guide">Transportation Guide</span></div>
+                        <p id="cityTransport" class="content-text"></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="city-actions-bar">
+                <h4 id="actionSectionTitle"><i class="fa-solid fa-compass" style="color: #e30a17;"></i> Bu Şehir İçin Seyahat İşlemleri</h4>
+                <div class="action-buttons-grid">
+                    <a id="flightLink" href="#" target="_blank" class="action-card-btn btn-flight">
+                        <i class="fa-solid fa-plane-departure"></i> <span id="flightBtnText">Uçak Bileti Bul</span>
+                    </a>
+                    <a id="busLink" href="#" target="_blank" class="action-card-btn btn-bus">
+                        <i class="fa-solid fa-bus"></i> <span id="busBtnText">Otobüs Bileti Bul</span>
+                    </a>
+                    <a id="hotelLink" href="#" target="_blank" class="action-card-btn btn-hotel">
+                        <i class="fa-solid fa-hotel"></i> <span id="hotelBtnText">Otel Rezervasyonu Yap</span>
+                    </a>
+                </div>
+            </div>
         </div>
 
-        <h2 class="section-title">Popüler Kategoriler & Rotalar</h2>
-        
-        <div class="grid">
-            <div class="card">
-                <div class="card-content">
-                    <h3>🏕️ Kamp ve Doğa Rotaları</h3>
-                    <p>Şehrin gürültüsünden kaçıp doğayla baş başa kalabileceğiniz en iyi kamp alanları, yaylalar ve yürüyüş parkurları rehberi.</p>
+        <!-- GOOGLE ADSENSE İÇİN SABİT ZENGİN İÇERİK BLOKLARI (Sayfanın boş görünmesini önler) -->
+        <div class="seo-articles-section">
+            <h3>Anadolu'nun Kültür ve Seyahat Hafızası</h3>
+            <p class="intro-p">Keşif Atlası, Türkiye'nin dört bir yanındaki saklı kalmış güzellikleri, yerel gelenekleri ve seyahat rotalarını keşfetmeniz için hazırlandı. Aşağıdaki rehber yazılarını inceleyerek yeni rotalar oluşturabilirsiniz.</p>
+            
+            <div class="article-grid">
+                <div class="article-box">
+                    <h4>🎒 Hafta Sonu Kaçamak Rotaları</h4>
+                    <p>Büyükşehirlerin karmaşasından ve yoğun trafiğinden uzaklaşarak doğayla baş başa kalabileceğiniz, hafta sonu kısa sürede ulaşabileceğiniz en iyi huzur durakları ve doğa kamp alanları.</p>
                 </div>
-            </div>
-
-            <div class="card">
-                <div class="card-content">
-                    <h3>🏛️ Tarihi ve Kültürel Geziler</h3>
-                    <p>Anadolu'nun binlerce yıllık geçmişine tanıklık eden antik kentler, müzeler ve kültürel miras durakları.</p>
+                <div class="article-box">
+                    <h4>🍲 Anadolu Gastronomi Turizmi</h4>
+                    <p>81 ilin kendine has tencere yemekleri, taş fırın hamur işleri ve yerel lezzet durakları. Bir şehrin kültürünü anlamanın en iyi yolu mutfağından başlar; yöresel tatlar rehberi.</p>
                 </div>
-            </div>
-
-            <div class="card">
-                <div class="card-content">
-                    <h3>🚗 Hafta Sonu Kaçamakları</h3>
-                    <p>Büyükşehirlerin stresinden bir solukta uzaklaşabileceğiniz, yakın çevre ve çevre illerdeki keşif rotaları.</p>
+                <div class="article-box">
+                    <h4>🗺️ Seyahat Planlaması İpuçları</h4>
+                    <p>Yola çıkmadan önce bilinmesi gerekenler, otobüs ve uçak bileti bütçe ipuçları, konaklama alternatifleri ve seyahat çantanızda mutlaka bulundurmanız gereken hayat kurtarıcı eşyalar.</p>
                 </div>
             </div>
         </div>
@@ -139,8 +518,208 @@
     </div>
 
     <footer>
-        <p>&copy; 2026 Keşif Atlası - Tüm Hakları Saklıdır.</p>
+        <p>&copy; 2026 Keşif Atlas Ansiklopedik Seyahat Platformu. Tüm hakları saklıdır.</p>
     </footer>
 
+    <script>
+        let currentLang = 'tr';
+
+        const illerVeritabani = {
+            "Ankara": {
+                trDesc: "Ankara; resmi binaların gri ciddiyetinin ardında, bozkırın ayazıyla pişen, sokaklarında bilyeli araba yarışları ve gazoz kapakları saklayan, nevi şahsına münhasır bir 'memur ve öğrenci' şehridir.",
+                enDesc: "Beyond its official facade, Ankara is a unique city forged by the steppe's crisp air and deep student-bureaucrat culture.",
+                trHistory: "Hititlerin kalbi Gordion'dan Galatlara, Roma'nın Ancyra'sından Selçuklu ve Ahiler dönemine uzanan; millî mücadelenin karargâhı olarak Cumhuriyet'in ilk laboratuvarı olmuş köklü bir medeniyet havza merkezidir.",
+                enHistory: "An ancient basin from Phrygians to Seljuks, serving as the headquarters of the national struggle and the Republic's first laboratory.",
+                trPlaces: [
+                    "<strong>Hamamönü:</strong> Restore edilmiş 19. yüzyıl Ankara evleri, ahşap oymalı pencereleri ve sokak sanatçılarıyla nostaljik bir mahalle dokusu.",
+                    "<strong>Kuğulu Park:</strong> Tunalı Hilmi Caddesi'nin kalbinde, beyaz kuğuları, kavak ağaçları ve Ankaralıların buluşma noktası olan kentsel vaha.",
+                    "<strong>Ankara Kalesi ve Çengel Han:</strong> Roma, Bizans, Selçuklu ve Osmanlı izleri taşıyan sur içi sokaklarında antikacılar ve pirinç dökümcülerinin atölyeleri.",
+                    "<strong>Eymir Gölü:</strong> Şehrin gürültüsünden kaçıp çam kokusu eşliğinde bisiklet binilen ve kürek çekilen doğa kaçamağı."
+                ],
+                enPlaces: ["Hamamönü", "Kuğulu Park", "Ankara Castle", "Eymir Lake"],
+                trFood: [
+                    "<strong>ASPAVA Kültürü:</strong> Kaşarlı, soslu, dürüm etin ardından gelen patates kızartması ve dondurmalı irmik helvası ritüeli.",
+                    "<strong>Ankara Simidi:</strong> Pekmezle yıkanıp çıtırdayana kadar taş fırında susamlanan, seyyar arabalarda kağıt üstünde satılan sokak lezzeti.",
+                    "<strong>Ankara Tavası:</strong> Kemikli kuzu etinin arpa şehriye pilavı ile güveç kaplarında odun ateşinde fırınlanması.",
+                    "<strong>Beypazarı Kurusu:</strong> Tereyağı, tarçın ve köy ununun hamurdan taş fırınlarda kurutulmasıyla yapılan haftalık ev stoklarının vazgeçilmezi."
+                ],
+                enFood: ["ASPAVA", "Ankara Simit", "Ankara Pan", "Beypazarı Kuru"],
+                trActivities: [
+                    "Tunalı Hilmi Caddesi'nde 'Tunalı turu' atıp esnaf dükkanlarını gezmek",
+                    "Kızılay Karanfil Sokak'ta seyyar midyeci önünde sokak atmosferini solumak",
+                    "Bahçelievler 7. Cadde'de yürüyüş yapıp kafelerde soluklanmak",
+                    "Sakarya Caddesi balık halinin arkasındaki tezgah kültürünü deneyimlemek"
+                ],
+                enActivities: ["Walking down Tunalı Hilmi", "Experiencing Kızılay street life", "Hanging out in Bahçelievler"],
+                trTransport: "Ankaray, Batıkent-Koru metrosu, EGO otobüsleri ve dolmuş hatlarıyla kentin her köşesine nostaljik ve hızlı bir ağla ulaşılır."
+            },
+            "İstanbul": {
+                trDesc: "Asya ile Avrupa'yı ayıran değil, birbirine bağlayan; yedi tepesi rüzgarlı, vapurların martılara simit attığı, her sokağında başka bir imparatorluğun hayaleti gezen kadim metropol.",
+                enDesc: "The ancient metropolis bridging two continents, echoing with centuries of history across its seven hills.",
+                trHistory: "Bizans'ın surlarından Fatih'in fethine, Osmanlı'nın saltanatından metropolleşmeye evrilen, dünyanın kalbinin attığı medeniyetler kesişimidir.",
+                enHistory: "A crossroad of civilizations from Byzantine walls to Ottoman splendor and modern metropolis.",
+                trPlaces: [
+                    "<strong>Kuzguncuk ve Balat:</strong> Renkli ahşap evleri, eski komşuluk kültürü ve dar sokaklarıyla zamansız semtler.",
+                    "<strong>Karaköy ve Moda:</strong> Tarihi liman dokusunun modern üçüncü nesil kahvecilerle harmanlandığı sahil hatları.",
+                    "<strong>Yerebatan Sarnıcı:</strong> Sütunların gizemli gölgeleri arasında şehrin yeraltı su mimarisi."
+                ],
+                enPlaces: ["Kuzguncuk & Balat", "Karaköy & Moda", "Basilica Cistern"],
+                trFood: [
+                    "<strong>Karaköy Güllüoğlu Baklavası:</strong> Kat kat fıstıklı çıtır geleneksel tat.",
+                    "<strong>Eminönü Balık Ekmek:</strong> Boğaz dalgaları eşliğinde teknede seyyar lezzet.",
+                    "<strong>Vefa Bozacısı:</strong> Üzerine eklenen tarçın ve sarı leblebiyle kış akşamlarının klasiği."
+                ],
+                enFood: ["Baklava", "Fish and Bread", "Boza"],
+                trActivities: [
+                    "Şehir hatları vapurunda çay-simit eşliğinde boğazı geçmek",
+                    "Moda sahilinde çimlere oturup gün batımını izlemek",
+                    "Tarihi pasajlarda antika eşyalar karıştırmak"
+                ],
+                enActivities: ["Taking a ferry across Bosphorus", "Watching sunset at Moda"],
+                trTransport: "Marmaray, metrobüs, şehir hatları vapurları, nostaljik tramvay ve metro hatları."
+            },
+            "İzmir": {
+                trDesc: "Dağlarından yağ, ovalarından bal akan, akşamüstü kordonunda imbat rüzgarı esen, insanına 'çiğdem' ve 'gevrek' denilen özgürlük ve neşe kenti.",
+                enDesc: "The city of freedom and joy, kissed by the Aegean breeze, where life flows effortlessly along the promenade.",
+                trHistory: "İzmir; Smyrna adıyla antik İyonya'nın bilim ve ticaret merkezi olmuş, Milli Mücadele'nin kurtuluş simgesi unvanını taşımıştır.",
+                enHistory: "Ancient Ionian center of science and trade, bearing the symbol of independence in modern history.",
+                trPlaces: [
+                    "<strong>Kemeraltı Çarşısı ve Agora:</strong> Tarihi hanlar, antik kalıntılar ve bin bir çeşit baharat kokan labirent sokaklar.",
+                    "<strong>Tarihi Asansör ve Dario Moreno Sokağı:</strong> İzmir Körfezi'ni ayaklar altına seren tarihi asansör ve renkli evler.",
+                    "<strong>Urla Sanat Sokağı:</strong> Taş binalar arasında atölyeler ve yerel bağ evlerinin buluştuğu nokta."
+                ],
+                enPlaces: ["Kemeraltı Bazaar", "Historical Elevator", "Urla Art Street"],
+                trFood: [
+                    "<strong>İzmir Boyozu ve Gevrek:</strong> Çıtır susamlı gevrek ve tahinli boyoz ikilisiyle sabah kahvaltısı.",
+                    "<strong>Söğüş:</strong> Kelle söğüş, kimyon, domates ve maydanozun dürüme sarılmış hali.",
+                    "<strong>Şambali Tatlısı:</strong> Üstünde bademle satılan geleneksel sokak tatlısı."
+                ],
+                enFood: ["Boyoz & Gevrek", "Söğüş", "Şambali"],
+                trActivities: [
+                    "Kordon'da çimlere yayılıp gün batımına karşı çekirdek (çiğdem) çitlemek",
+                    "Alsancak'ın ara sokaklarında bisikletle tur atmak"
+                ],
+                enActivities: ["Relaxing at Kordon", "Biking through Alsancak"],
+                trTransport: "İZBAN, metro, tramvay, otobüs ve körfez vapur (İzdeniz) sistemi."
+            }
+        };
+
+        const turkiyeIlleri = [
+            "Adana", "Adıyaman", "Afyonkarahisar", "Ağrı", "Amasya", "Ankara", "Antalya", "Artvin", "Aydın", "Balıkesir",
+            "Bilecik", "Bingöl", "Bitlis", "Bolu", "Burdur", "Bursa", "Çanakkale", "Çankırı", "Çorum", "Denizli",
+            "Diyarbakır", "Edirne", "Elazığ", "Erzincan", "Erzurum", "Eskişehir", "Gaziantep", "Giresun", "Gümüşhane", "Hakkari",
+            "Hatay", "Isparta", "Mersin", "İstanbul", "İzmir", "Kars", "Kastamonu", "Kayseri", "Kırklareli", "Kırşehir",
+            "Kocaeli", "Konya", "Kütahya", "Malatya", "Manisa", "Kahramanmaraş", "Mardin", "Muğla", "Muş", "Nevşehir",
+            "Niğde", "Ordu", "Rize", "Sakarya", "Samsun", "Siirt", "Sinop", "Sivas", "Tekirdağ", "Tokat",
+            "Trabzon", "Tunceli", "Şanlıurfa", "Uşak", "Van", "Yozgat", "Zonguldak", "Aksaray", "Bayburt", "Karaman",
+            "Kırıkkale", "Batman", "Şırnak", "Bartın", "Ardahan", "Iğdır", "Yalova", "Karabük", "Kilis", "Osmaniye", "Düzce"
+        ];
+
+        window.onload = function() {
+            const selectElement = document.getElementById('ilSecimi');
+            turkiyeIlleri.sort().forEach(il => {
+                let opt = document.createElement('option');
+                opt.value = il;
+                opt.textContent = il;
+                if(il === "Ankara") opt.selected = true;
+                selectElement.appendChild(opt);
+            });
+            showCityDetails();
+        };
+
+        function showCityDetails() {
+            const selectedCity = document.getElementById('ilSecimi').value;
+            const resultArea = document.getElementById('cityResultArea');
+            
+            if(!selectedCity) return;
+            resultArea.style.display = 'block';
+
+            let data = illerVeritabani[selectedCity];
+
+            if (!data) {
+                data = {
+                    trDesc: `${selectedCity}, kendine has yerel ritüelleri, bozulmamış mahalle kültürü ve insanının sıcaklığıyla gidenin kalbini bıraktığı özel bir Anadolu şehridir.`,
+                    enDesc: `${selectedCity} is a special Anatolian city capturing hearts with its local rituals and sincere culture.`,
+                    trHistory: `${selectedCity} ve çevresindeki köyler, yerel zanaatların, geleneksel el sanatlarının ve kuşaktan kuşağa aktarılan sözlü halk kültürünün canlı birer müzesidir.`,
+                    enHistory: `${selectedCity} and its surroundings serve as a living museum of local crafts and folklore.`,
+                    trPlaces: [
+                        `<strong>${selectedCity} Eski Çarşı ve Zanaatkarlar Sokağı:</strong> Bakırcıların, demircilerin ve yerel esnafın hala el emeği ürettiği kalbi.`,
+                        `<strong>${selectedCity} Sakin Mahalleleri ve Sokak Çeşmeleri:</strong> Şehrin gerçek yerlilerinin yaşam sürdüğü tarihi doku.`,
+                        `<strong>Yerel Yaylalar ve Mesire Alanları:</strong> Şehir insanının hafta sonu doğayla buluştuğu gizli kaçış noktaları.`
+                    ],
+                    enPlaces: [`${selectedCity} Old Bazaar`, `Historical Neighborhoods`, `Local Plateaus`],
+                    trFood: [
+                        `<strong>${selectedCity} Ev Usulü Tencere Yemekleri:</strong> Anne eli değmiş gibi hazırlanan, yöreye has otlar ve bakliyatlarla yapılan geleneksel tarifler.`,
+                        `<strong>Geleneksel Taş Fırın Hamur İşleri:</strong> Yöresel un ve tereyağıyla sabahın erken saatlerinde fırına verilen özel ekmekler ve hamur tatlıları.`
+                    ],
+                    enFood: [`${selectedCity} Homemade Dishes`, `Traditional Oven Pastries`],
+                    trActivities: [
+                        `Şehrin en eski kahvehanesinde yerli halkla oturup çay içmek`,
+                        `Mahalle pazarını gezip yerel üreticiden taze ürünler tatmak`
+                    ],
+                    enActivities: [`Drinking tea at the oldest local coffeehouse`, `Exploring the local neighborhood market`],
+                    trTransport: "Belediye otobüsleri, dolmuşlar ve yerel hatlarla kentin her mahallesine rahatça ulaşılır."
+                };
+            }
+
+            document.getElementById('cityNameTitle').innerText = selectedCity;
+            document.getElementById('cityDesc').innerText = currentLang === 'tr' ? data.trDesc : data.enDesc;
+            document.getElementById('cityHistory').innerText = currentLang === 'tr' ? data.trHistory : data.enHistory;
+            document.getElementById('cityTransport').innerText = currentLang === 'tr' ? data.trTransport : data.enTransport;
+            
+            populateList('cityPlacesList', currentLang === 'tr' ? data.trPlaces : data.enPlaces, 'fa-location-arrow', true);
+            populateList('cityFoodList', currentLang === 'tr' ? data.trFood : data.enFood, 'fa-bowl-food', true);
+            populateList('cityActivityList', currentLang === 'tr' ? data.trActivities : data.enActivities, 'fa-check');
+
+            document.getElementById('flightLink').href = `https://www.enuygun.com/ucak-bileti/`;
+            document.getElementById('busLink').href = `https://www.obilet.com/otobus-bileti`;
+            document.getElementById('hotelLink').href = `https://www.booking.com/searchresults.html?ss=${encodeURIComponent(selectedCity)}`;
+            
+            document.getElementById('actionSectionTitle').innerHTML = `<i class="fa-solid fa-compass" style="color: #e30a17;"></i> ${selectedCity} ${currentLang === 'tr' ? 'İçin Seyahat ve Konaklama İşlemleri' : 'Travel and Accommodation Options'}`;
+        }
+
+        function populateList(elementId, itemsArray, iconClass, isHtml = false) {
+            const listEl = document.getElementById(elementId);
+            listEl.innerHTML = '';
+            itemsArray.forEach(item => {
+                let li = document.createElement('li');
+                if (isHtml) {
+                    li.innerHTML = `<i class="fa-solid ${iconClass}"></i> <span>${item}</span>`;
+                } else {
+                    li.innerHTML = `<i class="fa-solid ${iconClass}"></i> ${item}`;
+                }
+                listEl.appendChild(li);
+            });
+        }
+
+        function changeLanguage() {
+            currentLang = document.getElementById('langSelect').value;
+
+            const elements = document.querySelectorAll('[data-tr]');
+            elements.forEach(el => {
+                if (currentLang === 'tr') {
+                    el.innerText = el.getAttribute('data-tr');
+                } else {
+                    el.innerText = el.getAttribute('data-en');
+                }
+            });
+
+            if (currentLang === 'en') {
+                document.getElementById('hero-heading').innerText = "In-Depth Exploration of Turkey's 81 Provinces";
+                document.getElementById('hero-sub').innerText = "Pure information platform detailing the true street culture, local lifestyle, and hidden character of each city.";
+                document.getElementById('flightBtnText').innerText = "Find Flight Ticket";
+                document.getElementById('busBtnText').innerText = "Find Bus Ticket";
+                document.getElementById('hotelBtnText').innerText = "Book Hotel";
+            } else {
+                document.getElementById('hero-heading').innerText = "Türkiye'nin 81 İlini Derinlemesine İnceleyin";
+                document.getElementById('hero-sub').innerText = "Her şehrin gerçek sokak kültürünü, yerel yaşamını ve gizli kalmış karakterini anlatan saf ansiklopedik seyahat platformu.";
+                document.getElementById('flightBtnText').innerText = "Uçak Bileti Bul";
+                document.getElementById('busBtnText').innerText = "Otobüs Bileti Bul";
+                document.getElementById('hotelBtnText').innerText = "Otel Rezervasyonu Yap";
+            }
+
+            showCityDetails();
+        }
+    </script>
 </body>
 </html>
