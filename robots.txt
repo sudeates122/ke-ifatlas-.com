@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://xn--keifatlas-3pb21c.com/sitemap.xml
