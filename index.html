@@ -1,7 +1,175 @@
-/* ==========================================================================
-   Keşif Atlası — Ana Stil Dosyası
-   ========================================================================== */
+cat << 'EOF' > setup.sh
+#!/bin/bash
+set -e
 
+echo "🚀 Keşif Atlası projesi kuruluyor..."
+
+# 1. Klasörleri oluştur
+mkdir -p data assets/css assets/js
+
+# 2. package.json
+cat << 'FILE' > package.json
+{
+  "name": "kesif-atlasi",
+  "version": "1.0.0",
+  "description": "Türkiye'nin 81 İli Gezi Rehberi - Statik Site",
+  "main": "generate.js",
+  "scripts": {
+    "build": "node generate.js && node build-blog.js && node build-pages.js"
+  },
+  "keywords": ["gezi-rehberi", "turkiye", "81-il", "static-site-generator"],
+  "author": "",
+  "license": "MIT"
+}
+FILE
+
+# 3. .gitignore
+cat << 'FILE' > .gitignore
+node_modules/
+.DS_Store
+*.log
+FILE
+
+# 4. build.sh
+cat << 'FILE' > build.sh
+#!/bin/bash
+set -e
+echo "▶ Keşif Atlası derleniyor..."
+node generate.js
+node build-blog.js
+node build-pages.js
+echo ""
+echo "✔ Site hazır! index.html, iller/, blog/, sitemap.xml ve robots.txt güncellendi."
+FILE
+chmod +x build.sh
+
+# 5. data/iller.json
+cat << 'FILE' > data/iller.json
+[
+  {
+    "isim": "İstanbul",
+    "slug": "istanbul",
+    "plaka": "34",
+    "bolge": "Marmara",
+    "ozet": "İki kıtayı birbirine bağlayan, tarih ve modern yaşamı boğaz manzarasıyla harmanlayan metropol.",
+    "en_iyi_zaman": "Nisan - Mayıs ve Eylül - Ekim",
+    "gezilecek": ["Tarihi Yarımada", "Galata Kulesi", "Boğaz Turu", "Adalar"],
+    "lezzet": ["Balık Ekmek", "Sultanahmet Köftesi", "Sarıyer Böreği", "Kanlıca Yoğurdu"]
+  },
+  {
+    "isim": "Nevşehir",
+    "slug": "nevsehir",
+    "plaka": "50",
+    "bolge": "İç Anadolu",
+    "ozet": "Peribacaları ve yeraltı şehirleriyle Kapadokya'nın kalbi; balon turlarının başkenti.",
+    "en_iyi_zaman": "Nisan - Haziran ve Eylül - Kasım",
+    "gezilecek": ["Göreme Açık Hava Müzesi", "Derinkuyu Yeraltı Şehri", "Uçhisar Kalesi", "Paşabağları"],
+    "lezzet": ["Testi Kebabı", "Nevşehir Tavası", "Köftür", "Kuru Kaymak"]
+  },
+  {
+    "isim": "Antalya",
+    "slug": "antalya",
+    "plaka": "07",
+    "bolge": "Akdeniz",
+    "ozet": "Türkiye turizminin başkenti; antik kentleri, plajları ve Toros manzarasıyla dört mevsim canlı.",
+    "en_iyi_zaman": "Nisan - Haziran ve Eylül - Kasım",
+    "gezilecek": ["Kaleiçi", "Düden Şelalesi", "Aspendos Antik Tiyatrosu", "Olimpos"],
+    "lezzet": ["Antalya Piyazı", "Hibeş", "Yanık Dondurma", "Şiş Köfte"]
+  },
+  {
+    "isim": "İzmir",
+    "slug": "izmir",
+    "plaka": "35",
+    "bolge": "Ege",
+    "ozet": "Ege'nin incisi; sahil şeridi, antik kentleri ve özgür ruhuyla yıl boyu canlı bir liman şehri.",
+    "en_iyi_zaman": "Mayıs - Haziran ve Eylül - Ekim",
+    "gezilecek": ["Kordon", "Efes Antik Kenti", "Şirince Köyü", "Tarihi Asansör"],
+    "lezzet": ["Boyoz", "İzmir Kumrusu", "İzmir Köftesi", "Bomba Tatlısı"]
+  },
+  {
+    "isim": "Trabzon",
+    "slug": "trabzon",
+    "plaka": "61",
+    "bolge": "Karadeniz",
+    "ozet": "Sümela Manastırı'nın kayalara oyulduğu, yeşille denizin iç içe geçtiği Doğu Karadeniz merkezi.",
+    "en_iyi_zaman": "Haziran - Eylül",
+    "gezilecek": ["Sümela Manastırı", "Uzungöl", "Atatürk Köşkü", "Hamsiköy"],
+    "lezzet": ["Akçaabat Köftesi", "Kuymak (Muhlama)", "Karadeniz Pidesi", "Hamsili Pilav"]
+  },
+  {
+    "isim": "Şanlıurfa",
+    "slug": "sanliurfa",
+    "plaka": "63",
+    "bolge": "Güneydoğu Anadolu",
+    "ozet": "Peygamberler şehri; Göbeklitepe ile insanlık tarihini yeniden yazan Mezopotamya kenti.",
+    "en_iyi_zaman": "Mart - Mayıs ve Ekim - Kasım",
+    "gezilecek": ["Göbeklitepe", "Balıklıgöl", "Harran Evleri", "Şanlıurfa Arkeoloji Müzesi"],
+    "lezzet": ["Urfa Kebabı", "Çiğ Köfte", "Lahmacun", "Şıllık Tatlısı"]
+  },
+  {
+    "isim": "Kars",
+    "slug": "kars",
+    "plaka": "36",
+    "bolge": "Doğu Anadolu",
+    "ozet": "Baltık mimarisi, Ani Harabeleri ve kış manzaralarıyla Doğu Ekspresi'nin büyüleyici son durağı.",
+    "en_iyi_zaman": "Aralık - Mart ve Haziran - Ağustos",
+    "gezilecek": ["Ani Harabeleri", "Çıldır Gölü", "Kars Kalesi", "Katherina Sarayı"],
+    "lezzet": ["Kars Kaşarı", "Kaz Eti", "Hangel", "Gravyer Peyniri"]
+  }
+]
+FILE
+
+# 6. data/blog.json
+cat << 'FILE' > data/blog.json
+[
+  {
+    "slug": "karadeniz-yayla-turizmi-rehberi",
+    "baslik": "Karadeniz Yaylalarında Bir Gün: Yayla Turizmi Rehberi",
+    "etiket": "Doğa & Yayla",
+    "tarih": "2026-06-15",
+    "ozet": "Sisin arasından süzülen güneş ışığı, taze muhlama kokusu ve bulutların altında bir çadır... Karadeniz yaylalarını ziyaret etmeden önce bilmeniz gerekenler.",
+    "govde": [
+      {
+        "h2": "Yaylaya Çıkarken Bilinmesi Gerekenler",
+        "p": "Karadeniz'in yüksek rakımlı yaylalarında hava koşulları dakikalar içinde değişebilir. Sis, yağmur ve aniden bastıran soğuk için yanınızda mutlaka rüzgarlık ve termal giysiler bulundurmalısınız."
+      },
+      {
+        "h2": "Öne Çıkan Yaylalar",
+        "p": "Pokut, Sal, Huser ve Ayder gibi popüler noktalar hem eşsiz bulut denizi manzaraları sunar hem de yöresel ahşap mimariyi yakından görme fırsatı verir."
+      }
+    ]
+  },
+  {
+    "slug": "ege-kiyisinda-az-bilinen-5-koy",
+    "baslik": "Ege Kıyısında Az Bilinen 5 Koy",
+    "etiket": "Sahil & Doğa",
+    "tarih": "2026-07-20",
+    "ozet": "Bodrum ve Fethiye'nin kalabalığından uzak, sakin bir Ege tatili arıyorsanız, bu 5 koy tam size göre.",
+    "govde": [
+      {
+        "h2": "Kalabalıktan Uzak Ege Kaçamakları",
+        "p": "Ege kıyılarında bakir kalmış koylar genellikle stabilize yolların veya patikaların ardında gizlidir. Doğayla baş başa kalmak isteyenler için Datça ve Karaburun yarımadaları benzersiz rotalar sunar."
+      }
+    ]
+  },
+  {
+    "slug": "ipek-yolu-guzergahinda-gezilecek-sehirler",
+    "baslik": "Tarihin İzinde: İpek Yolu Güzergahında Gezilecek Şehirler",
+    "etiket": "Tarih & Kültür",
+    "tarih": "2026-08-10",
+    "ozet": "Kervanların yüzyıllar önce geçtiği yolları takip ederek Anadolu'nun ticaret ve kültür mirasını keşfedin.",
+    "govde": [
+      {
+        "h2": "Kervansaraylar ve Taş Köprüler",
+        "p": "Anadolu Selçuklu döneminden kalan hanlar, kervansaraylar ve çarşılar, ticaretin kalbinin attığı şehirleri günümüzde de açık hava müzesine dönüştürmektedir."
+      }
+    ]
+  }
+]
+FILE
+
+# 7. assets/css/style.css
+cat << 'FILE' > assets/css/style.css
 :root {
   --primary: #1F3A34;
   --primary-dark: #12241F;
@@ -15,687 +183,653 @@
   --radius: 12px;
   --shadow-sm: 0 2px 8px rgba(31, 58, 52, 0.05);
   --shadow-md: 0 8px 24px rgba(31, 58, 52, 0.08);
-  --shadow-lg: 0 16px 32px rgba(31, 58, 52, 0.12);
   --font-serif: 'Fraunces', Georgia, serif;
   --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
-*, *::before, *::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: var(--font-sans); background-color: var(--bg); color: var(--text-main); line-height: 1.65; display: flex; flex-direction: column; min-height: 100vh; }
+a { color: var(--primary); text-decoration: none; transition: color 0.2s ease; }
+a:hover { color: var(--accent); }
+.wrap { width: 100%; max-width: 1180px; margin: 0 auto; padding: 0 24px; }
+.skip-link { position: absolute; top: -100px; left: 20px; background: var(--accent); color: var(--primary-dark); padding: 8px 16px; border-radius: 4px; font-weight: 600; z-index: 999; }
+.skip-link:focus { top: 16px; }
+
+.site-header { background: rgba(255, 255, 255, 0.95); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; backdrop-filter: blur(10px); }
+.site-header .wrap { display: flex; justify-content: space-between; align-items: center; height: 72px; }
+.brand { display: flex; align-items: center; gap: 12px; font-family: var(--font-serif); font-size: 1.4rem; font-weight: 700; color: var(--primary-dark); }
+.main-nav ul { display: flex; list-style: none; gap: 28px; }
+.main-nav a { font-weight: 500; font-size: 0.98rem; color: var(--text-main); }
+.main-nav a:hover { color: var(--primary); }
+
+.hero { background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); color: #FFFFFF; padding: 80px 0; text-align: center; }
+.hero-eyebrow { color: var(--accent); text-transform: uppercase; letter-spacing: 2px; font-size: 0.85rem; font-weight: 600; margin-bottom: 16px; }
+.hero h1 { font-family: var(--font-serif); font-size: 2.8rem; line-height: 1.2; margin-bottom: 20px; font-weight: 700; }
+.hero .lede { font-size: 1.15rem; max-width: 650px; margin: 0 auto 36px; color: var(--accent-light); opacity: 0.9; }
+.hero-search { max-width: 580px; margin: 0 auto; display: flex; gap: 8px; background: var(--surface); padding: 6px; border-radius: 50px; box-shadow: 0 10px 25px rgba(0,0,0,0.2); }
+.hero-search input { flex: 1; border: none; padding: 14px 24px; font-size: 1rem; outline: none; border-radius: 50px; background: transparent; color: var(--text-main); }
+.hero-search button { background: var(--accent); color: var(--primary-dark); border: none; padding: 0 32px; border-radius: 50px; font-weight: 600; font-size: 0.95rem; cursor: pointer; }
+
+.il-hero { background: var(--primary); color: #FFFFFF; position: relative; overflow: hidden; }
+.il-hero-media { position: relative; min-height: 340px; }
+.il-hero-svg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; }
+.il-hero-overlay { position: relative; z-index: 2; padding: 60px 0; background: linear-gradient(to top, rgba(18, 36, 31, 0.95) 0%, rgba(31, 58, 52, 0.4) 100%); }
+.breadcrumb { font-size: 0.88rem; margin-bottom: 16px; }
+.badges { display: flex; gap: 10px; margin-bottom: 16px; }
+.badge { background: rgba(201, 162, 39, 0.25); color: var(--accent-light); border: 1px solid var(--accent); padding: 4px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: 600; }
+.il-hero h1 { font-family: var(--font-serif); font-size: 2.6rem; margin-bottom: 12px; }
+.il-hero .lede { font-size: 1.1rem; max-width: 700px; color: var(--accent-light); }
+
+.section { padding: 60px 0; }
+.section-head { margin-bottom: 36px; }
+.section-head h2 { font-family: var(--font-serif); font-size: 1.9rem; color: var(--primary-dark); margin-bottom: 6px; }
+.section-head p { color: var(--text-muted); }
+
+.region-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 24px; }
+.region-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px; position: relative; box-shadow: var(--shadow-sm); }
+.region-card .count { position: absolute; top: 24px; right: 24px; font-size: 0.8rem; background: var(--bg); padding: 2px 10px; border-radius: 12px; color: var(--text-muted); font-weight: 600; }
+.region-card h3 { font-family: var(--font-serif); font-size: 1.3rem; margin-bottom: 16px; color: var(--primary); }
+.region-card ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+.region-card li a { color: var(--text-main); font-size: 0.94rem; }
+
+.il-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 24px; }
+.il-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 28px; display: flex; flex-direction: column; box-shadow: var(--shadow-sm); transition: transform 0.2s, box-shadow 0.2s; }
+.il-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+.plaka-badge { display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; background: var(--bg); border: 1px solid var(--border); border-radius: 8px; font-weight: 700; font-size: 0.9rem; color: var(--primary); margin-bottom: 16px; }
+.il-card h3 { font-family: var(--font-serif); font-size: 1.4rem; margin-bottom: 10px; color: var(--primary-dark); }
+.il-card p { color: var(--text-muted); font-size: 0.94rem; line-height: 1.55; margin-bottom: 20px; flex: 1; }
+.il-link { font-weight: 600; font-size: 0.92rem; color: var(--primary); display: inline-flex; align-items: center; gap: 6px; }
+
+.blog-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 24px; }
+.blog-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 28px; display: flex; flex-direction: column; }
+.blog-card .tag { display: inline-block; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; color: var(--accent); font-weight: 700; margin-bottom: 12px; }
+.blog-card h3 { font-family: var(--font-serif); font-size: 1.25rem; margin-bottom: 12px; line-height: 1.4; }
+.blog-card h3 a { color: var(--primary-dark); }
+.blog-card p { color: var(--text-muted); font-size: 0.93rem; margin-bottom: 20px; flex: 1; }
+
+.content-grid { display: grid; grid-template-columns: 1fr 340px; gap: 48px; align-items: start; }
+.content-main article section { margin-bottom: 44px; }
+.content-main h2 { font-family: var(--font-serif); font-size: 1.7rem; color: var(--primary-dark); margin-bottom: 18px; border-bottom: 2px solid var(--border); padding-bottom: 10px; }
+.content-main h3 { font-size: 1.15rem; color: var(--primary); margin: 20px 0 8px; }
+.content-main p { margin-bottom: 16px; font-size: 1.02rem; }
+.tip-box { background: #FFFDF5; border-left: 4px solid var(--accent); padding: 18px 22px; border-radius: 0 var(--radius) var(--radius) 0; margin: 24px 0; }
+.tip-box strong { display: block; color: var(--primary-dark); margin-bottom: 6px; font-size: 0.92rem; text-transform: uppercase; }
+.info-list { list-style: none; display: flex; flex-direction: column; gap: 12px; margin-top: 12px; }
+.info-list li { position: relative; padding-left: 28px; }
+.info-list li::before { content: '→'; position: absolute; left: 0; color: var(--accent); font-weight: bold; }
+
+.sidebar { position: sticky; top: 96px; }
+.fact-box { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px; box-shadow: var(--shadow-sm); }
+.fact-box h3 { font-family: var(--font-serif); font-size: 1.15rem; color: var(--primary-dark); margin-bottom: 18px; padding-bottom: 10px; border-bottom: 1px solid var(--border); }
+.fact-box dl { display: grid; grid-template-columns: auto 1fr; gap: 12px 16px; font-size: 0.92rem; }
+.fact-box dt { color: var(--text-muted); }
+.fact-box dd { font-weight: 600; color: var(--primary); text-align: right; }
+.related-list { list-style: none; display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+.related-list a { display: block; padding: 8px 12px; background: var(--bg); border-radius: 6px; font-size: 0.88rem; color: var(--text-main); text-align: center; }
+.related-list a:hover { background: var(--primary); color: #FFFFFF; }
+
+.simple-page { max-width: 780px; margin: 0 auto; background: var(--surface); padding: 48px; border-radius: var(--radius); border: 1px solid var(--border); box-shadow: var(--shadow-sm); }
+.simple-page h1 { font-family: var(--font-serif); font-size: 2.4rem; color: var(--primary-dark); margin-bottom: 24px; }
+.simple-page h2 { font-family: var(--font-serif); font-size: 1.4rem; color: var(--primary); margin: 32px 0 12px; }
+.simple-page p { margin-bottom: 16px; }
+
+.site-footer { background: var(--primary-dark); color: #FFFFFF; margin-top: auto; padding: 64px 0 32px; }
+.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 48px; margin-bottom: 48px; }
+.footer-grid h4 { color: var(--accent); font-size: 1.05rem; margin-bottom: 18px; }
+.footer-grid ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.footer-grid a { color: var(--accent-light); font-size: 0.92rem; opacity: 0.85; }
+.footer-grid a:hover { opacity: 1; color: #FFFFFF; }
+.footer-bottom { border-top: 1px solid rgba(255, 255, 255, 0.1); padding-top: 24px; display: flex; justify-content: space-between; font-size: 0.85rem; color: var(--accent-light); opacity: 0.7; }
 
-body {
-  font-family: var(--font-sans);
-  background-color: var(--bg);
-  color: var(--text-main);
-  line-height: 1.65;
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
-
-a {
-  color: var(--primary);
-  text-decoration: none;
-  transition: color 0.2s ease;
-}
-
-a:hover {
-  color: var(--accent);
-}
-
-.wrap {
-  width: 100%;
-  max-width: 1180px;
-  margin: 0 auto;
-  padding: 0 24px;
-}
-
-.skip-link {
-  position: absolute;
-  top: -100px;
-  left: 20px;
-  background: var(--accent);
-  color: var(--primary-dark);
-  padding: 8px 16px;
-  border-radius: 4px;
-  font-weight: 600;
-  z-index: 999;
-}
-.skip-link:focus {
-  top: 16px;
-}
-
-/* ---------- Üst Menü (Header) ---------- */
-.site-header {
-  background: var(--surface);
-  border-bottom: 1px solid var(--border);
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  backdrop-filter: blur(10px);
-  background: rgba(255, 255, 255, 0.95);
-}
-
-.site-header .wrap {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: 72px;
-}
-
-.brand {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  font-family: var(--font-serif);
-  font-size: 1.4rem;
-  font-weight: 700;
-  color: var(--primary-dark);
-}
-
-.brand svg {
-  flex-shrink: 0;
-}
-
-.main-nav ul {
-  display: flex;
-  list-style: none;
-  gap: 28px;
-}
-
-.main-nav a {
-  font-weight: 500;
-  font-size: 0.98rem;
-  color: var(--text-main);
-}
-
-.main-nav a:hover {
-  color: var(--primary);
-}
-
-/* ---------- Hero & Arama Alanı ---------- */
-.hero {
-  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-  color: #FFFFFF;
-  padding: 96px 0 80px;
-  text-align: center;
-  position: relative;
-  overflow: hidden;
-}
-
-.hero-eyebrow {
-  color: var(--accent);
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  font-size: 0.85rem;
-  font-weight: 600;
-  margin-bottom: 16px;
-}
-
-.hero h1 {
-  font-family: var(--font-serif);
-  font-size: 3rem;
-  line-height: 1.2;
-  margin-bottom: 20px;
-  font-weight: 700;
-}
-
-.hero .lede {
-  font-size: 1.15rem;
-  max-width: 650px;
-  margin: 0 auto 36px;
-  color: var(--accent-light);
-  opacity: 0.9;
-}
-
-.hero-search {
-  max-width: 580px;
-  margin: 0 auto;
-  display: flex;
-  gap: 8px;
-  background: var(--surface);
-  padding: 6px;
-  border-radius: 50px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-}
-
-.hero-search input {
-  flex: 1;
-  border: none;
-  padding: 14px 24px;
-  font-size: 1rem;
-  outline: none;
-  border-radius: 50px;
-  background: transparent;
-  color: var(--text-main);
-}
-
-.hero-search button {
-  background: var(--accent);
-  color: var(--primary-dark);
-  border: none;
-  padding: 0 32px;
-  border-radius: 50px;
-  font-weight: 600;
-  font-size: 0.95rem;
-  cursor: pointer;
-  transition: opacity 0.2s;
-}
-
-.hero-search button:hover {
-  opacity: 0.9;
-}
-
-/* ---------- İl Sayfası Hero & Medya ---------- */
-.il-hero {
-  background: var(--primary);
-  color: #FFFFFF;
-  position: relative;
-  overflow: hidden;
-}
-
-.il-hero-media {
-  position: relative;
-  min-height: 380px;
-}
-
-.il-hero-svg {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.il-photo {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  opacity: 0.25;
-}
-
-.il-hero-overlay {
-  position: relative;
-  z-index: 2;
-  padding: 60px 0;
-  background: linear-gradient(to top, rgba(18, 36, 31, 0.95) 0%, rgba(31, 58, 52, 0.4) 100%);
-}
-
-.breadcrumb {
-  font-size: 0.88rem;
-  margin-bottom: 16px;
-}
-
-.badges {
-  display: flex;
-  gap: 10px;
-  margin-bottom: 16px;
-}
-
-.badge {
-  background: rgba(201, 162, 39, 0.25);
-  color: var(--accent-light);
-  border: 1px solid var(--accent);
-  padding: 4px 12px;
-  border-radius: 20px;
-  font-size: 0.8rem;
-  font-weight: 600;
-  letter-spacing: 0.5px;
-}
-
-.il-hero h1 {
-  font-family: var(--font-serif);
-  font-size: 2.8rem;
-  margin-bottom: 12px;
-}
-
-.il-hero .lede {
-  font-size: 1.1rem;
-  max-width: 700px;
-  color: var(--accent-light);
-}
-
-/* ---------- Bölüm & Izgara Yapıları (Grids) ---------- */
-.section {
-  padding: 60px 0;
-}
-
-.section-head {
-  margin-bottom: 36px;
-}
-
-.section-head h2 {
-  font-family: var(--font-serif);
-  font-size: 1.9rem;
-  color: var(--primary-dark);
-  margin-bottom: 6px;
-}
-
-.section-head p {
-  color: var(--text-muted);
-}
-
-/* 7 Bölge Kartları */
-.region-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 24px;
-}
-
-.region-card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 24px;
-  position: relative;
-  transition: transform 0.2s, box-shadow 0.2s;
-}
-
-.region-card:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-md);
-}
-
-.region-card .count {
-  position: absolute;
-  top: 24px;
-  right: 24px;
-  font-size: 0.8rem;
-  background: var(--bg);
-  padding: 2px 10px;
-  border-radius: 12px;
-  color: var(--text-muted);
-  font-weight: 600;
-}
-
-.region-card h3 {
-  font-family: var(--font-serif);
-  font-size: 1.3rem;
-  margin-bottom: 16px;
-  color: var(--primary);
-}
-
-.region-card ul {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.region-card li a {
-  color: var(--text-main);
-  font-size: 0.94rem;
-  display: inline-block;
-}
-
-.region-card li a:hover {
-  color: var(--primary);
-  transform: translateX(4px);
-}
-
-/* İl Kartları */
-.il-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  gap: 24px;
-}
-
-.il-card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 28px;
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  box-shadow: var(--shadow-sm);
-  transition: transform 0.2s, box-shadow 0.2s;
-}
-
-.il-card:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-md);
-}
-
-.plaka-badge {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 36px;
-  height: 36px;
-  background: var(--bg);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  font-weight: 700;
-  font-size: 0.9rem;
-  color: var(--primary);
-  margin-bottom: 16px;
-}
-
-.il-card h3 {
-  font-family: var(--font-serif);
-  font-size: 1.4rem;
-  margin-bottom: 10px;
-  color: var(--primary-dark);
-}
-
-.il-card p {
-  color: var(--text-muted);
-  font-size: 0.94rem;
-  line-height: 1.55;
-  margin-bottom: 20px;
-  flex: 1;
-}
-
-.il-link {
-  font-weight: 600;
-  font-size: 0.92rem;
-  color: var(--primary);
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-}
-
-/* Blog Kartları */
-.blog-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  gap: 24px;
-}
-
-.blog-card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 28px;
-  display: flex;
-  flex-direction: column;
-}
-
-.blog-card .tag {
-  display: inline-block;
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  color: var(--accent);
-  font-weight: 700;
-  margin-bottom: 12px;
-}
-
-.blog-card h3 {
-  font-family: var(--font-serif);
-  font-size: 1.25rem;
-  margin-bottom: 12px;
-  line-height: 1.4;
-}
-
-.blog-card h3 a {
-  color: var(--primary-dark);
-}
-
-.blog-card p {
-  color: var(--text-muted);
-  font-size: 0.93rem;
-  margin-bottom: 20px;
-  flex: 1;
-}
-
-/* ---------- İl Detay & İçerik Düzeni (Content Grid) ---------- */
-.content-grid {
-  display: grid;
-  grid-template-columns: 1fr 340px;
-  gap: 48px;
-  align-items: start;
-}
-
-.content-main article section {
-  margin-bottom: 44px;
-}
-
-.content-main h2 {
-  font-family: var(--font-serif);
-  font-size: 1.7rem;
-  color: var(--primary-dark);
-  margin-bottom: 18px;
-  border-bottom: 2px solid var(--border);
-  padding-bottom: 10px;
-}
-
-.content-main h3 {
-  font-size: 1.15rem;
-  color: var(--primary);
-  margin: 20px 0 8px;
-}
-
-.content-main p {
-  margin-bottom: 16px;
-  font-size: 1.02rem;
-  color: var(--text-main);
-}
-
-.tip-box {
-  background: #FFFDF5;
-  border-left: 4px solid var(--accent);
-  padding: 18px 22px;
-  border-radius: 0 var(--radius) var(--radius) 0;
-  margin: 24px 0;
-  box-shadow: var(--shadow-sm);
-}
-
-.tip-box strong {
-  display: block;
-  color: var(--primary-dark);
-  margin-bottom: 6px;
-  font-size: 0.92rem;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-
-.info-list {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  margin-top: 12px;
-}
-
-.info-list li {
-  position: relative;
-  padding-left: 28px;
-  font-size: 1rem;
-}
-
-.info-list li::before {
-  content: '→';
-  position: absolute;
-  left: 0;
-  color: var(--accent);
-  font-weight: bold;
-}
-
-/* Sidebar & Bilgi Kutuları */
-.sidebar {
-  position: sticky;
-  top: 96px;
-}
-
-.fact-box {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 24px;
-  box-shadow: var(--shadow-sm);
-}
-
-.fact-box h3 {
-  font-family: var(--font-serif);
-  font-size: 1.15rem;
-  color: var(--primary-dark);
-  margin-bottom: 18px;
-  padding-bottom: 10px;
-  border-bottom: 1px solid var(--border);
-}
-
-.fact-box dl {
-  display: grid;
-  grid-template-columns: auto 1fr;
-  gap: 12px 16px;
-  font-size: 0.92rem;
-}
-
-.fact-box dt {
-  color: var(--text-muted);
-}
-
-.fact-box dd {
-  font-weight: 600;
-  color: var(--primary);
-  text-align: right;
-}
-
-.related-list {
-  list-style: none;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 10px;
-}
-
-.related-list a {
-  display: block;
-  padding: 8px 12px;
-  background: var(--bg);
-  border-radius: 6px;
-  font-size: 0.88rem;
-  color: var(--text-main);
-  text-align: center;
-}
-
-.related-list a:hover {
-  background: var(--primary);
-  color: #FFFFFF;
-}
-
-/* ---------- Statik & Kurumsal Sayfalar (Hakkımızda vb.) ---------- */
-.simple-page {
-  max-width: 780px;
-  margin: 0 auto;
-  background: var(--surface);
-  padding: 48px;
-  border-radius: var(--radius);
-  border: 1px solid var(--border);
-  box-shadow: var(--shadow-sm);
-}
-
-.simple-page h1 {
-  font-family: var(--font-serif);
-  font-size: 2.4rem;
-  color: var(--primary-dark);
-  margin-bottom: 24px;
-}
-
-.simple-page h2 {
-  font-family: var(--font-serif);
-  font-size: 1.4rem;
-  color: var(--primary);
-  margin: 32px 0 12px;
-}
-
-.simple-page p {
-  margin-bottom: 16px;
-  color: var(--text-main);
-}
-
-/* ---------- Alt Menü (Footer) ---------- */
-.site-footer {
-  background: var(--primary-dark);
-  color: #FFFFFF;
-  margin-top: auto;
-  padding: 64px 0 32px;
-}
-
-.footer-grid {
-  display: grid;
-  grid-template-columns: 2fr 1fr 1fr;
-  gap: 48px;
-  margin-bottom: 48px;
-}
-
-.footer-grid h4 {
-  color: var(--accent);
-  font-size: 1.05rem;
-  margin-bottom: 18px;
-  letter-spacing: 0.5px;
-}
-
-.footer-grid ul {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.footer-grid a {
-  color: var(--accent-light);
-  font-size: 0.92rem;
-  opacity: 0.85;
-}
-
-.footer-grid a:hover {
-  opacity: 1;
-  color: #FFFFFF;
-}
-
-.footer-bottom {
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  padding-top: 24px;
-  display: flex;
-  justify-content: space-between;
-  font-size: 0.85rem;
-  color: var(--accent-light);
-  opacity: 0.7;
-}
-
-/* ---------- Duyarlı Tasarım (Responsive) ---------- */
 @media (max-width: 900px) {
-  .content-grid {
-    grid-template-columns: 1fr;
+  .content-grid { grid-template-columns: 1fr; }
+  .sidebar { position: static; }
+  .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+}
+@media (max-width: 600px) {
+  .hero h1 { font-size: 2.2rem; }
+  .hero-search { flex-direction: column; border-radius: var(--radius); }
+  .hero-search button { padding: 12px; border-radius: var(--radius); }
+  .main-nav ul { gap: 14px; }
+  .simple-page { padding: 24px; }
+  .footer-bottom { flex-direction: column; gap: 8px; }
+}
+FILE
+
+# 8. assets/js/search.js
+cat << 'FILE' > assets/js/search.js
+document.addEventListener('DOMContentLoaded', () => {
+  const params = new URLSearchParams(window.location.search);
+  const initialQuery = params.get('q') || '';
+  
+  const searchInput = document.getElementById('il-ara') || document.querySelector('.hero-search input');
+  const ilCards = document.querySelectorAll('.il-card');
+
+  function filterCards(query) {
+    const q = query.toLocaleLowerCase('tr').trim();
+    ilCards.forEach(card => {
+      const title = card.querySelector('h3').textContent.toLocaleLowerCase('tr');
+      const desc = card.querySelector('p').textContent.toLocaleLowerCase('tr');
+      const isMatch = title.includes(q) || desc.includes(q);
+      card.style.display = isMatch ? 'flex' : 'none';
+    });
   }
-  .sidebar {
-    position: static;
+
+  if (searchInput && ilCards.length > 0) {
+    if (initialQuery) {
+      searchInput.value = initialQuery;
+      filterCards(initialQuery);
+    }
+    searchInput.addEventListener('input', (e) => filterCards(e.target.value));
   }
-  .footer-grid {
-    grid-template-columns: 1fr;
-    gap: 32px;
-  }
+});
+FILE
+
+# 9. generate.js
+cat << 'FILE' > generate.js
+const fs = require('fs');
+const path = require('path');
+
+const SITE_URL = 'https://kesifatlasi.com';
+const iller = require('./data/iller.json');
+const root = __dirname;
+
+const bolgeSira = ['Marmara','Ege','Akdeniz','İç Anadolu','Karadeniz','Doğu Anadolu','Güneydoğu Anadolu'];
+
+const bolgeRenk = {
+  'Marmara':'#2E5E52',
+  'Ege':'#7A6B2E',
+  'Akdeniz':'#1F5A6B',
+  'İç Anadolu':'#6B4A2E',
+  'Karadeniz':'#1F3A34',
+  'Doğu Anadolu':'#4A3A6B',
+  'Güneydoğu Anadolu':'#6B2E2E'
+};
+
+function heroSvg(il) {
+  const c = bolgeRenk[il.bolge] || '#1F3A34';
+  const seed = il.slug.split('').reduce((a,ch)=>a+ch.charCodeAt(0),0);
+  const off1 = 40 + (seed % 30);
+  const off2 = 90 + (seed % 40);
+  const off3 = 150 + (seed % 25);
+  return `<svg class="il-hero-svg" viewBox="0 0 800 300" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="${il.isim} atlas illüstrasyonu">
+  <rect width="800" height="300" fill="${c}"/>
+  <path d="M0,${off1} C150,${off1-30} 300,${off1+40} 450,${off1} C600,${off1-30} 700,${off1+30} 800,${off1} L800,0 L0,0 Z" fill="#000" opacity="0.10"/>
+  <path d="M0,${off2} C180,${off2-25} 320,${off2+35} 500,${off2} C650,${off2-20} 720,${off2+25} 800,${off2} L800,300 L0,300 Z" fill="#000" opacity="0.14"/>
+  <path d="M0,${off3} C160,${off3+20} 340,${off3-30} 520,${off3} C660,${off3+15} 740,${off3-15} 800,${off3} L800,300 L0,300 Z" fill="#000" opacity="0.18"/>
+  <g transform="translate(56,54)" opacity="0.85">
+    <circle r="22" fill="none" stroke="#C9A227" stroke-width="1.5"/>
+    <path d="M0,-22 L5,-5 L0,0 L-5,-5 Z" fill="#C9A227"/>
+    <path d="M0,22 L5,5 L0,0 L-5,5 Z" fill="#EAE2C8" opacity="0.6"/>
+  </g>
+  <text x="740" y="270" text-anchor="end" font-family="Fraunces, serif" font-size="120" fill="#ffffff" opacity="0.08" font-weight="600">${il.plaka}</text>
+</svg>`;
 }
 
-@media (max-width: 600px) {
-  .hero h1 {
-    font-size: 2.2rem;
-  }
-  .hero-search {
-    flex-direction: column;
-    border-radius: var(--radius);
-  }
-  .hero-search button {
-    padding: 12px;
-    border-radius: var(--radius);
-  }
-  .main-nav ul {
-    gap: 16px;
-  }
-  .simple-page {
-    padding: 24px;
-  }
-  .footer-bottom {
-    flex-direction: column;
-    gap: 8px;
-  }
+function relPrefix(canonicalPath) {
+  const depth = canonicalPath.split('/').filter(Boolean).length - (canonicalPath.endsWith('/') ? 0 : 1);
+  return depth > 0 ? '../'.repeat(depth) : './';
 }
+
+function head(title, description, canonicalPath, extraJsonLd) {
+  const p = relPrefix(canonicalPath);
+  return `<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>${title}</title>
+<meta name="description" content="${description}">
+<link rel="canonical" href="${SITE_URL}${canonicalPath}">
+<meta property="og:type" content="website">
+<meta property="og:title" content="${title}">
+<meta property="og:description" content="${description}">
+<meta property="og:url" content="${SITE_URL}${canonicalPath}">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2245%22 fill=%22%231F3A34%22/><path d=%22M50 15 L58 42 L85 42 L63 58 L71 85 L50 68 L29 85 L37 58 L15 42 L42 42 Z%22 fill=%22%23C9A227%22/></svg>">
+<link rel="stylesheet" href="${p}assets/css/style.css">
+<script defer src="${p}assets/js/search.js"></script>
+${extraJsonLd || ''}
+</head>
+`;
+}
+
+function header(canonicalPath) {
+  const p = relPrefix(canonicalPath);
+  return `<a class="skip-link" href="#icerik">İçeriğe geç</a>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="${p}index.html">
+      <svg width="28" height="28" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="#12241F"/><path d="M50 15 L58 42 L85 42 L63 58 L71 85 L50 68 L29 85 L37 58 L15 42 L42 42 Z" fill="#C9A227"/></svg>
+      <span>Keşif Atlası</span>
+    </a>
+    <nav class="main-nav" aria-label="Ana menü">
+      <ul>
+        <li><a href="${p}iller/index.html">81 İl</a></li>
+        <li><a href="${p}blog/index.html">Blog</a></li>
+        <li><a href="${p}hakkimizda.html">Hakkımızda</a></li>
+        <li><a href="${p}iletisim.html">İletişim</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+`;
+}
+
+function footer(canonicalPath) {
+  const p = relPrefix(canonicalPath);
+  const year = new Date().getFullYear();
+  return `<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <h4>Keşif Atlası</h4>
+        <p style="max-width:38ch;color:#c9c2a2;font-size:.94rem;">Türkiye'nin 81 ilini; tarihi, mutfağı ve gezilecek yerleriyle tek tek anlatan bağımsız bir gezi rehberi.</p>
+      </div>
+      <div>
+        <h4>Keşfet</h4>
+        <ul>
+          <li><a href="${p}iller/index.html">Tüm İller</a></li>
+          <li><a href="${p}blog/index.html">Blog Yazıları</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Kurumsal</h4>
+        <ul>
+          <li><a href="${p}hakkimizda.html">Hakkımızda</a></li>
+          <li><a href="${p}iletisim.html">İletişim</a></li>
+          <li><a href="${p}gizlilik-politikasi.html">Gizlilik Politikası</a></li>
+          <li><a href="${p}kullanim-sartlari.html">Kullanım Şartları</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© ${year} Keşif Atlası. Tüm hakları saklıdır.</span>
+      <span>Türkiye'yi il il keşfedin.</span>
+    </div>
+  </div>
+</footer>
+`;
+}
+
+function page({title, description, canonicalPath, bodyHtml, jsonLd}) {
+  return head(title, description, canonicalPath, jsonLd ? `<script type="application/ld+json">${JSON.stringify(jsonLd)}</script>` : '') +
+`<body>
+${header(canonicalPath)}
+<main id="icerik">
+${bodyHtml}
+</main>
+${footer(canonicalPath)}
+</body>
+</html>`;
+}
+
+function slugSort(list){ return [...list].sort((a,b)=>a.isim.localeCompare(b.isim,'tr')); }
+
+function buildIlPage(il) {
+  const canonicalPath = `/iller/${il.slug}.html`;
+  const sameRegion = iller.filter(x => x.bolge === il.bolge && x.slug !== il.slug);
+  const related = slugSort(sameRegion).slice(0, 6);
+
+  const gezilecekHtml = il.gezilecek.map((y,i) => `<li><strong>${y}</strong> — ${il.isim} gezisinde mutlaka görülmesi gereken önemli noktalardan biridir.</li>`).join('\n');
+  const lezzetHtml = il.lezzet.map(y => `<li>${y}</li>`).join('\n');
+  const relatedHtml = related.map(r => `<li><a href="./${r.slug}.html">${r.isim}</a></li>`).join('\n');
+  const heroSvgMarkup = heroSvg(il);
+
+  const bodyHtml = `
+<div class="il-hero">
+  <div class="il-hero-media">
+    ${heroSvgMarkup}
+    <div class="il-hero-overlay">
+      <div class="wrap">
+        <p class="breadcrumb" style="color:#c9c2a2;"><a href="../index.html" style="color:#c9c2a2;">Anasayfa</a> / <a href="./index.html" style="color:#c9c2a2;">İller</a> / ${il.isim}</p>
+        <div class="badges">
+          <span class="badge">Plaka: ${il.plaka}</span>
+          <span class="badge">${il.bolge} Bölgesi</span>
+        </div>
+        <h1>${il.isim} Gezi Rehberi</h1>
+        <p class="lede">${il.ozet}</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="wrap section">
+  <div class="content-grid">
+    <div class="content-main">
+      <article>
+        <section>
+          <h2>${il.isim} Hakkında</h2>
+          <p>${il.isim}, ${il.bolge} Bölgesi'nde yer alan ve plaka kodu ${il.plaka} olan bir ilimizdir. ${il.ozet}</p>
+          <div class="tip-box">
+            <strong>Gezi İpucu</strong>
+            ${il.isim}'de zamanınız kısıtlıysa önce ${il.gezilecek[0]}'ü ziyaret edip günü ${il.lezzet[0]} tadarak kapatabilirsiniz.
+          </div>
+        </section>
+        <section>
+          <h2>${il.isim}'de Gezilecek Yerler</h2>
+          <ul class="info-list">${gezilecekHtml}</ul>
+        </section>
+        <section>
+          <h2>${il.isim} Mutfağından Lezzetler</h2>
+          <ul class="info-list">${lezzetHtml}</ul>
+        </section>
+        <section>
+          <h2>Ne Zaman Gidilmeli?</h2>
+          <p>${il.isim} için önerilen ziyaret dönemi <strong>${il.en_iyi_zaman}</strong> olarak öne çıkmaktadır.</p>
+        </section>
+      </article>
+    </div>
+    <aside class="sidebar">
+      <div class="fact-box">
+        <h3>Hızlı Bilgiler</h3>
+        <dl>
+          <dt>Plaka Kodu</dt><dd>${il.plaka}</dd>
+          <dt>Bölge</dt><dd>${il.bolge} Bölgesi</dd>
+          <dt>En İyi Zaman</dt><dd>${il.en_iyi_zaman}</dd>
+          <dt>Öne Çıkan Tat</dt><dd>${il.lezzet[0]}</dd>
+        </dl>
+      </div>
+      <div class="fact-box" style="margin-top:18px;">
+        <h3>${il.bolge} Bölgesi'nden Diğer İller</h3>
+        <ul class="related-list">${relatedHtml}</ul>
+      </div>
+    </aside>
+  </div>
+</div>
+`;
+
+  return page({
+    title: `${il.isim} Gezi Rehberi | Keşif Atlası`,
+    description: `${il.isim}: ${il.ozet}`,
+    canonicalPath,
+    bodyHtml
+  });
+}
+
+function buildIllerIndex() {
+  const canonicalPath = '/iller/index.html';
+  const byRegion = {};
+  iller.forEach(il => { (byRegion[il.bolge] = byRegion[il.bolge] || []).push(il); });
+
+  const sections = bolgeSira.map(bolge => {
+    const list = slugSort(byRegion[bolge] || []);
+    if (list.length === 0) return '';
+    const cards = list.map(il => `
+      <div class="il-card">
+        <span class="plaka-badge">${il.plaka}</span>
+        <h3>${il.isim}</h3>
+        <p>${il.ozet}</p>
+        <a class="il-link" href="./${il.slug}.html">Rehberi oku →</a>
+      </div>`).join('\n');
+    return `<section class="section" style="padding-top:0;">
+      <div class="section-head"><h2>${bolge} Bölgesi</h2></div>
+      <div class="il-grid">${cards}</div>
+    </section>`;
+  }).filter(Boolean).join('\n');
+
+  const bodyHtml = `
+<div class="il-hero">
+  <div class="wrap" style="padding: 60px 24px;">
+    <p class="breadcrumb" style="color:#c9c2a2;"><a href="../index.html" style="color:#c9c2a2;">Anasayfa</a> / İller</p>
+    <h1>Türkiye'nin 81 İli</h1>
+    <p class="lede">Marmara'dan Doğu Anadolu'ya tüm illerin gezi rehberleri.</p>
+  </div>
+</div>
+<div class="wrap section">
+  <div style="max-width: 480px; margin-bottom: 32px;">
+    <input id="il-ara" type="text" placeholder="İl filtrele (örn: İzmir, Trabzon...)" style="width: 100%; padding: 12px 18px; border-radius: 8px; border: 1px solid var(--border); font-size: 1rem; outline: none;">
+  </div>
+  ${sections}
+</div>
+`;
+  return page({
+    title: `Türkiye'nin 81 İli — Gezi Rehberleri | Keşif Atlası`,
+    description: `Türkiye'nin illerine ait detaylı gezi rehberleri.`,
+    canonicalPath,
+    bodyHtml
+  });
+}
+
+function buildHome() {
+  const canonicalPath = '/index.html';
+  const byRegion = {};
+  iller.forEach(il => { (byRegion[il.bolge] = byRegion[il.bolge] || []).push(il); });
+
+  const regionCards = bolgeSira.map(bolge => {
+    const list = slugSort(byRegion[bolge] || []);
+    if (list.length === 0) return '';
+    const items = list.slice(0,6).map(il => `<li><a href="iller/${il.slug}.html">${il.isim}</a></li>`).join('');
+    return `<div class="region-card">
+      <span class="count">${list.length} il</span>
+      <h3>${bolge}</h3>
+      <ul>${items}</ul>
+    </div>`;
+  }).filter(Boolean).join('\n');
+
+  const oneCikanCards = iller.slice(0, 6).map(il => `
+    <div class="il-card">
+      <span class="plaka-badge">${il.plaka}</span>
+      <h3>${il.isim}</h3>
+      <p>${il.ozet}</p>
+      <a class="il-link" href="iller/${il.slug}.html">Rehberi oku →</a>
+    </div>`).join('\n');
+
+  const bodyHtml = `
+<section class="hero">
+  <div class="wrap">
+    <p class="hero-eyebrow">81 il, tek adres</p>
+    <h1>Türkiye'yi baştan sona keşfedin</h1>
+    <p class="lede">Kapadokya'nın peribacalarından Karadeniz'in yaylalarına, bağımsız gezi atlası.</p>
+    <form class="hero-search" action="iller/index.html" method="get">
+      <input id="il-ara" name="q" type="text" placeholder="Bir il adı yazın, örn: Trabzon, İzmir...">
+      <button type="submit">Keşfet</button>
+    </form>
+  </div>
+</section>
+<div class="wrap section">
+  <div class="section-head"><h2>Bölgeler</h2></div>
+  <div class="region-grid">${regionCards}</div>
+</div>
+<div class="wrap section">
+  <div class="section-head"><h2>Öne Çıkan Rehberler</h2></div>
+  <div class="il-grid">${oneCikanCards}</div>
+</div>
+<div class="wrap section">
+  <div class="section-head"><h2>Blog'dan Son Yazılar</h2></div>
+  <div class="blog-grid" id="home-blog-grid"><!--BLOG_CARDS--></div>
+</div>
+`;
+  return { canonicalPath, bodyHtml };
+}
+
+fs.mkdirSync(path.join(root,'iller'), {recursive:true});
+iller.forEach(il => {
+  fs.writeFileSync(path.join(root,'iller',`${il.slug}.html`), buildIlPage(il));
+});
+fs.writeFileSync(path.join(root,'iller','index.html'), buildIllerIndex());
+
+console.log(`✔ ${iller.length} il sayfası üretildi.`);
+module.exports = { page, header, footer, head, relPrefix, SITE_URL, bolgeSira, buildHome, iller };
+FILE
+
+# 10. build-blog.js
+cat << 'FILE' > build-blog.js
+const fs = require('fs');
+const path = require('path');
+const { page, relPrefix } = require('./generate.js');
+const posts = require('./data/blog.json');
+const root = __dirname;
+
+function formatDate(isoStr) {
+  const d = new Date(isoStr);
+  return d.toLocaleDateString('tr-TR', { day: 'numeric', month: 'long', year: 'numeric' });
+}
+
+function buildPostPage(post) {
+  const canonicalPath = `/blog/${post.slug}.html`;
+  const p = relPrefix(canonicalPath);
+
+  const govdeHtml = post.govde.map(item => `
+    <section>
+      <h2>${item.h2}</h2>
+      <p>${item.p}</p>
+    </section>
+  `).join('\n');
+
+  const bodyHtml = `
+<div class="wrap section">
+  <div class="simple-page" style="max-width:860px;">
+    <p class="breadcrumb"><a href="${p}index.html">Anasayfa</a> / <a href="${p}blog/index.html">Blog</a> / ${post.baslik}</p>
+    <span class="tag" style="color:var(--accent);font-weight:700;font-size:0.85rem;text-transform:uppercase;">${post.etiket}</span>
+    <h1 style="margin-top:12px;margin-bottom:12px;">${post.baslik}</h1>
+    <p style="color:var(--text-muted);font-size:0.9rem;margin-bottom:28px;">Yayınlanma: ${formatDate(post.tarih)}</p>
+    <div class="content-main">
+      <article>${govdeHtml}</article>
+    </div>
+    <div style="margin-top:40px;padding-top:20px;border-top:1px solid var(--border);">
+      <a href="./index.html" class="il-link">← Tüm Blog Yazılarına Dön</a>
+    </div>
+  </div>
+</div>
+`;
+
+  return page({
+    title: `${post.baslik} | Keşif Atlası Blog`,
+    description: post.ozet,
+    canonicalPath,
+    bodyHtml
+  });
+}
+
+function buildBlogIndex() {
+  const canonicalPath = '/blog/index.html';
+  const cards = posts.map(p => `
+    <div class="blog-card">
+      <span class="tag">${p.etiket}</span>
+      <h3><a href="./${p.slug}.html">${p.baslik}</a></h3>
+      <p>${p.ozet}</p>
+      <div style="margin-top:auto;">
+        <span style="display:block;font-size:0.8rem;color:var(--text-muted);margin-bottom:10px;">${formatDate(p.tarih)}</span>
+        <a href="./${p.slug}.html" class="il-link">Yazıyı oku →</a>
+      </div>
+    </div>
+  `).join('\n');
+
+  const bodyHtml = `
+<div class="il-hero">
+  <div class="wrap" style="padding: 60px 24px;">
+    <p class="breadcrumb" style="color:#c9c2a2;"><a href="../index.html" style="color:#c9c2a2;">Anasayfa</a> / Blog</p>
+    <h1>Gezi Rehberi Blogu</h1>
+    <p class="lede">Rotanıza ilham verecek seyahat notları ve öneriler.</p>
+  </div>
+</div>
+<div class="wrap section">
+  <div class="blog-grid">${cards}</div>
+</div>
+`;
+
+  return page({
+    title: `Blog & Gezi Notları | Keşif Atlası`,
+    description: `Seyahat ipuçları ve rotalar.`,
+    canonicalPath,
+    bodyHtml
+  });
+}
+
+fs.mkdirSync(path.join(root, 'blog'), { recursive: true });
+posts.forEach(post => {
+  fs.writeFileSync(path.join(root, 'blog', `${post.slug}.html`), buildPostPage(post));
+});
+fs.writeFileSync(path.join(root, 'blog', 'index.html'), buildBlogIndex());
+
+console.log(`✔ ${posts.length} blog yazısı üretildi.`);
+module.exports = { posts, formatDate };
+FILE
+
+# 11. build-pages.js
+cat << 'FILE' > build-pages.js
+const fs = require('fs');
+const path = require('path');
+const { page, buildHome, SITE_URL } = require('./generate.js');
+const { posts } = require('./build-blog.js');
+const iller = require('./data/iller.json');
+const root = __dirname;
+
+const home = buildHome();
+const latestPosts = posts.slice().sort((a,b)=> new Date(b.tarih)-new Date(a.tarih)).slice(0,3);
+const blogCardsHtml = latestPosts.map(p => `
+  <div class="blog-card">
+    <span class="tag">${p.etiket}</span>
+    <h3><a href="blog/${p.slug}.html">${p.baslik}</a></h3>
+    <p>${p.ozet}</p>
+    <a href="blog/${p.slug}.html" class="il-link">Yazıyı oku →</a>
+  </div>`).join('\n');
+const homeBody = home.bodyHtml.replace('<!--BLOG_CARDS-->', blogCardsHtml);
+
+fs.writeFileSync(path.join(root,'index.html'), page({
+  title: `Keşif Atlası — Türkiye'nin 81 İli Gezi Rehberi`,
+  description: `Türkiye'nin illerini tarihi, mutfağı ve gezilecek yerleriyle keşfedin.`,
+  canonicalPath: home.canonicalPath,
+  bodyHtml: homeBody
+}));
+
+// Hakkımızda
+fs.writeFileSync(path.join(root,'hakkimizda.html'), page({
+  title: `Hakkımızda | Keşif Atlası`,
+  description: `Keşif Atlası'nın hikayesi ve amacı.`,
+  canonicalPath: '/hakkimizda.html',
+  bodyHtml: `<div class="wrap section"><div class="simple-page"><h1>Hakkımızda</h1><p>Keşif Atlası, Türkiye'nin 81 ilini tek tek tanıtan bağımsız bir gezi rehberi platformudur.</p></div></div>`
+}));
+
+// İletişim
+fs.writeFileSync(path.join(root,'iletisim.html'), page({
+  title: `İletişim | Keşif Atlası`,
+  description: `Bizimle iletişime geçin.`,
+  canonicalPath: '/iletisim.html',
+  bodyHtml: `<div class="wrap section"><div class="simple-page"><h1>İletişim</h1><p>Sorularınız için: <a href="mailto:info@kesifatlasi.com">info@kesifatlasi.com</a></p></div></div>`
+}));
+
+// Gizlilik Politikası
+fs.writeFileSync(path.join(root,'gizlilik-politikasi.html'), page({
+  title: `Gizlilik Politikası | Keşif Atlası`,
+  description: `Gizlilik politikası.`,
+  canonicalPath: '/gizlilik-politikasi.html',
+  bodyHtml: `<div class="wrap section"><div class="simple-page"><h1>Gizlilik Politikası</h1><p>Sitemiz çerezler ve analitik araçlar kullanabilir.</p></div></div>`
+}));
+
+// Kullanım Şartları
+fs.writeFileSync(path.join(root,'kullanim-sartlari.html'), page({
+  title: `Kullanım Şartları | Keşif Atlası`,
+  description: `Kullanım şartları.`,
+  canonicalPath: '/kullanim-sartlari.html',
+  bodyHtml: `<div class="wrap section"><div class="simple-page"><h1>Kullanım Şartları</h1><p>Sitedeki içerikler bilgilendirme amaçlıdır.</p></div></div>`
+}));
+
+// robots.txt
+fs.writeFileSync(path.join(root,'robots.txt'), `User-agent: *\nAllow: /\n\nSitemap: ${SITE_URL}/sitemap.xml\n`);
+
+// sitemap.xml
+const staticUrls = ['/', '/iller/index.html', '/blog/index.html', '/hakkimizda.html', '/iletisim.html', '/gizlilik-politikasi.html', '/kullanim-sartlari.html'];
+const ilUrls = iller.map(il => `/iller/${il.slug}.html`);
+const blogUrls = posts.map(p => `/blog/${p.slug}.html`);
+const allUrls = [...staticUrls, ...ilUrls, ...blogUrls];
+const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${allUrls.map(u => `  <url><loc>${SITE_URL}${u}</loc></url>`).join('\n')}
+</urlset>`;
+fs.writeFileSync(path.join(root,'sitemap.xml'), sitemap);
+
+console.log('✔ Tüm statik sayfalar, robots.txt ve sitemap.xml üretildi.');
+FILE
+
+# 12. Derlemeyi çalıştır
+./build.sh
+
+echo ""
+echo "🎉 Tebrikler! Tüm dosyalar oluşturuldu ve site başarıyla derlendi."
+EOF
+
+# Betiği çalıştır
+chmod +x setup.sh
+./setup.sh
