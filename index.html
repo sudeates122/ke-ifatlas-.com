@@ -1,1112 +1,701 @@
-/* ============================================
-   KEŞİF ATLASI — Tasarım Sistemi
-   Palet: Çam yeşili + antika altın + eskitilmiş kağıt + mühür kırmızısı
-   ============================================ */
+/* ==========================================================================
+   Keşif Atlası — Ana Stil Dosyası
+   ========================================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Source+Sans+3:wght@400;500;600;700&display=swap');
-
-:root{
-  --ink:#16232E;
-  --pine:#1F3A34;
-  --pine-dark:#12241F;
-  --paper:#F3EEDD;
-  --paper-warm:#EAE2C8;
-  --gold:#C9A227;
-  --gold-soft:#E4C766;
-  --rust:#A63D2F;
-  --line:#D8CFAE;
-  --max-w:1120px;
-  --radius:4px;
+:root {
+  --primary: #1F3A34;
+  --primary-dark: #12241F;
+  --accent: #C9A227;
+  --accent-light: #EAE2C8;
+  --bg: #F9F8F5;
+  --surface: #FFFFFF;
+  --text-main: #2C3531;
+  --text-muted: #5C6561;
+  --border: #E5E2DA;
+  --radius: 12px;
+  --shadow-sm: 0 2px 8px rgba(31, 58, 52, 0.05);
+  --shadow-md: 0 8px 24px rgba(31, 58, 52, 0.08);
+  --shadow-lg: 0 16px 32px rgba(31, 58, 52, 0.12);
+  --font-serif: 'Fraunces', Georgia, serif;
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
-*{box-sizing:border-box;}
-html{scroll-behavior:smooth;}
-body{
-  margin:0;
-  background:var(--paper);
-  color:var(--ink);
-  font-family:'Source Sans 3', system-ui, sans-serif;
-  font-size:17px;
-  line-height:1.65;
-  -webkit-font-smoothing:antialiased;
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
-h1,h2,h3,h4{
-  font-family:'Fraunces', Georgia, serif;
-  color:var(--pine-dark);
-  line-height:1.15;
-  margin:0 0 .5em;
-  font-weight:600;
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--bg);
+  color: var(--text-main);
+  line-height: 1.65;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
-h1{font-size:clamp(2.2rem,5vw,3.4rem); font-weight:500;}
-h2{font-size:clamp(1.5rem,3vw,2rem);}
-h3{font-size:1.25rem;}
-p{margin:0 0 1.1em;}
-a{color:var(--pine); text-decoration:none;}
-a:hover{text-decoration:underline;}
-img{max-width:100%; display:block;}
-ul{padding-left:1.2em;}
-.wrap{max-width:var(--max-w); margin:0 auto; padding:0 24px;}
 
-/* Skip link / accessibility */
-.skip-link{position:absolute; left:-999px; top:0; background:var(--ink); color:#fff; padding:10px 16px; z-index:200;}
-.skip-link:focus{left:12px; top:12px;}
-:focus-visible{outline:3px solid var(--gold); outline-offset:2px;}
-@media (prefers-reduced-motion: reduce){ *{animation:none !important; transition:none !important;} }
-
-/* ---------- Header ---------- */
-.site-header{
-  background:var(--pine);
-  border-bottom:3px solid var(--gold);
+a {
+  color: var(--primary);
+  text-decoration: none;
+  transition: color 0.2s ease;
 }
-.site-header .wrap{
-  display:flex; align-items:center; justify-content:space-between;
-  padding:16px 24px; gap:16px; flex-wrap:wrap;
+
+a:hover {
+  color: var(--accent);
 }
-.brand{
-  display:flex; align-items:center; gap:10px;
-  font-family:'Fraunces', serif; color:var(--paper);
-  font-size:1.4rem; font-weight:600;
+
+.wrap {
+  width: 100%;
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 24px;
 }
-.brand svg{flex-shrink:0;}
-.brand span{letter-spacing:.01em;}
-.main-nav ul{
-  list-style:none; display:flex; gap:22px; margin:0; padding:0; flex-wrap:wrap;
+
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: 20px;
+  background: var(--accent);
+  color: var(--primary-dark);
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-weight: 600;
+  z-index: 999;
 }
-.main-nav a{
-  color:var(--paper-warm); font-weight:500; font-size:.98rem;
+.skip-link:focus {
+  top: 16px;
 }
-.main-nav a:hover{color:var(--gold-soft);}
 
-/* ---------- Hero ---------- */
-.hero{
-  position:relative;
-  background:var(--pine-dark);
-  color:var(--paper);
-  padding:64px 0 56px;
-  overflow:hidden;
+/* ---------- Üst Menü (Header) ---------- */
+.site-header {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.95);
 }
-.hero::after{
-  content:"";
-  position:absolute; inset:0;
-  background-image:
-    radial-gradient(circle at 15% 30%, rgba(201,162,39,.10), transparent 40%),
-    radial-gradient(circle at 85% 70%, rgba(201,162,39,.08), transparent 45%);
-  pointer-events:none;
+
+.site-header .wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 72px;
 }
-.hero .wrap{position:relative;}
-.hero-eyebrow{
-  color:var(--gold-soft); font-weight:600; margin-bottom:14px; font-size:1.02rem;
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--font-serif);
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--primary-dark);
 }
-.hero h1{color:#fff; max-width:16ch;}
-.hero p.lede{color:var(--paper-warm); max-width:56ch; font-size:1.12rem;}
-.hero-search{
-  margin-top:28px; display:flex; gap:0; max-width:480px;
-  border:2px solid var(--gold); border-radius:var(--radius); overflow:hidden;
+
+.brand svg {
+  flex-shrink: 0;
 }
-.hero-search input{
-  flex:1; border:none; padding:13px 16px; font-size:1rem; font-family:inherit;
-  background:var(--paper);
+
+.main-nav ul {
+  display: flex;
+  list-style: none;
+  gap: 28px;
 }
-.hero-search button{
-  background:var(--gold); border:none; color:var(--ink); font-weight:700;
-  padding:0 22px; cursor:pointer; font-family:inherit; font-size:1rem;
+
+.main-nav a {
+  font-weight: 500;
+  font-size: 0.98rem;
+  color: var(--text-main);
 }
-.hero-search button:hover{background:var(--gold-soft);}
 
-/* ---------- Region grid (home) ---------- */
-.section{padding:56px 0;}
-.section-head{margin-bottom:32px; max-width:60ch;}
-.region-grid{
-  display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:2px;
-  background:var(--line); border:1px solid var(--line);
+.main-nav a:hover {
+  color: var(--primary);
 }
-.region-card{
-  background:var(--paper); padding:26px 22px; position:relative;
+
+/* ---------- Hero & Arama Alanı ---------- */
+.hero {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+  color: #FFFFFF;
+  padding: 96px 0 80px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
 }
-.region-card h3{margin-bottom:4px;}
-.region-card .count{color:var(--rust); font-weight:600; font-size:.92rem; margin-bottom:10px; display:block;}
-.region-card ul{list-style:none; padding:0; margin:0; columns:2; column-gap:14px;}
-.region-card li{margin-bottom:4px; font-size:.94rem; break-inside:avoid;}
 
-/* ---------- Il cards / grid ---------- */
-.il-grid{
-  display:grid; grid-template-columns:repeat(auto-fill,minmax(240px,1fr)); gap:22px;
+.hero-eyebrow {
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 16px;
 }
-.il-card{
-  border:1px solid var(--line); background:#fff; padding:20px;
-  display:flex; flex-direction:column; gap:8px;
+
+.hero h1 {
+  font-family: var(--font-serif);
+  font-size: 3rem;
+  line-height: 1.2;
+  margin-bottom: 20px;
+  font-weight: 700;
 }
-.il-card .plaka-badge{
-  display:inline-block; background:var(--pine); color:var(--paper); font-weight:700;
-  font-size:.8rem; padding:2px 8px; border-radius:2px; align-self:flex-start;
+
+.hero .lede {
+  font-size: 1.15rem;
+  max-width: 650px;
+  margin: 0 auto 36px;
+  color: var(--accent-light);
+  opacity: 0.9;
 }
-.il-card h3{margin-bottom:2px;}
-.il-card p{font-size:.94rem; color:#3a4a45; margin-bottom:6px; flex:1;}
-.il-card .il-link{font-weight:600;}
 
-/* ---------- Il detail page ---------- */
-.breadcrumb{font-size:.88rem; color:#5b6b65; margin-bottom:18px;}
-.breadcrumb a{color:#5b6b65;}
-.il-hero{background:var(--pine); color:var(--paper); padding:0; position:relative; overflow:hidden;}
-.il-hero-media{position:relative; min-height:220px; display:flex; align-items:flex-end;}
-.il-hero-media .il-hero-svg{position:absolute; inset:0; width:100%; height:100%; object-fit:cover;}
-.il-hero-media img.il-photo{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:2;}
-.il-hero-media .il-hero-overlay{
-  position:relative; z-index:3; width:100%;
-  background:linear-gradient(0deg, rgba(18,36,31,.92) 0%, rgba(18,36,31,.55) 70%, rgba(18,36,31,.2) 100%);
-  padding:36px 0 28px;
+.hero-search {
+  max-width: 580px;
+  margin: 0 auto;
+  display: flex;
+  gap: 8px;
+  background: var(--surface);
+  padding: 6px;
+  border-radius: 50px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
 }
-.il-hero .badges{display:flex; gap:10px; margin-bottom:12px; flex-wrap:wrap;}
-.badge{
-  background:rgba(255,255,255,.12); border:1px solid rgba(255,255,255,.3);
-  color:var(--paper-warm); font-size:.82rem; font-weight:600; padding:4px 10px; border-radius:20px;
+
+.hero-search input {
+  flex: 1;
+  border: none;
+  padding: 14px 24px;
+  font-size: 1rem;
+  outline: none;
+  border-radius: 50px;
+  background: transparent;
+  color: var(--text-main);
 }
-.il-hero h1{color:#fff;}
-.il-hero .lede{color:var(--paper-warm); font-size:1.08rem; max-width:60ch;}
-.tip-box{
-  background:var(--paper-warm); border-left:4px solid var(--rust); padding:16px 20px; margin:20px 0;
+
+.hero-search button {
+  background: var(--accent);
+  color: var(--primary-dark);
+  border: none;
+  padding: 0 32px;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: opacity 0.2s;
 }
-.tip-box strong{color:var(--rust); display:block; font-size:.82rem; text-transform:none; margin-bottom:4px;}
 
-.content-grid{display:grid; grid-template-columns:2fr 1fr; gap:44px; align-items:start;}
-.content-main article > section{margin-bottom:40px;}
-.content-main h2{border-bottom:2px solid var(--gold); padding-bottom:8px; margin-bottom:16px;}
-.info-list{list-style:none; padding:0; margin:0;}
-.info-list li{
-  padding:10px 0; border-bottom:1px solid var(--line); display:flex; gap:10px; align-items:baseline;
+.hero-search button:hover {
+  opacity: 0.9;
 }
-.info-list li::before{content:"—"; color:var(--rust); font-weight:700;}
 
-.sidebar{position:sticky; top:20px;}
-.fact-box{background:#fff; border:1px solid var(--line); padding:22px;}
-.fact-box h3{font-size:1.05rem; margin-bottom:14px;}
-.fact-box dl{margin:0;}
-.fact-box dt{font-weight:600; color:var(--pine-dark); font-size:.85rem; margin-top:12px;}
-.fact-box dt:first-child{margin-top:0;}
-.fact-box dd{margin:2px 0 0; color:#3a4a45;}
-
-.related-list{list-style:none; padding:0; margin-top:14px;}
-.related-list li{margin-bottom:8px;}
-.related-list a{font-weight:500;}
-
-/* ---------- Blog ---------- */
-.blog-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:26px;}
-.blog-card{border:1px solid var(--line); background:#fff; padding:22px;}
-.blog-card .tag{color:var(--rust); font-weight:600; font-size:.82rem;}
-.post-body{max-width:70ch;}
-.post-body h2{margin-top:2em;}
-.post-meta{color:#5b6b65; font-size:.9rem; margin-bottom:28px;}
-
-/* ---------- Simple pages ---------- */
-.simple-page{max-width:74ch;}
-.simple-page h2{margin-top:1.6em;}
-
-/* ---------- Footer ---------- */
-.site-footer{background:var(--ink); color:var(--paper-warm); padding:44px 0 26px; margin-top:60px;}
-.footer-grid{display:grid; grid-template-columns:2fr 1fr 1fr; gap:32px; margin-bottom:28px;}
-.footer-grid h4{color:var(--paper); font-family:'Source Sans 3',sans-serif; font-size:.95rem; margin-bottom:12px;}
-.footer-grid ul{list-style:none; padding:0; margin:0;}
-.footer-grid li{margin-bottom:7px;}
-.footer-grid a{color:var(--paper-warm); font-size:.94rem;}
-.footer-grid a:hover{color:var(--gold-soft);}
-.footer-bottom{border-top:1px solid rgba(255,255,255,.12); padding-top:18px; font-size:.85rem; color:#8a9691; display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px;}
-
-@media (max-width:820px){
-  .content-grid{grid-template-columns:1fr;}
-  .footer-grid{grid-template-columns:1fr 1fr;}
+/* ---------- İl Sayfası Hero & Medya ---------- */
+.il-hero {
+  background: var(--primary);
+  color: #FFFFFF;
+  position: relative;
+  overflow: hidden;
 }
-@media (max-width:560px){
-  .footer-grid{grid-template-columns:1fr;}
-  .hero-search{flex-direction:column; max-width:100%;}
-  .hero-search button{padding:12px;}
-}<!doctype html>
-<html lang="tr">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Keşif Atlası — Türkiye'nin 81 İli Gezi Rehberi</title>
-<meta name="description" content="Türkiye'nin 81 ilini tarihi, mutfağı ve gezilecek yerleriyle keşfedin. Bölge bölge gezi rehberleri, blog yazıları ve seyahat tavsiyeleri.">
-<link rel="canonical" href="https://xn--keifatlas-3pb21c.com/index.html">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Keşif Atlası — Türkiye'nin 81 İli Gezi Rehberi">
-<meta property="og:description" content="Türkiye'nin 81 ilini tarihi, mutfağı ve gezilecek yerleriyle keşfedin. Bölge bölge gezi rehberleri, blog yazıları ve seyahat tavsiyeleri.">
-<meta property="og:url" content="https://xn--keifatlas-3pb21c.com/index.html">
-<meta name="twitter:card" content="summary">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2245%22 fill=%22%231F3A34%22/><path d=%22M50 15 L58 42 L85 42 L63 58 L71 85 L50 68 L29 85 L37 58 L15 42 L42 42 Z%22 fill=%22%23C9A227%22/></svg>">
-<link rel="stylesheet" href="./assets/css/style.css">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"Keşif Atlası","url":"https://xn--keifatlas-3pb21c.com","description":"Türkiye'nin 81 ilini tanıtan bağımsız gezi rehberi."}</script>
-</head>
-<body>
-<a class="skip-link" href="#icerik">İçeriğe geç</a>
-<header class="site-header">
-  <div class="wrap">
-    <a class="brand" href="./index.html">
-      <svg width="28" height="28" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="#12241F"/><path d="M50 15 L58 42 L85 42 L63 58 L71 85 L50 68 L29 85 L37 58 L15 42 L42 42 Z" fill="#C9A227"/></svg>
-      <span>Keşif Atlası</span>
-    </a>
-    <nav class="main-nav" aria-label="Ana menü">
-      <ul>
-        <li><a href="./iller/index.html">81 İl</a></li>
-        <li><a href="./blog/index.html">Blog</a></li>
-        <li><a href="./hakkimizda.html">Hakkımızda</a></li>
-        <li><a href="./iletisim.html">İletişim</a></li>
-      </ul>
-    </nav>
-  </div>
-</header>
 
-<main id="icerik">
+.il-hero-media {
+  position: relative;
+  min-height: 380px;
+}
 
-<section class="hero">
-  <div class="wrap">
-    <p class="hero-eyebrow">81 il, tek adres</p>
-    <h1>Türkiye'yi baştan sona keşfedin</h1>
-    <p class="lede">Kapadokya'nın peribacalarından Karadeniz'in yaylalarına, her ilin tarihini, mutfağını ve gezilecek yerlerini anlatan bağımsız bir gezi atlası.</p>
-    <form class="hero-search" action="iller/index.html" method="get">
-      <label for="il-ara" style="position:absolute;left:-9999px;">İl ara</label>
-      <input id="il-ara" type="text" placeholder="Bir il adı yazın, örn: Kapadokya, Trabzon...">
-      <button type="submit">Keşfet</button>
-    </form>
-  </div>
-</section>
+.il-hero-svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
 
-<div class="wrap section">
-  <div class="section-head">
-    <h2>Bölgeler</h2>
-    <p>Türkiye'nin 7 coğrafi bölgesindeki tüm illeri inceleyin.</p>
-  </div>
-  <div class="region-grid"><div class="region-card">
-      <span class="count">11 il</span>
-      <h3>Marmara</h3>
-      <ul><li><a href="iller/balikesir.html">Balıkesir</a></li><li><a href="iller/bilecik.html">Bilecik</a></li><li><a href="iller/bursa.html">Bursa</a></li><li><a href="iller/canakkale.html">Çanakkale</a></li><li><a href="iller/edirne.html">Edirne</a></li><li><a href="iller/istanbul.html">İstanbul</a></li></ul>
-    </div>
-<div class="region-card">
-      <span class="count">8 il</span>
-      <h3>Ege</h3>
-      <ul><li><a href="iller/afyonkarahisar.html">Afyonkarahisar</a></li><li><a href="iller/aydin.html">Aydın</a></li><li><a href="iller/denizli.html">Denizli</a></li><li><a href="iller/izmir.html">İzmir</a></li><li><a href="iller/kutahya.html">Kütahya</a></li><li><a href="iller/manisa.html">Manisa</a></li></ul>
-    </div>
-<div class="region-card">
-      <span class="count">8 il</span>
-      <h3>Akdeniz</h3>
-      <ul><li><a href="iller/adana.html">Adana</a></li><li><a href="iller/antalya.html">Antalya</a></li><li><a href="iller/burdur.html">Burdur</a></li><li><a href="iller/hatay.html">Hatay</a></li><li><a href="iller/isparta.html">Isparta</a></li><li><a href="iller/kahramanmaras.html">Kahramanmaraş</a></li></ul>
-    </div>
-<div class="region-card">
-      <span class="count">12 il</span>
-      <h3>İç Anadolu</h3>
-      <ul><li><a href="iller/aksaray.html">Aksaray</a></li><li><a href="iller/ankara.html">Ankara</a></li><li><a href="iller/eskisehir.html">Eskişehir</a></li><li><a href="iller/karaman.html">Karaman</a></li><li><a href="iller/kayseri.html">Kayseri</a></li><li><a href="iller/kirikkale.html">Kırıkkale</a></li></ul>
-    </div>
-<div class="region-card">
-      <span class="count">19 il</span>
-      <h3>Karadeniz</h3>
-      <ul><li><a href="iller/amasya.html">Amasya</a></li><li><a href="iller/artvin.html">Artvin</a></li><li><a href="iller/bartin.html">Bartın</a></li><li><a href="iller/bayburt.html">Bayburt</a></li><li><a href="iller/bolu.html">Bolu</a></li><li><a href="iller/cankiri.html">Çankırı</a></li></ul>
-    </div>
-<div class="region-card">
-      <span class="count">14 il</span>
-      <h3>Doğu Anadolu</h3>
-      <ul><li><a href="iller/agri.html">Ağrı</a></li><li><a href="iller/ardahan.html">Ardahan</a></li><li><a href="iller/bingol.html">Bingöl</a></li><li><a href="iller/bitlis.html">Bitlis</a></li><li><a href="iller/elazig.html">Elazığ</a></li><li><a href="iller/erzincan.html">Erzincan</a></li></ul>
-    </div>
-<div class="region-card">
-      <span class="count">9 il</span>
-      <h3>Güneydoğu Anadolu</h3>
-      <ul><li><a href="iller/adiyaman.html">Adıyaman</a></li><li><a href="iller/batman.html">Batman</a></li><li><a href="iller/diyarbakir.html">Diyarbakır</a></li><li><a href="iller/gaziantep.html">Gaziantep</a></li><li><a href="iller/kilis.html">Kilis</a></li><li><a href="iller/mardin.html">Mardin</a></li></ul>
-    </div></div>
-</div>
+.il-photo {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.25;
+}
 
-<div class="wrap section">
-  <div class="section-head">
-    <h2>Öne Çıkan Rehberler</h2>
-    <p>Gezginlerin en çok merak ettiği illerden seçmeler.</p>
-  </div>
-  <div class="il-grid"><div class="il-card">
-      <span class="plaka-badge">34</span>
-      <h3>İstanbul</h3>
-      <p>İki kıtayı birbirine bağlayan, tarih ve modern yaşamı boğaz manzarasıyla harmanlayan metropol.</p>
-      <a class="il-link" href="iller/istanbul.html">Rehberi oku →</a>
-    </div>
-<div class="il-card">
-      <span class="plaka-badge">50</span>
-      <h3>Nevşehir</h3>
-      <p>Peribacaları ve yeraltı şehirleriyle Kapadokya'nın kalbi; balon turlarının başkenti.</p>
-      <a class="il-link" href="iller/nevsehir.html">Rehberi oku →</a>
-    </div>
-<div class="il-card">
-      <span class="plaka-badge">07</span>
-      <h3>Antalya</h3>
-      <p>Türkiye turizminin başkenti; antik kentleri, plajları ve Toros manzarasıyla dört mevsim canlı.</p>
-      <a class="il-link" href="iller/antalya.html">Rehberi oku →</a>
-    </div>
-<div class="il-card">
-      <span class="plaka-badge">35</span>
-      <h3>İzmir</h3>
-      <p>Ege'nin incisi; sahil şeridi, antik kentleri ve özgür ruhuyla yıl boyu canlı bir liman şehri.</p>
-      <a class="il-link" href="iller/izmir.html">Rehberi oku →</a>
-    </div>
-<div class="il-card">
-      <span class="plaka-badge">61</span>
-      <h3>Trabzon</h3>
-      <p>Sümela Manastırı'nın kayalara oyulduğu, yeşille denizin iç içe geçtiği Doğu Karadeniz merkezi.</p>
-      <a class="il-link" href="iller/trabzon.html">Rehberi oku →</a>
-    </div>
-<div class="il-card">
-      <span class="plaka-badge">63</span>
-      <h3>Şanlıurfa</h3>
-      <p>Peygamberler şehri; Göbeklitepe ile insanlık tarihini yeniden yazan Mezopotamya kenti.</p>
-      <a class="il-link" href="iller/sanliurfa.html">Rehberi oku →</a>
-    </div></div>
-</div>
+.il-hero-overlay {
+  position: relative;
+  z-index: 2;
+  padding: 60px 0;
+  background: linear-gradient(to top, rgba(18, 36, 31, 0.95) 0%, rgba(31, 58, 52, 0.4) 100%);
+}
 
-<div class="wrap section">
-  <div class="section-head">
-    <h2>Blog'dan Son Yazılar</h2>
-    <p>Rota önerileri, mevsimlik tavsiyeler ve yöresel mutfak yazıları.</p>
-  </div>
-  <div class="blog-grid" id="home-blog-grid">
-  <div class="blog-card">
-    <span class="tag">Doğa & Yayla</span>
-    <h3><a href="blog/karadeniz-yayla-turizmi-rehberi.html">Karadeniz Yaylalarında Bir Gün: Yayla Turizmi Rehberi</a></h3>
-    <p>Sisin arasından süzülen güneş ışığı, taze muhlama kokusu ve bulutların altında bir çadır... Karadeniz yaylalarını ziyaret etmeden önce bilmeniz gerekenler.</p>
-    <a href="blog/karadeniz-yayla-turizmi-rehberi.html" class="il-link">Yazıyı oku →</a>
-  </div>
+.breadcrumb {
+  font-size: 0.88rem;
+  margin-bottom: 16px;
+}
 
-  <div class="blog-card">
-    <span class="tag">Sahil & Doğa</span>
-    <h3><a href="blog/ege-kiyisinda-az-bilinen-5-koy.html">Ege Kıyısında Az Bilinen 5 Koy</a></h3>
-    <p>Bodrum ve Fethiye'nin kalabalığından uzak, sakin bir Ege tatili arıyorsanız, bu 5 koy tam size göre.</p>
-    <a href="blog/ege-kiyisinda-az-bilinen-5-koy.html" class="il-link">Yazıyı oku →</a>
-  </div>
+.badges {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 16px;
+}
 
-  <div class="blog-card">
-    <span class="tag">Tarih & Kültür</span>
-    <h3><a href="blog/ipek-yolu-guzergahinda-gezilecek-sehirler.html">Tarihin İzinde: İpek Yolu Güzergahında Gezilecek Şehirler</a></h3>
-    <p>Kervanların yüzyıllar önce geçtiği yolları takip ederek Anadolu'nun ticaret ve kültür mirasını keşfedin.</p>
-    <a href="blog/ipek-yolu-guzergahinda-gezilecek-sehirler.html" class="il-link">Yazıyı oku →</a>
-  </div></div>
-</div>
+.badge {
+  background: rgba(201, 162, 39, 0.25);
+  color: var(--accent-light);
+  border: 1px solid var(--accent);
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
 
-</main>
-<footer class="site-footer">
-  <div class="wrap">
-    <div class="footer-grid">
-      <div>
-        <h4>Keşif Atlası</h4>
-        <p style="max-width:38ch;color:#c9c2a2;font-size:.94rem;">Türkiye'nin 81 ilini; tarihi, mutfağı ve gezilecek yerleriyle tek tek anlatan bağımsız bir gezi rehberi.</p>
-      </div>
-      <div>
-        <h4>Keşfet</h4>
-        <ul>
-          <li><a href="./iller/index.html">Tüm İller</a></li>
-          <li><a href="./blog/index.html">Blog Yazıları</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4>Kurumsal</h4>
-        <ul>
-          <li><a href="./hakkimizda.html">Hakkımızda</a></li>
-          <li><a href="./iletisim.html">İletişim</a></li>
-          <li><a href="./gizlilik-politikasi.html">Gizlilik Politikası</a></li>
-          <li><a href="./kullanim-sartlari.html">Kullanım Şartları</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <span>© 2026 Keşif Atlası. Tüm hakları saklıdır.</span>
-      <span>Türkiye'yi il il keşfedin.</span>
-    </div>
-  </div>
-</footer>
+.il-hero h1 {
+  font-family: var(--font-serif);
+  font-size: 2.8rem;
+  margin-bottom: 12px;
+}
 
-</body>
-</html><!doctype html>
-<html lang="tr">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Hakkımızda | Keşif Atlası</title>
-<meta name="description" content="Keşif Atlası'nın hikayesi, amacı ve içerik yaklaşımı hakkında bilgi edinin.">
-<link rel="canonical" href="https://xn--keifatlas-3pb21c.com/hakkimizda.html">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Hakkımızda | Keşif Atlası">
-<meta property="og:description" content="Keşif Atlası'nın hikayesi, amacı ve içerik yaklaşımı hakkında bilgi edinin.">
-<meta property="og:url" content="https://xn--keifatlas-3pb21c.com/hakkimizda.html">
-<meta name="twitter:card" content="summary">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2245%22 fill=%22%231F3A34%22/><path d=%22M50 15 L58 42 L85 42 L63 58 L71 85 L50 68 L29 85 L37 58 L15 42 L42 42 Z%22 fill=%22%23C9A227%22/></svg>">
-<link rel="stylesheet" href="./assets/css/style.css">
+.il-hero .lede {
+  font-size: 1.1rem;
+  max-width: 700px;
+  color: var(--accent-light);
+}
 
-</head>
-<body>
-<a class="skip-link" href="#icerik">İçeriğe geç</a>
-<header class="site-header">
-  <div class="wrap">
-    <a class="brand" href="./index.html">
-      <svg width="28" height="28" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="#12241F"/><path d="M50 15 L58 42 L85 42 L63 58 L71 85 L50 68 L29 85 L37 58 L15 42 L42 42 Z" fill="#C9A227"/></svg>
-      <span>Keşif Atlası</span>
-    </a>
-    <nav class="main-nav" aria-label="Ana menü">
-      <ul>
-        <li><a href="./iller/index.html">81 İl</a></li>
-        <li><a href="./blog/index.html">Blog</a></li>
-        <li><a href="./hakkimizda.html">Hakkımızda</a></li>
-        <li><a href="./iletisim.html">İletişim</a></li>
-      </ul>
-    </nav>
-  </div>
-</header>
+/* ---------- Bölüm & Izgara Yapıları (Grids) ---------- */
+.section {
+  padding: 60px 0;
+}
 
-<main id="icerik">
+.section-head {
+  margin-bottom: 36px;
+}
 
-<div class="wrap section">
-  <div class="simple-page">
-    <h1>Hakkımızda</h1>
-    <p>Keşif Atlası, Türkiye'nin 81 ilini tek tek, ayrıntılı ve güncel bilgilerle tanıtmak amacıyla kurulmuş bağımsız bir gezi rehberi platformudur. Amacımız; her ilin tarihini, doğal güzelliklerini, yöresel mutfağını ve gezginler için pratik bilgileri tek bir yerde toplamak.</p>
-    <h2>Neden Keşif Atlası?</h2>
-    <p>Türkiye'yi gezerken çoğu zaman bilgiler farklı kaynaklara dağılmış oluyor: bir sitede gezilecek yerler, başka bir sitede yöresel lezzetler, bir başkasında ulaşım bilgileri... Keşif Atlası'nı kurma fikri, tüm bu bilgileri il il, düzenli bir formatta bir araya getirme ihtiyacından doğdu.</p>
-    <h2>İçerik Yaklaşımımız</h2>
-    <p>Her il sayfası; genel tanıtım, gezilecek yerler, yöresel lezzetler ve en iyi ziyaret zamanı gibi başlıklar altında düzenlenir. Blog bölümümüzde ise mevsimlik rota önerileri, tema bazlı geziler (yayla turizmi, kış turizmi, gastronomi rotaları gibi) ve pratik seyahat tavsiyeleri paylaşıyoruz.</p>
-    <p>İçeriklerimizi sürekli güncelliyor ve genişletiyoruz. Bir ilde eksik ya da güncel olmayan bir bilgi fark ederseniz, <a href="./iletisim.html">iletişim sayfamızdan</a> bize ulaşabilirsiniz.</p>
-    <h2>Bağımsızlık</h2>
-    <p>Keşif Atlası herhangi bir seyahat acentesi veya turizm kurumuyla bağlantılı değildir; içeriklerimiz tamamen editoryal bağımsızlıkla hazırlanır.</p>
-  </div>
-</div>
-</main>
-<footer class="site-footer">
-  <div class="wrap">
-    <div class="footer-grid">
-      <div>
-        <h4>Keşif Atlası</h4>
-        <p style="max-width:38ch;color:#c9c2a2;font-size:.94rem;">Türkiye'nin 81 ilini; tarihi, mutfağı ve gezilecek yerleriyle tek tek anlatan bağımsız bir gezi rehberi.</p>
-      </div>
-      <div>
-        <h4>Keşfet</h4>
-        <ul>
-          <li><a href="./iller/index.html">Tüm İller</a></li>
-          <li><a href="./blog/index.html">Blog Yazıları</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4>Kurumsal</h4>
-        <ul>
-          <li><a href="./hakkimizda.html">Hakkımızda</a></li>
-          <li><a href="./iletisim.html">İletişim</a></li>
-          <li><a href="./gizlilik-politikasi.html">Gizlilik Politikası</a></li>
-          <li><a href="./kullanim-sartlari.html">Kullanım Şartları</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <span>© 2026 Keşif Atlası. Tüm hakları saklıdır.</span>
-      <span>Türkiye'yi il il keşfedin.</span>
-    </div>
-  </div>
-</footer>
+.section-head h2 {
+  font-family: var(--font-serif);
+  font-size: 1.9rem;
+  color: var(--primary-dark);
+  margin-bottom: 6px;
+}
 
-</body>
-</html><!doctype html>
-<html lang="tr">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Hakkımızda | Keşif Atlası</title>
-<meta name="description" content="Keşif Atlası'nın hikayesi, amacı ve içerik yaklaşımı hakkında bilgi edinin.">
-<link rel="canonical" href="https://xn--keifatlas-3pb21c.com/hakkimizda.html">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Hakkımızda | Keşif Atlası">
-<meta property="og:description" content="Keşif Atlası'nın hikayesi, amacı ve içerik yaklaşımı hakkında bilgi edinin.">
-<meta property="og:url" content="https://xn--keifatlas-3pb21c.com/hakkimizda.html">
-<meta name="twitter:card" content="summary">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2245%22 fill=%22%231F3A34%22/><path d=%22M50 15 L58 42 L85 42 L63 58 L71 85 L50 68 L29 85 L37 58 L15 42 L42 42 Z%22 fill=%22%23C9A227%22/></svg>">
-<link rel="stylesheet" href="./assets/css/style.css">
+.section-head p {
+  color: var(--text-muted);
+}
 
-</head>
-<body>
-<a class="skip-link" href="#icerik">İçeriğe geç</a>
-<header class="site-header">
-  <div class="wrap">
-    <a class="brand" href="./index.html">
-      <svg width="28" height="28" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="#12241F"/><path d="M50 15 L58 42 L85 42 L63 58 L71 85 L50 68 L29 85 L37 58 L15 42 L42 42 Z" fill="#C9A227"/></svg>
-      <span>Keşif Atlası</span>
-    </a>
-    <nav class="main-nav" aria-label="Ana menü">
-      <ul>
-        <li><a href="./iller/index.html">81 İl</a></li>
-        <li><a href="./blog/index.html">Blog</a></li>
-        <li><a href="./hakkimizda.html">Hakkımızda</a></li>
-        <li><a href="./iletisim.html">İletişim</a></li>
-      </ul>
-    </nav>
-  </div>
-</header>
+/* 7 Bölge Kartları */
+.region-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 24px;
+}
 
-<main id="icerik">
+.region-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px;
+  position: relative;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
 
-<div class="wrap section">
-  <div class="simple-page">
-    <h1>Hakkımızda</h1>
-    <p>Keşif Atlası, Türkiye'nin 81 ilini tek tek, ayrıntılı ve güncel bilgilerle tanıtmak amacıyla kurulmuş bağımsız bir gezi rehberi platformudur. Amacımız; her ilin tarihini, doğal güzelliklerini, yöresel mutfağını ve gezginler için pratik bilgileri tek bir yerde toplamak.</p>
-    <h2>Neden Keşif Atlası?</h2>
-    <p>Türkiye'yi gezerken çoğu zaman bilgiler farklı kaynaklara dağılmış oluyor: bir sitede gezilecek yerler, başka bir sitede yöresel lezzetler, bir başkasında ulaşım bilgileri... Keşif Atlası'nı kurma fikri, tüm bu bilgileri il il, düzenli bir formatta bir araya getirme ihtiyacından doğdu.</p>
-    <h2>İçerik Yaklaşımımız</h2>
-    <p>Her il sayfası; genel tanıtım, gezilecek yerler, yöresel lezzetler ve en iyi ziyaret zamanı gibi başlıklar altında düzenlenir. Blog bölümümüzde ise mevsimlik rota önerileri, tema bazlı geziler (yayla turizmi, kış turizmi, gastronomi rotaları gibi) ve pratik seyahat tavsiyeleri paylaşıyoruz.</p>
-    <p>İçeriklerimizi sürekli güncelliyor ve genişletiyoruz. Bir ilde eksik ya da güncel olmayan bir bilgi fark ederseniz, <a href="./iletisim.html">iletişim sayfamızdan</a> bize ulaşabilirsiniz.</p>
-    <h2>Bağımsızlık</h2>
-    <p>Keşif Atlası herhangi bir seyahat acentesi veya turizm kurumuyla bağlantılı değildir; içeriklerimiz tamamen editoryal bağımsızlıkla hazırlanır.</p>
-  </div>
-</div>
-</main>
-<footer class="site-footer">
-  <div class="wrap">
-    <div class="footer-grid">
-      <div>
-        <h4>Keşif Atlası</h4>
-        <p style="max-width:38ch;color:#c9c2a2;font-size:.94rem;">Türkiye'nin 81 ilini; tarihi, mutfağı ve gezilecek yerleriyle tek tek anlatan bağımsız bir gezi rehberi.</p>
-      </div>
-      <div>
-        <h4>Keşfet</h4>
-        <ul>
-          <li><a href="./iller/index.html">Tüm İller</a></li>
-          <li><a href="./blog/index.html">Blog Yazıları</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4>Kurumsal</h4>
-        <ul>
-          <li><a href="./hakkimizda.html">Hakkımızda</a></li>
-          <li><a href="./iletisim.html">İletişim</a></li>
-          <li><a href="./gizlilik-politikasi.html">Gizlilik Politikası</a></li>
-          <li><a href="./kullanim-sartlari.html">Kullanım Şartları</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <span>© 2026 Keşif Atlası. Tüm hakları saklıdır.</span>
-      <span>Türkiye'yi il il keşfedin.</span>
-    </div>
-  </div>
-</footer>
+.region-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
 
-</body>
-<!doctype html>
-<html lang="tr">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Hakkımızda | Keşif Atlası</title>
-<meta name="description" content="Keşif Atlası'nın hikayesi, amacı ve içerik yaklaşımı hakkında bilgi edinin.">
-<link rel="canonical" href="https://xn--keifatlas-3pb21c.com/hakkimizda.html">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Hakkımızda | Keşif Atlası">
-<meta property="og:description" content="Keşif Atlası'nın hikayesi, amacı ve içerik yaklaşımı hakkında bilgi edinin.">
-<meta property="og:url" content="https://xn--keifatlas-3pb21c.com/hakkimizda.html">
-<meta name="twitter:card" content="summary">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2245%22 fill=%22%231F3A34%22/><path d=%22M50 15 L58 42 L85 42 L63 58 L71 85 L50 68 L29 85 L37 58 L15 42 L42 42 Z%22 fill=%22%23C9A227%22/></svg>">
-<link rel="stylesheet" href="./assets/css/style.css">
+.region-card .count {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  font-size: 0.8rem;
+  background: var(--bg);
+  padding: 2px 10px;
+  border-radius: 12px;
+  color: var(--text-muted);
+  font-weight: 600;
+}
 
-</head>
-<body>
-<a class="skip-link" href="#icerik">İçeriğe geç</a>
-<header class="site-header">
-  <div class="wrap">
-    <a class="brand" href="./index.html">
-      <svg width="28" height="28" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="#12241F"/><path d="M50 15 L58 42 L85 42 L63 58 L71 85 L50 68 L29 85 L37 58 L15 42 L42 42 Z" fill="#C9A227"/></svg>
-      <span>Keşif Atlası</span>
-    </a>
-    <nav class="main-nav" aria-label="Ana menü">
-      <ul>
-        <li><a href="./iller/index.html">81 İl</a></li>
-        <li><a href="./blog/index.html">Blog</a></li>
-        <li><a href="./hakkimizda.html">Hakkımızda</a></li>
-        <li><a href="./iletisim.html">İletişim</a></li>
-      </ul>
-    </nav>
-  </div>
-</header>
+.region-card h3 {
+  font-family: var(--font-serif);
+  font-size: 1.3rem;
+  margin-bottom: 16px;
+  color: var(--primary);
+}
 
-<main id="icerik">
+.region-card ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
 
-<div class="wrap section">
-  <div class="simple-page">
-    <h1>Hakkımızda</h1>
-    <p>Keşif Atlası, Türkiye'nin 81 ilini tek tek, ayrıntılı ve güncel bilgilerle tanıtmak amacıyla kurulmuş bağımsız bir gezi rehberi platformudur. Amacımız; her ilin tarihini, doğal güzelliklerini, yöresel mutfağını ve gezginler için pratik bilgileri tek bir yerde toplamak.</p>
-    <h2>Neden Keşif Atlası?</h2>
-    <p>Türkiye'yi gezerken çoğu zaman bilgiler farklı kaynaklara dağılmış oluyor: bir sitede gezilecek yerler, başka bir sitede yöresel lezzetler, bir başkasında ulaşım bilgileri... Keşif Atlası'nı kurma fikri, tüm bu bilgileri il il, düzenli bir formatta bir araya getirme ihtiyacından doğdu.</p>
-    <h2>İçerik Yaklaşımımız</h2>
-    <p>Her il sayfası; genel tanıtım, gezilecek yerler, yöresel lezzetler ve en iyi ziyaret zamanı gibi başlıklar altında düzenlenir. Blog bölümümüzde ise mevsimlik rota önerileri, tema bazlı geziler (yayla turizmi, kış turizmi, gastronomi rotaları gibi) ve pratik seyahat tavsiyeleri paylaşıyoruz.</p>
-    <p>İçeriklerimizi sürekli güncelliyor ve genişletiyoruz. Bir ilde eksik ya da güncel olmayan bir bilgi fark ederseniz, <a href="./iletisim.html">iletişim sayfamızdan</a> bize ulaşabilirsiniz.</p>
-    <h2>Bağımsızlık</h2>
-    <p>Keşif Atlası herhangi bir seyahat acentesi veya turizm kurumuyla bağlantılı değildir; içeriklerimiz tamamen editoryal bağımsızlıkla hazırlanır.</p>
-  </div>
-</div>
-</main>
-<footer class="site-footer">
-  <div class="wrap">
-    <div class="footer-grid">
-      <div>
-        <h4>Keşif Atlası</h4>
-        <p style="max-width:38ch;color:#c9c2a2;font-size:.94rem;">Türkiye'nin 81 ilini; tarihi, mutfağı ve gezilecek yerleriyle tek tek anlatan bağımsız bir gezi rehberi.</p>
-      </div>
-      <div>
-        <h4>Keşfet</h4>
-        <ul>
-          <li><a href="./iller/index.html">Tüm İller</a></li>
-          <li><a href="./blog/index.html">Blog Yazıları</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4>Kurumsal</h4>
-        <ul>
-          <li><a href="./hakkimizda.html">Hakkımızda</a></li>
-          <li><a href="./iletisim.html">İletişim</a></li>
-          <li><a href="./gizlilik-politikasi.html">Gizlilik Politikası</a></li>
-          <li><a href="./kullanim-sartlari.html">Kullanım Şartları</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <span>© 2026 Keşif Atlası. Tüm hakları saklıdır.</span>
-      <span>Türkiye'yi il il keşfedin.</span>
-    </div>
-  </div>
-</footer>
+.region-card li a {
+  color: var(--text-main);
+  font-size: 0.94rem;
+  display: inline-block;
+}
 
-</body> <!doctype html>
-<html lang="tr">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Hakkımızda | Keşif Atlası</title>
-<meta name="description" content="Keşif Atlası'nın hikayesi, amacı ve içerik yaklaşımı hakkında bilgi edinin.">
-<link rel="canonical" href="https://xn--keifatlas-3pb21c.com/hakkimizda.html">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Hakkımızda | Keşif Atlası">
-<meta property="og:description" content="Keşif Atlası'nın hikayesi, amacı ve içerik yaklaşımı hakkında bilgi edinin.">
-<meta property="og:url" content="https://xn--keifatlas-3pb21c.com/hakkimizda.html">
-<meta name="twitter:card" content="summary">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2245%22 fill=%22%231F3A34%22/><path d=%22M50 15 L58 42 L85 42 L63 58 L71 85 L50 68 L29 85 L37 58 L15 42 L42 42 Z%22 fill=%22%23C9A227%22/></svg>">
-<link rel="stylesheet" href="./assets/css/style.css">
+.region-card li a:hover {
+  color: var(--primary);
+  transform: translateX(4px);
+}
 
-</head>
-<body>
-<a class="skip-link" href="#icerik">İçeriğe geç</a>
-<header class="site-header">
-  <div class="wrap">
-    <a class="brand" href="./index.html">
-      <svg width="28" height="28" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="#12241F"/><path d="M50 15 L58 42 L85 42 L63 58 L71 85 L50 68 L29 85 L37 58 L15 42 L42 42 Z" fill="#C9A227"/></svg>
-      <span>Keşif Atlası</span>
-    </a>
-    <nav class="main-nav" aria-label="Ana menü">
-      <ul>
-        <li><a href="./iller/index.html">81 İl</a></li>
-        <li><a href="./blog/index.html">Blog</a></li>
-        <li><a href="./hakkimizda.html">Hakkımızda</a></li>
-        <li><a href="./iletisim.html">İletişim</a></li>
-      </ul>
-    </nav>
-  </div>
-</header>
+/* İl Kartları */
+.il-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 24px;
+}
 
-<main id="icerik">
+.il-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
 
-<div class="wrap section">
-  <div class="simple-page">
-    <h1>Hakkımızda</h1>
-    <p>Keşif Atlası, Türkiye'nin 81 ilini tek tek, ayrıntılı ve güncel bilgilerle tanıtmak amacıyla kurulmuş bağımsız bir gezi rehberi platformudur. Amacımız; her ilin tarihini, doğal güzelliklerini, yöresel mutfağını ve gezginler için pratik bilgileri tek bir yerde toplamak.</p>
-    <h2>Neden Keşif Atlası?</h2>
-    <p>Türkiye'yi gezerken çoğu zaman bilgiler farklı kaynaklara dağılmış oluyor: bir sitede gezilecek yerler, başka bir sitede yöresel lezzetler, bir başkasında ulaşım bilgileri... Keşif Atlası'nı kurma fikri, tüm bu bilgileri il il, düzenli bir formatta bir araya getirme ihtiyacından doğdu.</p>
-    <h2>İçerik Yaklaşımımız</h2>
-    <p>Her il sayfası; genel tanıtım, gezilecek yerler, yöresel lezzetler ve en iyi ziyaret zamanı gibi başlıklar altında düzenlenir. Blog bölümümüzde ise mevsimlik rota önerileri, tema bazlı geziler (yayla turizmi, kış turizmi, gastronomi rotaları gibi) ve pratik seyahat tavsiyeleri paylaşıyoruz.</p>
-    <p>İçeriklerimizi sürekli güncelliyor ve genişletiyoruz. Bir ilde eksik ya da güncel olmayan bir bilgi fark ederseniz, <a href="./iletisim.html">iletişim sayfamızdan</a> bize ulaşabilirsiniz.</p>
-    <h2>Bağımsızlık</h2>
-    <p>Keşif Atlası herhangi bir seyahat acentesi veya turizm kurumuyla bağlantılı değildir; içeriklerimiz tamamen editoryal bağımsızlıkla hazırlanır.</p>
-  </div>
-</div>
-</main>
-<footer class="site-footer">
-  <div class="wrap">
-    <div class="footer-grid">
-      <div>
-        <h4>Keşif Atlası</h4>
-        <p style="max-width:38ch;color:#c9c2a2;font-size:.94rem;">Türkiye'nin 81 ilini; tarihi, mutfağı ve gezilecek yerleriyle tek tek anlatan bağımsız bir gezi rehberi.</p>
-      </div>
-      <div>
-        <h4>Keşfet</h4>
-        <ul>
-          <li><a href="./iller/index.html">Tüm İller</a></li>
-          <li><a href="./blog/index.html">Blog Yazıları</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4>Kurumsal</h4>
-        <ul>
-          <li><a href="./hakkimizda.html">Hakkımızda</a></li>
-          <li><a href="./iletisim.html">İletişim</a></li>
-          <li><a href="./gizlilik-politikasi.html">Gizlilik Politikası</a></li>
-          <li><a href="./kullanim-sartlari.html">Kullanım Şartları</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <span>© 2026 Keşif Atlası. Tüm hakları saklıdır.</span>
-      <span>Türkiye'yi il il keşfedin.</span>
-    </div>
-  </div>
-</footer>
+.il-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
 
-</body>
-<!doctype html>
-<html lang="tr">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Hakkımızda | Keşif Atlası</title>
-<meta name="description" content="Keşif Atlası'nın hikayesi, amacı ve içerik yaklaşımı hakkında bilgi edinin.">
-<link rel="canonical" href="https://xn--keifatlas-3pb21c.com/hakkimizda.html">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Hakkımızda | Keşif Atlası">
-<meta property="og:description" content="Keşif Atlası'nın hikayesi, amacı ve içerik yaklaşımı hakkında bilgi edinin.">
-<meta property="og:url" content="https://xn--keifatlas-3pb21c.com/hakkimizda.html">
-<meta name="twitter:card" content="summary">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2245%22 fill=%22%231F3A34%22/><path d=%22M50 15 L58 42 L85 42 L63 58 L71 85 L50 68 L29 85 L37 58 L15 42 L42 42 Z%22 fill=%22%23C9A227%22/></svg>">
-<link rel="stylesheet" href="./assets/css/style.css">
+.plaka-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--primary);
+  margin-bottom: 16px;
+}
 
-</head>
-<body>
-<a class="skip-link" href="#icerik">İçeriğe geç</a>
-<header class="site-header">
-  <div class="wrap">
-    <a class="brand" href="./index.html">
-      <svg width="28" height="28" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="#12241F"/><path d="M50 15 L58 42 L85 42 L63 58 L71 85 L50 68 L29 85 L37 58 L15 42 L42 42 Z" fill="#C9A227"/></svg>
-      <span>Keşif Atlası</span>
-    </a>
-    <nav class="main-nav" aria-label="Ana menü">
-      <ul>
-        <li><a href="./iller/index.html">81 İl</a></li>
-        <li><a href="./blog/index.html">Blog</a></li>
-        <li><a href="./hakkimizda.html">Hakkımızda</a></li>
-        <li><a href="./iletisim.html">İletişim</a></li>
-      </ul>
-    </nav>
-  </div>
-</header>
+.il-card h3 {
+  font-family: var(--font-serif);
+  font-size: 1.4rem;
+  margin-bottom: 10px;
+  color: var(--primary-dark);
+}
 
-<main id="icerik">
+.il-card p {
+  color: var(--text-muted);
+  font-size: 0.94rem;
+  line-height: 1.55;
+  margin-bottom: 20px;
+  flex: 1;
+}
 
-<div class="wrap section">
-  <div class="simple-page">
-    <h1>Hakkımızda</h1>
-    <p>Keşif Atlası, Türkiye'nin 81 ilini tek tek, ayrıntılı ve güncel bilgilerle tanıtmak amacıyla kurulmuş bağımsız bir gezi rehberi platformudur. Amacımız; her ilin tarihini, doğal güzelliklerini, yöresel mutfağını ve gezginler için pratik bilgileri tek bir yerde toplamak.</p>
-    <h2>Neden Keşif Atlası?</h2>
-    <p>Türkiye'yi gezerken çoğu zaman bilgiler farklı kaynaklara dağılmış oluyor: bir sitede gezilecek yerler, başka bir sitede yöresel lezzetler, bir başkasında ulaşım bilgileri... Keşif Atlası'nı kurma fikri, tüm bu bilgileri il il, düzenli bir formatta bir araya getirme ihtiyacından doğdu.</p>
-    <h2>İçerik Yaklaşımımız</h2>
-    <p>Her il sayfası; genel tanıtım, gezilecek yerler, yöresel lezzetler ve en iyi ziyaret zamanı gibi başlıklar altında düzenlenir. Blog bölümümüzde ise mevsimlik rota önerileri, tema bazlı geziler (yayla turizmi, kış turizmi, gastronomi rotaları gibi) ve pratik seyahat tavsiyeleri paylaşıyoruz.</p>
-    <p>İçeriklerimizi sürekli güncelliyor ve genişletiyoruz. Bir ilde eksik ya da güncel olmayan bir bilgi fark ederseniz, <a href="./iletisim.html">iletişim sayfamızdan</a> bize ulaşabilirsiniz.</p>
-    <h2>Bağımsızlık</h2>
-    <p>Keşif Atlası herhangi bir seyahat acentesi veya turizm kurumuyla bağlantılı değildir; içeriklerimiz tamamen editoryal bağımsızlıkla hazırlanır.</p>
-  </div>
-</div>
-</main>
-<footer class="site-footer">
-  <div class="wrap">
-    <div class="footer-grid">
-      <div>
-        <h4>Keşif Atlası</h4>
-        <p style="max-width:38ch;color:#c9c2a2;font-size:.94rem;">Türkiye'nin 81 ilini; tarihi, mutfağı ve gezilecek yerleriyle tek tek anlatan bağımsız bir gezi rehberi.</p>
-      </div>
-      <div>
-        <h4>Keşfet</h4>
-        <ul>
-          <li><a href="./iller/index.html">Tüm İller</a></li>
-          <li><a href="./blog/index.html">Blog Yazıları</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4>Kurumsal</h4>
-        <ul>
-          <li><a href="./hakkimizda.html">Hakkımızda</a></li>
-          <li><a href="./iletisim.html">İletişim</a></li>
-          <li><a href="./gizlilik-politikasi.html">Gizlilik Politikası</a></li>
-          <li><a href="./kullanim-sartlari.html">Kullanım Şartları</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <span>© 2026 Keşif Atlası. Tüm hakları saklıdır.</span>
-      <span>Türkiye'yi il il keşfedin.</span>
-    </div>
-  </div>
-</footer>
+.il-link {
+  font-weight: 600;
+  font-size: 0.92rem;
+  color: var(--primary);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
 
-</body>
-</html>
-4️⃣ Dosya adı: iletisim.html
-html
-<!doctype html>
-<html lang="tr">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>İletişim | Keşif Atlası</title>
-<meta name="description" content="Keşif Atlası ile iletişime geçin: öneri, düzeltme veya iş birliği talepleriniz için bize ulaşın.">
-<link rel="canonical" href="https://xn--keifatlas-3pb21c.com/iletisim.html">
-<meta property="og:type" content="website">
-<meta property="og:title" content="İletişim | Keşif Atlası">
-<meta property="og:description" content="Keşif Atlası ile iletişime geçin: öneri, düzeltme veya iş birliği talepleriniz için bize ulaşın.">
-<meta property="og:url" content="https://xn--keifatlas-3pb21c.com/iletisim.html">
-<meta name="twitter:card" content="summary">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2245%22 fill=%22%231F3A34%22/><path d=%22M50 15 L58 42 L85 42 L63 58 L71 85 L50 68 L29 85 L37 58 L15 42 L42 42 Z%22 fill=%22%23C9A227%22/></svg>">
-<link rel="stylesheet" href="./assets/css/style.css">
+/* Blog Kartları */
+.blog-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 24px;
+}
 
-</head>
-<body>
-<a class="skip-link" href="#icerik">İçeriğe geç</a>
-<header class="site-header">
-  <div class="wrap">
-    <a class="brand" href="./index.html">
-      <svg width="28" height="28" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="#12241F"/><path d="M50 15 L58 42 L85 42 L63 58 L71 85 L50 68 L29 85 L37 58 L15 42 L42 42 Z" fill="#C9A227"/></svg>
-      <span>Keşif Atlası</span>
-    </a>
-    <nav class="main-nav" aria-label="Ana menü">
-      <ul>
-        <li><a href="./iller/index.html">81 İl</a></li>
-        <li><a href="./blog/index.html">Blog</a></li>
-        <li><a href="./hakkimizda.html">Hakkımızda</a></li>
-        <li><a href="./iletisim.html">İletişim</a></li>
-      </ul>
-    </nav>
-  </div>
-</header>
+.blog-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+}
 
-<main id="icerik">
+.blog-card .tag {
+  display: inline-block;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--accent);
+  font-weight: 700;
+  margin-bottom: 12px;
+}
 
-<div class="wrap section">
-  <div class="simple-page">
-    <h1>İletişim</h1>
-    <p>Görüş, öneri, düzeltme talebi ya da iş birliği teklifleriniz için bizimle iletişime geçebilirsiniz.</p>
-    <h2>E-posta</h2>
-    <p>Genel sorularınız için: <a href="mailto:info@kesifatlasi.com">info@kesifatlasi.com</a></p>
-    <p>İçerik düzeltme/güncelleme bildirimi için: <a href="mailto:icerik@kesifatlasi.com">icerik@kesifatlasi.com</a></p>
-    <h2>Not</h2>
-    <p>E-posta adreslerini kendi alan adınıza göre güncellemeyi unutmayın. Mesajlarınıza genellikle 2-3 iş günü içinde dönüş yapılır.</p>
-  </div>
-</div>
-</main>
-<footer class="site-footer">
-  <div class="wrap">
-    <div class="footer-grid">
-      <div>
-        <h4>Keşif Atlası</h4>
-        <p style="max-width:38ch;color:#c9c2a2;font-size:.94rem;">Türkiye'nin 81 ilini; tarihi, mutfağı ve gezilecek yerleriyle tek tek anlatan bağımsız bir gezi rehberi.</p>
-      </div>
-      <div>
-        <h4>Keşfet</h4>
-        <ul>
-          <li><a href="./iller/index.html">Tüm İller</a></li>
-          <li><a href="./blog/index.html">Blog Yazıları</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4>Kurumsal</h4>
-        <ul>
-          <li><a href="./hakkimizda.html">Hakkımızda</a></li>
-          <li><a href="./iletisim.html">İletişim</a></li>
-          <li><a href="./gizlilik-politikasi.html">Gizlilik Politikası</a></li>
-          <li><a href="./kullanim-sartlari.html">Kullanım Şartları</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <span>© 2026 Keşif Atlası. Tüm hakları saklıdır.</span>
-      <span>Türkiye'yi il il keşfedin.</span>
-    </div>
-  </div>
-</footer>
+.blog-card h3 {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
 
-</body>
-</html>
-5️⃣ Dosya adı: gizlilik-politikasi.html
-html
-<!doctype html>
-<html lang="tr">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Gizlilik Politikası | Keşif Atlası</title>
-<meta name="description" content="Keşif Atlası gizlilik politikası: veri toplama, çerezler ve reklam ortaklarına ilişkin bilgiler.">
-<link rel="canonical" href="https://xn--keifatlas-3pb21c.com/gizlilik-politikasi.html">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Gizlilik Politikası | Keşif Atlası">
-<meta property="og:description" content="Keşif Atlası gizlilik politikası: veri toplama, çerezler ve reklam ortaklarına ilişkin bilgiler.">
-<meta property="og:url" content="https://xn--keifatlas-3pb21c.com/gizlilik-politikasi.html">
-<meta name="twitter:card" content="summary">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2245%22 fill=%22%231F3A34%22/><path d=%22M50 15 L58 42 L85 42 L63 58 L71 85 L50 68 L29 85 L37 58 L15 42 L42 42 Z%22 fill=%22%23C9A227%22/></svg>">
-<link rel="stylesheet" href="./assets/css/style.css">
+.blog-card h3 a {
+  color: var(--primary-dark);
+}
 
-</head>
-<body>
-<a class="skip-link" href="#icerik">İçeriğe geç</a>
-<header class="site-header">
-  <div class="wrap">
-    <a class="brand" href="./index.html">
-      <svg width="28" height="28" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="#12241F"/><path d="M50 15 L58 42 L85 42 L63 58 L71 85 L50 68 L29 85 L37 58 L15 42 L42 42 Z" fill="#C9A227"/></svg>
-      <span>Keşif Atlası</span>
-    </a>
-    <nav class="main-nav" aria-label="Ana menü">
-      <ul>
-        <li><a href="./iller/index.html">81 İl</a></li>
-        <li><a href="./blog/index.html">Blog</a></li>
-        <li><a href="./hakkimizda.html">Hakkımızda</a></li>
-        <li><a href="./iletisim.html">İletişim</a></li>
-      </ul>
-    </nav>
-  </div>
-</header>
+.blog-card p {
+  color: var(--text-muted);
+  font-size: 0.93rem;
+  margin-bottom: 20px;
+  flex: 1;
+}
 
-<main id="icerik">
+/* ---------- İl Detay & İçerik Düzeni (Content Grid) ---------- */
+.content-grid {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: 48px;
+  align-items: start;
+}
 
-<div class="wrap section">
-  <div class="simple-page">
-    <h1>Gizlilik Politikası</h1>
-    <p><em>Son güncelleme: [tarih girin]</em></p>
-    <p>Bu Gizlilik Politikası, Keşif Atlası (kesifatlasi.com) web sitesini ziyaret ettiğinizde hangi bilgilerin nasıl toplandığını ve kullanıldığını açıklar.</p>
-    <h2>Topladığımız Bilgiler</h2>
-    <p>Sitemizi ziyaret ettiğinizde, standart sunucu günlükleri (IP adresi, tarayıcı türü, ziyaret edilen sayfalar) otomatik olarak kaydedilebilir. İletişim formu veya e-posta yoluyla bize ulaştığınızda paylaştığınız bilgiler yalnızca yanıt vermek amacıyla kullanılır.</p>
-    <h2>Çerezler (Cookies)</h2>
-    <p>Sitemiz, kullanıcı deneyimini iyileştirmek ve trafik analizi yapmak amacıyla çerezler kullanabilir. Tarayıcı ayarlarınızdan çerezleri devre dışı bırakabilirsiniz.</p>
-    <h2>Reklamlar ve Üçüncü Taraf Hizmetler</h2>
-    <p>Sitemizde Google AdSense gibi üçüncü taraf reklam ağları reklam gösterebilir. Bu hizmetler, ilgi alanlarınıza dayalı reklam sunmak amacıyla çerezler kullanabilir. Google'ın reklam çerezlerini nasıl kullandığı hakkında bilgi almak ve tercih ayarlarınızı yönetmek için <a href="https://policies.google.com/technologies/ads" target="_blank" rel="noopener">Google Reklam Politikaları</a> sayfasını ziyaret edebilirsiniz.</p>
-    <p>Ayrıca web sitemiz, ziyaretçi davranışlarını analiz etmek için Google Analytics gibi araçlar kullanabilir.</p>
-    <h2>Bilgilerin Paylaşımı</h2>
-    <p>Kişisel bilgileriniz, yasal zorunluluklar dışında üçüncü taraflarla paylaşılmaz veya satılmaz.</p>
-    <h2>Veri Güvenliği</h2>
-    <p>Kişisel verilerinizin güvenliğini sağlamak için makul teknik önlemler alınmaktadır; ancak internet üzerinden hiçbir veri iletiminin %100 güvenli olmadığını unutmayınız.</p>
-    <h2>Politika Değişiklikleri</h2>
-    <p>Bu gizlilik politikası zaman zaman güncellenebilir. Güncel sürüm her zaman bu sayfada yayınlanır.</p>
-    <h2>İletişim</h2>
-    <p>Gizlilik politikasıyla ilgili sorularınız için <a href="./iletisim.html">iletişim sayfamızdan</a> bize ulaşabilirsiniz.</p>
-    <p style="margin-top:2em;color:#a63d2f;"><strong>Not:</strong> Bu metin genel bir taslaktır; siteye özel gerçek uygulamalarınızı (kullandığınız analiz/reklam araçları, veri saklama süreleri vb.) yansıtacak şekilde güncellemeniz ve gerekirse bir hukuk danışmanına onaylatmanız önerilir.</p>
-  </div>
-</div>
-</main>
-<footer class="site-footer">
-  <div class="wrap">
-    <div class="footer-grid">
-      <div>
-        <h4>Keşif Atlası</h4>
-        <p style="max-width:38ch;color:#c9c2a2;font-size:.94rem;">Türkiye'nin 81 ilini; tarihi, mutfağı ve gezilecek yerleriyle tek tek anlatan bağımsız bir gezi rehberi.</p>
-      </div>
-      <div>
-        <h4>Keşfet</h4>
-        <ul>
-          <li><a href="./iller/index.html">Tüm İller</a></li>
-          <li><a href="./blog/index.html">Blog Yazıları</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4>Kurumsal</h4>
-        <ul>
-          <li><a href="./hakkimizda.html">Hakkımızda</a></li>
-          <li><a href="./iletisim.html">İletişim</a></li>
-          <li><a href="./gizlilik-politikasi.html">Gizlilik Politikası</a></li>
-          <li><a href="./kullanim-sartlari.html">Kullanım Şartları</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <span>© 2026 Keşif Atlası. Tüm hakları saklıdır.</span>
-      <span>Türkiye'yi il il keşfedin.</span>
-    </div>
-  </div>
-</footer>
+.content-main article section {
+  margin-bottom: 44px;
+}
 
-</body>
-</html>
-6️⃣ Dosya adı: kullanim-sartlari.html
-html
-<!doctype html>
-<html lang="tr">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Kullanım Şartları | Keşif Atlası</title>
-<meta name="description" content="Keşif Atlası web sitesini kullanırken geçerli olan kullanım şartları ve koşulları.">
-<link rel="canonical" href="https://xn--keifatlas-3pb21c.com/kullanim-sartlari.html">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Kullanım Şartları | Keşif Atlası">
-<meta property="og:description" content="Keşif Atlası web sitesini kullanırken geçerli olan kullanım şartları ve koşulları.">
-<meta property="og:url" content="https://xn--keifatlas-3pb21c.com/kullanim-sartlari.html">
-<meta name="twitter:card" content="summary">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2245%22 fill=%22%231F3A34%22/><path d=%22M50 15 L58 42 L85 42 L63 58 L71 85 L50 68 L29 85 L37 58 L15 42 L42 42 Z%22 fill=%22%23C9A227%22/></svg>">
-<link rel="stylesheet" href="./assets/css/style.css">
+.content-main h2 {
+  font-family: var(--font-serif);
+  font-size: 1.7rem;
+  color: var(--primary-dark);
+  margin-bottom: 18px;
+  border-bottom: 2px solid var(--border);
+  padding-bottom: 10px;
+}
 
-</head>
-<body>
-<a class="skip-link" href="#icerik">İçeriğe geç</a>
-<header class="site-header">
-  <div class="wrap">
-    <a class="brand" href="./index.html">
-      <svg width="28" height="28" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="#12241F"/><path d="M50 15 L58 42 L85 42 L63 58 L71 85 L50 68 L29 85 L37 58 L15 42 L42 42 Z" fill="#C9A227"/></svg>
-      <span>Keşif Atlası</span>
-    </a>
-    <nav class="main-nav" aria-label="Ana menü">
-      <ul>
-        <li><a href="./iller/index.html">81 İl</a></li>
-        <li><a href="./blog/index.html">Blog</a></li>
-        <li><a href="./hakkimizda.html">Hakkımızda</a></li>
-        <li><a href="./iletisim.html">İletişim</a></li>
-      </ul>
-    </nav>
-  </div>
-</header>
+.content-main h3 {
+  font-size: 1.15rem;
+  color: var(--primary);
+  margin: 20px 0 8px;
+}
 
-<main id="icerik">
+.content-main p {
+  margin-bottom: 16px;
+  font-size: 1.02rem;
+  color: var(--text-main);
+}
 
-<div class="wrap section">
-  <div class="simple-page">
-    <h1>Kullanım Şartları</h1>
-    <p><em>Son güncelleme: [tarih girin]</em></p>
-    <p>Keşif Atlası'nı (kesifatlasi.com) kullanarak aşağıdaki şartları kabul etmiş sayılırsınız.</p>
-    <h2>İçeriğin Kullanımı</h2>
-    <p>Sitemizdeki metin, görsel ve diğer içerikler bilgilendirme amaçlıdır. İçeriklerin izinsiz kopyalanması, çoğaltılması veya ticari amaçla kullanılması yasaktır.</p>
-    <h2>Bilgilerin Doğruluğu</h2>
-    <p>Gezi rehberlerimizdeki bilgileri (açılış saatleri, ulaşım, fiyatlar vb.) güncel tutmaya özen gösteriyoruz; ancak seyahat öncesinde bilgileri resmi kaynaklardan teyit etmenizi öneririz. Keşif Atlası, sitedeki bilgilerin güncelliğinden veya eksiksizliğinden kaynaklanan zararlardan sorumlu tutulamaz.</p>
-    <h2>Dış Bağlantılar</h2>
-    <p>Sitemiz, üçüncü taraf web sitelerine bağlantılar içerebilir. Bu sitelerin içeriğinden veya gizlilik uygulamalarından Keşif Atlası sorumlu değildir.</p>
-    <h2>Sorumluluk Sınırlaması</h2>
-    <p>Sitenin kullanımından doğabilecek doğrudan veya dolaylı zararlardan Keşif Atlası sorumlu tutulamaz.</p>
-    <h2>Değişiklikler</h2>
-    <p>Bu kullanım şartları önceden haber verilmeksizin güncellenebilir. Güncel sürüm her zaman bu sayfada yayınlanır.</p>
-    <h2>İletişim</h2>
-    <p>Sorularınız için <a href="./iletisim.html">iletişim sayfamızı</a> kullanabilirsiniz.</p>
-  </div>
-</div>
-</main>
-<footer class="site-footer">
-  <div class="wrap">
-    <div class="footer-grid">
-      <div>
-        <h4>Keşif Atlası</h4>
-        <p style="max-width:38ch;color:#c9c2a2;font-size:.94rem;">Türkiye'nin 81 ilini; tarihi, mutfağı ve gezilecek yerleriyle tek tek anlatan bağımsız bir gezi rehberi.</p>
-      </div>
-      <div>
-        <h4>Keşfet</h4>
-        <ul>
-          <li><a href="./iller/index.html">Tüm İller</a></li>
-          <li><a href="./blog/index.html">Blog Yazıları</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4>Kurumsal</h4>
-        <ul>
-          <li><a href="./hakkimizda.html">Hakkımızda</a></li>
-          <li><a href="./iletisim.html">İletişim</a></li>
-          <li><a href="./gizlilik-politikasi.html">Gizlilik Politikası</a></li>
-          <li><a href="./kullanim-sartlari.html">Kullanım Şartları</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <span>© 2026 Keşif Atlası. Tüm hakları saklıdır.</span>
-      <span>Türkiye'yi il il keşfedin.</span>
-    </div>
-  </div>
-</footer>
+.tip-box {
+  background: #FFFDF5;
+  border-left: 4px solid var(--accent);
+  padding: 18px 22px;
+  border-radius: 0 var(--radius) var(--radius) 0;
+  margin: 24px 0;
+  box-shadow: var(--shadow-sm);
+}
 
-</body>
+.tip-box strong {
+  display: block;
+  color: var(--primary-dark);
+  margin-bottom: 6px;
+  font-size: 0.92rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.info-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.info-list li {
+  position: relative;
+  padding-left: 28px;
+  font-size: 1rem;
+}
+
+.info-list li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+  font-weight: bold;
+}
+
+/* Sidebar & Bilgi Kutuları */
+.sidebar {
+  position: sticky;
+  top: 96px;
+}
+
+.fact-box {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px;
+  box-shadow: var(--shadow-sm);
+}
+
+.fact-box h3 {
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  color: var(--primary-dark);
+  margin-bottom: 18px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--border);
+}
+
+.fact-box dl {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 12px 16px;
+  font-size: 0.92rem;
+}
+
+.fact-box dt {
+  color: var(--text-muted);
+}
+
+.fact-box dd {
+  font-weight: 600;
+  color: var(--primary);
+  text-align: right;
+}
+
+.related-list {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.related-list a {
+  display: block;
+  padding: 8px 12px;
+  background: var(--bg);
+  border-radius: 6px;
+  font-size: 0.88rem;
+  color: var(--text-main);
+  text-align: center;
+}
+
+.related-list a:hover {
+  background: var(--primary);
+  color: #FFFFFF;
+}
+
+/* ---------- Statik & Kurumsal Sayfalar (Hakkımızda vb.) ---------- */
+.simple-page {
+  max-width: 780px;
+  margin: 0 auto;
+  background: var(--surface);
+  padding: 48px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+}
+
+.simple-page h1 {
+  font-family: var(--font-serif);
+  font-size: 2.4rem;
+  color: var(--primary-dark);
+  margin-bottom: 24px;
+}
+
+.simple-page h2 {
+  font-family: var(--font-serif);
+  font-size: 1.4rem;
+  color: var(--primary);
+  margin: 32px 0 12px;
+}
+
+.simple-page p {
+  margin-bottom: 16px;
+  color: var(--text-main);
+}
+
+/* ---------- Alt Menü (Footer) ---------- */
+.site-footer {
+  background: var(--primary-dark);
+  color: #FFFFFF;
+  margin-top: auto;
+  padding: 64px 0 32px;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 48px;
+  margin-bottom: 48px;
+}
+
+.footer-grid h4 {
+  color: var(--accent);
+  font-size: 1.05rem;
+  margin-bottom: 18px;
+  letter-spacing: 0.5px;
+}
+
+.footer-grid ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.footer-grid a {
+  color: var(--accent-light);
+  font-size: 0.92rem;
+  opacity: 0.85;
+}
+
+.footer-grid a:hover {
+  opacity: 1;
+  color: #FFFFFF;
+}
+
+.footer-bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 24px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  color: var(--accent-light);
+  opacity: 0.7;
+}
+
+/* ---------- Duyarlı Tasarım (Responsive) ---------- */
+@media (max-width: 900px) {
+  .content-grid {
+    grid-template-columns: 1fr;
+  }
+  .sidebar {
+    position: static;
+  }
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+}
+
+@media (max-width: 600px) {
+  .hero h1 {
+    font-size: 2.2rem;
+  }
+  .hero-search {
+    flex-direction: column;
+    border-radius: var(--radius);
+  }
+  .hero-search button {
+    padding: 12px;
+    border-radius: var(--radius);
+  }
+  .main-nav ul {
+    gap: 16px;
+  }
+  .simple-page {
+    padding: 24px;
+  }
+  .footer-bottom {
+    flex-direction: column;
+    gap: 8px;
+  }
+}
